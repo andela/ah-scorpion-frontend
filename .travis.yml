@@ -1,0 +1,13 @@
+# travis configurations
+
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+    - node_modules
+script:
+  - npm test
+  - npm run build
+notifications:
+    slack: andela:ODqDIMkl1Ds56Jxyrwc825vT

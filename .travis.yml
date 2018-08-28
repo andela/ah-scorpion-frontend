@@ -9,5 +9,5 @@ cache:
 script:
   - npm test
   - npm run build
- notifications:
+notifications:
     slack: andela:ODqDIMkl1Ds56Jxyrwc825vT

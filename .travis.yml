@@ -8,6 +8,5 @@ cache:
     - node_modules
 script:
   - npm test
-
 notifications:
     slack: andela:ODqDIMkl1Ds56Jxyrwc825vT

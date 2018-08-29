@@ -1,7 +1,6 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import * as actions from "./actions";
-import "./App.css";
+import React, { Component } from 'react';
+import { connect } from './actions';
+import './App.css';
 
 class App extends Component {
   constructor(props) {

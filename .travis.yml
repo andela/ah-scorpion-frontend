@@ -1,5 +1,7 @@
 # travis configurations
-
+env:
+  global:
+    - CC_TEST_REPORTER_ID=ac09bc8945acb8a19e553ee46e5ddeab8058ac70cc6cd85cfb2dabb06331e11b
 language: node_js
 node_js:
   - "stable"

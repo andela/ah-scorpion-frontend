@@ -20,5 +20,5 @@ script:
   - npm run build
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-# notifications:
-#     slack: andela:ODqDIMkl1Ds56Jxyrwc825vT
+notifications:
+    slack: andela:ODqDIMkl1Ds56Jxyrwc825vT

@@ -1,4 +1,4 @@
-import { TEST_REDUX } from "../actions/types";
+import { TEST_REDUX } from '../actions/types';
 
 const initialState = {
   test: null

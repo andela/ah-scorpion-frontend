@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from './actions';
+import { connect } from "react-redux";
+import * as actions from './actions';
 import './App.css';
 
 class App extends Component {
@@ -32,7 +33,7 @@ class App extends Component {
 
 const mapStateToProps = ({ test }) => ({ test });
 const mapDispatchToProps = dispatch => ({
-  testStore: test => dispatch(action.testStore(test))
+  testStore: test => dispatch(actions.testStore(test))
 });
 
 export default connect(

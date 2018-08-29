@@ -1,11 +1,12 @@
 // Here we have a "smart" component which is aware of Redux
 import React, { Component } from 'react';
 import { GoogleLogin } from 'react-google-login';
-import keys from '../../config/keys';
+import developmentKeys from '../config/development';
+import productionKeys from '../config/production';
 
 class Login extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { isAuthenticated: false, user: null, token: '' };
   }
 
@@ -39,7 +40,7 @@ class Login extends Component {
       : (
         <div>
           <GoogleLogin
-            clientId={keys.GOOGLE_CLIENT_ID}
+            clientId={developmentKeys.GOOGLE_CLIENT_ID || productionKeys.GOOGLE_CLIENT_ID}
             buttonText="Login"
             onSuccess={this.googleResponse}
             onFailure={this.onFailure}

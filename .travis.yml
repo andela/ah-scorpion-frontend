@@ -13,7 +13,7 @@ before_script:
   - npm install codeclimate-test-reporter istanbul -g
 script:
   - npm test
-  - istanbul cover npm test -- -R spec
+  - istanbul cover npm test
   - npm run build
 after_script:
   - codeclimate-test-reporter < ./coverage/lcov.info

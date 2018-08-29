@@ -1,25 +1,21 @@
 # travis configurations
-env:
-  global:
-    - CC_TEST_REPORTER_ID=ac09bc8945acb8a19e553ee46e5ddeab8058ac70cc6cd85cfb2dabb06331e11b
 language: node_js
 node_js:
   - "stable"
-cache:
-  directories:
-    - node_modules
 addons:
   code_climate:
     repo_token:
       secure: "m+NV4GPL9cEIHjnajmlvHqD9bLlWLng60i/t+Ih7CQrYvbWmf1/PHaDERayRJPP9i5vxc1NhI23IRwJybnrZGiH1oqiVx77JVBcVPl2WbNntVWsPWlsIj34uLWI+nDS85NBj3JHpLCT43Go3ECYkYSLU8sRNf+8IYVlc8g5zVKsZtTEDiPgW5py2tzlhRl/Um5yXoGbSOPELEdd7t6k6OCuRbJWt9YGckK+N8ra9twTq2u9ohtE761hmL8fyxF9nuMJZYA7H4Ir/zQfCEWp1UjTLsIw8xEZusMcYRgLIjhf9B7m0rK/mYjKKfJEzW6GEAYYoK/LLIYufRKaTh5rjPH9jUPuof6+bAP6nmt2JpII8R68sQNinCypwyCGXGRwSwy94zKdLMmjrxGuTpp1OBxXk8vTqlISJhDpi7mjoRerbIkCWZuc1jfjkrmC+tE/MJxm+6+bVcqaxzgC2fgvNZNtT+/0zD0uIzLypQkGipM9HW6SHDnQDsTitQHOE/dBI+KMau40pYfEDuqC6nNpPIl2axrtE4CY4voDkRdiK5OUavxBBjmQDNDY0AKQUgmIXjnaBUL4Fy73Pg5zQz1csyBJqJsXqBguaJygsrDTKPQQG5ttBGo/LNq6qrDod6mmot0dR2qVFssWHAuEJCTXDqdiLbJq6UemIlwe+g3BAtFY="
+cache:
+  directories:
+    - node_modules
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+  - npm install codeclimate-test-reporter istanbul -g
 script:
   - npm test
+  - istanbul cover npm test -- -R spec
   - npm run build
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - codeclimate-test-reporter < ./coverage/lcov.info
 # notifications:
 #     slack: andela:ODqDIMkl1Ds56Jxyrwc825vT

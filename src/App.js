@@ -32,7 +32,7 @@ class App extends Component {
 
 const mapStateToProps = ({ test }) => ({ test });
 const mapDispatchToProps = dispatch => ({
-  testStore: test => dispatch(actions.testStore(test))
+  testStore: test => dispatch(action.testStore(test))
 });
 
 export default connect(

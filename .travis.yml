@@ -13,7 +13,7 @@ before_script:
   - npm install codeclimate-test-reporter istanbul -g
 script:
   - npm test
-  - istanbul cover npm test
+  - istanbul cover node_modules/mocha/bin/_mocha -- -R spec
   - npm run build
 after_script:
   - codeclimate-test-reporter < ./coverage/lcov.info

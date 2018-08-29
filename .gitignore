@@ -24,4 +24,7 @@ yarn-error.log*
 .vscode/
 .idea/
 
+# env files
+development.js
+
 

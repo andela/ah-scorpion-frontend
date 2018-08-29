@@ -1,42 +1,28 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux";
-import * as actions from './actions';
+import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
+import Login from './containers/Login';
+import SignUp from './containers/Signup';
+import Footer from './components/Footer';
+import Header from './containers/Header';
+import Landing from './components/Landing';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { data: this.props.test };
-    this.updateStore = this.updateStore.bind(this);
-  }
-
-  updateStore(event) {
-    const text = event.target.value;
-    this.props.testStore(text);
-  }
-
   render() {
-    const { test } = this.props.test;
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to AH</h1>
-        </header>
-        <form>
-          <input type="text" onChange={this.updateStore} />
-          {test && <p>{test}</p>}
-        </form>
-      </div>
+
+      <BrowserRouter>
+        <div>
+          <Header />
+          <Route path="/" exact render={props => <Landing {...props} />} />
+          <Route path="/login" exact render={props => <Login {...props} />} />
+          <Route path="/signup" exact render={props => <SignUp {...props} />} />
+          <Footer />
+        </div>
+      </BrowserRouter>
+
     );
   }
 }
 
-const mapStateToProps = ({ test }) => ({ test });
-const mapDispatchToProps = dispatch => ({
-  testStore: test => dispatch(actions.testStore(test))
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default App;

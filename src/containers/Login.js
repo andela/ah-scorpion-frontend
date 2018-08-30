@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import { GoogleLogin } from 'react-google-login';
 
+const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+
 
 class Login extends Component {
   constructor(props) {
@@ -39,7 +41,7 @@ class Login extends Component {
       : (
         <div>
           <GoogleLogin
-            clientId={process.env.GOOGLE_CLIENT_ID}
+            clientId={clientId}
             buttonText="Login"
             onSuccess={this.googleResponse}
             onFailure={this.onFailure}

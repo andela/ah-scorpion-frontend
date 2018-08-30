@@ -1,8 +1,7 @@
 // Here we have a "smart" component which is aware of Redux
 import React, { Component } from 'react';
 import { GoogleLogin } from 'react-google-login';
-import developmentKeys from '../config/development';
-import productionKeys from '../config/production';
+import keys from '../config/keys';
 
 class Login extends Component {
   constructor(props) {
@@ -11,7 +10,7 @@ class Login extends Component {
   }
 
   onFailure(error) {
-    alert(error);
+    console.log(error);
   }
 
   logout() {
@@ -40,7 +39,7 @@ class Login extends Component {
       : (
         <div>
           <GoogleLogin
-            clientId={developmentKeys.GOOGLE_CLIENT_ID || productionKeys.GOOGLE_CLIENT_ID}
+            clientId={keys.GOOGLE_CLIENT_ID}
             buttonText="Login"
             onSuccess={this.googleResponse}
             onFailure={this.onFailure}

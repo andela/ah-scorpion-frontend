@@ -1,7 +1,8 @@
-import * as process from 'eslint';
+const prod = require('./production');
+const dev = require('./development');
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = require('./production');
+  module.exports = prod;
 } else {
-  module.exports = require('./development');
+  module.exports = dev;
 }

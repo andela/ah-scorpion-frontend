@@ -26,5 +26,6 @@ yarn-error.log*
 
 # env files
 development.js
+.env
 
 

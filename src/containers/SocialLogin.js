@@ -7,13 +7,14 @@ import * as actions from '../actions';
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 
-class Login extends Component {
+class SocialLogin extends Component {
   constructor(props) {
     super(props);
     this.state = {
     };
 
     this.googleResponse = this.googleResponse.bind(this);
+    this.socialAuthResponse = this.socialAuthResponse.bind(this);
     this.onFailure = this.onFailure.bind(this);
     this.logout = this.logout.bind(this);
   }
@@ -27,42 +28,26 @@ class Login extends Component {
   }
 
   googleResponse(response) {
+    this.socialAuthResponse(response.accessToken, 'google-oauth2');
+  }
+
+  socialAuthResponse(token, provider) {
     // the request body format
     const requestBody = {
-      access_token: response.accessToken,
-      provider: 'google-oauth2',
+      access_token: token,
+      provider,
     };
     this.props.SOCIALAUTH(requestBody);
   }
 
   render() {
-    const content = this.state.isAuthenticated
-      ? (
-        <div>
-          <p>Authenticated</p>
-          <div>
-            Email should be here
-          </div>
-          <div>
-            <button type="button" onClick={this.logout} className="button">
-              Log out
-            </button>
-          </div>
-        </div>
-      )
-      : (
-        <GoogleLogin
-          clientId={clientId}
-          buttonText="Login"
-          onSuccess={this.googleResponse}
-          onFailure={this.onFailure}
-        />
-      );
-
     return (
-      <div className="App">
-        {content}
-      </div>
+      <GoogleLogin
+        clientId={clientId}
+        buttonText="Login"
+        onSuccess={this.googleResponse}
+        onFailure={this.onFailure}
+      />
     );
   }
 }
@@ -78,4 +63,4 @@ const mapDispatchToProps = dispatch => ({
   // Create the loginUser function that executes functions for login
   SOCIALAUTH: data => dispatch(actions.socialLogin(data)),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(SocialLogin);

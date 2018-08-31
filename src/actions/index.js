@@ -24,12 +24,12 @@ export const socialLogin = data => (dispatch) => {
 
   axios.post(socialUrl, data).then((response) => {
     // set username, email and tokens in local storage
-    console.log(response)
     localStorage.setItem('token', response.data.user.token);
     localStorage.setItem('username', response.data.user.username);
     localStorage.setItem('email', response.data.user.email);
     localStorage.setItem('image_url', response.data.user.image);
     dispatch(successLogin());
+    console.log(response);
   }).catch((error) => {
     // create an error message
     let message = '';

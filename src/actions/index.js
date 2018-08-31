@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as types from './types';
 
-const socialUrl = 'https://authors-haven-api.herokuapp.com/api/v1/users/social_auth/';
+const socialUrl = process.env.REACT_APP_SOCIAL_URL;
 
 export const testStore = data => ({ type: types.TEST_REDUX, payload: data });
 

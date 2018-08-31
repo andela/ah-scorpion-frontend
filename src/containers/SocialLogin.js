@@ -43,23 +43,32 @@ class SocialLogin extends Component {
 
   render() {
     return (
-      <div className="text-center">
+      <div className="text-center row" style={{ marginLeft: '8em', marginRight: '5.6em' }}>
         <FacebookLogin
           appId={fbAppId}
           autoLoad
           fields="name,email,picture"
           callback={this.facebookResponse}
-          cssClass="btn btn-primary"
+          cssClass="btn btn-primary col"
           icon="fa fa-facebook fa-2x"
           textButton=""
         />
 
         <GoogleLogin
           clientId={googleClientId}
-          buttonText="Login"
           onSuccess={this.googleResponse}
           onFailure={this.onFailure}
-        />
+          style={{ width: '3.7em' }}
+          type=""
+          tag="div"
+          className="col"
+        >
+          <button className="btn btn-danger" type="button">
+            <div>
+              <i className="fa fa-google fa-2x" aria-hidden="true" />
+            </div>
+          </button>
+        </GoogleLogin>
       </div>
     );
   }

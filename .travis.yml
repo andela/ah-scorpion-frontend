@@ -23,4 +23,4 @@ deploy:
   strategy: git
   app: authors-haven-frontend
   on:
-    branch: ch-deploy-to-heroku-160206226
+    branch: develop

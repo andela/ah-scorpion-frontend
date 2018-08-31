@@ -1,1 +1,1 @@
-export const TEST_REDUX = 'TEST_REDUX';
+export const USER_LOGGED_IN = "USER_LOGGED_IN";

@@ -12,7 +12,7 @@ const store = createStore(reducers, {}, composeWithDevTools(applyMiddleware(thun
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Routes />
   </Provider>,
   document.getElementById('root'),
 );

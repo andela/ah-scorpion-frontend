@@ -10,12 +10,8 @@ const fbAppId = process.env.REACT_APP_FACEBOOK_APP_ID;
 
 
 class SocialLogin extends Component {
-  constructor({
-    SOCIALAUTH, isAuthenticated, message, loading,
-  }) {
-    super({
-      SOCIALAUTH, isAuthenticated, message, loading,
-    });
+  constructor(props) {
+    super(props);
     this.state = {};
 
     this.googleResponse = this.googleResponse.bind(this);
@@ -42,7 +38,7 @@ class SocialLogin extends Component {
       access_token: token,
       provider,
     };
-    this.SOCIALAUTH(requestBody);
+    this.props.SOCIALAUTH(requestBody);
   }
 
   render() {

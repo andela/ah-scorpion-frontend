@@ -1,21 +1,28 @@
-# travis configurations
 language: node_js
 node_js:
-  - "stable"
+- stable
 cache:
   directories:
-    - node_modules
+  - node_modules
 before_script:
-  - npm install codeclimate-test-reporter -g
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+- npm install codeclimate-test-reporter -g
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
 script:
-  - npm install
-  - npm test
-  - npm test -- --coverage
-  - npm run build
+- npm install
+- npm test
+- npm test -- --coverage
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+- "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
 notifications:
-    slack: andela:ODqDIMkl1Ds56Jxyrwc825vT
+  slack: andela:ODqDIMkl1Ds56Jxyrwc825vT
+deploy:
+  provider: heroku
+  api_key:
+    secure: gnliVC5BppBy/X0QF8sBkpz8hm4CbwDbPgp3xGY8zhWrg16gkzms2lsLjeg/FIEGFpuWa3AAHyqNC7qK5nCCaQnznkOsb9eegFrlVQZ4D9sOCtuygGHiQ6QbiIWV5oNsT2960AeARnzyTx5rU+rtb0l13MCod44LoTJ2xv8zOUqyGhuI9R+LNhy4S8C2KGv/SXdoJLZNMtfQH4WF5xWEqNAeQDadFtc/CGAqZ2noEynOkBheNEEUMCU/Ou/R2pWFDO/pFS7Q9hXsM5PRJ2PtCmg/HyM3svCXAJHnHzotzlBxzlmfiIHdpIZY8qzx3gRmzBd8AxtXDK43T8pxxs665oy/TqQ3RPW4Qm6vjV+CE5Pjdt6PoNOEgkszclIgKlHSVaejYdiC6baLOS+Z8g7HLQetK5+9RTTWJLOHd8KTAjV99aaoTaXgNYw45fHwo6Fa6OtFda5nI8T3jY8Dv1LTl9wUPmnE25Zk7q1m+JIFVjCmlpcAWJVEMebOJluGzQ6Gb1KG5xHdRbwzXazTriyODICK0lEM/L6T0tXiNMa+OlgnEsazP39ODDe5Gc+OUk9JoPEjRH+3bqCr2jvVyyMbUc7QTb5EqYKq+NqO3MKRb+H3f3t8IUafdc/Nd/KPb3z1TjtA5FkEXdUBEHjtYlAli9F8LTCEKg2BWg1P859XQAY=
+  strategy: git
+  app: authors-haven-frontend
+  on:
+    branch: deploy

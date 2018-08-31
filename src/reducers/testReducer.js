@@ -1,10 +1,10 @@
 import { TEST_REDUX } from "../actions/types";
 
 const initialState = {
-  test: null
+  test: null,
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case TEST_REDUX:
       return { ...state, test: action.payload };

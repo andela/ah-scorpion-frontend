@@ -15,7 +15,6 @@ class Login extends Component {
       <React.Fragment>
         <NavBar />
         <LoginForm submit={this.submit} />
-        <Footer />
       </React.Fragment>
     );
   }

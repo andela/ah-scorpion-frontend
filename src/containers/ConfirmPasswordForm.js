@@ -1,20 +1,28 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Footer from "../../components/Footer";
-import NavBar from "../../components/NavBar";
-import reset from "./../../actions/resetAction";
+import Footer from "../components/Footer";
+import NavBar from "../components/NavBar";
+import changePassword from "../actions/resetPassword"
+
 
 class ResetForm extends Component {
     state = {
-        email: ''
+        email: '',
+        new_password: '',
+        confirm_password: '',
     }
     handleChange = event => {
-        this.setState({ email: event.target.value })
+        this.setState({ [event.target.name]: event.target.value })
     }
     handleSubmit = event => {
         event.preventDefault();
-        this.props.dispatch(reset(this.state.email))
 
+        this.props.dispatch(changePassword({ ...this.state, reset_token: this.props.match.params.token }))
+
+    }
+
+    validatePassword = () => {
+        return this.state.confirm_password === this.state.new_password
     }
 
     renderForm = () => (
@@ -34,7 +42,7 @@ class ResetForm extends Component {
 
                     <div className="card form-bg">
                         <div className="card-header text-center form-bg">
-                            <h2>Password Reset</h2>
+                            <h2>Change Password</h2>
                         </div>
                         <form className="pt-5 pb-2 px-5 form-bg" onSubmit={this.handleSubmit}>
                             <div className="form-group">
@@ -47,11 +55,39 @@ class ResetForm extends Component {
                                     onChange={this.handleChange}
                                 />
                             </div>
+                            <br />
+                            <div className="form-group">
+                                <input required
+                                    type="Password"
+                                    className="form-control"
+                                    name="new_password"
+                                    placeholder="Password"
+                                    value={this.state.new_password}
+                                    onChange={this.handleChange}
+                                />
+                            </div>
+                            <br />
+
+                            <div className="form-group">
+                                <input required
+                                    type="Password"
+                                    className={`form-control ${this.validatePassword() ? '' : 'is-invalid'}`}
+                                    name="confirm_password"
+                                    placeholder="Confirm Password"
+                                    value={this.state.confirm_password}
+                                    onChange={this.handleChange}
+
+                                />
+                                <div className="invalid-feedback text-center ">
+                                    Passwords don't match
+                                </div>
+
+                            </div>
 
                             <div className="text-center">
                                 <button className="btn btn btn-primary">
                                     Submit
-                </button>
+                                </button>
                             </div>
                             <br />
                         </form>
@@ -61,25 +97,13 @@ class ResetForm extends Component {
             <Footer />
         </React.Fragment>
     )
-    renderSuccess = () => (
-        <main style={{ marginTop: "2.5em" }}>
-            <div className="container p-5 signup-container">
-                <div
-                    className="alert alert-success"
-                    style={{ textAlign: "center" }}
-                    role="alert"
-                >
-                    <p>Please Check Your Email For Further Instructions</p>
-                </div>
-            </div>
-        </main>
-    )
+
 
     render() {
 
         return (
             <div>
-                {this.props.reset.sent ? this.renderSuccess() : this.renderForm()}
+                {this.props.reset.sent ? this.props.history.push('/login') : this.renderForm()}
             </div>
         )
     }

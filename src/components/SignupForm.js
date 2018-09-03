@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import SignupError from './SignupError';
 
 class SignupForm extends Component {
   constructor(props) {
@@ -23,18 +24,24 @@ class SignupForm extends Component {
   }
 
   handleSubmit(event) {
-    const { onSubmit } = this.props;
     event.preventDefault();
-    onSubmit(this.state);
+    const { onSubmit, verifyPassword } = this.props;
+    const { password, confPassword } = this.state;
+    if (verifyPassword(password, confPassword)) {
+      onSubmit(this.state);
+    }
   }
 
   render() {
+    const { onError, errorMsg } = this.props;
     const {
       email, username, password, confPassword,
     } = this.state;
+
     return (
       <main className="mt-2em">
         <div className="container p-5 signup-container">
+          {onError ? <SignupError errorMsg={errorMsg} /> : null}
           <div className="card  form-bg ptb-1em">
             <div className="card-header text-center form-bg">
               <h2>Sign Up</h2>
@@ -42,7 +49,7 @@ class SignupForm extends Component {
             <form className="pb-5 pl-5 pr-5 pt-0 form-bg" onSubmit={this.handleSubmit}>
               <div className="text-center">
                 <p>You could sign up with...</p>
-                <Link to="#facebbok">
+                <Link to="#facebook">
                   <button className="btn btn-primary social-btn" type="button">
                     <div>
                       <i className="fa fa-facebook fa-2x" aria-hidden="true" />
@@ -62,6 +69,7 @@ class SignupForm extends Component {
               <div className="form-group">
                 <input
                   type="email"
+                  required
                   className="form-control"
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
@@ -74,6 +82,7 @@ class SignupForm extends Component {
               <div className="form-group">
                 <input
                   type="text"
+                  required
                   className="form-control"
                   id="exampleInputUsername"
                   placeholder="Username"
@@ -85,6 +94,7 @@ class SignupForm extends Component {
               <div className="form-group">
                 <input
                   type="password"
+                  required
                   className="form-control"
                   id="exampleInputPassword1"
                   placeholder="Password"
@@ -96,6 +106,7 @@ class SignupForm extends Component {
               <div className="form-group">
                 <input
                   type="password"
+                  required
                   className="form-control"
                   id="exampleInputPassword2"
                   placeholder="Confirm Password"
@@ -123,6 +134,13 @@ class SignupForm extends Component {
 
 SignupForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  onError: PropTypes.bool.isRequired,
+  errorMsg: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
+  verifyPassword: PropTypes.func.isRequired,
+};
+
+SignupForm.defaultProps = {
+  errorMsg: null,
 };
 
 export default SignupForm;

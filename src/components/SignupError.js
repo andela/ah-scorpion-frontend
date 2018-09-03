@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SignupError = ({ errorMessage }) => (
-  <div className="alert alert-danger" style={{ marginTop: '30px' }}>
-    <center>{errorMessage}</center>
+const SignupError = ({ errorMsg }) => (
+  <div className="alert alert-danger">
+    <center>{errorMsg}</center>
   </div>
 );
 
 SignupError.propTypes = {
-  errorMessage: PropTypes.func.isRequired,
+  errorMsg: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
+};
+
+SignupError.defaultProps = {
+  errorMsg: null,
 };
 
 export default SignupError;

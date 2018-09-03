@@ -46,7 +46,6 @@ class SocialLogin extends Component {
       <div className="text-center row" style={{ marginLeft: '8em', marginRight: '5.6em' }}>
         <FacebookLogin
           appId={fbAppId}
-          autoLoad
           fields="name,email,picture"
           callback={this.facebookResponse}
           cssClass="btn btn-primary col"

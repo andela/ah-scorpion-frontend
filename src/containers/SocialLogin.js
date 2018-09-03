@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import * as actions from '../actions';
 
 const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
@@ -39,6 +40,7 @@ class SocialLogin extends Component {
       provider,
     };
     this.props.SOCIALAUTH(requestBody);
+    this.props.history.push('/');
   }
 
   render() {
@@ -87,4 +89,4 @@ const mapDispatchToProps = dispatch => ({
   // Create the loginUser function that executes functions for login
   SOCIALAUTH: data => dispatch(actions.socialLogin(data)),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(SocialLogin);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SocialLogin));

@@ -85,8 +85,8 @@ class ResetForm extends Component {
                             </div>
 
                             <div className="text-center">
-                                <button className="btn btn btn-primary">
-                                    Submit
+                                <button className='btn btn-primary' disabled={this.props.reset.sending}>
+                                    {this.props.reset.sending ? 'Sending...' : 'Submit'}
                                 </button>
                             </div>
                             <br />

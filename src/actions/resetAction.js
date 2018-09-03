@@ -10,6 +10,7 @@ function error(errors) {
 }
 export default function reset(email) {
     return (dispatch) => {
+        dispatch(({ type: 'RESET_REQUEST_START' }))
         axios.post(
             'https://authors-haven-api.herokuapp.com/api/v1/reset-password/',
             {

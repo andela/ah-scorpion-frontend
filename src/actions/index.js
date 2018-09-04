@@ -22,15 +22,16 @@ export const socialLogin = data => (dispatch) => {
 
   // making an API call with the data received from social auth
 
-  axios.post(socialUrl, data).then((response) => {
-    // set username, email and tokens in local storage
-    localStorage.setItem('token', response.data.user.token);
-    localStorage.setItem('username', response.data.user.username);
-    localStorage.setItem('email', response.data.user.email);
-    localStorage.setItem('image_url', response.data.user.image);
-    dispatch(successLogin());
-    console.log(response);
-  }).catch((error) => {
+  return axios.post(socialUrl, data).then(response => new Promise(
+    (resolve) => {
+      localStorage.setItem('token', response.data.user.token);
+      localStorage.setItem('username', response.data.user.username);
+      localStorage.setItem('email', response.data.user.email);
+      localStorage.setItem('image_url', response.data.user.image);
+      dispatch(successLogin(response));
+      resolve();
+    },
+  )).catch((error) => {
     // create an error message
     let message = '';
     try {

@@ -6,10 +6,7 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
+        "extensions": [".js", ".jsx"]
       }
     ]
   },
@@ -18,9 +15,7 @@
     "spread": true,
     "restParams": true
   },
-  "plugins": [
-    "jest"
-  ],
+  "plugins": ["jest"],
   "env": {
     "browser": true,
     "jest/globals": true

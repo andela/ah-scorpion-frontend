@@ -39,9 +39,9 @@ export const socialLogin = data => (dispatch) => {
     let message = '';
     try {
       message = error.response.data.errors.error[0];
-    } catch (error) {
+    } catch (err) {
       // message in case of no internet access
-      message = 'You are be offline.';
+      message = 'You are offline.';
     }
 
     // dispatch action to login fail reducer

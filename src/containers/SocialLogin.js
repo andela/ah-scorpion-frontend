@@ -75,6 +75,9 @@ class SocialLogin extends Component {
 }
 SocialLogin.propTypes = {
   SOCIALAUTH: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = ({ authState }) => ({

@@ -33,7 +33,7 @@ class SignupForm extends Component {
   }
 
   render() {
-    const { onError, errorMsg } = this.props;
+    const { onError, errorMsg, isFetching } = this.props;
     const {
       email, username, password, confPassword,
     } = this.state;
@@ -116,7 +116,7 @@ class SignupForm extends Component {
                 />
               </div>
               <div className="text-center">
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-primary" disabled={isFetching}>
                   Sign Up
                 </button>
                 <p>
@@ -135,7 +135,12 @@ class SignupForm extends Component {
 SignupForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onError: PropTypes.bool.isRequired,
-  errorMsg: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
+  isFetching: PropTypes.bool.isRequired,
+  errorMsg: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.object,
+    PropTypes.string,
+  ]),
   verifyPassword: PropTypes.func.isRequired,
 };
 

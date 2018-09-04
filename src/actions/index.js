@@ -13,9 +13,12 @@ const failLogin = error => ({
   type: types.FAIL_LOGIN, payload: error,
 });
 
-const successLogin = response => ({
-  type: types.SUCCESS_LOGIN, payload: response,
-});
+const successLogin = (response) => {
+  this.props.history.push('/');
+  return {
+    type: types.SUCCESS_LOGIN, payload: response,
+  };
+};
 
 export const socialLogin = data => (dispatch) => {
   dispatch(beginLogin());

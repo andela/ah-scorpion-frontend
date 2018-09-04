@@ -8,5 +8,8 @@
   ],
   "env": {
     "jest/globals": true
+  },
+  "parserOptions": {
+    "sourceType": "module"
   }
 }

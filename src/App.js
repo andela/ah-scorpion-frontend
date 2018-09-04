@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
-import Login from "./containers/Login";
+import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Login from './containers/Login';
 import './index.css';
 import SignUp from './containers/Signup';
 import Footer from './components/Footer';
@@ -8,6 +8,11 @@ import Header from './containers/Header';
 import Landing from './components/Landing';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     return (
 

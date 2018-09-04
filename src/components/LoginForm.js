@@ -8,18 +8,17 @@ import SocialLogin from '../containers/SocialLogin';
 class LoginForm extends React.Component {
   state = {
     data: {
-      email: "",
-      password: ""
+      email: '',
+      password: '',
     },
-    errors: {}
+    errors: {},
   };
 
-  onChange = e =>
-    this.setState({
-      data: { ...this.state.data, [e.target.name]: e.target.value }
-    });
+  onChange = e => this.setState({
+    data: { ...this.state.data, [e.target.name]: e.target.value },
+  });
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
     const errors = this.validate(this.state.data);
     this.setState({ errors });
@@ -27,28 +26,26 @@ class LoginForm extends React.Component {
       this.setState({ loading: true });
       this.props
         .submit(this.state.data)
-        .catch(err =>
-          this.setState({ errors: err.response.data.errors, loading: false })
-        );
+        .catch(err => this.setState({ errors: err.response.data.errors, loading: false }));
     }
   };
 
-  validate = data => {
+  validate = (data) => {
     const errors = {};
-    if (!Validator.isEmail(data.email)) errors.email = "email field required";
-    if (!data.password) errors.password = "password field required";
+    if (!Validator.isEmail(data.email)) errors.email = 'email field required';
+    if (!data.password) errors.password = 'password field required';
     return errors;
   };
+
   render() {
     const { data, errors } = this.state;
-    console.log(errors);
     return (
-      <main style={{ marginTop: "2.5em" }}>
+      <main style={{ marginTop: '2.5em' }}>
         <div className="container p-5 signup-container">
           {errors.error ? (
             <div
               className="alert alert-danger"
-              style={{ textAlign: "center" }}
+              style={{ textAlign: 'center' }}
               role="alert"
             >
               {errors.error[0]}
@@ -60,7 +57,7 @@ class LoginForm extends React.Component {
               <h2>Login</h2>
             </div>
             <form className="pt-5 pb-2 px-5 form-bg" onSubmit={this.onSubmit}>
-              <SocialLogin/>
+              <SocialLogin />
               <hr />
               <p className="text-center">Or</p>
               <div className="form-group">
@@ -90,7 +87,7 @@ class LoginForm extends React.Component {
                 />
                 <Link
                   to="Signup-link"
-                  style={{ paddingLeft: "65px", fontSize: "14px" }}
+                  style={{ paddingLeft: '65px', fontSize: '14px' }}
                 >
                   Forgot password?
                 </Link>
@@ -115,7 +112,7 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {
-  submit: PropTypes.func.isRequired
+  submit: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

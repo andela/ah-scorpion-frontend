@@ -9,7 +9,11 @@
   "env": {
     "jest/globals": true
   },
+  "parser": "babel-eslint",
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "codeFrame": true
   }
+
 }

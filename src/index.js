@@ -11,7 +11,7 @@ import App from './App';
 const store = createStore(
   reducers,
   {},
-  composeWithDevTools(applyMiddleware(Thunk))
+  composeWithDevTools(applyMiddleware(Thunk)),
 );
 
 ReactDOM.render(

@@ -7,15 +7,14 @@ import LoginForm from '../components/LoginForm';
 import { login } from '../actions/auth';
 
 class Login extends Component {
-  submit = data =>
-    this.props.login(data).then(() => this.props.history.push("/"));
+  submit = data => this.props.login(data).then(() => this.props.history.push('/'));
 
   render() {
     return (
       <React.Fragment>
         <NavBar />
         <LoginForm submit={this.submit} />
-        <Footer/>
+        <Footer />
       </React.Fragment>
     );
   }
@@ -23,12 +22,12 @@ class Login extends Component {
 
 Login.propTypes = {
   history: PropTypes.shape({
-    push: PropTypes.func.isRequired
+    push: PropTypes.func.isRequired,
   }).isRequired,
-  login: PropTypes.func.isRequired
+  login: PropTypes.func.isRequired,
 };
 
 export default connect(
   null,
-  { login }
+  { login },
 )(Login);

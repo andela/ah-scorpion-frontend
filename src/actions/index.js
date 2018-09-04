@@ -3,8 +3,6 @@ import * as types from './types';
 
 const socialUrl = process.env.REACT_APP_SOCIAL_URL;
 
-export const testStore = data => ({ type: types.TEST_REDUX, payload: data });
-
 const beginLogin = () => ({
   type: types.BEGIN_LOGIN,
 });

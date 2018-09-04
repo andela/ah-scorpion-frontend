@@ -17,7 +17,14 @@ const HomeFooter = () => (
             <h5 contentEditable="true">Ask us a question</h5>
             <form>
               <fieldset className="form-group my-3">
-                <input type="email" className="form-control" id="Input Email" placeholder="Email" />
+                <div>
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="Input Email"
+                    placeholder="Email"
+                  />
+                </div>
               </fieldset>
               <fieldset className="form-group my-3">
                 <input

@@ -8,33 +8,29 @@ const initialState = {
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.BEGIN_LOGIN:
-      state = {
+      return {
         ...state,
         loading: true,
         message: '',
       };
-      break;
 
     case types.FAIL_LOGIN:
-      state = {
+      return {
         ...state,
         loading: false,
         message: action.payload,
       };
-      break;
 
     case types.SUCCESS_LOGIN:
-      state = {
+      return {
         ...state,
         isAuthenticated: true,
         message: '',
       };
-      break;
 
     default:
-      break;
+      return state;
   }
-  return state;
 };
 
 export default loginReducer;

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import SignupError from './SignupError';
+import SignUpError from './SignUpError';
 
-class SignupForm extends Component {
+class SignUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -41,7 +41,7 @@ class SignupForm extends Component {
     return (
       <main className="mt-2em">
         <div className="container p-5 signup-container">
-          {onError ? <SignupError errorMsg={errorMsg} /> : null}
+          {onError ? <SignUpError errorMsg={errorMsg} /> : null}
           <div className="card  form-bg ptb-1em">
             <div className="card-header text-center form-bg">
               <h2>Sign Up</h2>
@@ -132,7 +132,7 @@ class SignupForm extends Component {
   }
 }
 
-SignupForm.propTypes = {
+SignUpForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onError: PropTypes.bool.isRequired,
   isFetching: PropTypes.bool.isRequired,
@@ -144,8 +144,8 @@ SignupForm.propTypes = {
   verifyPassword: PropTypes.func.isRequired,
 };
 
-SignupForm.defaultProps = {
+SignUpForm.defaultProps = {
   errorMsg: null,
 };
 
-export default SignupForm;
+export default SignUpForm;

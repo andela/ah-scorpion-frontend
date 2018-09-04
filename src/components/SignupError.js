@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SignupError = ({ errorMsg }) => (
+const SignUpError = ({ errorMsg }) => (
   <div className="alert alert-danger">
     <center>{errorMsg}</center>
   </div>
 );
 
-SignupError.propTypes = {
+SignUpError.propTypes = {
   errorMsg: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
 };
 
-SignupError.defaultProps = {
+SignUpError.defaultProps = {
   errorMsg: null,
 };
 
-export default SignupError;
+export default SignUpError;

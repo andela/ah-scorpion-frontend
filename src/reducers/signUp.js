@@ -1,13 +1,13 @@
 import * as types from '../actions/types';
 
-const intialState = {
+const initialState = {
   success: false,
   error: {},
   failure: false,
   isFetching: false,
 };
 
-const signupReducer = (state = intialState, action) => {
+const signUpReducer = (state = initialState, action) => {
   const { error, type } = action;
   switch (type) {
     case types.SIGNUP_REQUEST:
@@ -36,4 +36,4 @@ const signupReducer = (state = intialState, action) => {
   }
 };
 
-export default signupReducer;
+export default signUpReducer;

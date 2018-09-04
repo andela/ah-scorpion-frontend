@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import NavBar from '../components/NavBar';
-import SignupForm from '../components/SignupForm';
+import SignUpForm from '../components/SignUpForm';
 import Footer from '../components/Footer';
 import ConfirmEmail from '../components/ConfirmEmail';
-import { handleUserRegistration, signupError } from '../actions/signUp';
+import { handleUserRegistration, signUpError } from '../actions/signUp';
 
 const SignUp = ({
   dispatch, success, failure, error, isFetching,
@@ -19,7 +19,7 @@ const SignUp = ({
   const checkPasswordMatch = (password, confPasword) => {
     const errorMsg = 'Password and Confirm password should be indentical';
     if (password !== confPasword) {
-      dispatch(signupError(errorMsg));
+      dispatch(signUpError(errorMsg));
       return false;
     }
     return true;
@@ -31,7 +31,7 @@ const SignUp = ({
       {success ? (
         <ConfirmEmail />
       ) : (
-        <SignupForm
+        <SignUpForm
           onError={failure}
           errorMsg={error}
           onSubmit={registerUser}

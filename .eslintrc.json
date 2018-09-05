@@ -1,17 +1,11 @@
 {
   "extends": "airbnb",
-  "plugins": [
-    "jest",
-    "import"
-  ],
+  "plugins": ["jest", "import"],
   "rules": {
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
+        "extensions": [".js", ".jsx"]
       }
     ],
     "import/extensions": [
@@ -34,4 +28,3 @@
     "codeFrame": true
   }
 }
-`

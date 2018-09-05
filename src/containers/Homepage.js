@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import { BrowserRouter } from 'react-router-dom';
 import Home from '../components/Home';
 import HomeFooter from '../components/HomeFooter';
 
@@ -11,10 +12,12 @@ class Homepage extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Home />
-        <HomeFooter />
-      </React.Fragment>
+      <BrowserRouter>
+        <div suppressContentEditableWarning>
+          <Home />
+          <HomeFooter />
+        </div>
+      </BrowserRouter>
     );
   }
 }

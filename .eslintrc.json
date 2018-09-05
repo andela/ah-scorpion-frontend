@@ -11,7 +11,8 @@
       {
         "js": "never"
       }
-    ]
+    ],
+    "function-paren-newline": ["error", "consistent"]
   },
   "env": {
     "jest/globals": true,

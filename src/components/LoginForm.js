@@ -40,7 +40,6 @@ class LoginForm extends React.Component {
   };
   render() {
     const { data, errors } = this.state;
-    console.log(errors);
     return (
       <main style={{ marginTop: "2.5em" }}>
         <div className="container p-5 signup-container">

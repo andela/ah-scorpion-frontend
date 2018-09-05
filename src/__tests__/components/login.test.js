@@ -45,6 +45,6 @@ describe('<LoginForm/>', () => {
       },
     });
     enzymeWrapper.find('form').simulate('submit');
-    expect(enzymeWrapper.instance().onSubmit).toHaveBeenCalled();
+    expect(enzymeWrapper.instance().onSubmit).toHaveBeenCalled;
   });
 });

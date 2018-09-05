@@ -101,7 +101,7 @@ class LoginForm extends React.Component {
                   Don
                   {'\''}
                   t have an account? Signup
-                  <Link to="Signup-link"> here </Link>
+                  <Link to="/signup"> here </Link>
                 </p>
               </div>
               <br />

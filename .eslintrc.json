@@ -12,7 +12,7 @@
         "css": "always"
       }
     ],
-    "function-paren-newline": ["error", "consistent"]
+    "function-paren-newline": "off"
   },
   "env": {
     "jest/globals": true,

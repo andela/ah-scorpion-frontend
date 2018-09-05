@@ -56,7 +56,6 @@ class SocialLogin extends Component {
           icon="fa fa-facebook fa-2x"
           textButton=""
         />
-
         <GoogleLogin
           clientId={googleClientId}
           onSuccess={this.googleResponse}
@@ -67,9 +66,7 @@ class SocialLogin extends Component {
           className="col"
         >
           <button className="btn btn-danger" type="button">
-            <div>
-              <i className="fa fa-google fa-2x" aria-hidden="true" />
-            </div>
+            <i className="fa fa-google fa-2x" aria-hidden="true" />
           </button>
         </GoogleLogin>
       </div>

@@ -94,11 +94,13 @@ class LoginForm extends React.Component {
               </div>
 
               <div className="text-center">
-                <button to="#" className="btn btn-primary">
+                <button type="submit" className="btn btn-primary">
                   Login
                 </button>
                 <p>
-                  Don't have an account? Signup
+                  Don
+                  {'\''}
+                  t have an account? Signup
                   <Link to="Signup-link"> here </Link>
                 </p>
               </div>

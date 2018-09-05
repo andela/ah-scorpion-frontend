@@ -3,7 +3,7 @@ import Enzyme, {
   shallow, render, mount, configure,
 } from 'enzyme';
 import { createSerializer } from 'enzyme-to-json';
-import Adapter from 'enzyme-adapter-react-15';
+import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 

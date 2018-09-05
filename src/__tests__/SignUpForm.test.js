@@ -1,10 +1,12 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import Enzyme, { shallow, mount } from 'enzyme';
 import { applyMiddleware, createStore } from 'redux';
 import SignUp from '../containers/SignUp';
 import SignUpForm from '../components/SignupForm';
 import reducers from '../reducers';
+import Adapter from 'enzyme-adapter-react-16';
 
+Enzyme.configure({ adapter: new Adapter() })
 describe('The Login Form', () => {
   it('Should render without crashing', () => {
     const home = shallow(<SignUpForm />);

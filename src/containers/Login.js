@@ -1,7 +1,7 @@
 // Here we have a "smart" component which is aware of Redux
 
-import React, { Component } from 'react';
-import Footer from '../components/Footer';
+import React, { Component } from "react";
+import Footer from "../components/Footer";
 
 export default class Login extends Component {
   render() {
@@ -12,4 +12,4 @@ export default class Login extends Component {
       </div>
     );
   }
-};
+}

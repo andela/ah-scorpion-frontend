@@ -12,11 +12,11 @@ class ResetForm extends Component {
     confirm_password: ""
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     this.props.dispatch(
       changePassword({
@@ -123,10 +123,10 @@ class ResetForm extends Component {
 }
 
 ResetForm.propTypes = {
-  reset: PropTypes.shape.isRequired,
+  reset: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   reset: state.reset,
 });
 export default connect(mapStateToProps)(ResetForm);

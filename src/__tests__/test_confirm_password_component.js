@@ -6,7 +6,7 @@ import React from 'react';
 import { createStore, applyMiddleware } from 'redux';
 import reducers from '../reducers';
 import { MemoryRouter } from 'react-router-dom';
-import ResetForm from '../containers/ResetPassword';
+import ResetForm from '../containers/ConfirmPasswordForm';
 
 const store = createStore(reducers, {}, applyMiddleware(Thunk));
 
@@ -31,14 +31,30 @@ function setup(Func) {
     enzymeWrapper,
   };
 }
-describe('Test the reset password component', () => {
+describe('Test the confirm password component', () => {
   const { enzymeWrapper } = setup(ResetForm);
   describe('<ResetForm />', () => {
     it('It should should the reset form component with the input and button', () => {
-      expect(enzymeWrapper.find('input').length).toEqual(1);
+      expect(enzymeWrapper.find('input').length).toEqual(3);
       enzymeWrapper
         .find('input')
+        .at(1)
         .simulate('change', { target: { value: 'ruthnwaiganjo@gmail.com' } });
+      enzymeWrapper
+        .find('input')
+        .at(1)
+        .simulate('change', {
+          target: { name: 'new_password', value: '123455667' },
+        });
+      enzymeWrapper
+        .find('input')
+        .at(1)
+        .simulate('change', {
+          target: {
+            name: 'confirm_password',
+            value: '123455667',
+          },
+        });
       expect(
         enzymeWrapper
           .find('button')
@@ -48,10 +64,11 @@ describe('Test the reset password component', () => {
     });
   });
   describe('<ResetForm />', () => {
-    it('It should send the email', () => {
+    it('It should send the email with the password', () => {
       enzymeWrapper.setState({
         data: {
           email: 'ruthnwaiganjo@gmail.com',
+          new_password: '1234455666',
         },
       });
       enzymeWrapper.find('.btn-primary').simulate('click');

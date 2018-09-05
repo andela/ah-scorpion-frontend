@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import SignUpError from './SignupError';
+import SignUpError from './SignUpError';
 
 class SignUpForm extends Component {
   constructor(props) {

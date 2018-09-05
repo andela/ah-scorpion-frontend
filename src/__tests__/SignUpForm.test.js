@@ -2,8 +2,9 @@ import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
 import { applyMiddleware, createStore } from 'redux';
 import Adapter from 'enzyme-adapter-react-16';
+
 import SignUp from '../containers/SignUp';
-import SignUpForm from '../components/SignupForm';
+import SignUpForm from '../components/SignUpForm';
 import reducers from '../reducers';
 
 Enzyme.configure({ adapter: new Adapter() });

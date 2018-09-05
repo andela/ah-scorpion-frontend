@@ -6,8 +6,8 @@ import { signUpSuccess, signUpError } from '../actions/signUp';
 import signUpReducer from '../reducers/signUp';
 import * as types from '../actions/types';
 
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
+const middleware = [thunk];
+const mockStore = configureMockStore(middleware);
 const emailError = { email: ['Email already exists, please login or use a different email'] };
 const successMessage = {
   Message: 'Please confirm your email address to complete the registration',

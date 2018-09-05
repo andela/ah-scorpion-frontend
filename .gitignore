@@ -23,9 +23,15 @@ yarn-error.log*
 # editor
 .vscode/
 .idea/
+<<<<<<< HEAD
 .tern-project
 .settings/
 .project
+=======
+.project
+.settings/
+.tern-project
+>>>>>>> ch: add components and containers
 eslint.json
 
 

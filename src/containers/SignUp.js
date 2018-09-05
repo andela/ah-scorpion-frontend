@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import NavBar from '../components/NavBar';
-import SignUpForm from '../components/SignUpForm';
+import SignUpForm from '../components/SignupForm';
 import Footer from '../components/Footer';
 import ConfirmEmail from '../components/ConfirmEmail';
 import { handleUserRegistration, signUpError } from '../actions/signUp';

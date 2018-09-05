@@ -10,11 +10,11 @@ class ResetForm extends Component {
     email: ""
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({ email: event.target.value });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     this.props.dispatch(reset(this.state.email));
   };
@@ -97,7 +97,7 @@ ResetForm.propTypes = {
   reset: PropTypes.shape.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   reset: state.reset,
 });
 export default connect(mapStateToProps)(ResetForm);

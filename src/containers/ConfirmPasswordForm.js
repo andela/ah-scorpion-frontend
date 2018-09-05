@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import Footer from "../components/Footer";
-import NavBar from "../components/NavBar";
-import changePassword from "../actions/resetPassword";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import Footer from '../components/Footer';
+import NavBar from '../components/NavBar';
+import changePassword from '../actions/resetPassword';
 
 class ResetForm extends Component {
   state = {
@@ -15,7 +16,6 @@ class ResetForm extends Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-
     this.props.dispatch(
       changePassword({
         ...this.state,
@@ -24,9 +24,8 @@ class ResetForm extends Component {
     );
   };
 
-  validatePassword = () => {
-    return this.state.confirm_password === this.state.new_password;
-  };
+  validatePassword = () =>
+    this.state.confirm_password === this.state.new_password;
 
   renderForm = () => (
     <React.Fragment>
@@ -121,9 +120,11 @@ class ResetForm extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    reset: state.reset
-  };
+ResetForm.propTypes = {
+  reset: PropTypes.object.isRequired,
 };
+
+const mapStateToProps = state => ({
+  reset: state.reset,
+});
 export default connect(mapStateToProps)(ResetForm);

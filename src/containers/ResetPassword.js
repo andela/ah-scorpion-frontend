@@ -1,16 +1,19 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import Footer from "../components/Footer";
-import NavBar from "../components/NavBar";
-import reset from "../actions/resetAction";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import Footer from '../components/Footer';
+import NavBar from '../components/NavBar';
+import reset from '../actions/resetAction';
 
 class ResetForm extends Component {
   state = {
     email: ""
   };
+
   handleChange = event => {
     this.setState({ email: event.target.value });
   };
+
   handleSubmit = event => {
     event.preventDefault();
     this.props.dispatch(reset(this.state.email));
@@ -90,9 +93,11 @@ class ResetForm extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    reset: state.reset
-  };
+ResetForm.propTypes = {
+  reset: PropTypes.object.isRequired,
 };
+
+const mapStateToProps = state => ({
+  reset: state.reset,
+});
 export default connect(mapStateToProps)(ResetForm);

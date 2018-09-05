@@ -1,15 +1,22 @@
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
 import { applyMiddleware, createStore } from 'redux';
+import Adapter from 'enzyme-adapter-react-16';
 import SignUp from '../containers/SignUp';
 import SignUpForm from '../components/SignupForm';
 import reducers from '../reducers';
-import Adapter from 'enzyme-adapter-react-16';
 
-Enzyme.configure({ adapter: new Adapter() })
+Enzyme.configure({ adapter: new Adapter() });
+const foo = () => {
+};
 describe('The Login Form', () => {
   it('Should render without crashing', () => {
-    const home = shallow(<SignUpForm />);
+    const home = shallow(<SignUpForm
+      verifyPassword={foo}
+      onError={false}
+      isFetching={false}
+      onSubmit={foo}
+    />);
     expect(home.find('input').length)
       .toEqual(4);
     expect(home.find('button').length)

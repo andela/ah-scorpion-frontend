@@ -39,7 +39,7 @@ class SignUpForm extends Component {
     } = this.state;
 
     return (
-      <Router history={[]}>
+      <Router>
         <main className="mt-2em">
           <div className="container p-5 signup-container">
             {onError ? <SignUpError errorMsg={errorMsg} /> : null}

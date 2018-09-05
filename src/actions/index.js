@@ -18,7 +18,7 @@ const successLogin = (response) => {
   };
 };
 
-export const socialLogin = data => (dispatch) => {
+const socialLogin = data => (dispatch) => {
   dispatch(beginLogin());
 
   // making an API call with the data received from social auth
@@ -32,11 +32,11 @@ export const socialLogin = data => (dispatch) => {
       dispatch(successLogin(response));
       resolve();
     },
-  )).catch((error) => {
+  )).catch(({ response }) => {
     // create an error message
     let message = '';
     try {
-      message = error.response.data.errors.error[0];
+      [message] = response.data.errors.error;
     } catch (err) {
       // message in case of no internet access
       message = 'You are offline.';
@@ -46,3 +46,5 @@ export const socialLogin = data => (dispatch) => {
     dispatch(failLogin(message));
   });
 };
+
+export default socialLogin;

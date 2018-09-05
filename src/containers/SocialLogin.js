@@ -4,7 +4,7 @@ import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import * as actions from '../actions';
+import socialLogin from '../actions';
 
 const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 const fbAppId = process.env.REACT_APP_FACEBOOK_APP_ID;
@@ -14,7 +14,9 @@ class SocialLogin extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-
+    const { history, SOCIALAUTH } = this.props;
+    this.history = history;
+    this.SOCIALAUTH = SOCIALAUTH;
     this.googleResponse = this.googleResponse.bind(this);
     this.facebookResponse = this.facebookResponse.bind(this);
     this.socialAuthResponse = this.socialAuthResponse.bind(this);
@@ -22,7 +24,8 @@ class SocialLogin extends Component {
   }
 
   onFailure(error) {
-    console.log(error);
+    error.toString();
+    this.history.push('/login');
   }
 
   googleResponse(response) {
@@ -39,7 +42,7 @@ class SocialLogin extends Component {
       access_token: token,
       provider,
     };
-    this.props.SOCIALAUTH(requestBody).then(() => this.props.history.push('/'));
+    this.SOCIALAUTH(requestBody).then(() => this.history.push('/'));
   }
 
   render() {
@@ -89,6 +92,6 @@ const mapStateToProps = ({ authState }) => ({
 
 const mapDispatchToProps = dispatch => ({
   // Create the loginUser function that executes functions for login
-  SOCIALAUTH: data => dispatch(actions.socialLogin(data)),
+  SOCIALAUTH: data => dispatch(socialLogin(data)),
 });
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SocialLogin));

@@ -7,8 +7,8 @@ import InlineError from './InlineError';
 class LoginForm extends React.Component {
   state = {
     data: {
-      email: "",
-      password: ""
+      email: '',
+      password: ''
     },
     errors: {}
   };
@@ -34,19 +34,19 @@ class LoginForm extends React.Component {
 
   validate = data => {
     const errors = {};
-    if (!Validator.isEmail(data.email)) errors.email = "email field required";
-    if (!data.password) errors.password = "password field required";
+    if (!Validator.isEmail(data.email)) errors.email = 'email field required';
+    if (!data.password) errors.password = 'password field required';
     return errors;
   };
   render() {
     const { data, errors } = this.state;
     return (
-      <main style={{ marginTop: "2.5em" }}>
+      <main style={{ marginTop: '2.5em' }}>
         <div className="container p-5 signup-container">
           {errors.error ? (
             <div
               className="alert alert-danger"
-              style={{ textAlign: "center" }}
+              style={{ textAlign: 'center' }}
               role="alert"
             >
               {errors.error[0]}
@@ -101,7 +101,7 @@ class LoginForm extends React.Component {
                 />
                 <Link
                   to="Signup-link"
-                  style={{ paddingLeft: "65px", fontSize: "14px" }}
+                  style={{ paddingLeft: '65px', fontSize: '14px' }}
                 >
                   Forgot password?
                 </Link>

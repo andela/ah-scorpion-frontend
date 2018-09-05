@@ -3,12 +3,10 @@
  */
 
 import React from 'react';
-import Enzyme, { shallow, mount } from 'enzyme';
+import Enzyme, { mount } from 'enzyme';
 import { applyMiddleware, createStore } from 'redux';
 import Adapter from 'enzyme-adapter-react-16';
 import Homepage from '../containers/Homepage';
-import HomeFooter from '../components/HomeFooter';
-import Home from '../components/Home';
 import reducers from '../reducers';
 
 Enzyme.configure({ adapter: new Adapter() });

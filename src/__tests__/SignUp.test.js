@@ -20,21 +20,19 @@ describe('The SignUp reducer', () => {
     });
   });
 
-  it('should change isFetching to false, failure to true and error to the error message when action.type is SIGNUP_ERROR', () => {
+  it('should change failure to true and error to the error message when action.type is SIGNUP_ERROR', () => {
     expect(
       signUpReducer(undefined, { type: types.SIGNUP_ERROR, error: 'Failed to SignUp' }),
     ).toEqual({
       ...initialState,
-      isFetching: false,
       failure: true,
       error: 'Failed to SignUp',
     });
   });
 
-  it('should change isFetching to false and success to true when action.type is SIGNUP_SUCCESS', () => {
+  it('should change success to true when action.type is SIGNUP_SUCCESS', () => {
     expect(signUpReducer(undefined, { type: types.SIGNUP_SUCCESS })).toEqual({
       ...initialState,
-      isFetching: false,
       success: true,
     });
   });

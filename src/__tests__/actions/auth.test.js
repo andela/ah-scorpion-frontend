@@ -14,12 +14,12 @@ const userData = {
     bio: '',
     image: null,
     token:
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZGVudGl0eSI6eyJlbWFpbCI6InJ1dGhud2FpZ2Fuam9AZ21haWwuY29tIiwidXNlcm5hbWUiOiJydXRoIiwiYmlvIjoiIiwiaW1hZ2UiOm51bGx9LCJpYXQiOjE1MzYwNzU3MDYsImV4cCI6MTUzNjE2MjEwNn0.SDcAoYLYuth6WW-QfstcGnV10Fzt_zYq9_7Ofo4KyZ4'
-  }
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZGVudGl0eSI6eyJlbWFpbCI6InJ1dGhud2FpZ2Fuam9AZ21haWwuY29tIiwidXNlcm5hbWUiOiJydXRoIiwiYmlvIjoiIiwiaW1hZ2UiOm51bGx9LCJpYXQiOjE1MzYwNzU3MDYsImV4cCI6MTUzNjE2MjEwNn0.SDcAoYLYuth6WW-QfstcGnV10Fzt_zYq9_7Ofo4KyZ4',
+  },
 };
 const userResponse = {
   LoginData: userData,
-  status: 'success'
+  status: 'success',
 };
 
 describe('login action', () => {
@@ -27,7 +27,7 @@ describe('login action', () => {
   afterEach(() => moxios.uninstall());
 
   describe('Create login Action', () => {
-    it('Should dispatch login action', async done => {
+    it('Should dispatch login action', async (done) => {
       moxios.stubRequest(
         'https://authors-haven-api.herokuapp.com/api/v1/users/login/',
         { status: 200, response: userData },
@@ -36,15 +36,15 @@ describe('login action', () => {
       const returnedAction = [
         {
           type: types.USER_LOGGED_IN,
-          user: userData.user
-        }
+          user: userData.user,
+        },
       ];
 
       const store = mockStore({});
       await store.dispatch(
         login({
-          ...userResponse.LoginData
-        })
+          ...userResponse.LoginData,
+        }),
       );
       expect(store.getActions()).toEqual(returnedAction);
       done();

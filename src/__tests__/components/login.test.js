@@ -2,26 +2,26 @@ import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { MemoryRouter } from 'react-router-dom';
 
-Enzyme.configure({ adapter: new Adapter() });
-
 import React from 'react';
 import LoginForm from '../../components/LoginForm';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 function setup(Func) {
   const submit = jest.fn(() => Promise.resolve('it works'));
   const props = {
-    submit
+    submit,
   };
 
   const enzymeWrapper = mount(
     <MemoryRouter>
       <Func {...props} />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 
   return {
     props,
-    enzymeWrapper
+    enzymeWrapper,
   };
 }
 describe('<LoginForm />', () => {
@@ -41,10 +41,10 @@ describe('<LoginForm/>', () => {
     enzymeWrapper.setState({
       data: {
         email: 'sn@gmail.com',
-        password: 'password1234'
-      }
+        password: 'password1234',
+      },
     });
     enzymeWrapper.find('form').simulate('submit');
-    expect(enzymeWrapper.instance().onSubmit).toHaveBeenCalled;
+    expect(enzymeWrapper.instance().onSubmit).toHaveBeenCalled();
   });
 });

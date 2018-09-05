@@ -1,10 +1,9 @@
 import reducer from '../../reducers/user';
-import * as types from '../../actions/types';
 
 describe('Login reducer', () => {
-    const initialState = {};
+  const initialState = {};
 
-    it('should have default state', () => {
-        expect(reducer(undefined, 'ACTION_NOT_EXIST')).toEqual(initialState);
-    });
+  it('should have default state', () => {
+    expect(reducer(undefined, 'ACTION_NOT_EXIST')).toEqual(initialState);
+  });
 });

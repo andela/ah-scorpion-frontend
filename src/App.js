@@ -14,11 +14,10 @@ class App extends Component {
 
   render() {
     return (
-
       <BrowserRouter>
         <Switch>
           <Route path="/" exact render={(props) => <Homepage {...props} />} />
-          <Route path="/login" exact render={props => <Login {...props} />} />
+          <Route path="/login" exact render={(props) => <Login {...props} />} />
           <Route
             path="/signup"
             exact
@@ -36,7 +35,6 @@ class App extends Component {
           />
         </Switch>
       </BrowserRouter>
-
     );
   }
 }

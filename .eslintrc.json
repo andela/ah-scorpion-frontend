@@ -2,30 +2,34 @@
   "extends": "airbnb",
   "parser": "babel-eslint",
   "rules": {
-    "import/extensions": 0,
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
+        "extensions": [".js", ".jsx"]
       }
-    ]
+    ],
+    "import/extensions": [
+      "error",
+      {
+        "js": "never",
+        "css": "always"
+      }
+    ],
+    "function-paren-newline": "off"
   },
   "ecmaFeatures": {
     "modules": true,
     "spread": true,
     "restParams": true
   },
-  "plugins": [
-    "jest"
-  ],
+  "plugins": ["jest", "import"],
   "env": {
     "browser": true,
     "jest/globals": true
   },
   "parserOptions": {
-    "sourceType": "module"
+    "sourceType": "module",
+    "allowImportExportEverywhere": true,
+    "codeFrame": true
   }
 }

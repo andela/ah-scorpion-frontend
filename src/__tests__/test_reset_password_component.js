@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import Thunk from 'redux-thunk';
 import React from 'react';
 import { createStore, applyMiddleware } from 'redux';
-import reducers from '../reducers';
 import { MemoryRouter } from 'react-router-dom';
+import reducers from '../reducers';
 import ResetForm from '../containers/ResetPassword';
 
 const store = createStore(reducers, {}, applyMiddleware(Thunk));

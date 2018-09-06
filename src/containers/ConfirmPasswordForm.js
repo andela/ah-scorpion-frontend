@@ -90,7 +90,7 @@ class ResetForm extends Component {
                   onChange={this.handleChange}
                 />
                 <div className="invalid-feedback text-center ">
-                  Passwords don't match
+                  Passwords do not match
                 </div>
               </div>
 
@@ -123,10 +123,10 @@ class ResetForm extends Component {
 }
 
 ResetForm.propTypes = {
-  reset: PropTypes.object.isRequired,
+  reset: PropTypes.shape().isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   reset: state.reset,
 });
 export default connect(mapStateToProps)(ResetForm);

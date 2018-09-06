@@ -3,14 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
+    "enzyme": "^3.6.0",
     "node-sass-chokidar": "^1.3.3",
     "npm-run-all": "^4.1.3",
+    "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
+    "react-test-renderer": "^16.4.2",
     "redux": "^4.0.0",
-    "react-router-dom": "^4.3.1"
+    "redux-devtools-extension": "^2.13.5",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
@@ -23,11 +29,17 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "enzyme-adapter-react-16": "^1.4.0",
+    "enzyme-to-json": "^3.3.4",
     "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^21.22.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
-    "react-addons-test-utils": "^15.6.2"
+    "moxios": "^0.4.0",
+    "react-addons-test-utils": "^15.6.2",
+    "redux-mock-store": "^1.5.3",
+    "sinon": "^6.2.0"
   }
 }

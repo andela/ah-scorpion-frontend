@@ -1,6 +1,30 @@
 {
   "extends": "airbnb",
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "import/extensions": 0,
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ]
+  },
+  "ecmaFeatures": {
+    "modules": true,
+    "spread": true,
+    "restParams": true
+  },
+  "plugins": [
+    "jest"
+  ],
+  "env": {
+    "browser": true,
+    "jest/globals": true
+  },
+  "parserOptions": {
+    "sourceType": "module"
   }
 }

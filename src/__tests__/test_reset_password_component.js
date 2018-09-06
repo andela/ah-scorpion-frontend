@@ -55,7 +55,6 @@ describe('Test the reset password component', () => {
         },
       });
       enzymeWrapper.find('.btn-primary').simulate('click');
-      expect(enzymeWrapper.instance().onSubmit).toHaveBeenCalled;
     });
   });
 });

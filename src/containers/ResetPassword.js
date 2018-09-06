@@ -95,8 +95,6 @@ class ResetForm extends Component {
 
 ResetForm.propTypes = {
   reset: PropTypes.shape().isRequired,
-  dispatch: PropTypes.func,
-  history: PropTypes.shape(),
 };
 
 const mapStateToProps = state => ({

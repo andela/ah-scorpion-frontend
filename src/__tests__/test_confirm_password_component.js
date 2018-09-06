@@ -71,8 +71,7 @@ describe('Test the confirm password component', () => {
           new_password: '1234455666',
         },
       });
-      enzymeWrapper.find('.btn-primary').simulate('click');
-      expect(enzymeWrapper.instance().onSubmit).toHaveBeenCalled;
+      enzymeWrapper.find('.btn').simulate('click');
     });
   });
 });

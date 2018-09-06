@@ -23,6 +23,10 @@ yarn-error.log*
 # editor
 .vscode/
 .idea/
+.tern-project
+.settings/
+.project
+eslint.json
 
 # env files
 development.js

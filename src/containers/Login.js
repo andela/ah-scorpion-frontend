@@ -1,7 +1,6 @@
 // Here we have a "smart" component which is aware of Redux
-
-import React, { Component } from "react";
-import Footer from "../components/Footer";
+import React from 'react';
+import Footer from '../components/Footer';
 
 const login = () => {
   return (

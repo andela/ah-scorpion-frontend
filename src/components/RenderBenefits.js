@@ -9,9 +9,9 @@ const createTemplate = benefits => (
           <div className="row mb-3">
             <div className="align-self-center col-10 col-md-12">
               <h5 className="text-secondary">
-                {item.value.value}
+                {item.value}
                 {' '}
-                {item.value.icon}
+                {item.icon}
               </h5>
             </div>
           </div>

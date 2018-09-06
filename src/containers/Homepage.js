@@ -13,7 +13,7 @@ class Homepage extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div suppressContentEditableWarning>
+        <div>
           <Home />
           <HomeFooter />
         </div>

@@ -14,8 +14,8 @@ const Home = () => (
             <h3 className="text-white">
               Big Ideas
             </h3>
-            <Link to="Login" className="btn mx-1 btn-secondary">Login</Link>
-            <Link to="SignUp" className="btn btn-primary mx-1">Signup</Link>
+            <Link to="login" className="btn mx-1 btn-secondary">Login</Link>
+            <Link to="signup" className="btn btn-primary mx-1">Signup</Link>
           </div>
         </div>
       </div>

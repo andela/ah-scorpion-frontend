@@ -60,6 +60,6 @@ SignUp.defaultProps = {
   error: null,
 };
 
-const mapStateToProps = ({ signup }) => ({ signup });
+const mapStateToProps = ({ signup }) => signup;
 
 export default connect(mapStateToProps)(SignUp);

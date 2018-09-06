@@ -7,9 +7,9 @@ import changePassword from '../actions/resetPassword';
 
 class ResetForm extends Component {
   state = {
-    email: "",
-    new_password: "",
-    confirm_password: ""
+    email: '',
+    new_password: '',
+    confirm_password: '',
   };
 
   handleChange = (event) => {
@@ -21,23 +21,22 @@ class ResetForm extends Component {
     this.props.dispatch(
       changePassword({
         ...this.state,
-        reset_token: this.props.match.params.token
-      })
+        reset_token: this.props.match.params.token,
+      }),
     );
   };
 
-  validatePassword = () =>
-    this.state.confirm_password === this.state.new_password;
+  validatePassword = () => this.state.confirm_password === this.state.new_password;
 
   renderForm = () => (
     <React.Fragment>
       <NavBar />
-      <main style={{ marginTop: "2.5em" }}>
+      <main style={{ marginTop: '2.5em' }}>
         <div className="container p-5 signup-container">
           {this.props.reset.errors.error ? (
             <div
               className="alert alert-danger"
-              style={{ textAlign: "center" }}
+              style={{ textAlign: 'center' }}
               role="alert"
             >
               {this.props.reset.errors.error[0]}
@@ -82,7 +81,7 @@ class ResetForm extends Component {
                   required
                   type="Password"
                   className={`form-control ${
-                    this.validatePassword() ? "" : "is-invalid"
+                    this.validatePassword() ? '' : 'is-invalid'
                   }`}
                   name="confirm_password"
                   placeholder="Confirm Password"
@@ -99,7 +98,7 @@ class ResetForm extends Component {
                   className="btn btn-primary"
                   disabled={this.props.reset.sending}
                 >
-                  {this.props.reset.sending ? "Sending..." : "Submit"}
+                  {this.props.reset.sending ? 'Sending...' : 'Submit'}
                 </button>
               </div>
               <br />
@@ -115,7 +114,7 @@ class ResetForm extends Component {
     return (
       <div>
         {this.props.reset.sent
-          ? this.props.history.push("/login")
+          ? this.props.history.push('/login')
           : this.renderForm()}
       </div>
     );

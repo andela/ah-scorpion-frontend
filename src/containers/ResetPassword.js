@@ -7,7 +7,7 @@ import reset from '../actions/resetAction';
 
 class ResetForm extends Component {
   state = {
-    email: ""
+    email: '',
   };
 
   handleChange = (event) => {
@@ -22,12 +22,12 @@ class ResetForm extends Component {
   renderForm = () => (
     <React.Fragment>
       <NavBar />
-      <main style={{ marginTop: "2.5em" }}>
+      <main style={{ marginTop: '2.5em' }}>
         <div className="container p-5 signup-container">
           {this.props.reset.errors.error ? (
             <div
               className="alert alert-danger"
-              style={{ textAlign: "center" }}
+              style={{ textAlign: 'center' }}
               role="alert"
             >
               {this.props.reset.errors.error[0]}
@@ -59,7 +59,7 @@ class ResetForm extends Component {
                   className="btn btn-primary"
                   disabled={this.props.reset.sending}
                 >
-                  {this.props.reset.sending ? "Sending..." : "Submit"}
+                  {this.props.reset.sending ? 'Sending...' : 'Submit'}
                 </button>
               </div>
               <br />
@@ -70,12 +70,13 @@ class ResetForm extends Component {
       <Footer />
     </React.Fragment>
   );
+
   renderSuccess = () => (
-    <main style={{ marginTop: "2.5em" }}>
+    <main style={{ marginTop: '2.5em' }}>
       <div className="container p-5 signup-container">
         <div
           className="alert alert-success"
-          style={{ textAlign: "center" }}
+          style={{ textAlign: 'center' }}
           role="alert"
         >
           <p>Please Check Your Email For Further Instructions</p>

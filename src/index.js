@@ -1,11 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import ReactDOM from 'react-dom';
-import Thunk from 'redux-thunk';
-import reducers from './reducers';
+import reducers from './rootReducer';
 import './index.css';
 import App from './App';
 

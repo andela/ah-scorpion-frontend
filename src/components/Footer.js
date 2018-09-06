@@ -5,8 +5,7 @@ const Footer = () => (
     <div className="row">
       <div className="col-md-12 mt-3">
         <p className="text-center text-muted">
-            © Copyright 2018 Authors Haven - All rights reserved.
-          {' '}
+          © Copyright 2018 Authors Haven - All rights reserved.{' '}
         </p>
       </div>
     </div>

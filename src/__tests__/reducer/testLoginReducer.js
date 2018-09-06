@@ -1,5 +1,5 @@
-import loginReducer from '../reducers/loginReducer';
-import * as types from '../actions/types';
+import loginReducer from '../../reducers/loginReducer';
+import * as types from '../../actions/types';
 
 describe('The login reducer', () => {
   const initialState = {

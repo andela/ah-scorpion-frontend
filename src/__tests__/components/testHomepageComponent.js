@@ -6,12 +6,12 @@ import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import { applyMiddleware, createStore } from 'redux';
 import Adapter from 'enzyme-adapter-react-16';
-import Homepage from '../containers/Homepage';
-import reducers from '../reducers';
+import Homepage from '../../containers/Homepage';
+import reducers from '../../reducers/index';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('The Login Form', () => {
+describe('The Home Page', () => {
   it('Should render without crashing', () => {
     const home = mount(<Homepage />);
     expect(home.find('div').length).toEqual(49);

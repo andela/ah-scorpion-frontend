@@ -1,4 +1,4 @@
-import resetReducer from '../reducers/resetPassword';
+import resetReducer from '../../reducers/resetPassword';
 
 describe('The test reducer', () => {
   const initialState = {

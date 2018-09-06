@@ -1,34 +1,29 @@
 import moxios from 'moxios';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import reset from '../actions/resetPassword';
+import resetAction from '../../actions/resetAction';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-const userEmail = { user: { email: 'ruthnwaiganjo@gmail.com' } };
+const dataEmail = { email: 'ruthnwaiganjo@gmail.com' };
 
-const ResetResponse = {
-  resetData: userEmail,
+const ResetActionResponse = {
+  resetData: dataEmail,
 };
 
-describe('reset password action', () => {
+describe('reset action', () => {
   beforeEach(() => moxios.install());
   afterEach(() => moxios.uninstall());
 
-  describe('Create reset password Action', () => {
+  describe('Create reset Action', () => {
     it('Should dispatch reset action', async (done) => {
-      moxios.stubRequest('../api/reset', { response: userEmail });
-      const returnedAction = [
-        {
-          type: 'RESET_REQUEST_START',
-        },
-      ];
-
+      moxios.stubRequest('../api/resetAction', { response: dataEmail });
+      const returnedAction = [];
       const store = mockStore({});
       await store.dispatch(
-        reset({
-          ...ResetResponse.resetData,
+        resetAction({
+          ...ResetActionResponse.resetData,
         }),
       );
       expect(store.getActions()).toEqual(returnedAction);

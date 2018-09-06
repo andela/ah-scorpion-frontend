@@ -16,12 +16,12 @@ class App extends Component {
           <Route path="/login" exact render={props => <Login {...props} />} />
           <Route path="/signup" exact render={props => <SignUp {...props} />} />
           <Route
-            path={'/reset'}
+            path="/reset"
             exact
             render={props => <ResetForm {...props} />}
           />
           <Route
-            path={'/api/v1/confirm-password/:token'}
+            path="/api/v1/confirm-password/:token"
             exact
             render={props => <ConfirmPasswordForm {...props} />}
           />

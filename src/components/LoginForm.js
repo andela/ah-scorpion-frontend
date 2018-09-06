@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Validator from 'validator';
 import InlineError from './InlineError';
+import SocialLogin from '../containers/SocialLogin';
 
 class LoginForm extends React.Component {
   state = {
@@ -13,10 +14,9 @@ class LoginForm extends React.Component {
     errors: {},
   };
 
-  onChange = e =>
-    this.setState({
-      data: { ...this.state.data, [e.target.name]: e.target.value },
-    });
+  onChange = e => this.setState({
+    data: { ...this.state.data, [e.target.name]: e.target.value },
+  });
 
   onSubmit = event => {
     event.preventDefault();
@@ -26,13 +26,11 @@ class LoginForm extends React.Component {
       this.setState({ loading: true });
       this.props
         .submit(this.state.data)
-        .catch(err =>
-          this.setState({ errors: err.response.data.errors, loading: false }),
-        );
+        .catch(err => this.setState({ errors: err.response.data.errors, loading: false }));
     }
   };
 
-  validate = data => {
+  validate = (data) => {
     const errors = {};
     if (!Validator.isEmail(data.email)) errors.email = 'email field required';
     if (!data.password) errors.password = 'password field required';
@@ -59,22 +57,9 @@ class LoginForm extends React.Component {
               <h2>Login</h2>
             </div>
             <form className="pt-5 pb-2 px-5 form-bg" onSubmit={this.onSubmit}>
-              <div className="text-center">
-                <Link to="#facebook">
-                  <button className="btn btn-primary social-btn" type="button">
-                    <i className="fa fa-facebook fa-2x" aria-hidden="true" />
-                  </button>
-                </Link>
-                <Link to="#google">
-                  <button className="btn btn-danger social-btn" type="button">
-                    <div>
-                      <i className="fa fa-google fa-2x" aria-hidden="true" />
-                    </div>
-                  </button>
-                </Link>
-                <br />
-                <p>Or</p>
-              </div>
+              <SocialLogin />
+              <hr />
+              <p className="text-center">Or</p>
               <div className="form-group">
                 {errors.password && <InlineError text={errors.email} />}
                 <input
@@ -101,7 +86,7 @@ class LoginForm extends React.Component {
                   onChange={this.onChange}
                 />
                 <Link
-                  to="/Signup-link"
+                  to="Signup-link"
                   style={{ paddingLeft: '65px', fontSize: '14px' }}
                 >
                   Forgot password?
@@ -109,12 +94,14 @@ class LoginForm extends React.Component {
               </div>
 
               <div className="text-center">
-                <button to="#" className="btn btn-primary">
+                <button type="submit" className="btn btn-primary">
                   Login
                 </button>
                 <p>
-                  Don't have an account? Signup
-                  <Link to="Signup-link"> here </Link>
+                  Don
+                  {'\''}
+                  t have an account? Signup
+                  <Link to="/signup"> here </Link>
                 </p>
               </div>
               <br />

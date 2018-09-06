@@ -27,3 +27,9 @@ yarn-error.log*
 .settings/
 .project
 eslint.json
+
+# env files
+development.js
+.env
+
+

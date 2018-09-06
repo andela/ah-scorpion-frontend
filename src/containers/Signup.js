@@ -8,7 +8,9 @@ import Footer from '../components/Footer';
 import ConfirmEmail from '../components/ConfirmEmail';
 import { handleUserRegistration, signUpError } from '../actions/signUp';
 
-const SignUp = ({ dispatch, success, failure, error, isFetching }) => {
+const SignUp = ({
+  dispatch, success, failure, error, isFetching,
+}) => {
   const registerUser = ({ email, username, password }) => {
     const userInfo = { email, username, password };
     dispatch(handleUserRegistration(userInfo));
@@ -58,6 +60,6 @@ SignUp.defaultProps = {
   error: null,
 };
 
-const mapStateToProps = ({ signup }) => signup;
+const mapStateToProps = ({ signup }) => ({ signup });
 
 export default connect(mapStateToProps)(SignUp);

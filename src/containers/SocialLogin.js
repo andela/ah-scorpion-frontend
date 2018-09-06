@@ -80,15 +80,9 @@ SocialLogin.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = ({ authState }) => ({
-  isAuthenticated: authState.isAuthenticated,
-  message: authState.message,
-  loading: authState.loading,
-});
-
-
 const mapDispatchToProps = dispatch => ({
   // Create the loginUser function that executes functions for login
   SOCIALAUTH: data => dispatch(socialLogin(data)),
 });
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SocialLogin));
+
+export default withRouter(connect(null, mapDispatchToProps)(SocialLogin));

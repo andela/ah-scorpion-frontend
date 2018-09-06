@@ -12,12 +12,10 @@ class Homepage extends Component {
 
   render() {
     return (
-      <BrowserRouter>
-        <div>
-          <Home />
-          <HomeFooter />
-        </div>
-      </BrowserRouter>
+      <div>
+        <Home />
+        <HomeFooter />
+      </div>
     );
   }
 }

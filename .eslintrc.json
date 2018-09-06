@@ -17,11 +17,16 @@
     ],
     "function-paren-newline": "off"
   },
-  "env": {
-    "jest/globals": true,
-    "browser": true
+  "ecmaFeatures": {
+    "modules": true,
+    "spread": true,
+    "restParams": true
   },
   "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "jest/globals": true
+  },
   "parserOptions": {
     "sourceType": "module",
     "allowImportExportEverywhere": true,

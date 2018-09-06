@@ -1,33 +1,20 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import Footer from '../components/Footer';
-import NavBar from '../components/NavBar';
-import LoginForm from '../components/LoginForm';
-import { login } from '../actions/auth';
+// Here we have a "smart" component which is aware of Redux
 
-class Login extends Component {
-  submit = data => this.props.login(data).then(() => this.props.history.push('/'));
+import React, { Component } from 'react';
+import Footer from '../components/Footer';
+
+export default class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { }}
 
   render() {
     return (
-      <React.Fragment>
-        <NavBar />
-        <LoginForm submit={this.submit} />
+      <div>
+        <h1>This is the login page</h1>
         <Footer />
-      </React.Fragment>
+      </div>
     );
   }
 }
 
-Login.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
-  login: PropTypes.func.isRequired,
-};
-
-export default connect(
-  null,
-  { login },
-)(Login);

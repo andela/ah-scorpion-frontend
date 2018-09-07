@@ -15,7 +15,8 @@
       "error",
       {
         "js": "never",
-        "css": "always"
+        "css": "always",
+        "jpg": "always"
       }
     ],
     "function-paren-newline": "off"

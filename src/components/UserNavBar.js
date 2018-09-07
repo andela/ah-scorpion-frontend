@@ -8,7 +8,7 @@ const UserNavBar = () => {
   const nav = (
     <nav className="navbar navbar-expand-md bg-primary navbar-dark fixed-top">
       <div className="container">
-        <a className="navbar-brand" href="/">
+        <a className="navbar-brand" href="/dashboard">
           <b> Authors Haven</b>
         </a>
         <button

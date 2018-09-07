@@ -6,7 +6,6 @@ import Homepage from './containers/Homepage';
 import ResetForm from './containers/ResetPassword';
 import ConfirmPasswordForm from './containers/ConfirmPasswordForm';
 import SignUp from './containers/SignUp';
-import AfterLoginComponent from './components/AfterLoginComponent';
 import Dashboard from './containers/Dashboard';
 
 class App extends Component {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SignUpError from './SignUpError';
+import SocialLogin from '../containers/SocialLogin';
 
 class SignUpForm extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class SignUpForm extends Component {
   }
 
   render() {
-    const { onError, errorMsg, isFetching } = this.props;
+    const { onError, errorMsg, isFetching, history } = this.props;
     const {
       email, username, password, confPassword,
     } = this.state;
@@ -48,21 +49,8 @@ class SignUpForm extends Component {
             <form className="pb-5 pl-5 pr-5 pt-0 form-bg" onSubmit={this.handleSubmit}>
               <div className="text-center">
                 <p>You could sign up with...</p>
-                <Link to="#facebook">
-                  <button className="btn btn-primary social-btn" type="button">
-                    <div>
-                      <i className="fa fa-facebook fa-2x" aria-hidden="true" />
-                    </div>
-                  </button>
-                </Link>
-                <Link to="#google">
-                  <button className="btn btn-danger social-btn" type="button">
-                    <div>
-                      <i className="fa fa-google fa-2x" aria-hidden="true" />
-                    </div>
-                  </button>
-                </Link>
-                <br />
+                <SocialLogin history={history} />
+                <hr />
                 <p className="mt-2em">Or</p>
               </div>
               <div className="form-group">
@@ -146,6 +134,9 @@ SignUpForm.propTypes = {
     PropTypes.string,
   ]),
   verifyPassword: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 SignUpForm.defaultProps = {

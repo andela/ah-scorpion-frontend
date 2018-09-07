@@ -57,7 +57,7 @@ class LoginForm extends React.Component {
               <h2>Login</h2>
             </div>
             <form className="pt-5 pb-2 px-5 form-bg" onSubmit={this.onSubmit}>
-              <SocialLogin />
+              <SocialLogin history={this.props.history} />
               <hr />
               <p className="text-center">Or</p>
               <div className="form-group">
@@ -115,6 +115,9 @@ class LoginForm extends React.Component {
 
 LoginForm.propTypes = {
   submit: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default LoginForm;

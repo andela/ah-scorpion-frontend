@@ -9,7 +9,7 @@ import ConfirmEmail from '../components/ConfirmEmail';
 import { handleUserRegistration, signUpError } from '../actions/signUp';
 
 const SignUp = ({
-  dispatch, success, failure, error, isFetching,
+  dispatch, success, failure, error, isFetching, history,
 }) => {
   const registerUser = ({ email, username, password }) => {
     const userInfo = { email, username, password };
@@ -37,6 +37,7 @@ const SignUp = ({
           onSubmit={registerUser}
           verifyPassword={checkPasswordMatch}
           isFetching={isFetching}
+          history={history}
         />
       )}
       <Footer />
@@ -54,6 +55,9 @@ SignUp.propTypes = {
     PropTypes.object,
     PropTypes.string,
   ]),
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 SignUp.defaultProps = {

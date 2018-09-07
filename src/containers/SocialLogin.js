@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { GoogleLogin } from 'react-google-login';
+import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
 import socialLogin from '../actions';
 
 const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
@@ -85,4 +84,4 @@ const mapDispatchToProps = dispatch => ({
   SOCIALAUTH: data => dispatch(socialLogin(data)),
 });
 
-export default withRouter(connect(null, mapDispatchToProps)(SocialLogin));
+export default connect(null, mapDispatchToProps)(SocialLogin);

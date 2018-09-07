@@ -118,7 +118,7 @@ class SignUpForm extends Component {
                 </div>
                 <div className="text-center">
                   <button type="submit" id="submitButton" className="btn btn-primary" disabled={isFetching}>
-                  Sign Up
+                    { isFetching ? 'Loading...' : 'Sign Up' }
                   </button>
                   <p>
                   Already have an account? Login

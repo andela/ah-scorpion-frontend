@@ -44,7 +44,7 @@ const UserNavBar = () => {
               <Link to="/dashboard">
                 <img
                   className="avatar"
-                  src={(imageUrl !== 'null' && imageUrl !== undefined )
+                  src={(imageUrl !== 'null' && imageUrl !== undefined)
                     ? imageUrl : Avatar}
                   alt={username}
                 />

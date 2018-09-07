@@ -12,7 +12,9 @@ const DashboardContainer = () => (
             <p className="lead text-white">
                 Something short and leading about the collection
                 below—its contents, the creator, etc. Make it short
-                and sweet, but not too short so folks don't simply skip over it entirely.
+                and sweet, but not too short so folks don
+              {'\''}
+              t simply skip over it entirely.
             </p>
             <a href="#" className="btn btn-primary m-2">Read More</a>
           </div>
@@ -24,15 +26,15 @@ const DashboardContainer = () => (
         <Link to="#" className="custom-link">
           <h3>Recent Reads...</h3>
         </Link>
-        <RenderCards type={1}/>
+        <RenderCards type={1} />
         <Link to="#" className="custom-link">
           <h3>Recommended For You...</h3>
         </Link>
-        <RenderCards type={2}/>
+        <RenderCards type={2} />
         <Link to="#" className="custom-link">
           <h3>Trending Now...</h3>
         </Link>
-        <RenderCards type={3}/>
+        <RenderCards type={3} />
       </div>
     </div>
   </main>

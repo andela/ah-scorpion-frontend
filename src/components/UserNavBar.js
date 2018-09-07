@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import * as Avatar from '../assets/images/avatar.png';
 
 const UserNavBar = () => {
   const username = localStorage.getItem('username');
@@ -14,7 +16,7 @@ const UserNavBar = () => {
           data-toggle="collapse"
           data-target="#navbar2SupportedContent"
         >
-          <span className="navbar-toggler-icon"/>
+          <span className="navbar-toggler-icon" />
         </button>
         <div
           className="collapse navbar-collapse text-center justify-content-end"
@@ -25,7 +27,7 @@ const UserNavBar = () => {
             <div className="input-group mb-2 mr-sm-2">
               <div className="input-group-prepend">
                 <div className="input-group-text">
-                  <i className="fa fa-search" aria-hidden="true"/>
+                  <i className="fa fa-search" aria-hidden="true" />
                 </div>
               </div>
               <input
@@ -38,7 +40,9 @@ const UserNavBar = () => {
           </form>
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link active" href="#">Home</a>
+              <Link to="/dashboard">
+                <img src={Avatar} alt={username} />
+              </Link>
             </li>
             <li className="nav-item dropdown">
               <a
@@ -63,5 +67,5 @@ const UserNavBar = () => {
       </div>
     </nav>
   );
-}
+};
 export default UserNavBar;

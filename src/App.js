@@ -7,6 +7,7 @@ import ResetForm from './containers/ResetPassword';
 import ConfirmPasswordForm from './containers/ConfirmPasswordForm';
 import SignUp from './containers/SignUp';
 import AfterLoginComponent from './components/AfterLoginComponent';
+import Dashboard from './containers/Dashboard';
 
 class App extends Component {
   render() {
@@ -29,7 +30,7 @@ class App extends Component {
           <Route
             path="/dashboard"
             exact
-            render={props => <AfterLoginComponent {...props} />}
+            render={props => <Dashboard {...props} />}
           />
         </Switch>
       </BrowserRouter>

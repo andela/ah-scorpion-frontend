@@ -276,3 +276,14 @@ nav li a.active {
     color: purple;
     text-decoration: none;
 }
+
+.avatar{
+    max-width: 2rem;
+    max-height: 2rem;
+    vertical-align: text-bottom;
+}
+
+.name-field{
+    line-height: 1rem;
+    vertical-align: baseline;
+}

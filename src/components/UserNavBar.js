@@ -4,7 +4,8 @@ import * as Avatar from '../assets/images/avatar.png';
 
 const UserNavBar = () => {
   const username = localStorage.getItem('username');
-  return (
+  const imageUrl = localStorage.getItem('image_url');
+  const nav = (
     <nav className="navbar navbar-expand-md bg-primary navbar-dark fixed-top">
       <div className="container">
         <a className="navbar-brand" href="/">
@@ -41,10 +42,15 @@ const UserNavBar = () => {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link to="/dashboard">
-                <img src={Avatar} alt={username} />
+                <img
+                  className="avatar"
+                  src={(imageUrl !== 'null' && imageUrl !== undefined )
+                    ? imageUrl : Avatar}
+                  alt={username}
+                />
               </Link>
             </li>
-            <li className="nav-item dropdown">
+            <li className="nav-item dropdown name-field">
               <a
                 className="nav-link text-white dropdown-toggle"
                 href="#"
@@ -67,5 +73,6 @@ const UserNavBar = () => {
       </div>
     </nav>
   );
+  return nav;
 };
 export default UserNavBar;

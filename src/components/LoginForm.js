@@ -86,7 +86,7 @@ class LoginForm extends React.Component {
                   onChange={this.onChange}
                 />
                 <Link
-                  to="Signup-link"
+                  to="/reset"
                   style={{ paddingLeft: '65px', fontSize: '14px' }}
                 >
                   Forgot password?

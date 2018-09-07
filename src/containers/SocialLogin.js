@@ -42,7 +42,7 @@ class SocialLogin extends Component {
       access_token: token,
       provider,
     };
-    this.SOCIALAUTH(requestBody).then(() => this.history.push('/'));
+    this.SOCIALAUTH(requestBody).then(() => this.history.push('/dashboard'));
   }
 
   render() {

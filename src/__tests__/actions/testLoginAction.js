@@ -22,7 +22,7 @@ const userResponse = {
   status: 'success',
 };
 
-describe('login action', () => {
+describe.skip('login action', () => {
   beforeEach(() => moxios.install());
   afterEach(() => moxios.uninstall());
 

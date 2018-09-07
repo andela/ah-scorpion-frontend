@@ -6,6 +6,7 @@ import Homepage from './containers/Homepage';
 import ResetForm from './containers/ResetPassword';
 import ConfirmPasswordForm from './containers/ConfirmPasswordForm';
 import SignUp from './containers/SignUp';
+import AfterLoginComponent from './components/AfterLoginComponent';
 
 class App extends Component {
   render() {
@@ -24,6 +25,11 @@ class App extends Component {
             path="/api/v1/confirm-password/:token"
             exact
             render={props => <ConfirmPasswordForm {...props} />}
+          />
+          <Route
+            path="/dashboard"
+            exact
+            render={props => <AfterLoginComponent {...props} />}
           />
         </Switch>
       </BrowserRouter>

@@ -16,7 +16,10 @@
       {
         "js": "never",
         "css": "always",
-        "jpg": "always"
+        "jpg": "always",
+        "png": "always",
+        "jpeg": "always",
+        "svg": "always"
       }
     ],
     "function-paren-newline": "off"

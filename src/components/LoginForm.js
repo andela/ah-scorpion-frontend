@@ -37,7 +37,7 @@ class LoginForm extends React.Component {
     return errors;
   };
 
-  render() {
+  render({ history }) {
     const { data, errors } = this.state;
     return (
       <main style={{ marginTop: '2.5em' }}>
@@ -57,7 +57,7 @@ class LoginForm extends React.Component {
               <h2>Login</h2>
             </div>
             <form className="pt-5 pb-2 px-5 form-bg" onSubmit={this.onSubmit}>
-              <SocialLogin history={this.props.history} />
+              <SocialLogin history={history} />
               <hr />
               <p className="text-center">Or</p>
               <div className="form-group">

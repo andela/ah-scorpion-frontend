@@ -24,7 +24,6 @@ const UserNavBar = () => {
           id="navbar2SupportedContent"
         >
           <form className="form-inline m-0 px-5">
-            <label className="sr-only" htmlFor="inlineFormInputGroupUsername2">Search</label>
             <div className="input-group mb-2 mr-sm-2">
               <div className="input-group-prepend">
                 <div className="input-group-text">
@@ -34,7 +33,7 @@ const UserNavBar = () => {
               <input
                 type="text"
                 className="form-control"
-                id="inlineFormInputGroupUsername2"
+                id="search"
                 placeholder="Search"
               />
             </div>
@@ -44,7 +43,7 @@ const UserNavBar = () => {
               <Link to="/dashboard">
                 <img
                   className="avatar"
-                  src={(imageUrl !== 'null' && imageUrl !== undefined )
+                  src={(imageUrl !== 'null' && imageUrl !== undefined)
                     ? imageUrl : Avatar}
                   alt={username}
                 />
@@ -63,8 +62,8 @@ const UserNavBar = () => {
                 {username}
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a className="dropdown-item" href="./profile.html">My Account</a>
-                <a className="dropdown-item" href="#">Settings</a>
+                <a className="dropdown-item" href="profile.html">My Account</a>
+                <a className="dropdown-item" href="settings.html">Settings</a>
                 <a className="dropdown-item" href="index.html">Sign Out</a>
               </div>
             </li>

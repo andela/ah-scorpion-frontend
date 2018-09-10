@@ -15,8 +15,10 @@ class ResetForm extends Component {
   };
 
   handleSubmit = (event) => {
+    const { dispatch } = this.props;
+    const { email } = this.state;
     event.preventDefault();
-    this.props.dispatch(reset(this.state.email));
+    dispatch(reset(email));
   };
 
   renderForm = () => (
@@ -24,13 +26,9 @@ class ResetForm extends Component {
       <NavBar />
       <main style={{ marginTop: '2.5em' }}>
         <div className="container p-5 signup-container">
-          {this.props.reset.errors.error ? (
-            <div
-              className="alert alert-danger"
-              style={{ textAlign: 'center' }}
-              role="alert"
-            >
-              {this.props.reset.errors.error[0]}
+          {reset.errors.error ? (
+            <div className="alert alert-danger" style={{ textAlign: 'center' }} role="alert">
+              {reset.errors.error[0]}
             </div>
           ) : null}
 
@@ -38,10 +36,7 @@ class ResetForm extends Component {
             <div className="card-header text-center form-bg">
               <h2>Password Reset</h2>
             </div>
-            <form
-              className="pt-5 pb-2 px-5 form-bg"
-              onSubmit={this.handleSubmit}
-            >
+            <form className="pt-5 pb-2 px-5 form-bg" onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <input
                   required
@@ -53,13 +48,9 @@ class ResetForm extends Component {
                   onChange={this.handleChange}
                 />
               </div>
-
               <div className="text-center">
-                <button
-                  className="btn btn-primary"
-                  disabled={this.props.reset.sending}
-                >
-                  {this.props.reset.sending ? 'Sending...' : 'Submit'}
+                <button className="btn btn-primary" type="submit" disabled={reset.sending}>
+                  {reset.sending ? 'Sending...' : 'Submit'}
                 </button>
               </div>
               <br />
@@ -74,11 +65,7 @@ class ResetForm extends Component {
   renderSuccess = () => (
     <main style={{ marginTop: '2.5em' }}>
       <div className="container p-5 signup-container">
-        <div
-          className="alert alert-success"
-          style={{ textAlign: 'center' }}
-          role="alert"
-        >
+        <div className="alert alert-success" style={{ textAlign: 'center' }} role="alert">
           <p>Please Check Your Email For Further Instructions</p>
         </div>
       </div>
@@ -86,19 +73,16 @@ class ResetForm extends Component {
   );
 
   render() {
-    return (
-      <div>
-        {this.props.reset.sent ? this.renderSuccess() : this.renderForm()}
-      </div>
-    );
+    return <div>{reset.sent ? this.renderSuccess() : this.renderForm()}</div>;
   }
 }
 
 ResetForm.propTypes = {
-  reset: PropTypes.shape().isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   reset: state.reset,
 });
+
 export default connect(mapStateToProps)(ResetForm);

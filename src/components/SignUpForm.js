@@ -34,7 +34,9 @@ class SignUpForm extends Component {
   }
 
   render() {
-    const { onError, errorMsg, isFetching, history } = this.props;
+    const {
+      onError, errorMsg, isFetching, history,
+    } = this.props;
     const {
       email, username, password, confPassword,
     } = this.state;

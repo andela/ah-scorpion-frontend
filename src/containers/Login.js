@@ -10,10 +10,12 @@ class Login extends Component {
   submit = data => this.props.login(data).then(() => this.props.history.push('/dashboard'));
 
   render() {
+    const { history } = this.props;
+
     return (
       <React.Fragment>
         <NavBar />
-        <LoginForm submit={this.submit} history={this.props.history} />
+        <LoginForm submit={this.submit} history={history} />
         <Footer />
       </React.Fragment>
     );

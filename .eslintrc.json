@@ -15,10 +15,15 @@
       "error",
       {
         "js": "never",
-        "css": "always"
+        "css": "always",
+        "jpg": "always",
+        "png": "always",
+        "jpeg": "always",
+        "svg": "always"
       }
     ],
-    "function-paren-newline": "off"
+    "function-paren-newline": "off",
+    "jsx-a11y/anchor-is-valid": "off"
   },
   "ecmaFeatures": {
     "modules": true,

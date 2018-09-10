@@ -23,7 +23,8 @@
       }
     ],
     "function-paren-newline": "off",
-    "jsx-a11y/anchor-is-valid": "off"
+    "jsx-a11y/anchor-is-valid": "off",
+    "require-jsdoc": "off"
   },
   "ecmaFeatures": {
     "modules": true,

@@ -103,8 +103,8 @@ ResetForm.propTypes = {
   reset: PropTypes.shape().isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  reset: state.reset,
+const mapStateToProps = ({ reset }) => ({
+  reset,
 });
 
 export default connect(mapStateToProps)(ResetForm);

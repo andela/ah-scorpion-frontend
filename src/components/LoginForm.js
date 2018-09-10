@@ -12,6 +12,7 @@ class LoginForm extends React.Component {
       password: '',
     },
     errors: {},
+    loading: false,
   };
 
   onChange = e => this.setState({
@@ -37,8 +38,9 @@ class LoginForm extends React.Component {
     return errors;
   };
 
-  render({ history }) {
-    const { data, errors } = this.state;
+  render() {
+    const { data, errors, loading } = this.state;
+    const { history } = this.props;
     return (
       <main style={{ marginTop: '2.5em' }}>
         <div className="container p-5 signup-container">
@@ -94,8 +96,8 @@ class LoginForm extends React.Component {
               </div>
 
               <div className="text-center">
-                <button type="submit" className="btn btn-primary">
-                  Login
+                <button type="submit" className="btn btn-primary" disabled={loading}>
+                  {loading ? 'Loading...' : 'Login'}
                 </button>
                 <p>
                   Don

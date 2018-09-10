@@ -61,7 +61,6 @@ class SignUpForm extends Component {
                   required
                   className="form-control"
                   id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
                   placeholder="Email Address"
                   name="email"
                   value={email}

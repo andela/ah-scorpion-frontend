@@ -61,7 +61,7 @@ const UserNavBar = () => {
               >
                 {username}
               </a>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <div className="dropdown-menu">
                 <a className="dropdown-item" href="profile.html">My Account</a>
                 <a className="dropdown-item" href="settings.html">Settings</a>
                 <a className="dropdown-item" href="index.html">Sign Out</a>

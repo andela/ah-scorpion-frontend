@@ -9,6 +9,7 @@ const UserNavBar = () => {
     <nav className="navbar navbar-expand-md bg-primary navbar-dark fixed-top">
       <div className="container">
         <a className="navbar-brand" href="/dashboard">
+          <img src="http://res.cloudinary.com/dqvk8ugtp/image/upload/v1535993624/Author_sHaven_logo_sxca8t.png" className="rounded img-thumbnail" height="42" width="42" alt="logo"/>
           <b> Authors Haven</b>
         </a>
         <button

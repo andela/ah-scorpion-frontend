@@ -10,6 +10,7 @@ const Home = () => (
       <div className="container">
         <div className="row">
           <div className="py-5 col-md-12">
+          <img src="http://res.cloudinary.com/dqvk8ugtp/image/upload/v1535993624/Author_sHaven_logo_sxca8t.png" className="rounded img-thumbnail" height="100" width="150" alt="logo"/>
             <h1 className="display-4 text-white">Authors Haven</h1>
             <h3 className="text-white">
               Big Ideas

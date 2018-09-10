@@ -69,7 +69,6 @@ class LoginForm extends React.Component {
                   className="form-control"
                   id="exampleInputEmail1"
                   name="email"
-                  aria-describedby="emailHelp"
                   placeholder="Email Address"
                   value={data.email}
                   onChange={this.onChange}

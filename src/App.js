@@ -1,42 +1,28 @@
-import React, { Component } from 'react';
-import { connect } from "react-redux";
-import * as actions from './actions';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Login from './containers/Login';
+import './index.css';
+import Homepage from './containers/Homepage';
+import ResetForm from './containers/ResetPassword';
+import ConfirmPasswordForm from './containers/ConfirmPasswordForm';
+import SignUp from './containers/SignUp';
+import Dashboard from './containers/Dashboard';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { data: this.props.test };
-    this.updateStore = this.updateStore.bind(this);
-  }
+const App = () => (
+  <BrowserRouter>
+    <Switch>
+      <Route path="/" exact render={props => <Homepage {...props} />} />
+      <Route path="/login" exact render={props => <Login {...props} />} />
+      <Route path="/signup" exact render={props => <SignUp {...props} />} />
+      <Route path="/reset" exact render={props => <ResetForm {...props} />} />
+      <Route
+        path="/api/v1/confirm-password/:token"
+        exact
+        render={props => <ConfirmPasswordForm {...props} />}
+      />
+      <Route path="/dashboard" exact render={props => <Dashboard {...props} />} />
+    </Switch>
+  </BrowserRouter>
+);
 
-  updateStore(event) {
-    const text = event.target.value;
-    this.props.testStore(text);
-  }
-
-  render() {
-    const { test } = this.props.test;
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to AH</h1>
-        </header>
-        <form>
-          <input type="text" onChange={this.updateStore} />
-          {test && <p>{test}</p>}
-        </form>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = ({ test }) => ({ test });
-const mapDispatchToProps = dispatch => ({
-  testStore: test => dispatch(actions.testStore(test))
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default App;

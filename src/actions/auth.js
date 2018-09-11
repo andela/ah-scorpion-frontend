@@ -8,3 +8,13 @@ export const userLoggedIn = user => ({
 
 export const login = credentials => dispatch => api.user.login(credentials)
   .then(user => dispatch(userLoggedIn(user)));
+
+
+export const logout = history => dispatch => {
+  console.log('I was clicked');
+  localStorage.removeItem('token');
+  localStorage.removeItem('username');
+  localStorage.removeItem('email');
+  localStorage.removeItem('image_url');
+  history.push('/login');
+};

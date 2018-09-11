@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import * as Avatar from '../assets/images/avatar.png';
+import { logout } from '../actions/auth';
 
 class UserNavBar extends React.Component {
   constructor(props) {
@@ -13,11 +15,7 @@ class UserNavBar extends React.Component {
 
   handleLogout = (event) => {
     event.preventDefault();
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
-    localStorage.removeItem('email');
-    localStorage.removeItem('image_url');
-    this.props.history.push('/login');
+    this.props.logout(this.props.history);
   };
 
   render() {
@@ -101,10 +99,11 @@ Sign Out
 
 
 UserNavBar.propTypes = {
+  logout: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
 };
 
 
-export default UserNavBar;
+export default connect({ logout })(UserNavBar);

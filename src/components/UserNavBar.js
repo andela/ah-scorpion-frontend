@@ -84,6 +84,7 @@ class UserNavBar extends React.Component {
                   <a
                     className="dropdown-item"
                     href="login"
+                    id="logout-link"
                     onClick={this.handleLogout.bind(this)}
                   >
 Sign Out

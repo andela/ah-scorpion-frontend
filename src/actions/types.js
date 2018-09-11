@@ -5,3 +5,4 @@ export const USER_LOGGED_IN = 'USER_LOGGED_IN';
 export const SIGNUP_REQUEST = 'SIGNUP_REQUEST';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const SIGNUP_ERROR = 'SIGNUP_ERROR';
+export const SIGN_OUT_DONE = 'SIGN_OUT_DONE';

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
+import PropTypes from 'prop-types';
 import UserNavBar from '../components/UserNavBar';
 import Footer from '../components/Footer';
 import DashboardContainer from '../components/DashnoardContainer';
-import PropTypes from 'prop-types';
 
 class Dashboard extends Component {
   constructor(props) {

@@ -1,21 +1,22 @@
 language: node_js
 node_js:
-- stable
+  - stable
 cache:
   directories:
-  - node_modules
+    - node_modules
 before_script:
-- npm install codeclimate-test-reporter -g
-- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-- chmod +x ./cc-test-reporter
-- "./cc-test-reporter before-build"
+  - npm install codeclimate-test-reporter -g
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - './cc-test-reporter before-build'
 script:
-- npm test -- --coverage
+  - npm test -- --coverage
 after_script:
-- "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
+  - './cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT'
 notifications:
   slack: andela:ODqDIMkl1Ds56Jxyrwc825vT
 before_deploy:
+  - unset CI
   - npm run build
 deploy:
   provider: heroku

@@ -10,6 +10,8 @@ class UserNavBar extends React.Component {
     super(props);
     this.username = localStorage.getItem('username');
     this.imageUrl = localStorage.getItem('image_url');
+
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
 
@@ -38,7 +40,7 @@ class UserNavBar extends React.Component {
             id="navbar2SupportedContent"
           >
             <form className="form-inline m-0 px-5">
-              <label className="sr-only" htmlFor="article-search" >Search</label>
+              <label className="sr-only" htmlFor="article-search">Search</label>
               <div className="input-group mb-2 mr-sm-2">
                 <div className="input-group-prepend">
                   <div className="input-group-text">
@@ -84,7 +86,7 @@ class UserNavBar extends React.Component {
                     className="dropdown-item"
                     href="login"
                     id="logout-link"
-                    onClick={this.handleLogout.bind(this)}
+                    onClick={this.handleLogout}
                   >
 Sign Out
                   </a>

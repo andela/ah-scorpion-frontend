@@ -6,18 +6,17 @@ export const userLoggedIn = user => ({
   user,
 });
 
-export const userLoggedOut = () => ({
-  type: SIGN_OUT_DONE });
+export const userLoggedOut = () => ({ type: SIGN_OUT_DONE });
 
 export const login = credentials => dispatch => api.user.login(credentials)
   .then(user => dispatch(userLoggedIn(user)));
 
 
-export const logout = (history) => dispatch => {
+export const logout = history => (dispatch) => {
   localStorage.removeItem('token');
   localStorage.removeItem('username');
   localStorage.removeItem('email');
   localStorage.removeItem('image_url');
-  dispatch(userLoggedOut())
+  dispatch(userLoggedOut());
   history.push('/login');
 };

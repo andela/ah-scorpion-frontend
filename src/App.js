@@ -7,6 +7,7 @@ import ResetForm from './containers/ResetPassword';
 import ConfirmPasswordForm from './containers/ConfirmPasswordForm';
 import SignUp from './containers/SignUp';
 import Dashboard from './containers/Dashboard';
+import PrivateRoute from './routes/PrivateRoute';
 
 const App = () => (
   <BrowserRouter>
@@ -20,7 +21,7 @@ const App = () => (
         exact
         render={props => <ConfirmPasswordForm {...props} />}
       />
-      <Route path="/dashboard" exact render={props => <Dashboard {...props} />} />
+      <PrivateRoute path="/dashboard" component={Dashboard} />
     </Switch>
   </BrowserRouter>
 );

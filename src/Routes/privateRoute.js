@@ -8,16 +8,15 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     render={props => (localStorage.getItem('token') ? (
       <Component {...props} />
     ) : (
-      <Redirect
-        to={{ pathname: '/login', state: { from: props.location } }}
-      />
+      <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
     ))
     }
   />
 );
 
 PrivateRoute.propType = {
-  location: PropTypes.string.is,
+  location: PropTypes.string.isRequired,
+  component: PropTypes.func.isRequired,
 };
 
 export default PrivateRoute;

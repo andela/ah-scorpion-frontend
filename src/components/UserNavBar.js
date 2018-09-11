@@ -38,7 +38,7 @@ class UserNavBar extends React.Component {
             id="navbar2SupportedContent"
           >
             <form className="form-inline m-0 px-5">
-              <label className="sr-only" htmlFor="inlineFormInputGroupUsername2" for="inlineFormInputGroupUsername2">Search</label>
+              <label className="sr-only" htmlFor="article-search" >Search</label>
               <div className="input-group mb-2 mr-sm-2">
                 <div className="input-group-prepend">
                   <div className="input-group-text">
@@ -48,7 +48,8 @@ class UserNavBar extends React.Component {
                 <input
                   type="text"
                   className="form-control"
-                  id="inlineFormInputGroupUsername2"
+                  id="article-search"
+                  name="article-search"
                   placeholder="Search"
                 />
               </div>

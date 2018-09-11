@@ -7,7 +7,7 @@ import ResetForm from './containers/ResetPassword';
 import ConfirmPasswordForm from './containers/ConfirmPasswordForm';
 import SignUp from './containers/SignUp';
 import Dashboard from './containers/Dashboard';
-import PrivateRoute from './routes/PrivateRoute';
+import PrivateRoute from './Routes/PrivateRoute';
 
 const App = () => (
   <BrowserRouter>

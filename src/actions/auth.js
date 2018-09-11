@@ -10,8 +10,7 @@ export const login = credentials => dispatch => api.user.login(credentials)
   .then(user => dispatch(userLoggedIn(user)));
 
 
-export const logout = history => dispatch => {
-  console.log('I was clicked');
+export const logout = (history) => {
   localStorage.removeItem('token');
   localStorage.removeItem('username');
   localStorage.removeItem('email');

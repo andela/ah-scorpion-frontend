@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap';
 import UserNavBar from '../components/UserNavBar';
 import Footer from '../components/Footer';
 import handleGetMyArticles from '../actions/getMyArticles';
@@ -90,16 +91,6 @@ MyArticlesPage.propTypes = {
   getMyArticles: PropTypes.func.isRequired,
 };
 
-const Button = ({ className, buttonText, ...rest }) => (
-  <button type="button" className={`btn btn-${className}`} {...rest}>
-    {buttonText}
-  </button>
-);
-
-Button.propTypes = {
-  className: PropTypes.string.isRequired,
-  buttonText: PropTypes.string.isRequired,
-};
 
 const MyArticle = ({
   title, description, createdAt, slug, beginDelete,
@@ -120,14 +111,15 @@ const MyArticle = ({
         </small>
       </span>
       <span className="ml-5">
-        <Button className="primary" buttonText="Edit" />
+        <Button bsStyle="primary">Edit</Button>
         <Button
-          className="danger ml-2"
-          buttonText="Delete"
+          bsStyle="danger ml-2"
           data-toggle="modal"
           data-target="#confirmDeleteModal"
           onClick={() => beginDelete(slug)}
-        />
+        >
+          Delete
+        </Button>
       </span>
       <hr />
     </div>

@@ -1,94 +1,82 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import UserNavBar from './UserNavBar';
 import Footer from './Footer';
+import handleGetMyArticles from '../actions/getMyArticles';
+import handleDeleteMyArticle, {
+  deleteMyArticleBegin,
+  deleteMyArticleCancel,
+  deleteMyArticlePostFailure
+} from '../actions/deleteMyArticle';
+import Loader from './Loader';
+import ConfirmDeleteModal from './ConfirmDeleteModal';
 
-const articles = [
-  {
-    id: 3,
-    title: 'Lenny’s First Article',
-    author: {
-      email: 'lennykmutua@gmail.com',
-      username: 'lenny',
-      bio: '',
-      image: '',
-    },
-    likes: 0,
-    dislikes: 0,
-    favorited: 0,
-    averageRating: null,
-    ratingsCount: 0,
-    slug: 'lennys-first-article-1571c709468b4940819716b09c5fd263',
-    body: 'Like I said...I don’t know what’s going on.I’m just testing Hoslack’s work.',
-    description: 'This is my first article and I don’t know what’s going on...',
-    images: ['https://url-to-image'],
-    createdAt: '2018-09-11T11:35:15.992556Z',
-    updatedAt: '2018-09-11T11:35:15.992604Z',
-    tagList: ['Lenny', 'First'],
-  },
-  {
-    id: 2,
-    title: 'Lenny’s First Article',
-    author: {
-      email: 'lennykmutua@gmail.com',
-      username: 'lenny',
-      bio: '',
-      image: '',
-    },
-    likes: 0,
-    dislikes: 0,
-    favorited: 0,
-    averageRating: null,
-    ratingsCount: 0,
-    slug: 'lennys-first-article-1571c709468b4940819716b09c5fd263',
-    body: 'Like I said...I don’t know what’s going on.I’m just testing Hoslack’s work.',
-    description: 'This is my first article and I don’t know what’s going on...',
-    images: ['https://url-to-image'],
-    createdAt: '2018-09-11T11:35:15.992556Z',
-    updatedAt: '2018-09-11T11:35:15.992604Z',
-    tagList: ['Lenny', 'First'],
-  },
-  {
-    id: 1,
-    title: 'Lenny’s First Article',
-    author: {
-      email: 'lennykmutua@gmail.com',
-      username: 'lenny',
-      bio: '',
-      image: '',
-    },
-    likes: 0,
-    dislikes: 0,
-    favorited: 0,
-    averageRating: null,
-    ratingsCount: 0,
-    slug: 'lennys-first-article-1571c709468b4940819716b09c5fd263',
-    body: 'Like I said...I don’t know what’s going on.I’m just testing Hoslack’s work.',
-    description: 'This is my first article and I don’t know what’s going on...',
-    images: ['https://url-to-image'],
-    createdAt: '2018-09-11T11:35:15.992556Z',
-    updatedAt: '2018-09-11T11:35:15.992604Z',
-    tagList: ['Lenny', 'First'],
-  },
-];
 
-const MyArticlesPage = () => (
-  <React.Fragment>
-    <UserNavBar />
-    <main className="mt-2em">
-      <div className="p-5 container">
-        <h1>My Articles</h1>
-        <hr />
-        <MyArticleList articles={articles} />
-      </div>
-    </main>
-    <Footer />
-  </React.Fragment>
-);
+class MyArticlesPage extends Component {
+  componentWillMount() {
+    const { getMyArticles } = this.props;
+    getMyArticles();
+  }
 
-const Button = ({ className, buttonText }) => (
-  <button type="button" className={`btn btn-${className}`}>
+  render() {
+    const {
+      isFetching,
+      articles,
+      fetchFailure,
+      deleteFailure,
+      errors,
+      fetchSuccess,
+      deleteSuccess,
+      confirmDelete,
+      isDeleting,
+      deletedArticleSlug,
+      beginDelete,
+      cancelDelete,
+      cleanDeleteFailure,
+    } = this.props;
+    return (
+      <React.Fragment>
+        <UserNavBar />
+        <main className="mt-2em">
+          <div className="p-5 container">
+            <ConfirmDeleteModal
+              confirmDelete={confirmDelete}
+              isDeleting={isDeleting}
+              deletedArticleSlug={deletedArticleSlug}
+              cancelDelete={cancelDelete}
+              errors={errors}
+              deleteFailure={deleteFailure}
+              cleanDeleteFailure={cleanDeleteFailure}
+            />
+            <h1>Your Articles</h1>
+            <hr />
+            { isFetching ? (
+              <div className="text-center">
+                <Loader />
+              </div>
+            ) : <MyArticleList articles={articles} beginDelete={beginDelete} />
+            }
+          </div>
+        </main>
+        <Footer />
+      </React.Fragment>
+    );
+  }
+}
+
+MyArticlesPage.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+  articles: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  failure: PropTypes.bool.isRequired,
+  success: PropTypes.bool.isRequired,
+  errors: PropTypes.shape().isRequired,
+  getMyArticles: PropTypes.func.isRequired,
+};
+
+const Button = ({ className, buttonText, ...rest }) => (
+  <button type="button" className={`btn btn-${className}`} {...rest}>
     {buttonText}
   </button>
 );
@@ -99,7 +87,7 @@ Button.propTypes = {
 };
 
 const MyArticle = ({
-  title, description, createdAt, slug,
+  title, description, createdAt, slug, beginDelete,
 }) => (
   <div>
     <h3>
@@ -108,12 +96,20 @@ const MyArticle = ({
     <p>{description}</p>
     <div>
       <span className="text-muted">
-        Created:
-        {new Date(createdAt).toDateString()}
+        <small>
+          Created:
+          {new Date(createdAt).toDateString()}
+        </small>
       </span>
       <span className="ml-5">
         <Button className="primary" buttonText="Edit" />
-        <Button className="danger ml-2" buttonText="Delete" />
+        <Button
+          className="danger ml-2"
+          buttonText="Delete"
+          data-toggle="modal"
+          data-target="#confirmDeleteModal"
+          onClick={() => beginDelete(slug)}
+        />
       </span>
       <hr />
     </div>
@@ -127,16 +123,42 @@ MyArticle.propTypes = {
   slug: PropTypes.string.isRequired,
 };
 
-const MyArticleList = ({ articles }) => articles.map(article => (
-  <MyArticle
-    title={article.title}
-    createdAt={article.createdAt}
-    description={article.description}
-  />
-));
+const MyArticleList = ({ articles, beginDelete }) => {
+  if (articles === []) {
+    return (
+      <div>
+        <h4>
+        You have not created any articles yet.
+        </h4>
+      </div>
+    );
+  }
+  return articles.map(article => (
+    <MyArticle
+      title={article.title}
+      createdAt={article.createdAt}
+      description={article.description}
+      slug={article.slug}
+      key={article.slug}
+      beginDelete={beginDelete}
+    />
+  ));
+};
 
 MyArticleList.propTypes = {
   articles: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
-export default MyArticlesPage;
+const mapDispatchToProps = dispatch => (
+  {
+    getMyArticles: () => dispatch(handleGetMyArticles()),
+    confirmDelete: slug => dispatch(handleDeleteMyArticle(slug)),
+    beginDelete: slug => dispatch(deleteMyArticleBegin(slug)),
+    cancelDelete: () => dispatch(deleteMyArticleCancel()),
+    cleanDeleteFailure: () => dispatch(deleteMyArticlePostFailure()),
+  }
+);
+
+const mapStateToProps = ({ myArticles }) => myArticles;
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyArticlesPage);

@@ -54,7 +54,7 @@ const myArticlesReducer = (state = initialState, action) => {
         ...state,
         isDeleting: false,
         deleteSuccess: true,
-        deletedArticleSlug: action.slug,
+        deletedArticleSlug: '',
         deleteFailure: false,
       };
     case types.DELETE_MY_ARTICLE_FAILURE:

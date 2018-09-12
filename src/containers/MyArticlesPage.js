@@ -84,7 +84,7 @@ MyArticlesPage.propTypes = {
   deleteSuccess: PropTypes.bool.isRequired,
   confirmDelete: PropTypes.func.isRequired,
   isDeleting: PropTypes.bool.isRequired,
-  deletedArticleSlug: PropTypes.func.isRequired,
+  deletedArticleSlug: PropTypes.string.isRequired,
   beginDelete: PropTypes.func.isRequired,
   cancelDelete: PropTypes.func.isRequired,
   cleanUpAfterDelete: PropTypes.func.isRequired,

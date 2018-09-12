@@ -10,9 +10,11 @@ export const deleteMyArticleConfirm = () => ({ type: types.DELETE_MY_ARTICLE_CON
 
 export const deleteMyArticleSuccess = () => ({ type: types.DELETE_MY_ARTICLE_SUCCESS });
 
-export const deleteMyArticleFailure = error => ({ type: types.DELETE_MY_ARTICLE_FAILURE, error });
+export const deleteMyArticleFailure = errorMessage => (
+  { type: types.DELETE_MY_ARTICLE_FAILURE, errorMessage }
+);
 
-export const deleteMyArticlePostFailure = () => ({ type: types.DELETE_MY_ARTICLE_POST_FAILURE });
+export const postRequestCleanUp = () => ({ type: types.POST_REQUEST_CLEAN_UP });
 
 const { REACT_APP_API_URL } = process.env;
 const articlesUrl = `${REACT_APP_API_URL}/api/v1/articles/`;
@@ -24,16 +26,13 @@ const handleDeleteMyArticle = slug => (dispatch) => {
     .delete(`${articlesUrl}${slug}`, { headers: { Authorization: `Bearer ${token}` } })
     .then(() => {
       dispatch(deleteMyArticleSuccess());
+      dispatch(handleGetMyArticles());
     })
     .catch(() => {
       const errorMessage = 'An error occurred while deleting your article. '
         + 'Please refresh the page or login again.';
       dispatch(deleteMyArticleFailure(errorMessage));
     });
-  setTimeout(() => {
-    dispatch(handleGetMyArticles());
-    dispatch(deleteMyArticlePostFailure());
-  }, 5000);
 };
 
 export default handleDeleteMyArticle;

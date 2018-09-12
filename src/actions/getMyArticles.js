@@ -5,7 +5,9 @@ export const getMyArticlesBegin = () => ({ type: types.GET_MY_ARTICLES_BEGIN });
 
 export const getMyArticlesSuccess = data => ({ type: types.GET_MY_ARTICLES_SUCCESS, data });
 
-export const getMyArticlesFailure = errors => ({ type: types.GET_MY_ARTICLES_FAILURE, errors });
+export const getMyArticlesFailure = errorMessage => (
+  { type: types.GET_MY_ARTICLES_FAILURE, errorMessage }
+);
 
 const getMyUsername = () => localStorage.getItem('username');
 const { REACT_APP_API_URL } = process.env;
@@ -21,8 +23,10 @@ const handleGetMyArticles = () => (dispatch) => {
       },
     )
     .catch(
-      (error) => {
-        dispatch(getMyArticlesFailure(error.data));
+      () => {
+        const errorMessage = 'We could not get your articles at the moment. '
+          + 'If the problem persists, please refresh the page or login again';
+        dispatch(getMyArticlesFailure(errorMessage));
       },
     );
 };

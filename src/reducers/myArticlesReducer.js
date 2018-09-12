@@ -8,7 +8,7 @@ const initialState = {
   deleteSuccess: false,
   deleteFailure: false,
   articles: [],
-  error: '',
+  errorMessage: '',
   deletedArticleSlug: '',
 };
 
@@ -32,7 +32,7 @@ const myArticlesReducer = (state = initialState, action) => {
         ...state,
         isFetching: false,
         fetchFailure: true,
-        errors: action.errors,
+        errorMessage: action.errorMessage,
       };
     case types.DELETE_MY_ARTICLE_BEGIN:
       return {
@@ -62,10 +62,10 @@ const myArticlesReducer = (state = initialState, action) => {
         ...state,
         isDeleting: false,
         deleteFailure: true,
-        error: action.error,
+        errorMessage: action.errorMessage,
         deleteSuccess: false,
       };
-    case types.DELETE_MY_ARTICLE_POST_FAILURE:
+    case types.POST_REQUEST_CLEAN_UP:
       return {
         ...state,
         isFetching: false,
@@ -74,7 +74,7 @@ const myArticlesReducer = (state = initialState, action) => {
         fetchFailure: false,
         deleteSuccess: false,
         deleteFailure: false,
-        error: '',
+        errorMessage: '',
       };
     default:
       return state;

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
 import UserNavBar from '../components/UserNavBar';
 import Footer from '../components/Footer';
 import handleGetMyArticles from '../actions/getMyArticles';
@@ -13,6 +11,7 @@ import handleDeleteMyArticle, {
 } from '../actions/deleteMyArticle';
 import Loader from '../components/Loader';
 import ConfirmDeleteModal from '../components/ConfirmDeleteModal';
+import MyArticlesList from '../components/MyArticlesList';
 
 class MyArticlesPage extends Component {
   /** Perform the api call before the component mounts* */
@@ -21,6 +20,10 @@ class MyArticlesPage extends Component {
     getMyArticles();
   }
 
+  /** The Page has the User's Navigation Bar, the Confirm Delete Modal, the Loader
+   * The ArticlesList and Footer components
+   * todo update with the Create Articles button
+   * * */
   render() {
     const {
       isFetching,
@@ -89,81 +92,6 @@ MyArticlesPage.propTypes = {
   cancelDelete: PropTypes.func.isRequired,
   cleanUpAfterDelete: PropTypes.func.isRequired,
   getMyArticles: PropTypes.func.isRequired,
-};
-
-
-const MyArticle = ({
-  title, description, createdAt, slug, beginDelete,
-}) => (
-  <div>
-    <h3>
-      <Link to={`./article/${slug}`} className="article-title">
-        {title}
-      </Link>
-    </h3>
-    <p>{description}</p>
-    <div>
-      <span className="text-muted">
-        <small>
-          Created:
-          {' '}
-          {new Date(createdAt).toDateString()}
-        </small>
-      </span>
-      <span className="ml-5">
-        <Button bsStyle="primary">Edit</Button>
-        <Button
-          bsStyle="danger ml-2"
-          data-toggle="modal"
-          data-target="#confirmDeleteModal"
-          onClick={() => beginDelete(slug)}
-        >
-          Delete
-        </Button>
-      </span>
-      <hr />
-    </div>
-  </div>
-);
-
-MyArticle.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  createdAt: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
-  beginDelete: PropTypes.func.isRequired,
-};
-
-const MyArticlesList = ({
-  articles, beginDelete, fetchFailure, errorMessage,
-}) => {
-  if (articles === []) {
-    return (
-      <h4>You have not created any articles yet.</h4>
-    );
-  }
-
-  if (fetchFailure) {
-    return (
-      <div className="alert alert-danger text-center">
-        {errorMessage}
-      </div>
-    );
-  }
-  return articles.map(article => (
-    <MyArticle
-      title={article.title}
-      createdAt={article.createdAt}
-      description={article.description}
-      slug={article.slug}
-      key={article.slug}
-      beginDelete={beginDelete}
-    />
-  ));
-};
-
-MyArticlesList.propTypes = {
-  articles: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({

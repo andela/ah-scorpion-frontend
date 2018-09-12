@@ -33,13 +33,13 @@ class MyArticlesPage extends Component {
       deletedArticleSlug,
       beginDelete,
       cancelDelete,
-      postRequestCleanUp,
+      cleanUpAfterDelete,
     } = this.props;
     return (
       <React.Fragment>
         <UserNavBar />
-        <main className="mt-2em">
-          <div className="p-5 container">
+        <main className="py-5">
+          <div className="mt-5 container">
             <ConfirmDeleteModal
               confirmDelete={confirmDelete}
               isDeleting={isDeleting}
@@ -47,7 +47,7 @@ class MyArticlesPage extends Component {
               cancelDelete={cancelDelete}
               errorMessage={errorMessage}
               deleteFailure={deleteFailure}
-              postRequestCleanUp={postRequestCleanUp}
+              postRequestCleanUp={cleanUpAfterDelete}
               deleteSuccess={deleteSuccess}
             />
             <h1>Your Articles</h1>
@@ -57,12 +57,14 @@ class MyArticlesPage extends Component {
                 <Loader />
               </div>
             ) : (
-              <MyArticleList
-                articles={articles}
-                beginDelete={beginDelete}
-                fetchFailure={fetchFailure}
-                errorMessage={errorMessage}
-              />
+              <div className="container">
+                <MyArticlesList
+                  articles={articles}
+                  beginDelete={beginDelete}
+                  fetchFailure={fetchFailure}
+                  errorMessage={errorMessage}
+                />
+              </div>
             )}
           </div>
         </main>
@@ -84,7 +86,7 @@ MyArticlesPage.propTypes = {
   deletedArticleSlug: PropTypes.func.isRequired,
   beginDelete: PropTypes.func.isRequired,
   cancelDelete: PropTypes.func.isRequired,
-  postRequestCleanUp: PropTypes.func.isRequired,
+  cleanUpAfterDelete: PropTypes.func.isRequired,
   getMyArticles: PropTypes.func.isRequired,
 };
 
@@ -139,14 +141,12 @@ MyArticle.propTypes = {
   slug: PropTypes.string.isRequired,
 };
 
-const MyArticleList = ({
+const MyArticlesList = ({
   articles, beginDelete, fetchFailure, errorMessage,
 }) => {
   if (articles === []) {
     return (
-      <div>
-        <h4>You have not created any articles yet.</h4>
-      </div>
+      <h4>You have not created any articles yet.</h4>
     );
   }
 
@@ -169,7 +169,7 @@ const MyArticleList = ({
   ));
 };
 
-MyArticleList.propTypes = {
+MyArticlesList.propTypes = {
   articles: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
@@ -178,7 +178,7 @@ const mapDispatchToProps = dispatch => ({
   confirmDelete: slug => dispatch(handleDeleteMyArticle(slug)),
   beginDelete: slug => dispatch(deleteMyArticleBegin(slug)),
   cancelDelete: () => dispatch(deleteMyArticleCancel()),
-  postRequestCleanUp: () => dispatch(postRequestCleanUp()),
+  cleanUpAfterDelete: () => dispatch(postRequestCleanUp()),
 });
 
 const mapStateToProps = ({ myArticles }) => myArticles;

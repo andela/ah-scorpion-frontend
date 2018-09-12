@@ -327,6 +327,14 @@ nav li a.active {
     vertical-align: baseline;
 }
 
+a.article-title {
+    color: black;
+    text-decoration: none;
+}
+
+a.article-title:hover {
+    color: grey;
+}
 .editor :global(.public-DraftEditor-content) {
   min-height: 140px;
 }

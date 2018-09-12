@@ -287,3 +287,12 @@ nav li a.active {
     line-height: 1rem;
     vertical-align: baseline;
 }
+
+a.article-title {
+    color: black;
+    text-decoration: none;
+}
+
+a.article-title:hover {
+    color: grey;
+}

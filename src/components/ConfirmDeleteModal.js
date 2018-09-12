@@ -1,5 +1,6 @@
 import React from 'react';
 import Loader from './Loader';
+import { Button } from 'react-bootstrap';
 
 const ConfirmDeleteModal = (props) => {
   const {
@@ -60,38 +61,35 @@ const ConfirmDeleteModal = (props) => {
           )}
           <div className="modal-footer">
             {deleteFailure || deleteSuccess ? (
-              <button
-                type="button"
-                className="btn btn-secondary"
+              <Button
+                bsStyle="secondary"
                 data-dismiss="modal"
                 disabled={isDeleting}
                 onClick={postRequestCleanUp}
               >
                 Close
-              </button>
+              </Button>
             ) : (
-              <button
-                type="button"
-                className="btn btn-secondary"
+              <Button
+                bsStyle="secondary"
                 data-dismiss="modal"
                 disabled={isDeleting}
                 onClick={cancelDelete}
               >
                 Cancel
-              </button>
+              </Button>
             )}
 
             {deleteFailure || deleteSuccess ? (
               ''
             ) : (
-              <button
-                type="button"
-                className="btn btn-danger"
+              <Button
+                bsStyle="danger"
                 onClick={() => confirmDelete(deletedArticleSlug)}
                 disabled={isDeleting}
               >
                 {isDeleting ? 'Deleting...' : 'Delete'}
-              </button>
+              </Button>
             )}
           </div>
         </div>

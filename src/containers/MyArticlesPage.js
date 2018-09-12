@@ -14,6 +14,7 @@ import Loader from '../components/Loader';
 import ConfirmDeleteModal from '../components/ConfirmDeleteModal';
 
 class MyArticlesPage extends Component {
+  /** Perform the api call before the component mounts* */
   componentWillMount() {
     const { getMyArticles } = this.props;
     getMyArticles();
@@ -26,14 +27,13 @@ class MyArticlesPage extends Component {
       fetchFailure,
       deleteFailure,
       errorMessage,
-      fetchSuccess,
       deleteSuccess,
       confirmDelete,
       isDeleting,
       deletedArticleSlug,
       beginDelete,
       cancelDelete,
-      cleanDeleteFailure,
+      postRequestCleanUp,
     } = this.props;
     return (
       <React.Fragment>
@@ -47,7 +47,7 @@ class MyArticlesPage extends Component {
               cancelDelete={cancelDelete}
               errorMessage={errorMessage}
               deleteFailure={deleteFailure}
-              cleanDeleteFailure={cleanDeleteFailure}
+              postRequestCleanUp={postRequestCleanUp}
               deleteSuccess={deleteSuccess}
             />
             <h1>Your Articles</h1>
@@ -75,9 +75,16 @@ class MyArticlesPage extends Component {
 MyArticlesPage.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   articles: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  failure: PropTypes.bool.isRequired,
-  success: PropTypes.bool.isRequired,
-  errors: PropTypes.shape().isRequired,
+  fetchFailure: PropTypes.bool.isRequired,
+  deleteFailure: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string.isRequired,
+  deleteSuccess: PropTypes.bool.isRequired,
+  confirmDelete: PropTypes.func.isRequired,
+  isDeleting: PropTypes.bool.isRequired,
+  deletedArticleSlug: PropTypes.func.isRequired,
+  beginDelete: PropTypes.func.isRequired,
+  cancelDelete: PropTypes.func.isRequired,
+  postRequestCleanUp: PropTypes.func.isRequired,
   getMyArticles: PropTypes.func.isRequired,
 };
 
@@ -171,7 +178,7 @@ const mapDispatchToProps = dispatch => ({
   confirmDelete: slug => dispatch(handleDeleteMyArticle(slug)),
   beginDelete: slug => dispatch(deleteMyArticleBegin(slug)),
   cancelDelete: () => dispatch(deleteMyArticleCancel()),
-  cleanDeleteFailure: () => dispatch(postRequestCleanUp()),
+  postRequestCleanUp: () => dispatch(postRequestCleanUp()),
 });
 
 const mapStateToProps = ({ myArticles }) => myArticles;

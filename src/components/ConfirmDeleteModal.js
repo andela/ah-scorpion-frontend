@@ -9,7 +9,7 @@ const ConfirmDeleteModal = (props) => {
     isDeleting,
     errorMessage,
     deleteFailure,
-    cleanDeleteFailure,
+    postRequestCleanUp,
     deleteSuccess,
   } = props;
 
@@ -65,7 +65,7 @@ const ConfirmDeleteModal = (props) => {
                 className="btn btn-secondary"
                 data-dismiss="modal"
                 disabled={isDeleting}
-                onClick={cleanDeleteFailure}
+                onClick={postRequestCleanUp}
               >
                 Close
               </button>

@@ -8,7 +8,7 @@ const initialState = {
   deleteSuccess: false,
   deleteFailure: false,
   articles: [],
-  errors: {},
+  error: '',
   deletedArticleSlug: '',
 };
 
@@ -61,12 +61,13 @@ const myArticlesReducer = (state = initialState, action) => {
         ...state,
         isDeleting: false,
         deleteFailure: true,
-        errors: action.errors,
+        error: action.error,
       };
     case types.DELETE_MY_ARTICLE_POST_FAILURE:
       return {
         ...state,
         deleteFailure: false,
+        error: '',
       };
     default:
       return state;

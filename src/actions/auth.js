@@ -1,4 +1,7 @@
-import { USER_LOGGED_IN, SIGN_OUT_DONE } from './types';
+import {
+  USER_LOGGED_IN,
+  SIGN_OUT_DONE,
+} from './types';
 import api from '../services/api';
 
 export const userLoggedIn = user => ({

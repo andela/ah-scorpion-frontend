@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import UserNavBar from './UserNavBar';
-import Footer from './Footer';
+import UserNavBar from '../components/UserNavBar';
+import Footer from '../components/Footer';
 import handleGetMyArticles from '../actions/getMyArticles';
 import handleDeleteMyArticle, {
   deleteMyArticleBegin,
   deleteMyArticleCancel,
   postRequestCleanUp,
 } from '../actions/deleteMyArticle';
-import Loader from './Loader';
-import ConfirmDeleteModal from './ConfirmDeleteModal';
+import Loader from '../components/Loader';
+import ConfirmDeleteModal from '../components/ConfirmDeleteModal';
 
 class MyArticlesPage extends Component {
   componentWillMount() {

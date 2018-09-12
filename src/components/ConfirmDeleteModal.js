@@ -22,6 +22,7 @@ const ConfirmDeleteModal = (props) => {
       tabIndex="-1"
       role="dialog"
       data-backdrop="static"
+      data-keyboard="false"
     >
       <div className="modal-dialog" role="document">
         <div className="modal-content">

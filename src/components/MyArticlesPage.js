@@ -8,11 +8,10 @@ import handleGetMyArticles from '../actions/getMyArticles';
 import handleDeleteMyArticle, {
   deleteMyArticleBegin,
   deleteMyArticleCancel,
-  deleteMyArticlePostFailure
+  deleteMyArticlePostFailure,
 } from '../actions/deleteMyArticle';
 import Loader from './Loader';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
-
 
 class MyArticlesPage extends Component {
   componentWillMount() {
@@ -49,15 +48,17 @@ class MyArticlesPage extends Component {
               error={error}
               deleteFailure={deleteFailure}
               cleanDeleteFailure={cleanDeleteFailure}
+              deleteSuccess={deleteSuccess}
             />
             <h1>Your Articles</h1>
             <hr />
-            { isFetching ? (
+            {isFetching ? (
               <div className="text-center">
                 <Loader />
               </div>
-            ) : <MyArticleList articles={articles} beginDelete={beginDelete} />
-            }
+            ) : (
+              <MyArticleList articles={articles} beginDelete={beginDelete} />
+            )}
           </div>
         </main>
         <Footer />
@@ -91,7 +92,9 @@ const MyArticle = ({
 }) => (
   <div>
     <h3>
-      <Link to={`./article/${slug}`} className="article-title">{title}</Link>
+      <Link to={`./article/${slug}`} className="article-title">
+        {title}
+      </Link>
     </h3>
     <p>{description}</p>
     <div>
@@ -127,9 +130,7 @@ const MyArticleList = ({ articles, beginDelete }) => {
   if (articles === []) {
     return (
       <div>
-        <h4>
-        You have not created any articles yet.
-        </h4>
+        <h4>You have not created any articles yet.</h4>
       </div>
     );
   }
@@ -149,16 +150,17 @@ MyArticleList.propTypes = {
   articles: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
-const mapDispatchToProps = dispatch => (
-  {
-    getMyArticles: () => dispatch(handleGetMyArticles()),
-    confirmDelete: slug => dispatch(handleDeleteMyArticle(slug)),
-    beginDelete: slug => dispatch(deleteMyArticleBegin(slug)),
-    cancelDelete: () => dispatch(deleteMyArticleCancel()),
-    cleanDeleteFailure: () => dispatch(deleteMyArticlePostFailure()),
-  }
-);
+const mapDispatchToProps = dispatch => ({
+  getMyArticles: () => dispatch(handleGetMyArticles()),
+  confirmDelete: slug => dispatch(handleDeleteMyArticle(slug)),
+  beginDelete: slug => dispatch(deleteMyArticleBegin(slug)),
+  cancelDelete: () => dispatch(deleteMyArticleCancel()),
+  cleanDeleteFailure: () => dispatch(deleteMyArticlePostFailure()),
+});
 
 const mapStateToProps = ({ myArticles }) => myArticles;
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyArticlesPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(MyArticlesPage);

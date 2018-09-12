@@ -55,6 +55,7 @@ const myArticlesReducer = (state = initialState, action) => {
         isDeleting: false,
         deleteSuccess: true,
         deletedArticleSlug: action.slug,
+        deleteFailure: false,
       };
     case types.DELETE_MY_ARTICLE_FAILURE:
       return {
@@ -62,10 +63,16 @@ const myArticlesReducer = (state = initialState, action) => {
         isDeleting: false,
         deleteFailure: true,
         error: action.error,
+        deleteSuccess: false,
       };
     case types.DELETE_MY_ARTICLE_POST_FAILURE:
       return {
         ...state,
+        isFetching: false,
+        isDeleting: false,
+        fetchSuccess: false,
+        fetchFailure: false,
+        deleteSuccess: false,
         deleteFailure: false,
         error: '',
       };

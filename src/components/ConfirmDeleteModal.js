@@ -4,49 +4,56 @@ import SignUpError from './SignUpError';
 
 const ConfirmDeleteModal = (props) => {
   const {
-    confirmDelete, cancelDelete, deletedArticleSlug, isDeleting, error, deleteFailure, cleanDeleteFailure,
+    confirmDelete,
+    cancelDelete,
+    deletedArticleSlug,
+    isDeleting,
+    error,
+    deleteFailure,
+    cleanDeleteFailure,
+    deleteSuccess,
   } = props;
 
   const errorBool = !!error;
   return (
-    <div
-      className="modal fade"
-      id="confirmDeleteModal"
-      tabIndex="-1"
-      role="dialog"
-    >
+    <div className="modal fade" id="confirmDeleteModal" tabIndex="-1" role="dialog">
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="confirmDeleteModalTilte">Delete Article?</h5>
+            <h5 className="modal-title" id="confirmDeleteModalTilte">
+              Delete Article?
+            </h5>
             <button type="button" className="close" data-dismiss="modal">
               <span>&times;</span>
             </button>
           </div>
           {isDeleting ? (
-            <Loader style={{
-              width: '20%',
-              margin: 'auto',
-            }}
+            <Loader
+              style={{
+                width: '20%',
+                margin: 'auto',
+              }}
             />
-          )
-            : (
-              <div className="modal-body">
-                {
-                  errorBool ? (<SignUpError errorMsg={error} />) : (
-                    ''
-                  )
-                }
-                <p>
-                  Are you sure you want to delete this Article?
-                  <br />
-                  This process is irreversible.
-                </p>
-              </div>
-            )
-          }
+          ) : (
+            <div className="modal-body">
+              {errorBool ? <SignUpError errorMsg={error} /> : ''}
+              {deleteSuccess ? (
+                <div className="alert alert-success text-center">
+                  {' '}
+                  You have successfully deleted this article
+                </div>
+              ) : (
+                ''
+              )}
+              <p>
+                Are you sure you want to delete this Article?
+                <br />
+                This process is irreversible.
+              </p>
+            </div>
+          )}
           <div className="modal-footer">
-            {deleteFailure ? (
+            {deleteFailure || deleteSuccess ? (
               <button
                 type="button"
                 className="btn btn-secondary"
@@ -54,22 +61,23 @@ const ConfirmDeleteModal = (props) => {
                 disabled={isDeleting}
                 onClick={cleanDeleteFailure}
               >
-              Close
+                Close
               </button>
-            )
-              : (
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-dismiss="modal"
-                  disabled={isDeleting}
-                  onClick={cancelDelete}
-                >
-              Cancel
-                </button>
-              )}
+            ) : (
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-dismiss="modal"
+                disabled={isDeleting}
+                onClick={cancelDelete}
+              >
+                Cancel
+              </button>
+            )}
 
-            {deleteFailure ? '' : (
+            {deleteFailure || deleteSuccess ? (
+              ''
+            ) : (
               <button
                 type="button"
                 className="btn btn-danger"

@@ -8,6 +8,7 @@ import ConfirmPasswordForm from './containers/ConfirmPasswordForm';
 import SignUp from './containers/SignUp';
 import Dashboard from './containers/Dashboard';
 import PrivateRoute from './routes/PrivateRoute';
+import 'draft-js/dist/Draft.css';
 import TextArea from './containers/TextArea';
 
 const App = () => (

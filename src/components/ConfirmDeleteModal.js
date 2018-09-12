@@ -1,6 +1,7 @@
 import React from 'react';
-import Loader from './Loader';
 import { Button } from 'react-bootstrap';
+import PropType from 'prop-types';
+import Loader from './Loader';
 
 const ConfirmDeleteModal = (props) => {
   const {
@@ -96,6 +97,17 @@ const ConfirmDeleteModal = (props) => {
       </div>
     </div>
   );
+};
+
+ConfirmDeleteModal.propTypes = {
+  confirmDelete: PropType.func.isRequired,
+  cancelDelete: PropType.func.isRequired,
+  postRequestCleanUp: PropType.func.isRequired,
+  deletedArticleSlug: PropType.string.isRequired,
+  errorMessage: PropType.string.isRequired,
+  isDeleting: PropType.bool.isRequired,
+  deleteFailure: PropType.bool.isRequired,
+  deleteSuccess: PropType.bool.isRequired,
 };
 
 export default ConfirmDeleteModal;

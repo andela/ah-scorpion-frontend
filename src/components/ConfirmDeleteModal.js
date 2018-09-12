@@ -4,11 +4,10 @@ import SignUpError from './SignUpError';
 
 const ConfirmDeleteModal = (props) => {
   const {
-    confirmDelete, cancelDelete, deletedArticleSlug, isDeleting, errors, deleteFailure, cleanDeleteFailure,
+    confirmDelete, cancelDelete, deletedArticleSlug, isDeleting, error, deleteFailure, cleanDeleteFailure,
   } = props;
 
-  const errorsBool = errors === '';
-
+  const errorBool = !!error;
   return (
     <div
       className="modal fade"
@@ -34,7 +33,7 @@ const ConfirmDeleteModal = (props) => {
             : (
               <div className="modal-body">
                 {
-                  errorsBool ? (<SignUpError errorMsg={errors} />) : (
+                  errorBool ? (<SignUpError errorMsg={error} />) : (
                     ''
                   )
                 }

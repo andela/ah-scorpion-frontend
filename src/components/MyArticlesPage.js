@@ -26,7 +26,7 @@ class MyArticlesPage extends Component {
       articles,
       fetchFailure,
       deleteFailure,
-      errors,
+      error,
       fetchSuccess,
       deleteSuccess,
       confirmDelete,
@@ -46,7 +46,7 @@ class MyArticlesPage extends Component {
               isDeleting={isDeleting}
               deletedArticleSlug={deletedArticleSlug}
               cancelDelete={cancelDelete}
-              errors={errors}
+              error={error}
               deleteFailure={deleteFailure}
               cleanDeleteFailure={cleanDeleteFailure}
             />

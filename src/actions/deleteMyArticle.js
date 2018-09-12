@@ -9,7 +9,7 @@ export const deleteMyArticleConfirm = () => ({ type: types.DELETE_MY_ARTICLE_CON
 
 export const deleteMyArticleSuccess = () => ({ type: types.DELETE_MY_ARTICLE_SUCCESS });
 
-export const deleteMyArticleFailure = errors => ({ type: types.DELETE_MY_ARTICLE_FAILURE, errors });
+export const deleteMyArticleFailure = error => ({ type: types.DELETE_MY_ARTICLE_FAILURE, error });
 
 export const deleteMyArticlePostFailure = () => ({ type: types.DELETE_MY_ARTICLE_POST_FAILURE });
 
@@ -30,7 +30,7 @@ const handleDeleteMyArticle = slug => (dispatch) => {
         const errorMessage = 'An error occurred while deleting your article. '
           + 'Please refresh the page or login again.';
         dispatch(deleteMyArticleFailure(errorMessage));
-        setTimeout(() => dispatch(deleteMyArticlePostFailure()), 3000);
+        setTimeout(() => dispatch(deleteMyArticlePostFailure()), 5000);
       },
     );
 };

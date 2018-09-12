@@ -1,6 +1,5 @@
 import React from 'react';
 import Loader from './Loader';
-import SignUpError from './SignUpError';
 
 const ConfirmDeleteModal = (props) => {
   const {
@@ -8,24 +7,29 @@ const ConfirmDeleteModal = (props) => {
     cancelDelete,
     deletedArticleSlug,
     isDeleting,
-    error,
+    errorMessage,
     deleteFailure,
     cleanDeleteFailure,
     deleteSuccess,
   } = props;
 
-  const errorBool = !!error;
   return (
-    <div className="modal fade" id="confirmDeleteModal" tabIndex="-1" role="dialog">
+    <div
+      className="modal fade"
+      id="confirmDeleteModal"
+      tabIndex="-1"
+      role="dialog"
+      data-backdrop="static"
+    >
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="confirmDeleteModalTilte">
+            <h5
+              className="modal-title mx-auto"
+              id="confirmDeleteModalTilte"
+            >
               Delete Article?
             </h5>
-            <button type="button" className="close" data-dismiss="modal">
-              <span>&times;</span>
-            </button>
           </div>
           {isDeleting ? (
             <Loader
@@ -36,20 +40,22 @@ const ConfirmDeleteModal = (props) => {
             />
           ) : (
             <div className="modal-body">
-              {errorBool ? <SignUpError errorMsg={error} /> : ''}
-              {deleteSuccess ? (
-                <div className="alert alert-success text-center">
-                  {' '}
-                  You have successfully deleted this article
+              {deleteFailure || deleteSuccess ? (
+                <div
+                  className={`alert text-center alert-${deleteSuccess ? 'success' : 'danger'}`}
+                >
+                  {deleteFailure ? errorMessage : 'You have successfully deleted this article'}
                 </div>
               ) : (
-                ''
-              )}
-              <p>
+                <p className="text-center">
                 Are you sure you want to delete this Article?
-                <br />
-                This process is irreversible.
-              </p>
+                  <br />
+                This process is
+                  {' '}
+                  <strong className="text-danger">irreversible</strong>
+.
+                </p>
+              )}
             </div>
           )}
           <div className="modal-footer">

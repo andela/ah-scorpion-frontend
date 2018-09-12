@@ -8,7 +8,7 @@ import handleGetMyArticles from '../actions/getMyArticles';
 import handleDeleteMyArticle, {
   deleteMyArticleBegin,
   deleteMyArticleCancel,
-  deleteMyArticlePostFailure,
+  postRequestCleanUp,
 } from '../actions/deleteMyArticle';
 import Loader from './Loader';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
@@ -25,7 +25,7 @@ class MyArticlesPage extends Component {
       articles,
       fetchFailure,
       deleteFailure,
-      error,
+      errorMessage,
       fetchSuccess,
       deleteSuccess,
       confirmDelete,
@@ -45,7 +45,7 @@ class MyArticlesPage extends Component {
               isDeleting={isDeleting}
               deletedArticleSlug={deletedArticleSlug}
               cancelDelete={cancelDelete}
-              error={error}
+              errorMessage={errorMessage}
               deleteFailure={deleteFailure}
               cleanDeleteFailure={cleanDeleteFailure}
               deleteSuccess={deleteSuccess}
@@ -57,7 +57,12 @@ class MyArticlesPage extends Component {
                 <Loader />
               </div>
             ) : (
-              <MyArticleList articles={articles} beginDelete={beginDelete} />
+              <MyArticleList
+                articles={articles}
+                beginDelete={beginDelete}
+                fetchFailure={fetchFailure}
+                errorMessage={errorMessage}
+              />
             )}
           </div>
         </main>
@@ -101,6 +106,7 @@ const MyArticle = ({
       <span className="text-muted">
         <small>
           Created:
+          {' '}
           {new Date(createdAt).toDateString()}
         </small>
       </span>
@@ -126,11 +132,21 @@ MyArticle.propTypes = {
   slug: PropTypes.string.isRequired,
 };
 
-const MyArticleList = ({ articles, beginDelete }) => {
+const MyArticleList = ({
+  articles, beginDelete, fetchFailure, errorMessage,
+}) => {
   if (articles === []) {
     return (
       <div>
         <h4>You have not created any articles yet.</h4>
+      </div>
+    );
+  }
+
+  if (fetchFailure) {
+    return (
+      <div className="alert alert-danger text-center">
+        {errorMessage}
       </div>
     );
   }
@@ -155,7 +171,7 @@ const mapDispatchToProps = dispatch => ({
   confirmDelete: slug => dispatch(handleDeleteMyArticle(slug)),
   beginDelete: slug => dispatch(deleteMyArticleBegin(slug)),
   cancelDelete: () => dispatch(deleteMyArticleCancel()),
-  cleanDeleteFailure: () => dispatch(deleteMyArticlePostFailure()),
+  cleanDeleteFailure: () => dispatch(postRequestCleanUp()),
 });
 
 const mapStateToProps = ({ myArticles }) => myArticles;

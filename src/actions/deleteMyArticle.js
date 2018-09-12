@@ -1,6 +1,6 @@
-import axios from 'axios';
 import * as types from './types';
 import handleGetMyArticles from './getMyArticles';
+import articleService from '../services/articleService';
 
 export const deleteMyArticleBegin = slug => ({ type: types.DELETE_MY_ARTICLE_BEGIN, slug });
 
@@ -16,21 +16,14 @@ export const deleteMyArticleFailure = errorMessage => (
 
 export const postRequestCleanUp = () => ({ type: types.POST_REQUEST_CLEAN_UP });
 
-const { REACT_APP_API_URL } = process.env;
-const articlesUrl = `${REACT_APP_API_URL}/api/v1/articles/`;
-const token = localStorage.getItem('token');
-
 const handleDeleteMyArticle = slug => (dispatch) => {
   dispatch(deleteMyArticleConfirm());
-  axios
-    .delete(`${articlesUrl}${slug}`, { headers: { Authorization: `Bearer ${token}` } })
+  articleService.deleteMyArticle(slug)
     .then(() => {
       dispatch(deleteMyArticleSuccess());
       dispatch(handleGetMyArticles());
     })
-    .catch(() => {
-      const errorMessage = 'An error occurred while deleting your article. '
-        + 'Please refresh the page or login again.';
+    .catch((errorMessage) => {
       dispatch(deleteMyArticleFailure(errorMessage));
     });
 };

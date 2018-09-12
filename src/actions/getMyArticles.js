@@ -1,5 +1,5 @@
-import axios from 'axios';
 import * as types from './types';
+import articleService from '../services/articleService';
 
 export const getMyArticlesBegin = () => ({ type: types.GET_MY_ARTICLES_BEGIN });
 
@@ -9,23 +9,17 @@ export const getMyArticlesFailure = errorMessage => (
   { type: types.GET_MY_ARTICLES_FAILURE, errorMessage }
 );
 
-const getMyUsername = () => localStorage.getItem('username');
-const { REACT_APP_API_URL } = process.env;
-const articlesUrl = `${REACT_APP_API_URL}/api/v1/articles/`;
-
 const handleGetMyArticles = () => (dispatch) => {
   dispatch(getMyArticlesBegin());
-  axios
-    .get(`${articlesUrl}?author__username=${getMyUsername()}`)
+  articleService
+    .getMyArticles()
     .then(
-      (response) => {
-        dispatch(getMyArticlesSuccess(response.data));
+      (articles) => {
+        dispatch(getMyArticlesSuccess(articles));
       },
     )
     .catch(
-      () => {
-        const errorMessage = 'We could not get your articles at the moment. '
-          + 'If the problem persists, please refresh the page or login again';
+      (errorMessage) => {
         dispatch(getMyArticlesFailure(errorMessage));
       },
     );

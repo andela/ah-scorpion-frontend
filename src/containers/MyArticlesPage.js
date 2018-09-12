@@ -139,6 +139,7 @@ MyArticle.propTypes = {
   description: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
+  beginDelete: PropTypes.func.isRequired,
 };
 
 const MyArticlesList = ({

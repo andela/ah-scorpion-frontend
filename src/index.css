@@ -263,12 +263,11 @@ nav li a.active {
     background-repeat: no-repeat;
 }
 
-
-.img-card{
+.img-card {
     width: 18rem;
 }
 
-.horizontal-scroll-view>div {
+.horizontal-scroll-view > div {
     flex: 0 0 25%;
 }
 
@@ -277,60 +276,53 @@ nav li a.active {
     text-decoration: none;
 }
 
-.avatar{
+.avatar {
     max-width: 2rem;
     max-height: 2rem;
     vertical-align: text-bottom;
 }
 
-.name-field{
+.name-field {
     line-height: 1rem;
     vertical-align: baseline;
 }
 
-button{
+button {
     background-color: inherit;
 }
 
-button:hover{
+button:hover {
     cursor: pointer;
     background-color: inherit;
 }
 
-.fav-div{
+.fav-div {
     margin-top: 5em;
     text-align: center;
 }
 
-.favourite-icon{
+.favourite-icon {
 
 }
 
-.center-item{
+.center-item {
     margin: 0 auto;
 }
 
-.tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+.favorite-icon {
+      font-size: 150%;
+      color: red;
+  }
+
+.unfavorite-icon {
+    font-size: 150%;
+    color: rgb(200, 200, 200);
 }
 
-/* Tooltip text */
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    z-index: 1;
+.favorite-btn{
+    border: 0 #ffff;
 }
 
-.tooltip:hover .tooltiptext {
-    visibility: visible;
+.favorite-btn:active, .favorite-btn:focus{
+    border: 0 #ffff;
 }

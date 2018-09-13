@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createStore } from 'redux';
-import * as fav from '../assets/images/favourite.png';
-import * as unfav from '../assets/images/unfavourite.png';
 import updateFavorite from '../actions/updateFavorite';
-import favoriteReducer from '../reducers/favoriteReducer';
 
 class Favourite extends Component {
   constructor(props) {
@@ -12,24 +8,33 @@ class Favourite extends Component {
     this.onUpdateFavourite = this.onUpdateFavourite.bind(this);
   }
 
-  // store = createStore(favoriteReducer);
 
   onUpdateFavourite() {
-    // console.log(this.props);
-    this.props.onUpdateFavourite('Samuel Munyili');
+    console.log(window.location.href);
+    this.props.onUpdateFavourite();
+  }
+
+  componentDidMount() {
+    return this.onUpdateFavourite();
   }
 
   render() {
     return (
-      <div className="fav-div">
+      <div className="fav-div" onReset={this.onUpdateFavourite}>
         <div className="center-item">
-          <button onClick={this.onUpdateFavourite} type="button">
-            <img alt="" src={this.props.favorite.favorite ? fav : unfav} />
+          <h3>This is the title of the Article</h3>
+          <p>
+            Imagine this is an LMS output, would you still favourite it?
+          </p>
+          <button onClick={this.onUpdateFavourite} type="button" className="favorite-btn">
+            <span
+              className={this.props.favorite.favorite ? 'favorite-icon'
+                : 'unfavorite-icon'}
+            >
+&hearts;
+            </span>
           </button>
         </div>
-        Favorite?
-        {' '}
-        {this.props.favorite.status}
       </div>
     );
   }

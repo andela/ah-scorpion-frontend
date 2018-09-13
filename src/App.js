@@ -8,6 +8,7 @@ import ConfirmPasswordForm from './containers/ConfirmPasswordForm';
 import SignUp from './containers/SignUp';
 import Dashboard from './containers/Dashboard';
 import PrivateRoute from './routes/PrivateRoute';
+import Favourite from './containers/Favourite';
 
 const App = () => (
   <BrowserRouter>
@@ -16,6 +17,7 @@ const App = () => (
       <Route path="/login" exact render={props => <Login {...props} />} />
       <Route path="/signup" exact render={props => <SignUp {...props} />} />
       <Route path="/reset" exact render={props => <ResetForm {...props} />} />
+      <Route path="/favourite" exact render={props => <Favourite {...props} />} />
       <Route
         path="/api/v1/confirm-password/:token"
         exact

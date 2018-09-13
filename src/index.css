@@ -287,3 +287,50 @@ nav li a.active {
     line-height: 1rem;
     vertical-align: baseline;
 }
+
+button{
+    background-color: inherit;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: inherit;
+}
+
+.fav-div{
+    margin-top: 5em;
+    text-align: center;
+}
+
+.favourite-icon{
+
+}
+
+.center-item{
+    margin: 0 auto;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}

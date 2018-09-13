@@ -191,18 +191,35 @@ export default class CustomInlineToolbarEditor extends Component {
 
   render() {
     return (
-      <div className={editorStyles.editor} onClick={this.focus}>
-        <Editor
-          editorState={this.state.editorState}
-          onChange={this.onChange}
-          plugins={plugins}
-          ref={(element) => {
-            this.editor = element;
-          }}
-        />
-        <AlignmentTool />
-        <InlineToolbar />
-      </div>
+      <main>
+        <div className="bg-contact2">
+          <div className="container-contact2">
+            <div className="wrap-contact2">
+              <div className={editorStyles.editor} onClick={this.focus}>
+                <form className="contact2-form validate-form">
+                  <span class="contact2-form-title">New Article</span>
+                  <Editor
+                    editorState={this.state.editorState}
+                    onChange={this.onChange}
+                    plugins={plugins}
+                    ref={(element) => {
+                      this.editor = element;
+                    }}
+                    placeholder="Tell your story"
+                  />
+                  <InlineToolbar />
+                  <div class="container-contact2-form-btn">
+                    <div class="wrap-contact2-form-btn">
+                      <div class="contact2-form-bgbtn" />
+                      <button class="contact2-form-btn">Submit Article</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
     );
   }
 }

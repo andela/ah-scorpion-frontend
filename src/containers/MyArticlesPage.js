@@ -16,16 +16,11 @@ import ConfirmDeleteModal from '../components/ConfirmDeleteModal';
 import MyArticlesList from '../components/MyArticlesList';
 
 class MyArticlesPage extends Component {
-  /** Perform the api call before the component mounts* */
   componentWillMount() {
     const { getMyArticles } = this.props;
     getMyArticles();
   }
 
-  /** The Page has the User's Navigation Bar, the Confirm Delete Modal, the Loader
-   * The ArticlesList and Footer components
-   * todo update with the Create Articles button
-   * * */
   render() {
     const {
       isFetching,

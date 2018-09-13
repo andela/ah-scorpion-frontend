@@ -5,7 +5,7 @@ import MyArticle from './MyArticle';
 const MyArticlesList = ({
   articles, beginDelete, fetchFailure, errorMessage,
 }) => {
-  if (articles === []) {
+  if (articles.length === 0) {
     return (
       <h4>You have not created any articles yet.</h4>
     );

@@ -1,19 +1,7 @@
-import myArticlesReducer from '../../reducers/myArticlesReducer';
+import myArticlesReducer, { initialState } from '../../reducers/myArticlesReducer';
 import * as types from '../../actions/types';
 
 describe('The myArticlesReducer', () => {
-  const initialState = {
-    isFetching: false,
-    isDeleting: false,
-    fetchSuccess: false,
-    fetchFailure: false,
-    deleteSuccess: false,
-    deleteFailure: false,
-    articles: [],
-    errorMessage: '',
-    deletedArticleSlug: '',
-  };
-
   const state = {};
 
   it('should return the same state on an inapplicable action', () => {

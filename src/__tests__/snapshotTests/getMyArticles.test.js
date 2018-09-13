@@ -82,28 +82,6 @@ describe('The getmyArticlesPage view', () => {
         updatedAt: '2018-09-12T18:51:24.100977Z',
         tagList: ['Lenny', 'First'],
       },
-      {
-        id: 43,
-        title: "Lenny's First Article 2",
-        author: {
-          email: 'lennykmutua@gmail.com',
-          username: 'lenny',
-          bio: '',
-          image: '',
-        },
-        likes: 0,
-        dislikes: 0,
-        favorited: 1,
-        averageRating: null,
-        ratingsCount: 0,
-        slug: 'lennys-first-article-2-29b5102ef9a84eb9bfbf60da42f63122',
-        body: "Like I said... I don't know what's going on. I'm just testing Hoslack's work.",
-        description: "This is my first article and I don't know what's going on...",
-        images: ['https://url-to-image'],
-        createdAt: '2018-09-12T18:51:24.099861Z',
-        updatedAt: '2018-09-12T18:51:24.100977Z',
-        tagList: ['Lenny', 'First'],
-      },
     ];
     it('Should render text if user has no articles', () => {
       const tree = renderer.create(

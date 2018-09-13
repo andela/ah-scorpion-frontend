@@ -306,104 +306,54 @@ exports[`The getmyArticlesPage view The MyArticle component Should not regress 1
 `;
 
 exports[`The getmyArticlesPage view The MyArticleList component Should render all articles in case of a successful request 1`] = `
-Array [
-  <div
-    className="jumbotron"
+<div
+  className="jumbotron"
 >
-    <h3>
-        <a
-            className="article-title"
-            href="/article/lennys-first-article-1-29b5102ef9a84eb9bfbf60da42f63122/read"
-            onClick={[Function]}
-        >
-            Lenny's First Article 1
-        </a>
-    </h3>
-    <p>
-        This is my first article and I don't know what's going on...
-    </p>
-    <div>
-        <span
-            className="text-muted"
-        >
-            <small>
-                Created:
-                 
-                Wed Sep 12 2018
-            </small>
-        </span>
-        <span
-            className="ml-5"
-        >
-            <button
-                className="btn btn-primary"
-                disabled={false}
-                type="button"
-            >
-                Edit
-            </button>
-            <button
-                className="btn btn-danger ml-2"
-                data-target="#confirmDeleteModal"
-                data-toggle="modal"
-                disabled={false}
-                onClick={[Function]}
-                type="button"
-            >
-                Delete
-            </button>
-        </span>
-    </div>
-</div>,
-  <div
-    className="jumbotron"
->
-    <h3>
-        <a
-            className="article-title"
-            href="/article/lennys-first-article-2-29b5102ef9a84eb9bfbf60da42f63122/read"
-            onClick={[Function]}
-        >
-            Lenny's First Article 2
-        </a>
-    </h3>
-    <p>
-        This is my first article and I don't know what's going on...
-    </p>
-    <div>
-        <span
-            className="text-muted"
-        >
-            <small>
-                Created:
-                 
-                Wed Sep 12 2018
-            </small>
-        </span>
-        <span
-            className="ml-5"
-        >
-            <button
-                className="btn btn-primary"
-                disabled={false}
-                type="button"
-            >
-                Edit
-            </button>
-            <button
-                className="btn btn-danger ml-2"
-                data-target="#confirmDeleteModal"
-                data-toggle="modal"
-                disabled={false}
-                onClick={[Function]}
-                type="button"
-            >
-                Delete
-            </button>
-        </span>
-    </div>
-</div>,
-]
+  <h3>
+    <a
+      className="article-title"
+      href="/article/lennys-first-article-1-29b5102ef9a84eb9bfbf60da42f63122/read"
+      onClick={[Function]}
+    >
+      Lenny's First Article 1
+    </a>
+  </h3>
+  <p>
+    This is my first article and I don't know what's going on...
+  </p>
+  <div>
+    <span
+      className="text-muted"
+    >
+      <small>
+        Created:
+         
+        Wed Sep 12 2018
+      </small>
+    </span>
+    <span
+      className="ml-5"
+    >
+      <button
+        className="btn btn-primary"
+        disabled={false}
+        type="button"
+      >
+        Edit
+      </button>
+      <button
+        className="btn btn-danger ml-2"
+        data-target="#confirmDeleteModal"
+        data-toggle="modal"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Delete
+      </button>
+    </span>
+  </div>
+</div>
 `;
 
 exports[`The getmyArticlesPage view The MyArticleList component Should render text if user has no articles 1`] = `

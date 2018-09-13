@@ -304,8 +304,6 @@ exports[`The getmyArticlesPage view The MyArticle component Should not regress 1
 </div>
 `;
 
-exports[`The getmyArticlesPage view The MyArticleList component Should not render text if user has no articles 1`] = `null`;
-
 exports[`The getmyArticlesPage view The MyArticleList component Should render all articles in case of a successful request 1`] = `
 Array [
   <div>
@@ -405,12 +403,14 @@ Array [
 ]
 `;
 
-exports[`The getmyArticlesPage view The MyArticleList component Should render text if user has no articles 1`] = `null`;
+exports[`The getmyArticlesPage view The MyArticleList component Should render text if user has no articles 1`] = `
+<h4>
+  You have not created any articles yet.
+</h4>
+`;
 
 exports[`The getmyArticlesPage view The MyArticleList component Should render the error message in case of failure 1`] = `
-<div
-  className="alert alert-danger text-center"
->
-  An error occurred
-</div>
+<h4>
+  You have not created any articles yet.
+</h4>
 `;

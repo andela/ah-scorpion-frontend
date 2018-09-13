@@ -7,7 +7,7 @@ import React from 'react';
 const MyArticle = ({
   title, description, createdAt, slug, beginDelete,
 }) => (
-  <div>
+  <div className="jumbotron">
     <h3>
       <Link to={`./article/${slug}/read`} className="article-title">
         {title}
@@ -33,7 +33,6 @@ const MyArticle = ({
           Delete
         </Button>
       </span>
-      <hr />
     </div>
   </div>
 );

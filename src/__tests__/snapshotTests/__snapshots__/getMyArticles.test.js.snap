@@ -255,7 +255,9 @@ exports[`The getmyArticlesPage view The ConfirmDeleteModal component Should show
 `;
 
 exports[`The getmyArticlesPage view The MyArticle component Should not regress 1`] = `
-<div>
+<div
+  className="jumbotron"
+>
   <h3>
     <a
       className="article-title"
@@ -299,14 +301,15 @@ exports[`The getmyArticlesPage view The MyArticle component Should not regress 1
         Delete
       </button>
     </span>
-    <hr />
   </div>
 </div>
 `;
 
 exports[`The getmyArticlesPage view The MyArticleList component Should render all articles in case of a successful request 1`] = `
 Array [
-  <div>
+  <div
+    className="jumbotron"
+>
     <h3>
         <a
             className="article-title"
@@ -350,10 +353,11 @@ Array [
                 Delete
             </button>
         </span>
-        <hr />
     </div>
 </div>,
-  <div>
+  <div
+    className="jumbotron"
+>
     <h3>
         <a
             className="article-title"
@@ -397,7 +401,6 @@ Array [
                 Delete
             </button>
         </span>
-        <hr />
     </div>
 </div>,
 ]

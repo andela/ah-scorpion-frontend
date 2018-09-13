@@ -8,6 +8,7 @@ import ConfirmPasswordForm from './containers/ConfirmPasswordForm';
 import SignUp from './containers/SignUp';
 import Dashboard from './containers/Dashboard';
 import PrivateRoute from './routes/PrivateRoute';
+import MyArticlesPage from './containers/MyArticlesPage';
 
 const App = () => (
   <BrowserRouter>
@@ -22,6 +23,7 @@ const App = () => (
         render={props => <ConfirmPasswordForm {...props} />}
       />
       <PrivateRoute path="/dashboard" component={Dashboard} />
+      <PrivateRoute path="/my-articles" component={MyArticlesPage} />
     </Switch>
   </BrowserRouter>
 );

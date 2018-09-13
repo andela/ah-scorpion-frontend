@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import UserNavBar from '../components/UserNavBar';
 import Footer from '../components/Footer';
 import handleGetMyArticles from '../actions/getMyArticles';
@@ -54,7 +56,14 @@ class MyArticlesPage extends Component {
               postRequestCleanUp={cleanUpAfterDelete}
               deleteSuccess={deleteSuccess}
             />
-            <h1>Your Articles</h1>
+            <div className="row">
+              <h1>
+                My Articles
+              </h1>
+              <Link to="/new-article" className="ml-auto">
+                <Button bsStyle="outline-primary" style={{ height: '100%' }}>New Article</Button>
+              </Link>
+            </div>
             <hr />
             {isFetching ? (
               <div className="text-center">

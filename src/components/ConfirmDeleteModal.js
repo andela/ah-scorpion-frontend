@@ -146,14 +146,14 @@ const ConfirmDeleteModal = (props) => {
 };
 
 ConfirmDeleteModal.propTypes = {
-  confirmDelete: ConfirmDeleteModalFooter.propTypes.confirmDelete.isRequired,
-  cancelDelete: ConfirmDeleteModalFooter.propTypes.cancelDelete.isRequired,
-  postRequestCleanUp: ConfirmDeleteModalFooter.propTypes.postRequestCleanUp.isRequired,
-  deletedArticleSlug: ConfirmDeleteModalFooter.propTypes.deletedArticleSlug.isRequired,
-  errorMessage: ConfirmDeleteModalBody.propTypes.errorMessage.isRequired,
-  isDeleting: ConfirmDeleteModalFooter.propTypes.isDeleting.isRequired,
-  deleteFailure: ConfirmDeleteModalBody.propTypes.deleteFailure.isRequired,
-  deleteSuccess: ConfirmDeleteModalBody.propTypes.deleteSuccess.isRequired,
+  confirmDelete: PropType.func.isRequired,
+  cancelDelete: PropType.func.isRequired,
+  postRequestCleanUp: PropType.func.isRequired,
+  deletedArticleSlug: PropType.string.isRequired,
+  errorMessage: PropType.string.isRequired,
+  isDeleting: PropType.bool.isRequired,
+  deleteFailure: PropType.bool.isRequired,
+  deleteSuccess: PropType.bool.isRequired,
 };
 
 export default ConfirmDeleteModal;

@@ -10,6 +10,7 @@ import Dashboard from './containers/Dashboard';
 import PrivateRoute from './routes/PrivateRoute';
 import 'draft-js/dist/Draft.css';
 import TextArea from './containers/TextArea';
+import RenderArticle from './containers/RenderArticle';
 
 const App = () => (
   <BrowserRouter>
@@ -25,6 +26,7 @@ const App = () => (
       />
       <PrivateRoute path="/dashboard" component={Dashboard} />
       <Route path="/new-article" exact component={TextArea} />
+      <Route path="/read" exact component={RenderArticle} />
     </Switch>
   </BrowserRouter>
 );

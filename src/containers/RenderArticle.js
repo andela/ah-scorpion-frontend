@@ -1,9 +1,7 @@
 /* eslint-disable react/no-multi-comp */
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
-import { EditorState, convertToRaw } from 'draft-js';
+import { EditorState, convertFromRaw } from 'draft-js';
 import createInlineToolbarPlugin, {
   Separator,
 } from 'draft-js-inline-toolbar-plugin';
@@ -27,8 +25,8 @@ import {
   CodeBlockButton,
 } from 'draft-js-buttons';
 import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
+import axios from 'axios';
 import editorStyles from '../editorStyles.css';
-import createArticleAction from '../actions/createArticleAction';
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
@@ -47,6 +45,9 @@ const dragNDropFileUploadPlugin = createDragNDropUploadPlugin({
   addImage: imagePlugin.addImage,
   handleUpload: upload,
 });
+
+const baseUrl = process.env.REACT_APP_BASE_URL;
+const getUrl = `${baseUrl}/articles/${window.localStorage.getItem('slug')}/`;
 
 class HeadlinesPicker extends Component {
   componentDidMount() {
@@ -123,58 +124,52 @@ class TextArea extends Component {
     editorState: EditorState.createEmpty(),
   };
 
-  saveContent = (content) => {
-    window.localStorage.setItem('content', JSON.stringify(convertToRaw(content)));
-  };
+
+  componentDidMount() {
+    axios.get(getUrl).then(res => JSON.parse(res.data.body))
+      .then((rawContent) => {
+        console.log(EditorState.createWithContent(convertFromRaw(rawContent)));
+        if (rawContent) {
+          this.setState({ editorState: EditorState.createWithContent(convertFromRaw(rawContent)) });
+        } else {
+          this.setState({ editorState: EditorState.createEmpty() });
+        }
+      }).catch((error) => {
+        throw error;
+      });
+  }
+
 
   onChange = (editorState) => {
-    const contentState = editorState.getCurrentContent();
-    this.saveContent(contentState);
     this.setState({
       editorState,
     });
   };
 
-  submitArticle = (event) => {
-    event.preventDefault();
-    const articleContent = JSON.parse(window.localStorage.getItem('content'));
-    const data = {
-      title: articleContent.blocks[0].text,
-      body: JSON.stringify(articleContent),
-      description: articleContent.blocks[0].text,
-    };
-    console.log('Data from text area', data);
-    this.props.postArticle(data, this.props.history);
-    localStorage.removeItem('content');
-  };
-
-  focus = () => {
-    this.editor.focus();
-  };
 
   render() {
+    if (!this.state.editorState) {
+      return (
+        <h3 className="loading">Loading...</h3>
+      );
+    }
     return (
       <main>
         <div className="bg-contact2">
           <div className="container-contact2">
             <div className="wrap-contact2">
               <div className={editorStyles.editor} onClick={this.focus}>
-                <form onSubmit={this.submitArticle} className="contact2-form validate-form">
-                  <span className="contact2-form-title">New Article</span>
+                <form className="contact2-form validate-form">
                   <Editor
                     editorState={this.state.editorState}
                     onChange={this.onChange}
                     plugins={plugins}
-                    ref={(element) => {
-                      this.editor = element;
-                    }}
-                    placeholder="Tell your story"
+                    readOnly
                   />
                   <InlineToolbar />
                   <div className="container-contact2-form-btn">
                     <div className="wrap-contact2-form-btn">
                       <div className="contact2-form-bgbtn" />
-                      <button type="submit" className="contact2-form-btn">Submit Article</button>
                     </div>
                   </div>
                 </form>
@@ -187,14 +182,4 @@ class TextArea extends Component {
   }
 }
 
-TextArea.propTypes = {
-  postArticle: PropTypes.func.isRequired,
-};
-
-const mapDispatchToProps = dispatch => ({
-  postArticle: data => dispatch(createArticleAction(data)),
-});
-
-const mapStateToProps = ({ createArticleReducer }) => createArticleReducer;
-
-export default connect(mapStateToProps, mapDispatchToProps)(TextArea);
+export default TextArea;

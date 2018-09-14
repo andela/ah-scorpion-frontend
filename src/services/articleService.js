@@ -14,7 +14,7 @@ class articleService {
     const errorMessage = 'We could not get your articles at the moment. '
       + 'If the problem persists, please refresh the page or login again';
 
-    axios
+    return axios
       .get(`${articlesUrl}?author__username=${getMyUsername()}`)
       .then(response => response.data)
       .catch(() => errorMessage);
@@ -28,7 +28,7 @@ class articleService {
     const errorMessage = 'An error occurred while deleting your article. '
     + 'Please refresh the page or login again.';
 
-    axios
+    return axios
       .delete(`${articlesUrl}${slug}`, { headers: { Authorization: `Bearer ${getMyToken()}` } })
       .then(() => 'success')
       .catch(() => errorMessage);

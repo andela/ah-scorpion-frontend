@@ -20,12 +20,13 @@ export const articleFailure = errors => ({
   errors,
 });
 
-const createArticleAction = data => (dispatch) => {
+const createArticleAction = (data, history) => (dispatch) => {
   dispatch(articleFetch());
   return axios.post(createUrl, data, { headers: { Authorization: `Bearer ${getMyToken()}` } }).then((res) => {
     dispatch(articleSuccess(res));
+    window.localStorage.setItem('slug', res.data.slug);
+    history.push('/read');
   }).catch((error) => {
-    console.log(error.response.data.errors);
     dispatch(articleFailure(error));
   });
 };

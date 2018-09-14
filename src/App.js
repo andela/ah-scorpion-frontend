@@ -13,6 +13,7 @@ import PrivateRoute from './routes/PrivateRoute';
 import Favourite from './containers/Favourite';
 import TextArea from './containers/TextArea';
 import RenderArticle from './containers/RenderArticle';
+import Article from './containers/Article';
 
 const App = () => (
   <BrowserRouter>
@@ -28,8 +29,14 @@ const App = () => (
         render={props => <ConfirmPasswordForm {...props} />}
       />
       <PrivateRoute path="/dashboard" component={Dashboard} />
+<<<<<<< HEAD
       <Route path="/article/new" exact component={TextArea} />
       <Route path="/article/:slug" exact component={RenderArticle} />
+=======
+      <Route path="/new-article" exact component={TextArea} />
+      <Route path="/read" exact component={RenderArticle} />
+      <Route path="/article-ex" exact render={props => <Article {...props} />} />
+>>>>>>> [ft-rate-articles-159993342] rate an article
     </Switch>
   </BrowserRouter>
 );

@@ -14,11 +14,10 @@ const handleGetMyArticles = () => (dispatch) => {
   dispatch(getMyArticlesBegin());
   articleService
     .getMyArticles()
-    .then((articles) => {
-      dispatch(getMyArticlesSuccess(articles));
-    })
-    .catch((errorMessage) => {
-      dispatch(getMyArticlesFailure(errorMessage));
+    .then((object) => {
+      if (object.success) {
+        dispatch(getMyArticlesSuccess(object.articles));
+      } else { dispatch(getMyArticlesFailure(object.errorMessage)); }
     });
 };
 

@@ -5,9 +5,9 @@ import React from 'react';
 
 
 const MyArticle = ({
-  title, description, createdAt, slug, beginDelete,
+  title, description, createdAt, slug, beginDelete, averageRating, likes, dislikes,
 }) => (
-  <div className="jumbotron">
+  <div className="my-article">
     <h3>
       <Link to={`./article/${slug}/read`} className="article-title">
         {title}
@@ -34,6 +34,28 @@ const MyArticle = ({
         </Button>
       </span>
     </div>
+    <hr style={{ margin: '0.7em' }} />
+    <div className="row">
+      <div className="col-1 text-center">
+        <i className="text-warning fa fa-star" />
+        <br />
+        <small>{averageRating || ' - '}</small>
+      </div>
+      <div className="col-1 text-center">
+        <i className="text-success fa fa-thumbs-up" />
+        <br />
+        <small>
+          {likes}
+        </small>
+      </div>
+      <div className="col-1 text-center">
+        <i className="text-danger fa fa-thumbs-down" />
+        <br />
+        <small>
+          {dislikes}
+        </small>
+      </div>
+    </div>
   </div>
 );
 
@@ -42,7 +64,13 @@ MyArticle.propTypes = {
   description: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
-  beginDelete: PropTypes.func.isRequired,
+  averageRating: PropTypes.number,
+  likes: PropTypes.number.isRequired,
+  dislikes: PropTypes.number.isRequired,
+};
+
+MyArticle.defaultProps = {
+  averageRating: null,
 };
 
 export default MyArticle;

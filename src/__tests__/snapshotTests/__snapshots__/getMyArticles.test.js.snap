@@ -256,7 +256,7 @@ exports[`The getmyArticlesPage view The ConfirmDeleteModal component Should show
 
 exports[`The getmyArticlesPage view The MyArticle component Should not regress 1`] = `
 <div
-  className="jumbotron"
+  className="my-article"
 >
   <h3>
     <a
@@ -302,12 +302,52 @@ exports[`The getmyArticlesPage view The MyArticle component Should not regress 1
       </button>
     </span>
   </div>
+  <hr
+    style={
+      Object {
+        "margin": "0.7em",
+      }
+    }
+  />
+  <div
+    className="row"
+  >
+    <div
+      className="col-1 text-center"
+    >
+      <i
+        className="text-warning fa fa-star"
+      />
+      <br />
+      <small>
+         - 
+      </small>
+    </div>
+    <div
+      className="col-1 text-center"
+    >
+      <i
+        className="text-success fa fa-thumbs-up"
+      />
+      <br />
+      <small />
+    </div>
+    <div
+      className="col-1 text-center"
+    >
+      <i
+        className="text-danger fa fa-thumbs-down"
+      />
+      <br />
+      <small />
+    </div>
+  </div>
 </div>
 `;
 
 exports[`The getmyArticlesPage view The MyArticleList component Should render all articles in case of a successful request 1`] = `
 <div
-  className="jumbotron"
+  className="my-article"
 >
   <h3>
     <a
@@ -353,6 +393,50 @@ exports[`The getmyArticlesPage view The MyArticleList component Should render al
       </button>
     </span>
   </div>
+  <hr
+    style={
+      Object {
+        "margin": "0.7em",
+      }
+    }
+  />
+  <div
+    className="row"
+  >
+    <div
+      className="col-1 text-center"
+    >
+      <i
+        className="text-warning fa fa-star"
+      />
+      <br />
+      <small>
+         - 
+      </small>
+    </div>
+    <div
+      className="col-1 text-center"
+    >
+      <i
+        className="text-success fa fa-thumbs-up"
+      />
+      <br />
+      <small>
+        0
+      </small>
+    </div>
+    <div
+      className="col-1 text-center"
+    >
+      <i
+        className="text-danger fa fa-thumbs-down"
+      />
+      <br />
+      <small>
+        0
+      </small>
+    </div>
+  </div>
 </div>
 `;
 
@@ -363,7 +447,9 @@ exports[`The getmyArticlesPage view The MyArticleList component Should render te
 `;
 
 exports[`The getmyArticlesPage view The MyArticleList component Should render the error message in case of failure 1`] = `
-<h4>
-  You have not created any articles yet.
-</h4>
+<div
+  className="alert alert-danger text-center"
+>
+  An error occurred
+</div>
 `;

@@ -17,21 +17,12 @@ class Rating extends Component {
     this.setState({ rating: nextValue });
   };
 
-  // componentDidMount = () => {
-  //   this.props.InitialRate();
-  //   console.log('d', this.props);
-  // };
-
   render() {
     const { rating } = this.state;
     return (
       <div>
         <div className="row">
-          <StarRatingComponent
-            name="rateArticle"
-            value={console.log(this.props.rating)}
-            onStarClick={this.onStarClick}
-          />
+          <StarRatingComponent name="rateArticle" value={rating} onStarClick={this.onStarClick} />
           <span style={{ marginLeft: '1em' }}>{rating}</span>
         </div>
       </div>
@@ -39,11 +30,11 @@ class Rating extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  val: state.rate,
+const mapStateToProps = ({ rate }) => ({
+  rate,
 });
 
 export default connect(
   mapStateToProps,
-  { rateArticle, InitialRate },
+  { rateArticle },
 )(Rating);

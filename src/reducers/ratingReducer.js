@@ -9,10 +9,9 @@ export default function rate(state = InitialState, action) {
     case USER_RATE_ARTICLE:
       return { ...state, val: action.val };
     case CURRENT_AVG_RATE:
-      console.log('dkdkdk', action.payload.averageRating);
       return {
         ...state,
-        stars: action.payload.averageRating,
+        rating: action.payload.averageRating,
       };
     default:
       return state;

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP|Noto+Serif+KR');
+
 body {
     margin: 0;
     padding: 0;
@@ -310,19 +312,32 @@ button:hover {
 }
 
 .favorite-icon {
-      font-size: 150%;
-      color: red;
-  }
+    font-size: 150%;
+    color: red;
+}
 
 .unfavorite-icon {
     font-size: 150%;
     color: rgb(200, 200, 200);
 }
 
-.favorite-btn{
+.favorite-btn {
     border: 0 #ffff;
 }
 
-.favorite-btn:active, .favorite-btn:focus{
+.favorite-btn:active, .favorite-btn:focus {
     border: 0 #ffff;
+}
+
+.favorite-error {
+    width: 40%;
+    margin: 0 auto;
+    height: 2em;
+    padding: 2px;
+    color: maroon;
+}
+
+.article-body {
+    font-family: 'Noto Serif JP', 'Noto Serif KR', sans-serif;
+    font-size: 16px;
 }

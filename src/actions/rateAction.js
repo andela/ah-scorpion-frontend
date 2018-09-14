@@ -19,7 +19,7 @@ export const rateArticle = val => (dispatch) => {
     data: { stars: val },
     headers: {
       Authorization:
-        'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZGVudGl0eSI6eyJlbWFpbCI6ImRhdmVubWF0aGV3c0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6ImRhdmVtYXRoZXdzIiwiYmlvIjoiIiwiaW1hZ2UiOm51bGx9LCJpYXQiOjE1MzY4NDgwOTMsImV4cCI6MTUzNjkzNDQ5M30.f3k3pFPoE90hvS21-7mZOxZYl0kAuK5F-PbmbJWLwOU',
+        'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZGVudGl0eSI6eyJlbWFpbCI6ImRhdmVubWF0aGV3c0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6ImRhdmVtYXRoZXdzIiwiYmlvIjoiIiwiaW1hZ2UiOm51bGx9LCJpYXQiOjE1MzY5MjI2OTgsImV4cCI6MTUzNzAwOTA5OH0.z9SRrlj0zVYVo3fWdZs9TitcXupOESO21X8w37nGVBw',
     },
   }).then((response) => {
     dispatch(rateAction(response.data));

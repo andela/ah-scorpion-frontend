@@ -35,7 +35,7 @@ class Favourite extends Component {
             Imagine this is an LMS output, would you still favourite it?
           </p>
           <p>
-            But, before I spoil your day, this is not LMS or anything to do with that. It is something else; never mind what, just something else.
+            But, before I spoil your day, this is not LMS or anything to do with that. It is something else. Never mind what, just something else.
             Now will you favourite it?
           </p>
           <p>

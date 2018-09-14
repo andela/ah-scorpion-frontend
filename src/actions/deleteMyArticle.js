@@ -19,12 +19,11 @@ export const postRequestCleanUp = () => ({ type: types.POST_REQUEST_CLEAN_UP });
 const handleDeleteMyArticle = slug => (dispatch) => {
   dispatch(deleteMyArticleConfirm());
   articleService.deleteMyArticle(slug)
-    .then(() => {
-      dispatch(deleteMyArticleSuccess());
-      dispatch(handleGetMyArticles());
-    })
-    .catch((errorMessage) => {
-      dispatch(deleteMyArticleFailure(errorMessage));
+    .then((object) => {
+      if (object.success) {
+        dispatch(deleteMyArticleSuccess());
+        dispatch(handleGetMyArticles());
+      } else { dispatch(deleteMyArticleFailure(object.errorMessage)); }
     });
 };
 

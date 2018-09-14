@@ -296,3 +296,10 @@ a.article-title {
 a.article-title:hover {
     color: grey;
 }
+
+.my-article{
+    background-color: #e9ecef;
+    padding: 2em;
+    border-radius: 0.3em;
+    margin-bottom: 1.5em;
+}

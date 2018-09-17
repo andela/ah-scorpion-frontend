@@ -223,10 +223,10 @@ iframe {
 .contact2-form-title {
   display: block;
   font-family: 'Montserrat', sans-serif;
-  font-size: 39px;
+  font-size: 20px;
   color: #333333;
   line-height: 1.2;
-  text-align: center;
+  text-align: justify;
   padding-bottom: 90px;
 }
 

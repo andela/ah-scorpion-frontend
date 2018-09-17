@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = 'https://authors-haven-api.herokuapp.com';
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export default {
   user: {

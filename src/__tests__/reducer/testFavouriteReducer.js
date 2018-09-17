@@ -3,7 +3,7 @@ import {
   FAVORITE_CHANGED,
   FAVORITE_FETCHED,
   FAVORITE_FAILED,
-  USER_NOT_LOGGED_IN,
+  USER_NOT_LOGGED_IN, BEGIN_FETCHING_FAVOURITE,
 } from '../../actions/types';
 
 
@@ -28,6 +28,7 @@ describe('Favouriting reducer', () => {
       favorite: undefined,
       message: 'You have not favourited this article',
       favorite_failed: false,
+      loading: false,
     };
     expect(favoriteReducer(state, { type: FAVORITE_FETCHED, payload })).toEqual(expected);
   });
@@ -37,6 +38,7 @@ describe('Favouriting reducer', () => {
       favorite: undefined,
       message: 'You have not favourited this article',
       favorite_failed: false,
+      loading: false,
     };
     expect(favoriteReducer(state, { type: FAVORITE_FETCHED, payload })).toEqual(expected);
   });
@@ -52,6 +54,7 @@ describe('Favouriting reducer', () => {
       favorite: false,
       message: 'You have unfavourited this article',
       favorite_failed: false,
+      loading: false,
     };
     expect(favoriteReducer(state, { type: FAVORITE_CHANGED, payload: payload1 })).toEqual(expected);
   });
@@ -66,6 +69,7 @@ describe('Favouriting reducer', () => {
       favorite: false,
       message: 'We are unable to complete your request. Try again later',
       favorite_failed: true,
+      loading: false,
     };
     expect(favoriteReducer(state, { type: FAVORITE_FAILED, payload: payload1 })).toEqual(expected);
   });
@@ -75,8 +79,20 @@ describe('Favouriting reducer', () => {
       favorite: false,
       message: 'You must login to favourite or unfavourite an article',
       favorite_failed: true,
+      loading: false,
     };
     expect(favoriteReducer(state, { type: USER_NOT_LOGGED_IN, payload: {} }))
+      .toEqual(expected);
+  });
+
+  it('should set loading to true when promise is pending', () => {
+    const expected = {
+      favorite: false,
+      message: '',
+      favorite_failed: false,
+      loading: true,
+    };
+    expect(favoriteReducer(state, { type: BEGIN_FETCHING_FAVOURITE, payload: {} }))
       .toEqual(expected);
   });
 });

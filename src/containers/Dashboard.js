@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import PropTypes from 'prop-types';
 import UserNavBar from '../components/UserNavBar';
 import Footer from '../components/Footer';
 import DashboardContainer from '../components/DashnoardContainer';
@@ -13,12 +14,18 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <UserNavBar />
+        <UserNavBar history={this.props.history} />
         <DashboardContainer />
         <Footer />
       </div>
     );
   }
 }
+
+Dashboard.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Dashboard;

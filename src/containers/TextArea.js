@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
-import { EditorState, convertToRaw } from 'draft-js';
+import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import createInlineToolbarPlugin, {
   Separator,
 } from 'draft-js-inline-toolbar-plugin';
@@ -42,7 +42,7 @@ const decorator = composeDecorators(
   blockDndPlugin.decorator,
 );
 const imagePlugin = createImagePlugin({ decorator });
-const upload = image => image;
+const upload = (image) => image;
 const dragNDropFileUploadPlugin = createDragNDropUploadPlugin({
   addImage: imagePlugin.addImage,
   handleUpload: upload,
@@ -80,7 +80,7 @@ class HeadlinesButton extends Component {
   // When using a click event inside overridden content, mouse down
   // events needs to be prevented so the focus stays in the editor
   // and the toolbar remains visible  onMouseDown = (event) => event.preventDefault()
-  onMouseDown = event => event.preventDefault();
+  onMouseDown = (event) => event.preventDefault();
 
   onClick = () => this.props.onOverrideContent(HeadlinesPicker);
 
@@ -118,13 +118,49 @@ const plugins = [
   inlineToolbarPlugin,
 ];
 
+const initialState = {
+  entityMap: {},
+  blocks: [
+    {
+      key: '9gm3s',
+      text: 'Title',
+      type: 'header-one',
+      depth: 0,
+      inlineStyleRanges: [],
+      entityRanges: [],
+      data: {},
+    },
+    {
+      key: 'e23a7',
+      text: '',
+      type: 'unstyled',
+      depth: 0,
+      inlineStyleRanges: [],
+      entityRanges: [],
+      data: {},
+    },
+    {
+      key: 'e23a8',
+      text: 'Write Your Story',
+      type: 'unstyled',
+      depth: 0,
+      inlineStyleRanges: [],
+      entityRanges: [],
+      data: {},
+    },
+  ],
+};
+
 class TextArea extends Component {
   state = {
-    editorState: EditorState.createEmpty(),
+    editorState: EditorState.createWithContent(convertFromRaw(initialState)),
   };
 
   saveContent = (content) => {
-    window.localStorage.setItem('content', JSON.stringify(convertToRaw(content)));
+    window.localStorage.setItem(
+      'content',
+      JSON.stringify(convertToRaw(content)),
+    );
   };
 
   onChange = (editorState) => {
@@ -159,8 +195,10 @@ class TextArea extends Component {
           <div className="container-contact2">
             <div className="wrap-contact2">
               <div className={editorStyles.editor} onClick={this.focus}>
-                <form onSubmit={this.submitArticle} className="contact2-form validate-form">
-                  <span className="contact2-form-title">New Article</span>
+                <form
+                  onSubmit={this.submitArticle}
+                  className="contact2-form validate-form"
+                >
                   <Editor
                     editorState={this.state.editorState}
                     onChange={this.onChange}
@@ -168,13 +206,14 @@ class TextArea extends Component {
                     ref={(element) => {
                       this.editor = element;
                     }}
-                    placeholder="Tell your story"
                   />
                   <InlineToolbar />
                   <div className="container-contact2-form-btn">
                     <div className="wrap-contact2-form-btn">
                       <div className="contact2-form-bgbtn" />
-                      <button type="submit" className="contact2-form-btn">Submit Article</button>
+                      <button type="submit" className="contact2-form-btn">
+                        Submit Article
+                      </button>
                     </div>
                   </div>
                 </form>
@@ -191,10 +230,13 @@ TextArea.propTypes = {
   postArticle: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  postArticle: data => dispatch(createArticleAction(data)),
+const mapDispatchToProps = (dispatch) => ({
+  postArticle: (data) => dispatch(createArticleAction(data)),
 });
 
 const mapStateToProps = ({ createArticleReducer }) => createArticleReducer;
 
-export default connect(mapStateToProps, mapDispatchToProps)(TextArea);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(TextArea);

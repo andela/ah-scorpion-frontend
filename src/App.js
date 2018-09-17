@@ -25,8 +25,8 @@ const App = () => (
         render={props => <ConfirmPasswordForm {...props} />}
       />
       <PrivateRoute path="/dashboard" component={Dashboard} />
-      <Route path="/new-article" exact component={TextArea} />
-      <Route path="/read" exact component={RenderArticle} />
+      <Route path="/article/new" exact component={TextArea} />
+      <Route path="/article/:slug" exact component={RenderArticle} />
     </Switch>
   </BrowserRouter>
 );

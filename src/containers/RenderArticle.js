@@ -47,7 +47,6 @@ const dragNDropFileUploadPlugin = createDragNDropUploadPlugin({
 });
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
-const getUrl = `${baseUrl}/articles/${window.localStorage.getItem('slug')}/`;
 
 class HeadlinesPicker extends Component {
   componentDidMount() {
@@ -120,12 +119,17 @@ const plugins = [
 ];
 
 class TextArea extends Component {
-  state = {
-    editorState: EditorState.createEmpty(),
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      editorState: EditorState.createEmpty(),
+    };
+  }
 
 
   componentDidMount() {
+    const slug = this.props.match.params.slug;
+    const getUrl = `${baseUrl}/articles/${slug}/`;
     axios.get(getUrl).then(res => JSON.parse(res.data.body))
       .then((rawContent) => {
         console.log(EditorState.createWithContent(convertFromRaw(rawContent)));

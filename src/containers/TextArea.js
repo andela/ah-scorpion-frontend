@@ -29,6 +29,8 @@ import {
 import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
 import editorStyles from '../editorStyles.css';
 import createArticleAction from '../actions/createArticleAction';
+import Footer from '../components/Footer';
+import UserNavBar from '../components/UserNavBar';
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
@@ -42,7 +44,7 @@ const decorator = composeDecorators(
   blockDndPlugin.decorator,
 );
 const imagePlugin = createImagePlugin({ decorator });
-const upload = (image) => image;
+const upload = image => image;
 const dragNDropFileUploadPlugin = createDragNDropUploadPlugin({
   addImage: imagePlugin.addImage,
   handleUpload: upload,
@@ -80,7 +82,7 @@ class HeadlinesButton extends Component {
   // When using a click event inside overridden content, mouse down
   // events needs to be prevented so the focus stays in the editor
   // and the toolbar remains visible  onMouseDown = (event) => event.preventDefault()
-  onMouseDown = (event) => event.preventDefault();
+  onMouseDown = event => event.preventDefault();
 
   onClick = () => this.props.onOverrideContent(HeadlinesPicker);
 
@@ -191,7 +193,8 @@ class TextArea extends Component {
   render() {
     return (
       <main>
-        <div className="bg-contact2">
+        <UserNavBar />
+        <div className="bg-light">
           <div className="container-contact2">
             <div className="wrap-contact2">
               <div className={editorStyles.editor} onClick={this.focus}>
@@ -211,7 +214,7 @@ class TextArea extends Component {
                   <div className="container-contact2-form-btn">
                     <div className="wrap-contact2-form-btn">
                       <div className="contact2-form-bgbtn" />
-                      <button type="submit" className="contact2-form-btn">
+                      <button type="submit" className="btn btn-primary">
                         Submit Article
                       </button>
                     </div>
@@ -221,6 +224,7 @@ class TextArea extends Component {
             </div>
           </div>
         </div>
+        <Footer />
       </main>
     );
   }
@@ -230,8 +234,8 @@ TextArea.propTypes = {
   postArticle: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  postArticle: (data) => dispatch(createArticleAction(data)),
+const mapDispatchToProps = dispatch => ({
+  postArticle: data => dispatch(createArticleAction(data)),
 });
 
 const mapStateToProps = ({ createArticleReducer }) => createArticleReducer;

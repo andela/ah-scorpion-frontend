@@ -28,6 +28,7 @@ import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
 import axios from 'axios';
 import editorStyles from '../editorStyles.css';
 import Favourite from '../components/Favourite';
+import { Fade } from 'react-bootstrap';
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
@@ -125,6 +126,7 @@ class TextArea extends Component {
     this.state = {
       editorState: EditorState.createEmpty(),
       rendered: false,
+      articleId: 0,
     };
   }
 
@@ -133,14 +135,14 @@ class TextArea extends Component {
     const slug = this.props.match.params.slug;
     const getUrl = `${baseUrl}/articles/${slug}/`;
     axios.get(getUrl)
-      .then(res => JSON.parse(res.data.body))
-      .then((rawContent) => {
+      .then((res) => {
+        this.setState({ articleId: res.data.id, author: res.data.author });
+        const rawContent = JSON.parse(res.data.body);
         if (rawContent) {
-          console.log(rawContent);
           this.setState({
             editorState: EditorState.createWithContent(convertFromRaw(rawContent)),
             rendered: true,
-          });   this.setState({ rendered: true });
+          }); this.setState({ rendered: true });
         } else {
           this.setState({ editorState: EditorState.createEmpty() });
         }
@@ -170,6 +172,9 @@ class TextArea extends Component {
           <div className="container-contact2">
             <div className="wrap-contact2">
               <div className={editorStyles.editor} onClick={this.focus}>
+                <Fade>
+                  <p>I am so faded</p>
+                </Fade>
                 <form className="contact2-form validate-form">
                   <Editor
                     editorState={this.state.editorState}
@@ -184,7 +189,12 @@ class TextArea extends Component {
                   </div>
                 </form>
               </div>
-              {this.state.rendered ? <Favourite slug={this.props.match.params.slug}/> : null}
+              {this.state.rendered ? (
+                <Favourite
+                  slug={this.props.match.params.slug}
+                  articleId={this.state.articleId}
+                />
+              ) : null}
             </div>
           </div>
         </div>

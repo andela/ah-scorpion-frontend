@@ -4,10 +4,10 @@ import {
   USER_NOT_LOGGED_IN,
 } from './types';
 
-const userFetched = message => ({
+const userFetched = (articleId, message) => ({
   type: FAVORITE_FETCHED,
   payload: {
-    favorited: message.indexOf(66) > -1,
+    favorited: message.indexOf(articleId) > -1,
   },
 });
 
@@ -18,7 +18,7 @@ export const userNotLoggedIn = () => ({
 });
 
 
-export default function currentUser() {
+export default function currentUser(articleId) {
   const apiUrl = process.env.REACT_APP_API_URL;
   const favoriteUrl = `${apiUrl}/api/v1/user/`;
   const token = localStorage.getItem('token');
@@ -28,7 +28,7 @@ export default function currentUser() {
     axios
       .get(favoriteUrl)
       .then(response => (response.status === 200
-        ? dispatch(userFetched(response.data.user.favorited))
+        ? dispatch(userFetched(articleId, response.data.user.favorited))
         : null))
       .catch((error) => {
         console.log(error.response);

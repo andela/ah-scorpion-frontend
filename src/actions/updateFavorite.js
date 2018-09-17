@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   FAVORITE_CHANGED,
   FAVORITE_FAILED,
+  BEGIN_FETCHING_FAVOURITE,
 } from './types';
 import { userNotLoggedIn } from './currentUser';
 
@@ -22,12 +23,19 @@ const favoriteFailed = message => ({
   },
 });
 
+const favoriteCallStarted = () => ({
+  type: BEGIN_FETCHING_FAVOURITE,
+  payload: {},
+});
+
 export default function favouriteArticle(slug) {
   axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
   const apiUrl = process.env.REACT_APP_API_URL;
   const favoriteUrl = `${apiUrl}/api/v1/articles/${slug}/favorite/`;
 
   return (dispatch) => {
+    dispatch(favoriteCallStarted());
+    console.log('Still got here');
     axios
       .post(favoriteUrl)
       .then(response => (response.status === 200
@@ -36,9 +44,15 @@ export default function favouriteArticle(slug) {
           : response.data.message))
         : dispatch(favoriteFailed(response.data))))
       .catch((error) => {
-        if (error.response.data.detail !== undefined) {
+        if (error.response === undefined) {
+          dispatch(favoriteFailed(error.response));
+        } else if (error.response.data === undefined) {
+          dispatch(favoriteFailed(error.response));
+        } else if (error.response.data.detail !== undefined) {
           dispatch(userNotLoggedIn());
-        } else dispatch(favoriteFailed(error.response));
+        } else {
+          dispatch(favoriteFailed(error.response));
+        }
       });
   };
 }

@@ -17,14 +17,12 @@ class Favourite extends Component {
     this.getCurrentUser = this.getCurrentUser(this);
   }
 
-
   onUpdateFavourite() {
-    console.log(`updating....${this.props.slug}`);
     this.props.onUpdateFavourite(this.props.slug);
   }
 
   getCurrentUser() {
-    this.props.getCurrentUser();
+    this.props.getCurrentUser(this.props.articleId);
   }
 
   componentDidMount = () => {
@@ -35,8 +33,13 @@ class Favourite extends Component {
     return (
       <div className="container fav-div" onReset={this.getCurrentUser}>
         <div className="center-item">
-          <h3><b>Love this article?</b></h3>
-          <button onClick={this.onUpdateFavourite} type="button" className="favorite-btn">
+          <h6>Love this article?</h6>
+          <button
+            disabled={this.props.favorite.loading}
+            onClick={this.onUpdateFavourite}
+            type="button"
+            className="favorite-btn"
+          >
             <span
               className={this.props.favorite.favorite ? 'favorite-icon'
                 : 'unfavorite-icon'}
@@ -47,7 +50,7 @@ class Favourite extends Component {
 
           {this.props.favorite.favorite_failed
             ? (
-              <p className="alert alert-danger favorite-alert">
+              <p className="alert alert-danger favorite-alert fade-out-text">
                 {this.props.favorite.message}
                 {' '}
               </p>
@@ -56,7 +59,7 @@ class Favourite extends Component {
 
           {!this.props.favorite.favorite_failed && this.props.favorite.message !== null
             ? (
-              <p className="alert alert-success favorite-alert">
+              <p className="alert alert-success favorite-alert fade-out-text">
                 {this.props.favorite.message}
                 {' '}
               </p>
@@ -79,6 +82,7 @@ const mapActionsToProps = {
 
 Favourite.propTypes = {
   slug: PropTypes.string.isRequired,
+  articleId: PropTypes.number.isRequired,
 };
 
 

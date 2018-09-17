@@ -177,7 +177,7 @@ class TextArea extends Component {
     const data = {
       title: articleContent.blocks[0].text,
       body: JSON.stringify(articleContent),
-      description: articleContent.blocks[0].text,
+      description: articleContent.blocks[2].text,
     };
     console.log('Data from text area', data);
     this.props.postArticle(data, this.props.history);

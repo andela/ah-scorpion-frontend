@@ -27,6 +27,7 @@ import {
 import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
 import axios from 'axios';
 import editorStyles from '../editorStyles.css';
+import Favourite from '../components/Favourite';
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
@@ -123,6 +124,7 @@ class TextArea extends Component {
     super(props);
     this.state = {
       editorState: EditorState.createEmpty(),
+      rendered: false,
     };
   }
 
@@ -130,15 +132,20 @@ class TextArea extends Component {
   componentDidMount() {
     const slug = this.props.match.params.slug;
     const getUrl = `${baseUrl}/articles/${slug}/`;
-    axios.get(getUrl).then(res => JSON.parse(res.data.body))
+    axios.get(getUrl)
+      .then(res => JSON.parse(res.data.body))
       .then((rawContent) => {
-        console.log(EditorState.createWithContent(convertFromRaw(rawContent)));
         if (rawContent) {
-          this.setState({ editorState: EditorState.createWithContent(convertFromRaw(rawContent)) });
+          console.log(rawContent);
+          this.setState({
+            editorState: EditorState.createWithContent(convertFromRaw(rawContent)),
+            rendered: true,
+          });   this.setState({ rendered: true });
         } else {
           this.setState({ editorState: EditorState.createEmpty() });
         }
-      }).catch((error) => {
+      })
+      .catch((error) => {
         throw error;
       });
   }
@@ -170,7 +177,6 @@ class TextArea extends Component {
                     plugins={plugins}
                     readOnly
                   />
-                  <InlineToolbar />
                   <div className="container-contact2-form-btn">
                     <div className="wrap-contact2-form-btn">
                       <div className="contact2-form-bgbtn" />
@@ -178,6 +184,7 @@ class TextArea extends Component {
                   </div>
                 </form>
               </div>
+              {this.state.rendered ? <Favourite slug={this.props.match.params.slug}/> : null}
             </div>
           </div>
         </div>

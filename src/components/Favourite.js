@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import updateFavorite from '../actions/updateFavorite';
 import currentUser from '../actions/currentUser';
 
@@ -9,7 +10,7 @@ class Favourite extends Component {
     this.state = {
       article: {
         id: 66,
-        slug: 'food-is-the-best-1553a1f0baf94cc1b74ca4b8f80781d6',
+        slug: '',
       },
     };
     this.onUpdateFavourite = this.onUpdateFavourite.bind(this);
@@ -18,30 +19,23 @@ class Favourite extends Component {
 
 
   onUpdateFavourite() {
-    this.props.onUpdateFavourite(this.state.article.slug);
+    console.log(`updating....${this.props.slug}`);
+    this.props.onUpdateFavourite(this.props.slug);
   }
 
   getCurrentUser() {
     this.props.getCurrentUser();
   }
 
+  componentDidMount = () => {
+    this.setState({ slug: this.props.slug });
+  }
+
   render() {
     return (
       <div className="container fav-div" onReset={this.getCurrentUser}>
         <div className="center-item">
-          <h3><b>This is the title of the article</b></h3>
-        <div className="article-body">
-          <p>
-            Imagine this is an LMS output, would you still favourite it?
-          </p>
-          <p>
-            But, before I spoil your day, this is not LMS or anything to do with that. It is something else. Never mind what, just something else.
-            Now will you favourite it?
-          </p>
-          <p>
-            If so click the heart below to heart it. Aha.
-          </p>
-        </div>
+          <h3><b>Love this article?</b></h3>
           <button onClick={this.onUpdateFavourite} type="button" className="favorite-btn">
             <span
               className={this.props.favorite.favorite ? 'favorite-icon'
@@ -81,6 +75,10 @@ const mapStateToProps = state => ({
 const mapActionsToProps = {
   onUpdateFavourite: updateFavorite,
   getCurrentUser: currentUser,
+};
+
+Favourite.propTypes = {
+  slug: PropTypes.string.isRequired,
 };
 
 

@@ -26,8 +26,8 @@ const createArticleAction = (data, history) => (dispatch) => {
     dispatch(articleSuccess(res));
     window.localStorage.setItem('slug', res.data.slug);
     history.push('/read');
-  }).catch((error) => {
-    dispatch(articleFailure(error));
+  }).catch(({ response }) => {
+    dispatch(articleFailure(response));
   });
 };
 

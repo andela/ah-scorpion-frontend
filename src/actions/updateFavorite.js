@@ -6,31 +6,26 @@ import {
 import { userNotLoggedIn } from './currentUser';
 
 
-const favoriteChanged = (message) => {
-  return {
-    type: FAVORITE_CHANGED,
-    payload: {
-      favorite: message.favoriting_users !== undefined,
-      message,
-    },
-  };
-};
+const favoriteChanged = message => ({
+  type: FAVORITE_CHANGED,
+  payload: {
+    favorite: message.favoriting_users !== undefined,
+    message,
+  },
+});
 
-const favoriteFailed = (message) => {
-  return {
-    type: FAVORITE_FAILED,
-    payload: {
-      favorite: false,
-      message,
-    },
-  };
-};
+const favoriteFailed = message => ({
+  type: FAVORITE_FAILED,
+  payload: {
+    favorite: false,
+    message,
+  },
+});
 
 export default function favouriteArticle(slug) {
+  axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
   const apiUrl = process.env.REACT_APP_API_URL;
   const favoriteUrl = `${apiUrl}/api/v1/articles/${slug}/favorite/`;
-  const token = localStorage.getItem('token');
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 
   return (dispatch) => {
     axios

@@ -329,7 +329,7 @@ button:hover {
     border: 0 #ffff;
 }
 
-.favorite-error {
+.favorite-alert {
     width: 40%;
     margin: 0 auto;
     height: 2em;

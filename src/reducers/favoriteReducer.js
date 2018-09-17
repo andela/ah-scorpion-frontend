@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   favorite: false,
-  message: '',
+  message: null,
   favorite_failed: false,
 };
 
@@ -37,7 +37,8 @@ export default function favoriteReducer(state = initialState, { type, payload })
         ...state,
         favorite_failed: false,
         favorite: payload.favorited,
-        message: payload.message,
+        message: payload.favorited ? 'You have already favourited this article'
+          : 'You have not favourited this article',
       };
     case USER_NOT_LOGGED_IN:
       return {

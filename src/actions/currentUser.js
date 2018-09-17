@@ -14,9 +14,7 @@ const userFetched = message => ({
 
 export const userNotLoggedIn = () => ({
   type: USER_NOT_LOGGED_IN,
-  payload: {
-    message: 'You must login to favourite or unfavourite an article',
-  },
+  payload: {},
 });
 
 

@@ -7,7 +7,6 @@ import { userNotLoggedIn } from './currentUser';
 
 
 const favoriteChanged = (message) => {
-  console.log(message);
   return {
     type: FAVORITE_CHANGED,
     payload: {
@@ -18,7 +17,6 @@ const favoriteChanged = (message) => {
 };
 
 const favoriteFailed = (message) => {
-  console.log(message);
   return {
     type: FAVORITE_FAILED,
     payload: {
@@ -29,7 +27,6 @@ const favoriteFailed = (message) => {
 };
 
 export default function favouriteArticle(slug) {
-  console.log(slug);
   const apiUrl = process.env.REACT_APP_API_URL;
   const favoriteUrl = `${apiUrl}/api/v1/articles/${slug}/favorite/`;
   const token = localStorage.getItem('token');
@@ -45,7 +42,6 @@ export default function favouriteArticle(slug) {
         : dispatch(favoriteFailed(response.data))))
       .catch((error) => {
         if (error.response.data.detail !== undefined) {
-          console.log('I was dispatched');
           dispatch(userNotLoggedIn());
         } else dispatch(favoriteFailed(error.response));
       });

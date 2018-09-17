@@ -12,38 +12,37 @@ const initialState = {
 };
 
 export default function favoriteReducer(state = initialState, { type, payload }) {
+  const hasLiked = payload === undefined || payload.message === undefined
+  || payload.message.favoriting_users === undefined
+    ? false
+    : payload.message.favoriting_users.lastIndexOf(localStorage.getItem('email')) > -1;
   switch (type) {
     case FAVORITE_CHANGED:
-      const hasLiked = payload.message.favoriting_users === undefined ? false
-        : payload.message.favoriting_users.lastIndexOf(localStorage.getItem('email')) > -1;
       return {
         ...state,
         favorite_failed: false,
-        favorite: hasLiked,
-        status: hasLiked ? 'True' : 'False',
-        message: payload.message,
+        favorite: undefined === hasLiked ? false : hasLiked,
+        message: undefined === hasLiked || !hasLiked ? 'You have unfavourited this article'
+          : 'You have favourited this article',
       };
     case FAVORITE_FAILED:
       return {
         ...state,
-        favorite_failed: false,
-        favorite: false,
-        status: 'False',
-        message: payload.message,
+        favorite_failed: true,
+        favorite: state.favorite,
+        message: 'We are unable to complete your request. Try again later',
       };
     case FAVORITE_FETCHED:
       return {
         ...state,
         favorite_failed: false,
         favorite: payload.favorited,
-        status: 'False',
         message: payload.message,
       };
     case USER_NOT_LOGGED_IN:
-      console.log(payload.message);
       return {
         ...state,
-        message: payload.message,
+        message: 'You must login to favourite or unfavourite an article',
         favorite_failed: true,
       };
     default:

@@ -23,10 +23,19 @@ describe('Favouriting reducer', () => {
    * Define that the favourite status will be undetermined if the user if not among
    * the users that have favourited the article
    */
-  it('should fetch favouriting status', () => {
+  it('should fetch favouriting status for already favourited', () => {
     const expected = {
       favorite: undefined,
-      message: 'The action was completed',
+      message: 'You have not favourited this article',
+      favorite_failed: false,
+    };
+    expect(favoriteReducer(state, { type: FAVORITE_FETCHED, payload })).toEqual(expected);
+  });
+
+  it('should fetch favouriting status for already unfavourited', () => {
+    const expected = {
+      favorite: undefined,
+      message: 'You have not favourited this article',
       favorite_failed: false,
     };
     expect(favoriteReducer(state, { type: FAVORITE_FETCHED, payload })).toEqual(expected);

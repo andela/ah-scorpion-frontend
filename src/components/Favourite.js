@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import updateFavorite from '../actions/updateFavorite';
 import currentUser from '../actions/currentUser';
-import axios from 'axios';
 
-axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
 class Favourite extends Component {
   constructor(props) {
     super(props);

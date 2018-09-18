@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import { EditorState, convertFromRaw } from 'draft-js';
+import propTypes from 'prop-types';
 import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
 import createImagePlugin from 'draft-js-image-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
@@ -126,7 +127,9 @@ class TextArea extends Component {
 
 
   componentDidMount() {
-    const slug = this.props.match.params.slug;
+    const { match } = this.props;
+    const { slug } = match.params;
+
     const getUrl = `${baseUrl}/articles/${slug}/`;
     axios.get(getUrl).then(res => JSON.parse(res.data.body))
       .then((rawContent) => {
@@ -149,7 +152,8 @@ class TextArea extends Component {
 
 
   render() {
-    if (!this.state.editorState) {
+    const { editorState } = this.state;
+    if (!editorState) {
       return (
         <h3 className="loading">Loading...</h3>
       );
@@ -162,7 +166,7 @@ class TextArea extends Component {
               <div className={editorStyles.editor} onClick={this.focus}>
                 <form className="contact2-form validate-form">
                   <Editor
-                    editorState={this.state.editorState}
+                    editorState={editorState}
                     onChange={this.onChange}
                     plugins={plugins}
                     readOnly
@@ -182,5 +186,10 @@ class TextArea extends Component {
     );
   }
 }
+
+TextArea.propTypes = {
+  match: propTypes.shape({ params: propTypes.shape().isRequired }).isRequired,
+};
+
 
 export default TextArea;

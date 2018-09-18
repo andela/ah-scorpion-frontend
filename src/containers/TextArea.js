@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
-import createInlineToolbarPlugin, {
-  Separator,
-} from 'draft-js-inline-toolbar-plugin';
+import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
 import createImagePlugin from 'draft-js-image-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
 import createFocusPlugin from 'draft-js-focus-plugin';
@@ -158,13 +156,6 @@ class TextArea extends Component {
     editorState: EditorState.createWithContent(convertFromRaw(initialState)),
   };
 
-  saveContent = (content) => {
-    window.localStorage.setItem(
-      'content',
-      JSON.stringify(convertToRaw(content)),
-    );
-  };
-
   onChange = (editorState) => {
     const contentState = editorState.getCurrentContent();
     this.saveContent(contentState);
@@ -172,6 +163,14 @@ class TextArea extends Component {
       editorState,
     });
   };
+
+  saveContent = (content) => {
+    window.localStorage.setItem(
+      'content',
+      JSON.stringify(convertToRaw(content)),
+    );
+  };
+
 
   submitArticle = (event) => {
     event.preventDefault();

@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import 'draft-js/dist/Draft.css';
 import Login from './containers/Login';
 import './index.css';
 import 'draft-js/dist/Draft.css';

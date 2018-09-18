@@ -274,6 +274,10 @@ nav li a.active {
 }
 
 .horizontal-scroll-view > div {
+  width: 18rem;
+}
+
+.horizontal-scroll-view > div {
   flex: 0 0 25%;
 }
 
@@ -321,6 +325,14 @@ nav li a.active {
 .name-field {
     line-height: 1rem;
     vertical-align: baseline;
+}
+
+.editor :global(.public-DraftEditor-content) {
+  min-height: 140px;
+}
+
+.options {
+  margin-bottom: 20px;
 }
 .editor :global(.public-DraftEditor-content) {
   min-height: 140px;

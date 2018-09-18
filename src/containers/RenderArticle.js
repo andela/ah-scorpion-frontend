@@ -2,8 +2,8 @@
 import React, { Component } from 'react';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import { EditorState, convertFromRaw } from 'draft-js';
-import createInlineToolbarPlugin, { Separator }
-  from 'draft-js-inline-toolbar-plugin';
+import propTypes from 'prop-types';
+import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
 import createImagePlugin from 'draft-js-image-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
 import createFocusPlugin from 'draft-js-focus-plugin';
@@ -28,6 +28,7 @@ import axios from 'axios';
 import { Fade } from 'react-bootstrap';
 import editorStyles from '../editorStyles.css';
 import Favourite from '../components/Favourite';
+import editorStyles from '../editorStyles.css';
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
@@ -131,7 +132,8 @@ class TextArea extends Component {
 
 
   componentDidMount() {
-    const slug = this.props.match.params.slug;
+    const { match } = this.props;
+    const { slug } = match.params;
     const getUrl = `${baseUrl}/articles/${slug}/`;
     axios.get(getUrl)
       .then((res) => {
@@ -160,7 +162,8 @@ class TextArea extends Component {
 
 
   render() {
-    if (!this.state.editorState) {
+    const { editorState } = this.state;
+    if (!editorState) {
       return (
         <h3 className="loading">Loading...</h3>
       );
@@ -171,16 +174,14 @@ class TextArea extends Component {
           <div className="container-contact2">
             <div className="wrap-contact2">
               <div className={editorStyles.editor} onClick={this.focus}>
-                <Fade>
-                  <p>I am so faded</p>
-                </Fade>
                 <form className="contact2-form validate-form">
                   <Editor
-                    editorState={this.state.editorState}
+                    editorState={editorState}
                     onChange={this.onChange}
                     plugins={plugins}
                     readOnly
                   />
+                  <InlineToolbar />
                   <div className="container-contact2-form-btn">
                     <div className="wrap-contact2-form-btn">
                       <div className="contact2-form-bgbtn" />
@@ -201,5 +202,10 @@ class TextArea extends Component {
     );
   }
 }
+
+TextArea.propTypes = {
+  match: propTypes.shape({ params: propTypes.shape().isRequired }).isRequired,
+};
+
 
 export default TextArea;

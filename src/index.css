@@ -1,289 +1,314 @@
 body {
-    margin: 0;
-    padding: 0;
-
-    font-family: 'Montserrat', sans-serif;
-    font-size: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 100%;
 }
 
 img.card-image-custom {
-    width: 286px !important;
-    height: 189.88px !important;
+  width: 286px !important;
+  height: 189.88px !important;
 }
 
 img.testimonials {
-    width: 192px !important;
-    height: 192px !important;
+  width: 192px !important;
+  height: 192px !important;
 }
 
 .list-group-item:hover {
-    background-color: whitesmoke;
+  background-color: whitesmoke;
 }
 
 .horizontal-scroll-view {
-    display: flex;
-    /* displays flex-items (children) inline */
-    overflow-x: scroll;
-    scroll-behavior: smooth;
+  display: flex;
+  /* displays flex-items (children) inline */
+  overflow-x: scroll;
+  scroll-behavior: smooth;
 }
 
 html {
-    min-height: 100vh;
+  min-height: 100vh;
 }
 
 .footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 .horizontal-scroll-view > div {
-    flex: 0 0 25%;
-    /* doesn’t grow nor shrink, initial width set to 25% of the parent’s */
+  flex: 0 0 25%;
+  /* doesn’t grow nor shrink, initial width set to 25% of the parent’s */
 }
 
 nav li a.active {
-    /* color: rgba(20, 40, 150, 100) !important */
-    color: black !important;
+  /* color: rgba(20, 40, 150, 100) !important */
+  color: black !important;
 }
 
 .custom-link:hover {
-    color: purple;
-    text-decoration: none;
+  color: purple;
+  text-decoration: none;
 }
 
 .form-control {
-    width: 70%;
-    margin: auto;
+  width: 70%;
+  margin: auto;
 }
 
 .navigation {
-    margin-top: 4rem;
+  margin-top: 4rem;
 }
 
 .mt-2em {
-    margin-top: 2em;
+  margin-top: 2em;
 }
 
 .form-bg {
-    background-color: #f4f6f8;
+  background-color: #f4f6f8;
 }
 
 .ptb-1em {
-    padding: 1em 0em 1em 0em;
+  padding: 1em 0em 1em 0em;
 }
 
 .signup-container {
-    min-width: 400px;
-    max-width: 600px;
+  min-width: 400px;
+  max-width: 600px;
 }
 
 .social-btn {
-    margin-right: 1em;
+  margin-right: 1em;
 }
 
 .fa-facebook,
 .fa-google {
-    color: white !important;
-    padding: 0.2em !important;
+  color: white !important;
+  padding: 0.2em !important;
 }
 
 img.card-image-custom {
-    width: 286px !important;
-    height: 189.88px !important;
+  width: 286px !important;
+  height: 189.88px !important;
 }
 
 img.testimonials {
-    width: 192px !important;
-    height: 192px !important;
+  width: 192px !important;
+  height: 192px !important;
 }
 
 .list-group-item:hover {
-    background-color: whitesmoke;
+  background-color: whitesmoke;
 }
 
 .horizontal-scroll-view {
-    display: flex;
-    /* displays flex-items (children) inline */
-    overflow-x: scroll;
-    scroll-behavior: smooth;
+  display: flex;
+  /* displays flex-items (children) inline */
+  overflow-x: scroll;
+  scroll-behavior: smooth;
 }
 
 html {
-    min-height: 100vh;
+  min-height: 100vh;
 }
 
 .footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 .horizontal-scroll-view > div {
-    flex: 0 0 25%;
-    /* doesn't grow nor shrink, initial width set to 25% of the parent's */
+  flex: 0 0 25%;
+  /* doesn't grow nor shrink, initial width set to 25% of the parent's */
 }
 
 nav li a.active {
-    /* color: rgba(20, 40, 150, 100) !important */
-    color: black !important;
+  /* color: rgba(20, 40, 150, 100) !important */
+  color: black !important;
 }
 
 .custom-link:hover {
-    color: purple;
-    text-decoration: none;
+  color: purple;
+  text-decoration: none;
 }
 
 .form-control {
-    width: 70%;
-    margin: auto;
+  width: 70%;
+  margin: auto;
 }
 
 .navigation {
-    margin-top: 4rem;
+  margin-top: 4rem;
 }
 
 .mt-2em {
-    margin-top: 2em;
+  margin-top: 2em;
 }
 
 .form-bg {
-    background-color: #f4f6f8;
+  background-color: #f4f6f8;
 }
 
 .ptb-1em {
-    padding: 1em 0em 1em 0em;
+  padding: 1em 0em 1em 0em;
 }
 
 .signup-container {
-    min-width: 400px;
-    max-width: 600px;
+  min-width: 400px;
+  max-width: 600px;
 }
 
 .fa-facebook,
 .fa-google {
-    color: white;
-    padding: 0.2em;
+  color: white;
+  padding: 0.2em;
 }
 
 .social-btn {
-    margin-right: 1em;
+  margin-right: 1em;
 }
 
 img.card-image-custom {
-    width: 286px !important;
-    height: 189.88px !important;
+  width: 286px !important;
+  height: 189.88px !important;
 }
 
 img.testimonials {
-    width: 192px !important;
-    height: 192px !important;
+  width: 192px !important;
+  height: 192px !important;
 }
 
 .list-group-item:hover {
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 .horizontal-scroll-view {
-    display: flex;
-    /* displays flex-items (children) inline */
-    overflow-x: scroll;
-    scroll-behavior: smooth;
+  display: flex;
+  /* displays flex-items (children) inline */
+  overflow-x: scroll;
+  scroll-behavior: smooth;
 }
 
 html {
-    min-height: 100vh;
+  min-height: 100vh;
 }
 
 .footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 .horizontal-scroll-view > div {
-    flex: 0 0 25%;
-    /* doesn't grow nor shrink, initial width set to 25% of the parent's */
+  flex: 0 0 25%;
+  /* doesn't grow nor shrink, initial width set to 25% of the parent's */
 }
 
 nav li a.active {
-    /* color: rgba(20, 40, 150, 100) !important */
-    color: black !important;
+  /* color: rgba(20, 40, 150, 100) !important */
+  color: black !important;
 }
 
 .custom-link:hover {
-    color: purple;
-    text-decoration: none;
+  color: purple;
+  text-decoration: none;
 }
 
 .form-control {
-    width: 70%;
-    margin: auto;
+  width: 70%;
+  margin: auto;
 }
 
 .navigation {
-    margin-top: 4rem;
+  margin-top: 4rem;
 }
 
 .mt-2em {
-    margin-top: 2em;
+  margin-top: 2em;
 }
 
 .form-bg {
-    background-color: #f4f6f8;
+  background-color: #f4f6f8;
 }
 
 .ptb-1em {
-    padding: 1em 0em 1em 0em;
+  padding: 1em 0em 1em 0em;
 }
 
 .signup-container {
-    min-width: 400px;
-    max-width: 600px;
+  min-width: 400px;
+  max-width: 600px;
 }
 
 .fa-facebook,
 .fa-google {
-    color: white;
-    padding: 0.2em;
+  color: white;
+  padding: 0.2em;
 }
 
 .social-btn {
-    margin-right: 1em;
+  margin-right: 1em;
 }
 
 .home-banner {
-    background-image: url(./assets/images/books.jpg);
-    max-height: 15em;
+  background-image: url(./assets/images/books.jpg);
+  max-height: 15em;
 }
 
 .dashboard-banner {
-    background-image: url(./assets/images/land.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
+  background-image: url(./assets/images/land.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-
-.img-card{
-    width: 18rem;
+.img-card {
+  width: 18rem;
 }
 
-.horizontal-scroll-view>div {
-    flex: 0 0 25%;
+.horizontal-scroll-view > div {
+  flex: 0 0 25%;
 }
 
 .custom-link:hover {
-    color: purple;
-    text-decoration: none;
+  color: purple;
+  text-decoration: none;
 }
 
-.avatar{
-    max-width: 2rem;
-    max-height: 2rem;
-    vertical-align: text-bottom;
+.avatar {
+  max-width: 2rem;
+  max-height: 2rem;
+  vertical-align: text-bottom;
 }
 
-.name-field{
-    line-height: 1rem;
-    vertical-align: baseline;
+.name-field {
+  line-height: 1rem;
+  vertical-align: baseline;
+}
+
+/* TextArea */
+.wrap-contact2 {
+  width: 790px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 72px 55px 90px 55px;
+}
+.editor {
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  cursor: text;
+  padding: 16px;
+  border-radius: 2px;
+  margin-bottom: 2em;
+  box-shadow: inset 0px 1px 8px -3px #ababab;
+  background: #fefefe;
+}
+
+.editor :global(.public-DraftEditor-content) {
+  min-height: 140px;
+}
+
+.options {
+  margin-bottom: 20px;
 }

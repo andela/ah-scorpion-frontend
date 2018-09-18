@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import 'draft-js/dist/Draft.css';
 import Login from './containers/Login';
 import './index.css';
 import Homepage from './containers/Homepage';
@@ -8,6 +9,8 @@ import ConfirmPasswordForm from './containers/ConfirmPasswordForm';
 import SignUp from './containers/SignUp';
 import Dashboard from './containers/Dashboard';
 import PrivateRoute from './routes/PrivateRoute';
+import TextArea from './containers/TextArea';
+import RenderArticle from './containers/RenderArticle';
 
 const App = () => (
   <BrowserRouter>
@@ -22,6 +25,8 @@ const App = () => (
         render={props => <ConfirmPasswordForm {...props} />}
       />
       <PrivateRoute path="/dashboard" component={Dashboard} />
+      <Route path="/article/new" exact component={TextArea} />
+      <Route path="/article/:slug" exact component={RenderArticle} />
     </Switch>
   </BrowserRouter>
 );

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP|Noto+Serif+KR');
+
 body {
   margin: 0;
   padding: 0;
@@ -263,6 +265,15 @@ nav li a.active {
 }
 
 .img-card {
+    width: 18rem;
+}
+
+.horizontal-scroll-view > div {
+    flex: 0 0 25%;
+  width: 18rem;
+}
+
+.horizontal-scroll-view > div {
   width: 18rem;
 }
 
@@ -305,10 +316,81 @@ nav li a.active {
   background: #fefefe;
 }
 
+.avatar {
+    max-width: 2rem;
+    max-height: 2rem;
+    vertical-align: text-bottom;
+}
+
+.name-field {
+    line-height: 1rem;
+    vertical-align: baseline;
+}
+
 .editor :global(.public-DraftEditor-content) {
   min-height: 140px;
 }
 
 .options {
   margin-bottom: 20px;
+}
+.editor :global(.public-DraftEditor-content) {
+  min-height: 140px;
+}
+
+.options {
+  margin-bottom: 20px;
+}
+
+button {
+    background-color: inherit;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: inherit;
+}
+
+.fav-div {
+    margin-top: 5em;
+    text-align: center;
+}
+
+.favourite-icon {
+
+}
+
+.center-item {
+    margin: 0 auto;
+}
+
+.favorite-icon {
+    font-size: 150%;
+    color: red;
+}
+
+.unfavorite-icon {
+    font-size: 150%;
+    color: rgb(200, 200, 200);
+}
+
+.favorite-btn {
+    border: 0 #ffff;
+}
+
+.favorite-btn:active, .favorite-btn:focus {
+    border: 0 #ffff;
+}
+
+.favorite-alert {
+    width: 40%;
+    margin: 0 auto;
+    height: 2em;
+    padding: 2px;
+    color: maroon;
+}
+
+.article-body {
+    font-family: 'Noto Serif JP', 'Noto Serif KR', sans-serif;
+    font-size: 16px;
 }

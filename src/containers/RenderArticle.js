@@ -25,6 +25,7 @@ import {
 } from 'draft-js-buttons';
 import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
 import axios from 'axios';
+import Favourite from '../components/Favourite';
 import editorStyles from '../editorStyles.css';
 
 const focusPlugin = createFocusPlugin();
@@ -122,6 +123,8 @@ class TextArea extends Component {
     super(props);
     this.state = {
       editorState: EditorState.createEmpty(),
+      rendered: false,
+      articleId: 0,
     };
   }
 
@@ -129,16 +132,21 @@ class TextArea extends Component {
   componentDidMount() {
     const { match } = this.props;
     const { slug } = match.params;
-
     const getUrl = `${baseUrl}/articles/${slug}/`;
-    axios.get(getUrl).then(res => JSON.parse(res.data.body))
-      .then((rawContent) => {
+    axios.get(getUrl)
+      .then((res) => {
+        this.setState({ articleId: res.data.id });
+        const rawContent = JSON.parse(res.data.body);
         if (rawContent) {
-          this.setState({ editorState: EditorState.createWithContent(convertFromRaw(rawContent)) });
+          this.setState({
+            editorState: EditorState.createWithContent(convertFromRaw(rawContent)),
+            rendered: true,
+          }); this.setState({ rendered: true });
         } else {
           this.setState({ editorState: EditorState.createEmpty() });
         }
-      }).catch((error) => {
+      })
+      .catch((error) => {
         throw error;
       });
   }
@@ -179,6 +187,12 @@ class TextArea extends Component {
                   </div>
                 </form>
               </div>
+              {this.state.rendered ? (
+                <Favourite
+                  slug={this.props.match.params.slug}
+                  articleId={this.state.articleId}
+                />
+              ) : null}
             </div>
           </div>
         </div>

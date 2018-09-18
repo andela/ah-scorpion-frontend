@@ -1,11 +1,14 @@
 import moxios from 'moxios';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-import * as types from '../../actions/types';
 import { favoriteChanged, favoriteFailed } from '../../actions/updateFavorite';
 import { userFetched, userNotLoggedIn } from '../../actions/currentUser';
-import { FAVORITE_FETCHED } from '../../actions/types';
-import { USER_NOT_LOGGED_IN } from '../../actions/types';
+import {
+  FAVORITE_CHANGED,
+  FAVORITE_FAILED,
+  FAVORITE_FETCHED,
+  USER_NOT_LOGGED_IN,
+} from '../../actions/types';
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
@@ -43,7 +46,7 @@ describe('article favouriting actions', () => {
             favorite: false,
             message: undefined,
           },
-        type: types.FAVORITE_FAILED,
+        type: FAVORITE_FAILED,
       },
     ];
 
@@ -69,7 +72,7 @@ describe('article favouriting actions', () => {
               favoriting_users: [4, 5],
             },
           },
-        type: types.FAVORITE_CHANGED,
+        type: FAVORITE_CHANGED,
       },
     ];
 
@@ -99,7 +102,7 @@ describe('<currentUser .>', () => {
       {
         payload:
           { favorited: false },
-        type: types.FAVORITE_FETCHED,
+        type: FAVORITE_FETCHED,
       },
     ];
 
@@ -124,7 +127,7 @@ describe('<currentUser .>', () => {
     const returnedAction = [
       {
         payload: { },
-        type: types.USER_NOT_LOGGED_IN,
+        type: USER_NOT_LOGGED_IN,
       },
     ];
 

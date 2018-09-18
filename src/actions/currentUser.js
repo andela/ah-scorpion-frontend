@@ -30,9 +30,6 @@ export default function currentUser(articleId) {
       .then(response => (response.status === 200
         ? dispatch(userFetched(articleId, response.data.user.favorited))
         : null))
-      .catch((error) => {
-        console.log(error.response);
-        return error.response;
-      });
+      .catch(error => error.response);
   };
 }

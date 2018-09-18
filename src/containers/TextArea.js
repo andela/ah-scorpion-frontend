@@ -181,7 +181,6 @@ class TextArea extends Component {
       body: JSON.stringify(articleContent),
       description: articleContent.blocks[2].text,
     };
-    console.log('Data from text area', data);
     this.props.postArticle(data, this.props.history);
     localStorage.removeItem('content');
   };

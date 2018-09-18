@@ -2,9 +2,8 @@
 import React, { Component } from 'react';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import { EditorState, convertFromRaw } from 'draft-js';
-import createInlineToolbarPlugin, {
-  Separator,
-} from 'draft-js-inline-toolbar-plugin';
+import createInlineToolbarPlugin, { Separator }
+  from 'draft-js-inline-toolbar-plugin';
 import createImagePlugin from 'draft-js-image-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
 import createFocusPlugin from 'draft-js-focus-plugin';
@@ -26,9 +25,9 @@ import {
 } from 'draft-js-buttons';
 import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
 import axios from 'axios';
+import { Fade } from 'react-bootstrap';
 import editorStyles from '../editorStyles.css';
 import Favourite from '../components/Favourite';
-import { Fade } from 'react-bootstrap';
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
@@ -136,7 +135,7 @@ class TextArea extends Component {
     const getUrl = `${baseUrl}/articles/${slug}/`;
     axios.get(getUrl)
       .then((res) => {
-        this.setState({ articleId: res.data.id, author: res.data.author });
+        this.setState({ articleId: res.data.id });
         const rawContent = JSON.parse(res.data.body);
         if (rawContent) {
           this.setState({

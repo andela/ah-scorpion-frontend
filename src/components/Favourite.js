@@ -7,12 +7,7 @@ import currentUser from '../actions/currentUser';
 class Favourite extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      article: {
-        id: 66,
-        slug: '',
-      },
-    };
+    this.state = {};
     this.onUpdateFavourite = this.onUpdateFavourite.bind(this);
     this.getCurrentUser = this.getCurrentUser(this);
   }

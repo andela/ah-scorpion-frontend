@@ -35,7 +35,6 @@ export default function favouriteArticle(slug) {
 
   return (dispatch) => {
     dispatch(favoriteCallStarted());
-    console.log('Still got here');
     axios
       .post(favoriteUrl)
       .then(response => (response.status === 200

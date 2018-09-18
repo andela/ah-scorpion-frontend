@@ -10,13 +10,14 @@ const DashboardContainer = () => (
           <div className="col-md-9">
             <h1>Featured Article Series</h1>
             <p className="lead text-white">
-                Something short and leading about the collection
-                below—its contents, the creator, etc. Make it short
-                and sweet, but not too short so folks don
-              {'\''}
-              t simply skip over it entirely.
+              Something short and leading about the collection below—its contents, the creator, etc.
+              Make it short and sweet, but not too short so folks don
+              {"'"}
+t simply skip over it entirely.
             </p>
-            <a href="#" className="btn btn-primary m-2">Read More</a>
+            <a href="link" className="btn btn-primary m-2">
+              Read More
+            </a>
           </div>
         </div>
       </div>
@@ -27,11 +28,11 @@ const DashboardContainer = () => (
           <h3>Recent Reads...</h3>
         </Link>
         <RenderCards type={1} />
-        <Link to="#" className="custom-link">
+        <Link to="link" className="custom-link">
           <h3>Recommended For You...</h3>
         </Link>
         <RenderCards type={2} />
-        <Link to="#" className="custom-link">
+        <Link to="link" className="custom-link">
           <h3>Trending Now...</h3>
         </Link>
         <RenderCards type={3} />
@@ -39,6 +40,5 @@ const DashboardContainer = () => (
     </div>
   </main>
 );
-
 
 export default DashboardContainer;

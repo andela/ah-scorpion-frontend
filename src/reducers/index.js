@@ -5,6 +5,7 @@ import reset from './resetPassword';
 import signupReducer from './signUp';
 import user from './user';
 import createArticleReducer from './createArticleReducer';
+import rate from './ratingReducer';
 
 export default combineReducers({
   signup: signupReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   auth: loginReducer,
   user,
   createArticleReducer,
+  rate,
 });

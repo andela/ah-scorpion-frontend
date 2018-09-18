@@ -87,6 +87,9 @@ class UserNavBar extends React.Component {
                   <a className="dropdown-item" href="./profile.html">
                     My Account
                   </a>
+                  <a className="dropdown-item" href="/my-articles">
+                    My Articles
+                  </a>
                   <a className="dropdown-item" href="#">
                     Settings
                   </a>

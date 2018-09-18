@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 .editor {
   box-sizing: border-box;
   border: 1px solid #ddd;
@@ -45,12 +46,11 @@
 body,
 html {
   height: 100%;
-  font-family: Poppins-Regular, sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /*---------------------------------------------*/
 a {
-  font-family: Poppins-Regular;
   font-size: 14px;
   line-height: 1.7;
   color: #666666;
@@ -81,7 +81,6 @@ h6 {
 }
 
 p {
-  font-family: Poppins-Regular;
   font-size: 14px;
   line-height: 1.7;
   color: #666666;
@@ -182,7 +181,6 @@ iframe {
 [ Contact 2 ]*/
 .bg-contact2 {
   width: 100%;
-  font-family: 'Montserrat', sans-serif;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -191,7 +189,6 @@ iframe {
 
 .container-contact2 {
   width: 100%;
-  font-family: 'Montserrat', sans-serif;
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -217,12 +214,10 @@ iframe {
 
 .contact2-form {
   width: 100%;
-  font-family: 'Montserrat', sans-serif;
 }
 
 .contact2-form-title {
   display: block;
-  font-family: 'Montserrat', sans-serif;
   font-size: 20px;
   color: #333333;
   line-height: 1.2;
@@ -243,7 +238,6 @@ iframe {
 .input2 {
   display: block;
   width: 100%;
-  font-family: Poppins-Regular;
   font-size: 15px;
   color: #555555;
   line-height: 1.2;
@@ -289,7 +283,6 @@ iframe {
   top: 0px;
   left: 0;
 
-  font-family: Poppins-Regular;
   font-size: 13px;
   color: #999999;
   line-height: 1.2;
@@ -348,7 +341,6 @@ textarea.input2 + .focus-input2::after {
   flex-wrap: wrap;
   justify-content: center;
   padding-top: 300px;
-  font-family: 'Montserrat', sans-serif;
 }
 
 .wrap-contact2-form-btn {
@@ -398,7 +390,6 @@ textarea.input2 + .focus-input2::after {
   min-width: 244px;
   height: 50px;
 
-  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   color: #fff;
   line-height: 1.2;
@@ -441,7 +432,6 @@ textarea.input2 + .focus-input2::after {
   right: 0px;
   pointer-events: none;
 
-  font-family: 'Montserrat', sans-serif;
   color: #c80000;
   font-size: 13px;
   line-height: 1.4;
@@ -458,7 +448,6 @@ textarea.input2 + .focus-input2::after {
 
 .alert-validate::after {
   content: '\f12a';
-  font-family: FontAwesome;
   display: block;
   position: absolute;
   color: #c80000;

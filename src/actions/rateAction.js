@@ -44,6 +44,7 @@ export const rateArticle = val => (dispatch) => {
 };
 
 export const InitialRate = () => (dispatch) => {
+  const token = localStorage.getItem('token');
   axios({
     method: 'get',
     url: `${baseUrl}/articles/${slug}/ratings`,

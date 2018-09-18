@@ -31,8 +31,6 @@ const App = () => (
       <PrivateRoute path="/my-articles" component={MyArticlesPage} />
       <Route path="/article/new" exact component={TextArea} />
       <Route path="/article/:slug" exact component={RenderArticle} />
-      <Route path="/new-article" exact component={TextArea} />
-      <Route path="/read" exact component={RenderArticle} />
     </Switch>
   </BrowserRouter>
 );

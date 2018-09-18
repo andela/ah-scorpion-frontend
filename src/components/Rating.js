@@ -17,7 +17,10 @@ class Rating extends Component {
     const { rate } = this.props;
     return (
       <div>
-        <div className="row" style={{ justifyContent: 'flex-end', marginRight: 'auto' }}>
+        <div
+          className="row"
+          style={{ justifyContent: 'flex-end', marginRight: 'auto' }}
+        >
           <StarRatingComponent
             name="rateArticle"
             value={rate.rating}
@@ -30,9 +33,7 @@ class Rating extends Component {
             role="alert"
             style={{ float: 'right', fontSize: '12px' }}
           >
-            <strong>Ooops!</strong>
-            {' '}
-            {rate.errorMessage}
+            <strong>Ooops!</strong> {rate.errorMessage}
           </div>
         ) : null}
       </div>

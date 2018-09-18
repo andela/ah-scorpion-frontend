@@ -38,7 +38,7 @@ class MyArticlesPage extends Component {
     } = this.props;
     return (
       <React.Fragment>
-        <UserNavBar />
+        <UserNavBar history={this.props.history} />
         <main className="py-5">
           <div className="mt-5 container">
             <ConfirmDeleteModal
@@ -52,11 +52,11 @@ class MyArticlesPage extends Component {
               deleteSuccess={deleteSuccess}
             />
             <div className="row">
-              <h1>
-                My Articles
-              </h1>
-              <Link to="/new-article" className="ml-auto">
-                <Button bsStyle="outline-primary" style={{ height: '100%' }}>New Article</Button>
+              <h1>My Articles</h1>
+              <Link to="/article/new" className="ml-auto">
+                <Button bsStyle="outline-primary" style={{ height: '100%' }}>
+                  New Article
+                </Button>
               </Link>
             </div>
             <hr />
@@ -98,10 +98,10 @@ MyArticlesPage.propTypes = {
   getMyArticles: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   getMyArticles: () => dispatch(handleGetMyArticles()),
-  confirmDelete: slug => dispatch(handleDeleteMyArticle(slug)),
-  beginDelete: slug => dispatch(deleteMyArticleBegin(slug)),
+  confirmDelete: (slug) => dispatch(handleDeleteMyArticle(slug)),
+  beginDelete: (slug) => dispatch(deleteMyArticleBegin(slug)),
   cancelDelete: () => dispatch(deleteMyArticleCancel()),
   cleanUpAfterDelete: () => dispatch(postRequestCleanUp()),
 });

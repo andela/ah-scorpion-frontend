@@ -87,6 +87,9 @@ class UserNavBar extends React.Component {
                   <a className="dropdown-item" href="./profile.html">
                     My Account
                   </a>
+                  <a className="dropdown-item" href="/article/new">
+                    Create Article
+                  </a>
                   <a className="dropdown-item" href="/my-articles">
                     My Articles
                   </a>
@@ -118,7 +121,7 @@ UserNavBar.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 

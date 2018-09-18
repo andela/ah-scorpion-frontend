@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
-import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
+import createInlineToolbarPlugin, {
+  Separator,
+} from 'draft-js-inline-toolbar-plugin';
 import createImagePlugin from 'draft-js-image-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
 import createFocusPlugin from 'draft-js-focus-plugin';
@@ -29,6 +31,7 @@ import editorStyles from '../editorStyles.css';
 import createArticleAction from '../actions/createArticleAction';
 import Footer from '../components/Footer';
 import UserNavBar from '../components/UserNavBar';
+import Loader from '../components/Loader';
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
@@ -42,7 +45,7 @@ const decorator = composeDecorators(
   blockDndPlugin.decorator,
 );
 const imagePlugin = createImagePlugin({ decorator });
-const upload = image => image;
+const upload = (image) => image;
 const dragNDropFileUploadPlugin = createDragNDropUploadPlugin({
   addImage: imagePlugin.addImage,
   handleUpload: upload,
@@ -80,7 +83,7 @@ class HeadlinesButton extends Component {
   // When using a click event inside overridden content, mouse down
   // events needs to be prevented so the focus stays in the editor
   // and the toolbar remains visible  onMouseDown = (event) => event.preventDefault()
-  onMouseDown = event => event.preventDefault();
+  onMouseDown = (event) => event.preventDefault();
 
   onClick = () => this.props.onOverrideContent(HeadlinesPicker);
 
@@ -152,9 +155,12 @@ const initialState = {
 };
 
 class TextArea extends Component {
-  state = {
-    editorState: EditorState.createWithContent(convertFromRaw(initialState)),
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      editorState: EditorState.createWithContent(convertFromRaw(initialState)),
+    };
+  }
 
   onChange = (editorState) => {
     const contentState = editorState.getCurrentContent();
@@ -170,8 +176,6 @@ class TextArea extends Component {
       JSON.stringify(convertToRaw(content)),
     );
   };
-
-
   submitArticle = (event) => {
     event.preventDefault();
     const articleContent = JSON.parse(window.localStorage.getItem('content'));
@@ -188,40 +192,55 @@ class TextArea extends Component {
     this.editor.focus();
   };
 
-  render() {
+  renderForm = () => {
     return (
-      <main>
-        <UserNavBar />
-        <div className="bg-light">
-          <div className="container-contact2">
-            <div className="wrap-contact2">
-              <div className={editorStyles.editor} onClick={this.focus}>
-                <form
-                  onSubmit={this.submitArticle}
-                  className="contact2-form validate-form"
+      <div className="bg-light">
+        <div className="container-contact2">
+          <div className="wrap-contact2">
+            <div className={editorStyles.editor} onClick={this.focus}>
+              <form
+                onSubmit={this.submitArticle}
+                className="contact2-form validate-form"
+              >
+                <button
+                  type="submit"
+                  style={{ float: 'right' }}
+                  className="btn btn-primary"
                 >
-                  <Editor
-                    editorState={this.state.editorState}
-                    onChange={this.onChange}
-                    plugins={plugins}
-                    ref={(element) => {
-                      this.editor = element;
-                    }}
-                  />
-                  <InlineToolbar />
-                  <div className="container-contact2-form-btn">
-                    <div className="wrap-contact2-form-btn">
-                      <div className="contact2-form-bgbtn" />
-                      <button type="submit" className="btn btn-primary">
-                        Submit Article
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
+                  Submit Article
+                </button>
+                <br />
+                <br />
+                <br />
+                <Editor
+                  editorState={this.state.editorState}
+                  onChange={this.onChange}
+                  plugins={plugins}
+                  ref={(element) => {
+                    this.editor = element;
+                  }}
+                />
+                <InlineToolbar />
+              </form>
             </div>
           </div>
         </div>
+      </div>
+    );
+  };
+
+  render() {
+    const { loading } = this.props;
+    return (
+      <main>
+        <UserNavBar history={this.props.history} />
+        {loading ? (
+          <div className="mt-5 text-center">
+            <Loader style={{ marginTop: '5em' }} />
+          </div>
+        ) : (
+          this.renderForm()
+        )}
         <Footer />
       </main>
     );
@@ -232,8 +251,8 @@ TextArea.propTypes = {
   postArticle: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  postArticle: data => dispatch(createArticleAction(data)),
+const mapDispatchToProps = (dispatch) => ({
+  postArticle: (data, history) => dispatch(createArticleAction(data, history)),
 });
 
 const mapStateToProps = ({ createArticleReducer }) => createArticleReducer;

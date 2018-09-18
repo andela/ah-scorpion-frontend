@@ -1,6 +1,5 @@
 import * as types from '../actions/types';
 
-
 const initialState = {
   loading: false,
   payload: {},
@@ -20,6 +19,7 @@ const createArticleReducer = (state = initialState, action) => {
         success: false,
         failure: true,
         errors: action.errors,
+        loading: false,
       };
     case types.ARTICLE_SUCCESS:
       return {
@@ -28,11 +28,11 @@ const createArticleReducer = (state = initialState, action) => {
         success: true,
         failure: false,
         errors: null,
+        loading: false,
       };
     default:
       return state;
   }
 };
-
 
 export default createArticleReducer;

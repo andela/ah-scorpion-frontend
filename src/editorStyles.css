@@ -43,11 +43,7 @@
   box-sizing: border-box;
 }
 
-body,
-html {
-  height: 100%;
-  font-family: 'Montserrat', sans-serif;
-}
+
 
 /*---------------------------------------------*/
 a {

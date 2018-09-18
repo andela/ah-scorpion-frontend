@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { USER_RATE_ARTICLE, CURRENT_AVG_RATE, RATING_ERROR } from './types';
 
-const rateAction = val => ({
+const rateAction = (val) => ({
   type: USER_RATE_ARTICLE,
   val,
 });
 
-const currentRate = response => ({
+const currentRate = (response) => ({
   type: CURRENT_AVG_RATE,
   payload: {
     averageRating:
@@ -16,7 +16,7 @@ const currentRate = response => ({
   },
 });
 
-const errorMessage = err => ({
+const errorMessage = (err) => ({
   type: RATING_ERROR,
   payload: err[0],
 });
@@ -25,7 +25,7 @@ const errorMessage = err => ({
 const baseUrl = process.env.REACT_APP_BASE_URL;
 const slug = window.location.pathname.split('/').pop();
 
-export const rateArticle = val => (dispatch) => {
+export const rateArticle = (val) => (dispatch) => {
   const token = localStorage.getItem('token');
   axios({
     method: 'post',

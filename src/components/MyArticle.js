@@ -3,24 +3,26 @@ import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-
 const MyArticle = ({
-  title, description, createdAt, slug, beginDelete, averageRating, likes, dislikes,
+  title,
+  description,
+  createdAt,
+  slug,
+  beginDelete,
+  averageRating,
+  likes,
+  dislikes,
 }) => (
   <div className="my-article">
     <h3>
-      <Link to={`./article/${slug}/read`} className="article-title">
+      <Link to={`./article/${slug}`} className="article-title">
         {title}
       </Link>
     </h3>
     <p>{description}</p>
     <div>
       <span className="text-muted">
-        <small>
-          Created:
-          {' '}
-          {new Date(createdAt).toDateString()}
-        </small>
+        <small>Created: {new Date(createdAt).toDateString()}</small>
       </span>
       <span className="ml-5">
         <Button bsStyle="primary">Edit</Button>
@@ -44,16 +46,12 @@ const MyArticle = ({
       <div className="col-1 text-center">
         <i className="text-success fa fa-thumbs-up" />
         <br />
-        <small>
-          {likes}
-        </small>
+        <small>{likes}</small>
       </div>
       <div className="col-1 text-center">
         <i className="text-danger fa fa-thumbs-down" />
         <br />
-        <small>
-          {dislikes}
-        </small>
+        <small>{dislikes}</small>
       </div>
     </div>
   </div>

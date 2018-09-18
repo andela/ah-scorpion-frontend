@@ -9,7 +9,6 @@ body {
   font-size: 100%;
 }
 
-
 img.card-image-custom {
   width: 286px !important;
   height: 189.88px !important;
@@ -268,11 +267,11 @@ nav li a.active {
 }
 
 .img-card {
-    width: 18rem;
+  width: 18rem;
 }
 
 .horizontal-scroll-view > div {
-    flex: 0 0 25%;
+  flex: 0 0 25%;
   width: 18rem;
 }
 
@@ -320,14 +319,14 @@ nav li a.active {
 }
 
 .avatar {
-    max-width: 2rem;
-    max-height: 2rem;
-    vertical-align: text-bottom;
+  max-width: 2rem;
+  max-height: 2rem;
+  vertical-align: text-bottom;
 }
 
 .name-field {
-    line-height: 1rem;
-    vertical-align: baseline;
+  line-height: 1rem;
+  vertical-align: baseline;
 }
 
 a.article-title {
@@ -354,58 +353,57 @@ a.article-title:hover {
 }
 
 button {
-    background-color: inherit;
+  background-color: inherit;
 }
 
 button:hover {
-    cursor: pointer;
-    background-color: inherit;
+  cursor: pointer;
+  background-color: inherit;
 }
 
 .fav-div {
-    margin-top: 5em;
-    text-align: center;
+  margin-top: 5em;
+  text-align: center;
 }
 
 .favourite-icon {
-
 }
 
 .center-item {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .favorite-icon {
-    font-size: 150%;
-    color: red;
+  font-size: 150%;
+  color: red;
 }
 
 .unfavorite-icon {
-    font-size: 150%;
-    color: rgb(200, 200, 200);
+  font-size: 150%;
+  color: rgb(200, 200, 200);
 }
 
 .favorite-btn {
-    border: 0 #ffff;
+  border: 0 #ffff;
 }
 
-.favorite-btn:active, .favorite-btn:focus {
-    border: 0 #ffff;
+.favorite-btn:active,
+.favorite-btn:focus {
+  border: 0 #ffff;
 }
 
 .favorite-alert {
-    width: 40%;
-    margin: 0 auto;
-    height: 2em;
-    padding: 2px;
-    color: maroon;
+  width: 40%;
+  margin: 0 auto;
+  height: 2em;
+  padding: 2px;
+  color: maroon;
 }
 
 .article-body {
-    font-family: 'Noto Serif JP', 'Noto Serif KR', sans-serif;
-    font-size: 16px;
+  font-family: 'Noto Serif JP', 'Noto Serif KR', sans-serif;
+  font-size: 16px;
 }
-
 
 .my-article {
   background-color: #e9ecef;

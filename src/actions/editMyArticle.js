@@ -1,7 +1,7 @@
 import * as types from './types';
 import articleService from '../services/articleService';
 
-const editMyArticleBegin = slug => ({ type: types.EDIT_MY_ARTICLE_BEGIN, slug });
+const editMyArticleBegin = () => ({ type: types.EDIT_MY_ARTICLE_BEGIN });
 
 
 const editMyArticleSuccess = () => ({ type: types.EDIT_MY_ARTICLE_SUCCESS });
@@ -12,12 +12,13 @@ const editMyArticleFailure = errorMessage => (
 
 export const editMyArticleEnd = () => ({ type: types.EDIT_MY_ARTICLE_END });
 
-const handleEditMyArticle = slug => (dispatch) => {
-  dispatch(editMyArticleBegin());
-  articleService.deleteMyArticle(slug)
+const handleEditMyArticle = (slug, data, history) => (dispatch) => {
+  dispatch(editMyArticleBegin(slug));
+  articleService.editMyArticle(slug, data)
     .then((object) => {
       if (object.success) {
         dispatch(editMyArticleSuccess());
+        history.push('/my-articles');
       } else { dispatch(editMyArticleFailure(object.errorMessage)); }
     });
 };

@@ -36,34 +36,22 @@ const editMyArticleReducer = (state = initialState, action) => {
     case types.EDIT_MY_ARTICLE_BEGIN:
       return {
         ...state,
-        deletedArticleSlug: action.slug,
+        isSubmitting: true,
       };
     case types.EDIT_MY_ARTICLE_SUCCESS:
       return {
         ...state,
         isDeleting: false,
-        deleteSuccess: true,
-        deletedArticleSlug: '',
-        deleteFailure: false,
+        submitSuccess: true,
+        submitFailure: false,
       };
     case types.EDIT_MY_ARTICLE_FAILURE:
       return {
         ...state,
-        isDeleting: false,
-        deleteFailure: true,
+        isSubmitting: false,
+        submitFailure: true,
         errorMessage: action.errorMessage,
-        deleteSuccess: false,
-      };
-    case types.POST_REQUEST_CLEAN_UP:
-      return {
-        ...state,
-        isFetching: false,
-        isDeleting: false,
-        fetchSuccess: false,
-        fetchFailure: false,
-        deleteSuccess: false,
-        deleteFailure: false,
-        errorMessage: '',
+        submitSuccess: false,
       };
     default:
       return state;

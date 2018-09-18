@@ -16,7 +16,7 @@ const handleGetOneArticle = slug => (dispatch) => {
     .getOneArticle(slug)
     .then((object) => {
       if (object.success) {
-        dispatch(getOneArticleSuccess(object.articles));
+        dispatch(getOneArticleSuccess(object.article));
       } else { dispatch(getOneArticleFailure(object.errorMessage)); }
     });
 };

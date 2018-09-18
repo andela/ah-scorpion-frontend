@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import { convertFromRaw, convertToRaw, EditorState } from 'draft-js';
-import createInlineToolbarPlugin, { Separator, } from 'draft-js-inline-toolbar-plugin';
+import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
 import createImagePlugin from 'draft-js-image-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
 import createFocusPlugin from 'draft-js-focus-plugin';
@@ -126,6 +126,7 @@ class EditMyArticle extends Component {
     this.state = {
       editorState: EditorState.createEmpty(),
     };
+    this.slug = this.props.match.params.slug;
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -141,8 +142,7 @@ class EditMyArticle extends Component {
   }
 
   componentDidMount() {
-    const slug = this.props.match.params.slug;
-    this.props.getOneArticle(slug);
+    this.props.getOneArticle(this.slug);
   }
 
   onChange = (editorState) => {
@@ -168,7 +168,7 @@ class EditMyArticle extends Component {
       body: JSON.stringify(articleContent),
       description: articleContent.blocks[2].text,
     };
-    this.props.postArticle(data, this.props.history);
+    this.props.submitArticle(this.slug, data, this.props.history);
     localStorage.removeItem('content');
   };
 
@@ -178,35 +178,40 @@ class EditMyArticle extends Component {
 
   renderForm = () => {
     if (this.props.fetchSuccess) {
+      const { submitFailure, errorMessage } = this.props;
       return (
         <div className="bg-light">
           <div className="container-contact2">
             <div className="wrap-contact2">
               <div className={editorStyles.editor} onClick={this.focus}>
-                <form
-                  onSubmit={this.onSubmit}
-                  className="contact2-form validate-form"
-                >
-                  <button
-                    type="submit"
-                    style={{ float: 'right' }}
-                    className="btn btn-primary"
-                  >
-                Submit Article
-                  </button>
-                  <br />
-                  <br />
-                  <br />
-                  <Editor
-                    editorState={this.state.editorState}
-                    onChange={this.onChange}
-                    plugins={plugins}
-                    ref={(element) => {
-                      this.editor = element;
-                    }}
-                  />
-                  <InlineToolbar />
-                </form>
+                {submitFailure ? <div className="alert alert-danger">{errorMessage}</div>
+                  : (
+                    <form
+                      onSubmit={this.onSubmit}
+                      className="contact2-form validate-form"
+                    >
+                      <button
+                        type="submit"
+                        style={{ float: 'right' }}
+                        className="btn btn-primary"
+                      >
+                      Submit Edit
+                      </button>
+                      <br />
+                      <br />
+                      <br />
+                      <Editor
+                        editorState={this.state.editorState}
+                        onChange={this.onChange}
+                        plugins={plugins}
+                        ref={(element) => {
+                          this.editor = element;
+                        }}
+                      />
+                      <InlineToolbar />
+                    </form>
+                  )}
+
               </div>
             </div>
           </div>
@@ -215,11 +220,13 @@ class EditMyArticle extends Component {
   };
 
   render() {
-    const { isFetching } = this.props;
+    const {
+      isFetching, isSubmitting,
+    } = this.props;
     return (
       <main>
         <UserNavBar history={this.props.history} />
-        {isFetching ? (
+        {isFetching || isSubmitting ? (
           <div className="mt-5 text-center">
             <Loader style={{ marginTop: '5em' }} />
           </div>
@@ -236,7 +243,7 @@ EditMyArticle.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  submitArticle: (data, history) => dispatch(handleEditMyArticle(data, history)),
+  submitArticle: (slug, data, history) => dispatch(handleEditMyArticle(slug, data, history)),
   getOneArticle: slug => dispatch(handleGetOneArticle(slug)),
 });
 

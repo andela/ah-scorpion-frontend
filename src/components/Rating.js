@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import StarRatingComponent from 'react-star-rating-component';
 import { connect } from 'react-redux';
-import { rateArticle } from '../actions/rateAction';
-import { InitialRate } from '../actions/rateAction';
+import { rateArticle, InitialRate } from '../actions/rateAction';
 
 class Rating extends Component {
   onStarClick = (nextValue) => {

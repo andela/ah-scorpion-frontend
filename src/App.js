@@ -33,7 +33,6 @@ const App = () => (
       <Route path="/article/:slug" exact component={RenderArticle} />
       <Route path="/new-article" exact component={TextArea} />
       <Route path="/read" exact component={RenderArticle} />
-      <Route path="/article-ex" exact render={props => <Article {...props} />} />
     </Switch>
   </BrowserRouter>
 );

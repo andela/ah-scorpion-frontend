@@ -24,9 +24,9 @@ const errorMessage = err => ({
 // Get the slug from the url
 const baseUrl = process.env.REACT_APP_BASE_URL;
 const slug = window.location.pathname.split('/').pop();
-const token = localStorage.getItem('token');
 
 export const rateArticle = val => (dispatch) => {
+  const token = localStorage.getItem('token');
   axios({
     method: 'post',
     url: `${baseUrl}/articles/${slug}/ratings`,

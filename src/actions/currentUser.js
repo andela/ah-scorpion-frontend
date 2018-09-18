@@ -30,6 +30,6 @@ export default function currentUser(articleId) {
       .then(response => (response.status === 200
         ? dispatch(userFetched(articleId, response.data.user.favorited))
         : null))
-      .catch(error => error.response);
+      .catch(dispatch(userNotLoggedIn()));
   };
 }

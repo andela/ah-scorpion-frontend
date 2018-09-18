@@ -51,7 +51,7 @@ class Favourite extends Component {
 
 const ResponseMessage = () => (
   <div>
-    {this.props.favorite.favorite_failed
+    {this.props !== undefined && this.props.favorite.favorite_failed
       ? (
         <p className="alert alert-danger favorite-alert fade-out-text">
           {this.props.favorite.message}
@@ -60,7 +60,8 @@ const ResponseMessage = () => (
       )
       : null}
 
-    {!this.props.favorite.favorite_failed && this.props.favorite.message !== null
+    {this.props !== undefined && !this.props.favorite.favorite_failed
+    && this.props.favorite.message !== null
       ? (
         <p className="alert alert-success favorite-alert fade-out-text">
           {this.props.favorite.message}

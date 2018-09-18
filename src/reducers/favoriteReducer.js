@@ -14,10 +14,14 @@ const initialState = {
 };
 
 export default function favoriteReducer(state = initialState, { type, payload }) {
-  const hasLiked = payload === undefined || payload.message === undefined
-  || payload.message.favoriting_users === undefined
-    ? false
-    : payload.message.favoriting_users.lastIndexOf(localStorage.getItem('email')) > -1;
+  let hasLiked;
+  if (payload === undefined
+    || payload.message === undefined
+    || payload.message.favoriting_users === undefined) {
+    hasLiked = false;
+  } else {
+    hasLiked = payload.message.favoriting_users.lastIndexOf(localStorage.getItem('email')) > -1;
+  }
   switch (type) {
     case FAVORITE_CHANGED:
       return {

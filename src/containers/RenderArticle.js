@@ -2,10 +2,7 @@
 import React, { Component } from 'react';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import { EditorState, convertFromRaw } from 'draft-js';
-<<<<<<< HEAD
 import propTypes from 'prop-types';
-=======
->>>>>>> [ft-rate-articles-159993342] Add test
 import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
 import createImagePlugin from 'draft-js-image-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
@@ -136,22 +133,17 @@ class TextArea extends Component {
     const { match } = this.props;
     const { slug } = match.params;
     const getUrl = `${baseUrl}/articles/${slug}/`;
-<<<<<<< HEAD
-    axios.get(getUrl)
+    axios
+      .get(getUrl)
       .then((res) => {
         this.setState({ articleId: res.data.id });
         const rawContent = JSON.parse(res.data.body);
-=======
-    axios
-      .get(getUrl)
-      .then(res => JSON.parse(res.data.body))
-      .then((rawContent) => {
->>>>>>> [ft-rate-articles-159993342] Add test
         if (rawContent) {
           this.setState({
             editorState: EditorState.createWithContent(convertFromRaw(rawContent)),
             rendered: true,
-          }); this.setState({ rendered: true });
+          });
+          this.setState({ rendered: true });
         } else {
           this.setState({ editorState: EditorState.createEmpty() });
         }
@@ -168,16 +160,9 @@ class TextArea extends Component {
   };
 
   render() {
-<<<<<<< HEAD
     const { editorState } = this.state;
     if (!editorState) {
-      return (
-        <h3 className="loading">Loading...</h3>
-      );
-=======
-    if (!this.state.editorState) {
       return <h3 className="loading">Loading...</h3>;
->>>>>>> [ft-rate-articles-159993342] Add test
     }
     return (
       <main>
@@ -202,10 +187,7 @@ class TextArea extends Component {
                 </form>
               </div>
               {this.state.rendered ? (
-                <Favourite
-                  slug={this.props.match.params.slug}
-                  articleId={this.state.articleId}
-                />
+                <Favourite slug={this.props.match.params.slug} articleId={this.state.articleId} />
               ) : null}
             </div>
           </div>
@@ -218,6 +200,5 @@ class TextArea extends Component {
 TextArea.propTypes = {
   match: propTypes.shape({ params: propTypes.shape().isRequired }).isRequired,
 };
-
 
 export default TextArea;

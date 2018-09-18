@@ -34,8 +34,7 @@
   background: #f3f3f3;
 }
 
-/*//////////////////////////////////////////////////////////////////
-[ RESTYLE TAG ]*/
+/////////////////////////////////////////////////////////////////[ RESTYLE TAG ]*/
 
 * {
   margin: 0px;
@@ -46,25 +45,6 @@
 
 
 /*---------------------------------------------*/
-a {
-  font-size: 14px;
-  line-height: 1.7;
-  color: #666666;
-  margin: 0px;
-  transition: all 0.4s;
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-}
-
-a:focus {
-  outline: none !important;
-}
-
-a:hover {
-  text-decoration: none;
-  color: #57b846;
-}
 
 /*---------------------------------------------*/
 h1,
@@ -173,8 +153,7 @@ iframe {
   border: none !important;
 }
 
-/*//////////////////////////////////////////////////////////////////
-[ Contact 2 ]*/
+/////////////////////////////////////////////////////////////////[ Contact 2 ]*/
 .bg-contact2 {
   width: 100%;
   background-repeat: no-repeat;

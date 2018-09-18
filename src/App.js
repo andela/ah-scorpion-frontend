@@ -13,6 +13,7 @@ import Favourite from './containers/Favourite';
 import TextArea from './containers/TextArea';
 import RenderArticle from './containers/RenderArticle';
 import MyArticlesPage from './containers/MyArticlesPage';
+import EditMyArticle from './containers/EditMyArticle';
 
 const App = () => (
   <BrowserRouter>
@@ -34,6 +35,7 @@ const App = () => (
       <PrivateRoute path="/dashboard" component={Dashboard} />
       <PrivateRoute path="/my-articles" component={MyArticlesPage} />
       <PrivateRoute path="/article/new" exact component={TextArea} />
+      <PrivateRoute path="/article/:slug/edit" exact component={EditMyArticle} />
       <Route path="/article/:slug" exact component={RenderArticle} />
     </Switch>
   </BrowserRouter>

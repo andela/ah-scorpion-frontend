@@ -35,10 +35,11 @@ class MyArticlesPage extends Component {
       beginDelete,
       cancelDelete,
       cleanUpAfterDelete,
+      history,
     } = this.props;
     return (
       <React.Fragment>
-        <UserNavBar history={this.props.history} />
+        <UserNavBar history={history} />
         <main className="py-5">
           <div className="mt-5 container">
             <ConfirmDeleteModal
@@ -51,8 +52,8 @@ class MyArticlesPage extends Component {
               postRequestCleanUp={cleanUpAfterDelete}
               deleteSuccess={deleteSuccess}
             />
-            <div className="row">
-              <h1>My Articles</h1>
+            <div className="row" style={{ padding: '0 0.75em' }}>
+              <h2>My Articles</h2>
               <Link to="/article/new" className="ml-auto">
                 <Button bsStyle="outline-primary" style={{ height: '100%' }}>
                   New Article
@@ -65,14 +66,12 @@ class MyArticlesPage extends Component {
                 <Loader />
               </div>
             ) : (
-              <div className="container">
-                <MyArticlesList
-                  articles={articles}
-                  beginDelete={beginDelete}
-                  fetchFailure={fetchFailure}
-                  errorMessage={errorMessage}
-                />
-              </div>
+              <MyArticlesList
+                articles={articles}
+                beginDelete={beginDelete}
+                fetchFailure={fetchFailure}
+                errorMessage={errorMessage}
+              />
             )}
           </div>
         </main>
@@ -96,12 +95,13 @@ MyArticlesPage.propTypes = {
   cancelDelete: PropTypes.func.isRequired,
   cleanUpAfterDelete: PropTypes.func.isRequired,
   getMyArticles: PropTypes.func.isRequired,
+  history: PropTypes.shape().isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   getMyArticles: () => dispatch(handleGetMyArticles()),
-  confirmDelete: (slug) => dispatch(handleDeleteMyArticle(slug)),
-  beginDelete: (slug) => dispatch(deleteMyArticleBegin(slug)),
+  confirmDelete: slug => dispatch(handleDeleteMyArticle(slug)),
+  beginDelete: slug => dispatch(deleteMyArticleBegin(slug)),
   cancelDelete: () => dispatch(deleteMyArticleCancel()),
   cleanUpAfterDelete: () => dispatch(postRequestCleanUp()),
 });

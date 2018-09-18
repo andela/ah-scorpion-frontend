@@ -14,15 +14,18 @@ const MyArticle = ({
   dislikes,
 }) => (
   <div className="my-article">
-    <h3>
+    <h1>
       <Link to={`./article/${slug}`} className="article-title">
         {title}
       </Link>
-    </h3>
+    </h1>
     <p>{description}</p>
     <div>
       <span className="text-muted">
-        <small>Created: {new Date(createdAt).toDateString()}</small>
+        <small>
+          Created:
+          {new Date(createdAt).toDateString()}
+        </small>
       </span>
       <span className="ml-5">
         <Button bsStyle="primary">Edit</Button>
@@ -65,6 +68,7 @@ MyArticle.propTypes = {
   averageRating: PropTypes.number,
   likes: PropTypes.number.isRequired,
   dislikes: PropTypes.number.isRequired,
+  beginDelete: PropTypes.func.isRequired,
 };
 
 MyArticle.defaultProps = {

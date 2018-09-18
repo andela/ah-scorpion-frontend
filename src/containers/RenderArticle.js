@@ -132,7 +132,6 @@ class TextArea extends Component {
     const getUrl = `${baseUrl}/articles/${slug}/`;
     axios.get(getUrl).then(res => JSON.parse(res.data.body))
       .then((rawContent) => {
-        console.log(EditorState.createWithContent(convertFromRaw(rawContent)));
         if (rawContent) {
           this.setState({ editorState: EditorState.createWithContent(convertFromRaw(rawContent)) });
         } else {

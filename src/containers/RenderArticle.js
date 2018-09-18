@@ -25,8 +25,6 @@ import {
 } from 'draft-js-buttons';
 import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
 import axios from 'axios';
-import { Fade } from 'react-bootstrap';
-import editorStyles from '../editorStyles.css';
 import Favourite from '../components/Favourite';
 import editorStyles from '../editorStyles.css';
 

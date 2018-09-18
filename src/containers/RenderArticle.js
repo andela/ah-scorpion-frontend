@@ -2,9 +2,7 @@
 import React, { Component } from 'react';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import { EditorState, convertFromRaw } from 'draft-js';
-import createInlineToolbarPlugin, {
-  Separator,
-} from 'draft-js-inline-toolbar-plugin';
+import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
 import createImagePlugin from 'draft-js-image-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
 import createFocusPlugin from 'draft-js-focus-plugin';

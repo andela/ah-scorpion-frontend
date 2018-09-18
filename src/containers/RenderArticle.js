@@ -2,7 +2,10 @@
 import React, { Component } from 'react';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import { EditorState, convertFromRaw } from 'draft-js';
+<<<<<<< HEAD
 import propTypes from 'prop-types';
+=======
+>>>>>>> [ft-rate-articles-159993342] Add test
 import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
 import createImagePlugin from 'draft-js-image-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
@@ -27,6 +30,7 @@ import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
 import axios from 'axios';
 import Favourite from '../components/Favourite';
 import editorStyles from '../editorStyles.css';
+import Rating from '../components/Rating';
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
@@ -128,15 +132,21 @@ class TextArea extends Component {
     };
   }
 
-
   componentDidMount() {
     const { match } = this.props;
     const { slug } = match.params;
     const getUrl = `${baseUrl}/articles/${slug}/`;
+<<<<<<< HEAD
     axios.get(getUrl)
       .then((res) => {
         this.setState({ articleId: res.data.id });
         const rawContent = JSON.parse(res.data.body);
+=======
+    axios
+      .get(getUrl)
+      .then(res => JSON.parse(res.data.body))
+      .then((rawContent) => {
+>>>>>>> [ft-rate-articles-159993342] Add test
         if (rawContent) {
           this.setState({
             editorState: EditorState.createWithContent(convertFromRaw(rawContent)),
@@ -151,20 +161,23 @@ class TextArea extends Component {
       });
   }
 
-
   onChange = (editorState) => {
     this.setState({
       editorState,
     });
   };
 
-
   render() {
+<<<<<<< HEAD
     const { editorState } = this.state;
     if (!editorState) {
       return (
         <h3 className="loading">Loading...</h3>
       );
+=======
+    if (!this.state.editorState) {
+      return <h3 className="loading">Loading...</h3>;
+>>>>>>> [ft-rate-articles-159993342] Add test
     }
     return (
       <main>
@@ -179,6 +192,7 @@ class TextArea extends Component {
                     plugins={plugins}
                     readOnly
                   />
+                  <Rating />
                   <InlineToolbar />
                   <div className="container-contact2-form-btn">
                     <div className="wrap-contact2-form-btn">

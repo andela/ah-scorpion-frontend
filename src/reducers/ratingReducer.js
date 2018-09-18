@@ -1,18 +1,20 @@
-import { USER_RATE_ARTICLE, CURRENT_AVG_RATE } from '../actions/types';
+import { USER_RATE_ARTICLE, CURRENT_AVG_RATE, RATING_ERROR } from '../actions/types';
 
-const InitialState = {
-  rating: { stars: 0 },
-};
-
-export default function rate(state = InitialState, action) {
+export default function rate(state = {}, action) {
   switch (action.type) {
     case USER_RATE_ARTICLE:
-      return { ...state, val: action.val };
+      return { ...state, rating: action.val.ratings.stars };
     case CURRENT_AVG_RATE:
       return {
         ...state,
         rating: action.payload.averageRating,
       };
+    case RATING_ERROR:
+      return {
+        ...state,
+        errorMessage: action.payload,
+      };
+
     default:
       return state;
   }

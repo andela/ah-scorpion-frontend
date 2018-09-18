@@ -1,43 +1,56 @@
 import axios from 'axios';
-import { USER_RATE_ARTICLE, CURRENT_AVG_RATE } from './types';
+import { USER_RATE_ARTICLE, CURRENT_AVG_RATE, RATING_ERROR } from './types';
 
 const rateAction = val => ({
   type: USER_RATE_ARTICLE,
   val,
 });
 
-// const currentRate = response => ({
-//   type: CURRENT_AVG_RATE,
-//   payload: { averageRating: response.ratings[0].stars },
-// });
+const currentRate = response => ({
+  type: CURRENT_AVG_RATE,
+  payload: {
+    averageRating:
+      response.ratings === undefined || response.ratings[0] === undefined
+        ? 0
+        : response.ratings[0].stars,
+  },
+});
+
+const errorMessage = err => ({
+  type: RATING_ERROR,
+  payload: err[0],
+});
+
+// Get the slug from the url
+const baseUrl = process.env.REACT_APP_BASE_URL;
+const slug = window.location.pathname.split('/').pop();
+const token = localStorage.getItem('token');
 
 export const rateArticle = val => (dispatch) => {
   axios({
     method: 'post',
-    url:
-      'https://authors-haven-api.herokuapp.com/api/v1/articles/zacs-demo-article-8a5742ff66d54fe492be37673637c6a0/ratings',
+    url: `${baseUrl}/articles/${slug}/ratings`,
     data: { stars: val },
     headers: {
-      Authorization:
-        'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZGVudGl0eSI6eyJlbWFpbCI6ImRhdmVubWF0aGV3c0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6ImRhdmVtYXRoZXdzIiwiYmlvIjoiIiwiaW1hZ2UiOm51bGx9LCJpYXQiOjE1MzY5MjI2OTgsImV4cCI6MTUzNzAwOTA5OH0.z9SRrlj0zVYVo3fWdZs9TitcXupOESO21X8w37nGVBw',
+      Authorization: `Bearer ${token}`,
     },
-  }).then((response) => {
-    dispatch(rateAction(response.data));
-  });
+  })
+    .then((response) => {
+      dispatch(rateAction(response.data));
+    })
+    .catch((err) => {
+      dispatch(errorMessage(err.response.data.errors.detail));
+    });
 };
 
-// export const InitialRate = () => (dispatch) => {
-//   console.log('ddddd...');
-//   axios({
-//     method: 'get',
-//     url:
-//       'https://authors-haven-api.herokuapp.com/api/v1/articles/zacs-demo-article-8a5742ff66d54fe492be37673637c6a0/ratings',
-//     headers: {
-//       Authorization:
-//         'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZGVudGl0eSI6eyJlbWFpbCI6ImRhdmVubWF0aGV3c0BnbWFpbC5jb20iLCJ1c2VybmFtZSI6ImRhdmVtYXRoZXdzIiwiYmlvIjoiIiwiaW1hZ2UiOm51bGx9LCJpYXQiOjE1MzY4NDgwOTMsImV4cCI6MTUzNjkzNDQ5M30.f3k3pFPoE90hvS21-7mZOxZYl0kAuK5F-PbmbJWLwOU',
-//     },
-//   }).then((response) => {
-//     console.log('rating from backend', response.data.ratings[0].stars);
-//     dispatch(currentRate(response.data));
-//   });
-// };
+export const InitialRate = () => (dispatch) => {
+  axios({
+    method: 'get',
+    url: `${baseUrl}/articles/${slug}/ratings`,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((response) => {
+    dispatch(currentRate(response.data));
+  });
+};

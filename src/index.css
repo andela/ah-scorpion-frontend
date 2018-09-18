@@ -1,11 +1,14 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP|Noto+Serif+KR');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+* {
+  font-family: 'Montserrat', sans-serif;
+}
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Montserrat', sans-serif;
   font-size: 100%;
 }
+
 
 img.card-image-custom {
   width: 286px !important;
@@ -328,12 +331,12 @@ nav li a.active {
 }
 
 a.article-title {
-    color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 
 a.article-title:hover {
-    color: grey;
+  color: grey;
 }
 .editor :global(.public-DraftEditor-content) {
   min-height: 140px;
@@ -404,9 +407,9 @@ button:hover {
 }
 
 
-.my-article{
-    background-color: #e9ecef;
-    padding: 2em;
-    border-radius: 0.3em;
-    margin-bottom: 1.5em;
+.my-article {
+  background-color: #e9ecef;
+  padding: 2em;
+  border-radius: 0.3em;
+  margin-bottom: 1.5em;
 }

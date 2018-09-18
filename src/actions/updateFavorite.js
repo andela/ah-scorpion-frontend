@@ -7,7 +7,7 @@ import {
 import { userNotLoggedIn } from './currentUser';
 
 
-const favoriteChanged = message => ({
+export const favoriteChanged = message => ({
   type: FAVORITE_CHANGED,
   payload: {
     favorite: message.favoriting_users !== undefined,
@@ -15,7 +15,7 @@ const favoriteChanged = message => ({
   },
 });
 
-const favoriteFailed = message => ({
+export const favoriteFailed = message => ({
   type: FAVORITE_FAILED,
   payload: {
     favorite: false,
@@ -23,7 +23,7 @@ const favoriteFailed = message => ({
   },
 });
 
-const favoriteCallStarted = () => ({
+export const favoriteCallStarted = () => ({
   type: BEGIN_FETCHING_FAVOURITE,
   payload: {},
 });

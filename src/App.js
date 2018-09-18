@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import 'draft-js/dist/Draft.css';
 import Login from './containers/Login';
 import './index.css';
 import Homepage from './containers/Homepage';
@@ -8,7 +9,6 @@ import ConfirmPasswordForm from './containers/ConfirmPasswordForm';
 import SignUp from './containers/SignUp';
 import Dashboard from './containers/Dashboard';
 import PrivateRoute from './routes/PrivateRoute';
-import 'draft-js/dist/Draft.css';
 import TextArea from './containers/TextArea';
 import RenderArticle from './containers/RenderArticle';
 

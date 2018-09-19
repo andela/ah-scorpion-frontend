@@ -1,6 +1,8 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
+import { shallow } from 'enzyme';
+import shallowToJSON from 'enzyme-to-json';
 
 import ConfirmDeleteModal from '../../components/ConfirmDeleteModal';
 import MyArticle from '../../components/MyArticle';
@@ -37,7 +39,7 @@ describe('The getmyArticlesPage view', () => {
   });
   describe('The MyArticle component', () => {
     it('Should not regress', () => {
-      const tree = renderer.create(
+      const tree = shallow(
         <MemoryRouter>
           <MyArticle
             title="test title"
@@ -48,7 +50,7 @@ describe('The getmyArticlesPage view', () => {
           />
         </MemoryRouter>,
       );
-      expect(tree.toJSON()).toMatchSnapshot();
+      expect(shallowToJSON(tree)).toMatchSnapshot();
     });
   });
 
@@ -101,12 +103,12 @@ describe('The getmyArticlesPage view', () => {
     });
 
     it('Should render all articles in case of a successful request', () => {
-      const tree = renderer.create(
+      const tree = shallow(
         <MemoryRouter>
           <MyArticleList {...testProps} articles={articles} />
         </MemoryRouter>,
       );
-      expect(tree.toJSON()).toMatchSnapshot();
+      expect(shallowToJSON(tree)).toMatchSnapshot();
     });
   });
 });

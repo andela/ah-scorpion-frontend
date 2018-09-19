@@ -413,3 +413,8 @@ button:hover {
   border-radius: 0.3em;
   margin-bottom: 1.5em;
 }
+
+.comments-section{
+  margin-top: 2em;
+  background-color: azure;
+}

@@ -362,8 +362,12 @@ button:hover {
 }
 
 .fav-div {
-  margin-top: 5em;
   text-align: center;
+}
+
+.reaction-row{
+  margin-top: 3em;
+  vertical-align: middle;
 }
 
 .favourite-icon {
@@ -393,7 +397,6 @@ button:hover {
 }
 
 .favorite-alert {
-  width: 40%;
   margin: 0 auto;
   padding: 2px;
   color: maroon;

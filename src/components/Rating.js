@@ -16,7 +16,7 @@ class Rating extends Component {
   render() {
     const { rate } = this.props;
     return (
-      <div>
+      <React.Fragment>
         <div
           className="row"
           style={{ justifyContent: 'flex-end', marginRight: 'auto' }}
@@ -36,7 +36,7 @@ class Rating extends Component {
             <strong>Ooops!</strong> {rate.errorMessage}
           </div>
         ) : null}
-      </div>
+      </React.Fragment>
     );
   }
 }

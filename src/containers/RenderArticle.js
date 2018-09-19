@@ -182,21 +182,18 @@ class TextArea extends Component {
                     plugins={plugins}
                     readOnly
                   />
-                  <Rating slug={this.props.match.params.slug} />
-                  <InlineToolbar />
-                  <div className="container-contact2-form-btn">
-                    <div className="wrap-contact2-form-btn">
-                      <div className="contact2-form-bgbtn" />
-                    </div>
+                  <div className="row reaction-row">
+                    <div className="col-sm my-auto">
+                    {this.state.rendered ? (
+                      <Favourite
+                        slug={this.props.match.params.slug}
+                        articleId={this.state.articleId}
+                      />
+                    ) : null}</div>
+                    <div className="col-sm"><Rating slug={this.props.match.params.slug} /></div>
                   </div>
                 </form>
               </div>
-              {this.state.rendered ? (
-                <Favourite
-                  slug={this.props.match.params.slug}
-                  articleId={this.state.articleId}
-                />
-              ) : null}
             </div>
           </div>
         </div>

@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import { convertFromRaw, convertToRaw, EditorState } from 'draft-js';
-import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
+import createInlineToolbarPlugin, {
+  Separator,
+} from 'draft-js-inline-toolbar-plugin';
 import createImagePlugin from 'draft-js-image-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
 import createFocusPlugin from 'draft-js-focus-plugin';
@@ -45,7 +47,7 @@ const decorator = composeDecorators(
   blockDndPlugin.decorator,
 );
 const imagePlugin = createImagePlugin({ decorator });
-const upload = image => image;
+const upload = (image) => image;
 const dragNDropFileUploadPlugin = createDragNDropUploadPlugin({
   addImage: imagePlugin.addImage,
   handleUpload: upload,
@@ -86,7 +88,7 @@ class HeadlinesButton extends Component {
   // When using a click event inside overridden content, mouse down
   // events needs to be prevented so the focus stays in the editor
   // and the toolbar remains visible  onMouseDown = (event) => event.preventDefault()
-  onMouseDown = event => event.preventDefault();
+  onMouseDown = (event) => event.preventDefault();
 
   onClick = () => {
     const { onOverrideContent } = this.props;
@@ -137,9 +139,14 @@ class EditMyArticle extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (props.article.body !== undefined && !state.editorState.getCurrentContent().hasText()) {
+    if (
+      props.article.body !== undefined &&
+      !state.editorState.getCurrentContent().hasText()
+    ) {
       return {
-        editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(props.article.body))),
+        editorState: EditorState.createWithContent(
+          convertFromRaw(JSON.parse(props.article.body)),
+        ),
       };
     }
     return null;
@@ -191,8 +198,15 @@ class EditMyArticle extends Component {
                 {submitFailure ? (
                   <div className="alert alert-danger">{errorMessage}</div>
                 ) : (
-                  <form onSubmit={this.onSubmit} className="contact2-form validate-form">
-                    <button type="submit" style={{ float: 'right' }} className="btn btn-primary">
+                  <form
+                    onSubmit={this.onSubmit}
+                    className="contact2-form validate-form"
+                  >
+                    <button
+                      type="submit"
+                      style={{ float: 'right' }}
+                      className="btn btn-primary"
+                    >
                       Submit Edit
                     </button>
                     <br />
@@ -251,9 +265,10 @@ HeadlinesButton.propTypes = {
   onOverrideContent: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  submitArticle: (slug, data, history) => dispatch(handleEditMyArticle(slug, data, history)),
-  getOneArticle: slug => dispatch(handleGetOneArticle(slug)),
+const mapDispatchToProps = (dispatch) => ({
+  submitArticle: (slug, data, history) =>
+    dispatch(handleEditMyArticle(slug, data, history)),
+  getOneArticle: (slug) => dispatch(handleGetOneArticle(slug)),
 });
 
 const mapStateToProps = ({ editMyArticle }) => editMyArticle;

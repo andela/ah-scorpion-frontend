@@ -42,35 +42,31 @@ class Favourite extends Component {
 &hearts;
             </span>
           </button>
-          <ResponseMessage />
+          <div>
+            {this.props.favorite.favorite_failed
+              ? (
+                <p className="alert alert-danger favorite-alert ">
+                  {this.props.favorite.message}
+                  {' '}
+                </p>
+              )
+              : null}
+
+            {!this.props.favorite.favorite_failed
+            && this.props.favorite.message !== null
+              ? (
+                <p className="alert alert-success favorite-alert">
+                  {this.props.favorite.message}
+                  {' '}
+                </p>
+              )
+              : null}
+          </div>
         </div>
       </div>
     );
   }
 }
-
-const ResponseMessage = () => (
-  <div>
-    {this.props !== undefined && this.props.favorite.favorite_failed
-      ? (
-        <p className="alert alert-danger favorite-alert fade-out-text">
-          {this.props.favorite.message}
-          {' '}
-        </p>
-      )
-      : null}
-
-    {this.props !== undefined && !this.props.favorite.favorite_failed
-    && this.props.favorite.message !== null
-      ? (
-        <p className="alert alert-success favorite-alert fade-out-text">
-          {this.props.favorite.message}
-          {' '}
-        </p>
-      )
-      : null}
-  </div>
-);
 
 const mapStateToProps = state => ({
   favorite: state.favorite,

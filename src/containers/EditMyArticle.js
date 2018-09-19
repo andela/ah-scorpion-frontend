@@ -224,7 +224,7 @@ class EditMyArticle extends Component {
       isFetching, isSubmitting,
     } = this.props;
     return (
-      <main>
+      <main className="one-article-view">
         <UserNavBar history={this.props.history} />
         {isFetching || isSubmitting ? (
           <div className="mt-5 text-center">

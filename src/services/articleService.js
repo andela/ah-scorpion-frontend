@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const getMyUsername = () => localStorage.getItem('username');
 const getMyToken = () => localStorage.getItem('token');
-const { REACT_APP_API_URL } = process.env;
-const articlesUrl = `${REACT_APP_API_URL}/api/v1/articles/`;
+const { REACT_APP_BASE_URL } = process.env;
+const articlesUrl = `${REACT_APP_BASE_URL}/articles/`;
 
 /** Class that represents API calls related to a user's articles */
 class articleService {

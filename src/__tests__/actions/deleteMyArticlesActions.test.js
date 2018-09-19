@@ -8,9 +8,9 @@ import { deleteMyArticleSuccess, deleteMyArticleFailure } from '../../actions/de
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 
-const { REACT_APP_API_URL } = process.env;
+const { REACT_APP_BASE_URL } = process.env;
 const slug = 'test-article-slug';
-const articlesUrl = `${REACT_APP_API_URL}/api/v1/articles/${slug}`;
+const articlesUrl = `${REACT_APP_BASE_URL}/articles/${slug}`;
 describe('The deleteMyArticles actions', () => {
   beforeEach(() => moxios.install());
   afterEach(() => moxios.uninstall());

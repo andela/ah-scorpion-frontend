@@ -8,8 +8,8 @@ import { getMyArticlesSuccess, getMyArticlesFailure } from '../../actions/getMyA
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 
-const { REACT_APP_API_URL } = process.env;
-const articlesUrl = `${REACT_APP_API_URL}/api/v1/articles/`;
+const { REACT_APP_BASE_URL } = process.env;
+const articlesUrl = `${REACT_APP_BASE_URL}/articles/`;
 
 const articles = [
   {

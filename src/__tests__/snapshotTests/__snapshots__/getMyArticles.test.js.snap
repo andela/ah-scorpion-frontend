@@ -265,7 +265,7 @@ exports[`The getmyArticlesPage view The MyArticle component Should not regress 1
       "entries": Array [
         Object {
           "hash": "",
-          "key": "6jqcoy",
+          "key": "rrwmsp",
           "pathname": "/",
           "search": "",
           "state": undefined,
@@ -279,7 +279,7 @@ exports[`The getmyArticlesPage view The MyArticle component Should not regress 1
       "listen": [Function],
       "location": Object {
         "hash": "",
-        "key": "6jqcoy",
+        "key": "rrwmsp",
         "pathname": "/",
         "search": "",
         "state": undefined,
@@ -311,7 +311,7 @@ exports[`The getmyArticlesPage view The MyArticleList component Should render al
       "entries": Array [
         Object {
           "hash": "",
-          "key": "ffpew6",
+          "key": "nprrz0",
           "pathname": "/",
           "search": "",
           "state": undefined,
@@ -325,7 +325,7 @@ exports[`The getmyArticlesPage view The MyArticleList component Should render al
       "listen": [Function],
       "location": Object {
         "hash": "",
-        "key": "ffpew6",
+        "key": "nprrz0",
         "pathname": "/",
         "search": "",
         "state": undefined,

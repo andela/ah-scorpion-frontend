@@ -7,6 +7,7 @@ import user from './user';
 import createArticleReducer from './createArticleReducer';
 import rate from './ratingReducer';
 import myArticlesReducer from './myArticlesReducer';
+import editMyArticleReducer from './editMyArticleReducer';
 
 export default combineReducers({
   signup: signupReducer,
@@ -17,4 +18,5 @@ export default combineReducers({
   createArticleReducer,
   rate,
   myArticles: myArticlesReducer,
+  editMyArticle: editMyArticleReducer,
 });

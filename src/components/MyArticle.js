@@ -28,7 +28,7 @@ const MyArticle = ({
         </small>
       </span>
       <span className="ml-5">
-        <Button bsStyle="primary">Edit</Button>
+        <Button bsStyle="primary link" href={`article/${slug}/edit`}>Edit</Button>
         <Button
           bsStyle="danger ml-2"
           data-toggle="modal"

@@ -10,12 +10,12 @@ class ReadTime extends Component {
 
   componentWillMount() {
     const { body } = this.props;
-    this.setReadingTime(body);
+    const blocks = JSON.parse(body).blocks;
+    this.setReadingTime(blocks);
   }
 
   setReadingTime(body) {
-    const blocks = JSON.parse(body).blocks;
-    const text = blocks.map((obj) => obj.text);
+    const text = body.map((obj) => obj.text);
     const words = text.join(' ');
     this.countWords(words);
   }

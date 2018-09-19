@@ -39,17 +39,9 @@ describe('The getmyArticlesPage view', () => {
   });
   describe('The MyArticle component', () => {
     it('Should not regress', () => {
-      const tree = shallow(
-        <MemoryRouter>
-          <MyArticle
-            title="test title"
-            description="test description"
-            createdAt="2018-09-12T18:51:24.099861Z"
-            slug="test-slug-001"
-            beginDelete={() => 1}
-          />
-        </MemoryRouter>,
-      );
+      const tree = shallow(<MemoryRouter initialEntries={[{ pathname: '/', key: 'testKey' }]}>
+          <MyArticle title="test title" description="test description" createdAt="2018-09-12T18:51:24.099861Z" slug="test-slug-001" beginDelete={() => 1} />
+        </MemoryRouter>);
       expect(shallowToJSON(tree)).toMatchSnapshot();
     });
   });
@@ -95,7 +87,7 @@ describe('The getmyArticlesPage view', () => {
     });
     it('Should render the error message in case of failure', () => {
       const tree = renderer.create(
-        <MemoryRouter>
+        <MemoryRouter >
           <MyArticleList {...testProps} fetchFailure errorMessage="An error occurred" />
         </MemoryRouter>,
       );
@@ -103,11 +95,9 @@ describe('The getmyArticlesPage view', () => {
     });
 
     it('Should render all articles in case of a successful request', () => {
-      const tree = shallow(
-        <MemoryRouter>
+      const tree = shallow(<MemoryRouter initialEntries={[{ pathname: '/', key: 'testKey' }]}>
           <MyArticleList {...testProps} articles={articles} />
-        </MemoryRouter>,
-      );
+        </MemoryRouter>);
       expect(shallowToJSON(tree)).toMatchSnapshot();
     });
   });

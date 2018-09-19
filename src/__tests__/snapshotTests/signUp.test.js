@@ -64,27 +64,27 @@ describe('The signUp view', () => {
     };
     it('Should initially render without an error or loading status', () => {
       const tree = shallow(
-        <MemoryRouter>
+        <MemoryRouter initialEntries={[{ pathname: '/', key: 'testKey' }]}>
           <SignUpForm {...testProps} onError={false} isFetching={false} />
         </MemoryRouter>,
       );
-      // expect(shallowToJSON(tree)).toMatchSnapshot();
+      expect(shallowToJSON(tree)).toMatchSnapshot();
     });
     it('Should show loading status when request is pending', () => {
       const tree = shallow(
-        <MemoryRouter>
+        <MemoryRouter initialEntries={[{ pathname: '/', key: 'testKey' }]}>
           <SignUpForm {...testProps} onError={false} isFetching />
         </MemoryRouter>,
       );
-      // expect(shallowToJSON(tree)).toMatchSnapshot();
+      expect(shallowToJSON(tree)).toMatchSnapshot();
     });
     it('Should show the error message when request fails', () => {
       const tree = shallow(
-        <MemoryRouter>
+        <MemoryRouter initialEntries={[{ pathname: '/', key: 'testKey' }]}>
           <SignUpForm {...testProps} onError isFetching={false} />
         </MemoryRouter>,
       );
-      // expect(shallowToJSON(tree)).toMatchSnapshot();
+      expect(shallowToJSON(tree)).toMatchSnapshot();
     });
   });
 });

@@ -1,12 +1,12 @@
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Footer from '../components/Footer';
+import Footer from '../../components/Footer';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('Footer', () => {
-  describe('Is Footer Rendering correctly', () => {
+describe('The Footer', () => {
+  describe('the Footer Renders correctly', () => {
     it('should render children', () => {
       const wrapper = mount(
         <Footer />,

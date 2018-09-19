@@ -258,15 +258,15 @@ exports[`The getmyArticlesPage view The MyArticle component Should not regress 1
 <div
   className="my-article"
 >
-  <h3>
+  <h1>
     <a
       className="article-title"
-      href="/article/test-slug-001/read"
+      href="/article/test-slug-001"
       onClick={[Function]}
     >
       test title
     </a>
-  </h3>
+  </h1>
   <p>
     test description
   </p>
@@ -276,20 +276,20 @@ exports[`The getmyArticlesPage view The MyArticle component Should not regress 1
     >
       <small>
         Created:
-         
         Wed Sep 12 2018
       </small>
     </span>
     <span
       className="ml-5"
     >
-      <button
-        className="btn btn-primary"
-        disabled={false}
-        type="button"
+      <a
+        className="btn btn-primary link"
+        href="article/test-slug-001/edit"
+        onClick={[Function]}
+        onKeyDown={[Function]}
       >
         Edit
-      </button>
+      </a>
       <button
         className="btn btn-danger ml-2"
         data-target="#confirmDeleteModal"
@@ -349,15 +349,15 @@ exports[`The getmyArticlesPage view The MyArticleList component Should render al
 <div
   className="my-article"
 >
-  <h3>
+  <h1>
     <a
       className="article-title"
-      href="/article/lennys-first-article-1-29b5102ef9a84eb9bfbf60da42f63122/read"
+      href="/article/lennys-first-article-1-29b5102ef9a84eb9bfbf60da42f63122"
       onClick={[Function]}
     >
       Lenny's First Article 1
     </a>
-  </h3>
+  </h1>
   <p>
     This is my first article and I don't know what's going on...
   </p>
@@ -367,20 +367,20 @@ exports[`The getmyArticlesPage view The MyArticleList component Should render al
     >
       <small>
         Created:
-         
         Wed Sep 12 2018
       </small>
     </span>
     <span
       className="ml-5"
     >
-      <button
-        className="btn btn-primary"
-        disabled={false}
-        type="button"
+      <a
+        className="btn btn-primary link"
+        href="article/lennys-first-article-1-29b5102ef9a84eb9bfbf60da42f63122/edit"
+        onClick={[Function]}
+        onKeyDown={[Function]}
       >
         Edit
-      </button>
+      </a>
       <button
         className="btn btn-danger ml-2"
         data-target="#confirmDeleteModal"

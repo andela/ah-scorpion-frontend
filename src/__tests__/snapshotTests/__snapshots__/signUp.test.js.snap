@@ -105,10 +105,9 @@ exports[`The signUp view The SignUpForm component Should initially render withou
       "entries": Array [
         Object {
           "hash": "",
-          "key": "s2f56i",
+          "key": "testKey",
           "pathname": "/",
           "search": "",
-          "state": undefined,
         },
       ],
       "go": [Function],
@@ -119,10 +118,9 @@ exports[`The signUp view The SignUpForm component Should initially render withou
       "listen": [Function],
       "location": Object {
         "hash": "",
-        "key": "s2f56i",
+        "key": "testKey",
         "pathname": "/",
         "search": "",
-        "state": undefined,
       },
       "push": [Function],
       "replace": [Function],
@@ -155,10 +153,9 @@ exports[`The signUp view The SignUpForm component Should show loading status whe
       "entries": Array [
         Object {
           "hash": "",
-          "key": "1dk8jc",
+          "key": "testKey",
           "pathname": "/",
           "search": "",
-          "state": undefined,
         },
       ],
       "go": [Function],
@@ -169,10 +166,9 @@ exports[`The signUp view The SignUpForm component Should show loading status whe
       "listen": [Function],
       "location": Object {
         "hash": "",
-        "key": "1dk8jc",
+        "key": "testKey",
         "pathname": "/",
         "search": "",
-        "state": undefined,
       },
       "push": [Function],
       "replace": [Function],
@@ -205,10 +201,9 @@ exports[`The signUp view The SignUpForm component Should show the error message 
       "entries": Array [
         Object {
           "hash": "",
-          "key": "6azv8u",
+          "key": "testKey",
           "pathname": "/",
           "search": "",
-          "state": undefined,
         },
       ],
       "go": [Function],
@@ -219,10 +214,9 @@ exports[`The signUp view The SignUpForm component Should show the error message 
       "listen": [Function],
       "location": Object {
         "hash": "",
-        "key": "6azv8u",
+        "key": "testKey",
         "pathname": "/",
         "search": "",
-        "state": undefined,
       },
       "push": [Function],
       "replace": [Function],

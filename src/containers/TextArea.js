@@ -193,8 +193,6 @@ class TextArea extends Component {
   };
 
   renderForm = () => {
-    console.log(this.props.errors);
-
     return (
       <div className="bg-light">
         <div className="container-contact2">

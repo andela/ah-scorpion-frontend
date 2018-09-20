@@ -13,54 +13,50 @@ class Favourite extends Component {
   }
 
   onUpdateFavourite() {
-    this.props.onUpdateFavourite(this.props.slug);
+    const { onUpdateFavourite, slug } = this.props;
+    onUpdateFavourite(slug);
   }
 
   getCurrentUser() {
-    this.props.getCurrentUser(this.props.articleId);
+    const { getCurrentUser, articleId } = this.props;
+    getCurrentUser(articleId);
   }
 
   componentDidMount = () => {
-    this.setState({ slug: this.props.slug });
-  }
+    const { slug } = this.props;
+    this.setState({ slug });
+  };
 
   render() {
+    const { favorite } = this.props;
     return (
       <div className="container fav-div" onReset={this.getCurrentUser}>
         <div className="center-item">
           <h6>Love this article?</h6>
           <button
-            disabled={this.props.favorite.loading}
+            disabled={favorite.loading}
             onClick={this.onUpdateFavourite}
             type="button"
             className="favorite-btn"
           >
-            <span
-              className={this.props.favorite.favorite ? 'favorite-icon'
-                : 'unfavorite-icon'}
-            >
-&hearts;
+            <span className={favorite.favorite ? 'favorite-icon' : 'unfavorite-icon'}>
+              &hearts;
             </span>
           </button>
           <div>
-            {this.props.favorite.favorite_failed
-              ? (
-                <p className="alert alert-danger favorite-alert ">
-                  {this.props.favorite.message}
-                  {' '}
-                </p>
-              )
-              : null}
+            {favorite.favorite_failed ? (
+              <p className="alert alert-danger favorite-alert ">
+                {favorite.message}
+                {' '}
+              </p>
+            ) : null}
 
-            {!this.props.favorite.favorite_failed
-            && this.props.favorite.message !== null
-              ? (
-                <p className="alert alert-success favorite-alert">
-                  {this.props.favorite.message}
-                  {' '}
-                </p>
-              )
-              : null}
+            {!favorite.favorite_failed && favorite.message !== null ? (
+              <p className="alert alert-success favorite-alert">
+                {favorite.message}
+                {' '}
+              </p>
+            ) : null}
           </div>
         </div>
       </div>
@@ -80,7 +76,12 @@ const mapActionsToProps = {
 Favourite.propTypes = {
   slug: PropTypes.string.isRequired,
   articleId: PropTypes.number.isRequired,
+  onUpdateFavourite: PropTypes.func.isRequired,
+  getCurrentUser: PropTypes.func.isRequired,
+  favorite: PropTypes.shape().isRequired,
 };
 
-
-export default connect(mapStateToProps, mapActionsToProps)(Favourite);
+export default connect(
+  mapStateToProps,
+  mapActionsToProps,
+)(Favourite);

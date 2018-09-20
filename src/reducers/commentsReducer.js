@@ -1,12 +1,13 @@
 import {
-  COMMENT_DISLIKED,
-  COMMENT_LIKED,
+  COMMENTS_LOADED,
+  COMMENTS_LOADING,
   COMMENTS_FETCHED,
 } from '../actions/types';
 
 const initialState = {
   comments: [],
   has_comments: false,
+  comments_loading: false,
 };
 
 export default function commentsReducer(state = initialState, { type, payload }) {
@@ -28,12 +29,16 @@ export default function commentsReducer(state = initialState, { type, payload })
         hasComments,
         comments: hasComments ? comments : [],
       };
-    case COMMENT_LIKED:
-      console.log('Like: Payload = ', payload)
-      return state;
-    case COMMENT_DISLIKED:
-      console.log('Dislike: Payload = ', payload)
-      return state;
+    case COMMENTS_LOADING:
+      return {
+        ...state,
+        comments_loading: true,
+      };
+    case COMMENTS_LOADED:
+      return {
+        ...state,
+        comments_loading: false,
+      };
     default:
       return state;
   }

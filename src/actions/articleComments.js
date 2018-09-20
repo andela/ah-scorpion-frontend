@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { COMMENTS_FETCHED } from './types';
+import { COMMENTS_FETCHED, COMMENTS_LOADED, COMMENTS_LOADING } from './types';
 import { userNotLoggedIn } from './currentUser';
 
 
@@ -8,8 +8,16 @@ export const commentsFetched = message => ({
   payload: message,
 });
 
+const commentsLoaded = () => ({
+  type: COMMENTS_LOADED,
+});
 
-export default function articleComments(slug) {
+const commentsLoading = () => ({
+  type: COMMENTS_LOADING,
+});
+
+export const articleComments = (slug) => {
+  commentsLoading();
   axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
   const apiUrl = process.env.REACT_APP_API_URL;
   const favoriteUrl = `${apiUrl}/api/v1/articles/${slug}/comments/`;
@@ -21,4 +29,8 @@ export default function articleComments(slug) {
         : null))
       .catch(dispatch(userNotLoggedIn()));
   };
-}
+};
+
+export const commentsShown = () => (dispatch) => {
+  dispatch(commentsLoaded());
+};

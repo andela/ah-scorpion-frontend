@@ -1,5 +1,5 @@
 import axios from 'axios';
-import articleComments from './articleComments';
+import { articleComments } from './articleComments';
 
 export default function dislikeComments(slug, commentId) {
   axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;

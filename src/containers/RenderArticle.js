@@ -32,7 +32,6 @@ import Favourite from '../components/Favourite';
 import editorStyles from '../editorStyles.css';
 import Rating from '../components/Rating';
 import RenderComments from '../components/RenderComments';
-import articleComments from '../actions/articleComments';
 import currentUser from '../actions/currentUser';
 
 const focusPlugin = createFocusPlugin();

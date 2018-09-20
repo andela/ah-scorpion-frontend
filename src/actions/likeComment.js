@@ -1,12 +1,5 @@
 import axios from 'axios';
-import { COMMENT_LIKED } from './types';
-import articleComments from './articleComments';
-
-
-export const commentLiked = comment => ({
-  type: COMMENT_LIKED,
-  payload: comment,
-});
+import { articleComments } from './articleComments';
 
 
 export default function likeComments(slug, commentId) {

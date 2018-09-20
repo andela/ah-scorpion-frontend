@@ -4,7 +4,7 @@ class ReadTime extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      readTime: 2,
+      readTime: 1,
     };
   }
 
@@ -15,7 +15,7 @@ class ReadTime extends Component {
   }
 
   setReadingTime(body) {
-    const text = body.map((obj) => obj.text);
+    const text = body.map(obj => obj.text);
     const words = text.join(' ');
     this.countWords(words);
   }
@@ -26,7 +26,7 @@ class ReadTime extends Component {
     const readTime = time <= 0 ? 1 : time;
 
     this.setState({
-      readTime: readTime,
+      readTime,
     });
   }
 
@@ -34,7 +34,11 @@ class ReadTime extends Component {
     const { readTime } = this.state;
     return (
       <div className="ml-auto">
-        <h6>{readTime} min read</h6>
+        <h6>
+          {readTime}
+          {' '}
+min read
+        </h6>
       </div>
     );
   }

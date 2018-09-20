@@ -25,6 +25,7 @@ const ArticlesList = ({ articles, fetchFailure, errorMessage }) => {
         dislikes={article.dislikes}
         image={imgBase ? imgBase.data.src : ''}
         author={article.author.username}
+        body={article.body}
       />
     );
   });

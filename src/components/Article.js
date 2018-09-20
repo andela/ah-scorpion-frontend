@@ -1,6 +1,17 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
+import ReadTime from './ReadTime';
+
+const getReadingTime = (body) => {
+  const blocks = JSON.parse(body).blocks;
+  const text = blocks.map(obj => obj.text);
+  const words = text.join(' ');
+  const wordsPerMinute = 270;
+  const time = Math.round(words.split(' ').length / wordsPerMinute);
+  const readTime = time <= 0 ? 1 : time;
+  return readTime;
+};
 
 const Article = ({
   title,
@@ -12,9 +23,10 @@ const Article = ({
   likes,
   dislikes,
   author,
+  body,
 }) => (
   <div className="col-4 p-5">
-    <div className="card img-card">
+    <div className="card img-card pb-2">
       <h5 className="card-title text-center pt-2">
         <Link to={`/article/${slug}`} className="article-title">
           {title}
@@ -39,6 +51,7 @@ const Article = ({
             {` ${new Date(createdAt).toDateString()}`}
           </small>
         </div>
+        <small className="text-muted">{getReadingTime(body)} min read</small>
       </div>
       <div className="row px-4">
         <div className="col-1 text-center">
@@ -78,6 +91,7 @@ Article.propTypes = {
   dislikes: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
+  body: PropTypes.shape().isRequired,
 };
 
 Article.defaultProps = {

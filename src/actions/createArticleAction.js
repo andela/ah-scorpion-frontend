@@ -20,7 +20,6 @@ export const articleFailure = (errors) => ({
 });
 
 const createArticleAction = (data, history) => (dispatch) => {
-  console.log(history);
   dispatch(articleFetch());
   return axios
     .post(createUrl, data, {

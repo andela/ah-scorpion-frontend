@@ -14,11 +14,13 @@ import TextArea from './containers/TextArea';
 import RenderArticle from './containers/RenderArticle';
 import MyArticlesPage from './containers/MyArticlesPage';
 import EditMyArticle from './containers/EditMyArticle';
+import PaginationPage from './containers/PaginationPage';
 
 const App = () => (
   <BrowserRouter>
     <Switch>
       <Route path="/" exact render={(props) => <Homepage {...props} />} />
+      <Route path="/pagination" exact render={(props) => <PaginationPage {...props} />} />
       <Route path="/login" exact render={(props) => <Login {...props} />} />
       <Route path="/signup" exact render={(props) => <SignUp {...props} />} />
       <Route path="/reset" exact render={(props) => <ResetForm {...props} />} />

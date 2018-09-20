@@ -15,7 +15,7 @@ const MyArticle = ({
 }) => (
   <div className="my-article">
     <h1>
-      <Link to={`./article/${slug}`} className="article-title">
+      <Link to={`/article/${slug}`} className="article-title">
         {title}
       </Link>
     </h1>

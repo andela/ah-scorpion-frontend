@@ -428,6 +428,7 @@ button:hover {
 
 .comment-table li ul {
   font-size: 12px;
+  width: 100%;
 }
 
 .comment-option{
@@ -474,6 +475,13 @@ button:hover {
   font-size: 2em;
   font-family: cursive;
   text-align: center;
+}
+
+.comment-loader{
+  font-size: 1.2em;
+  font-weight: bold;
+  font-style: oblique;
+  font-family: cursive;
 }
 
 

@@ -9,7 +9,10 @@ import deleteComment from '../actions/deleteComment';
 class Comment extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      showDelete: false,
+    };
+
     this.handleLike = this.handleLike.bind(this);
     this.handleDislike = this.handleDislike.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -51,7 +54,15 @@ class Comment extends Component {
                   <ul>
                     {localStorage.getItem('username') === this.props.user.username
                   || localStorage.getItem('username') === this.props.author.username
-                      ? <button onClick={this.handleDelete} type="button" className="comment-option">Delete</button>
+                      ? (
+                        <button
+                          onClick={this.handleDelete}
+                          type="button"
+                          className="comment-option"
+                        >
+Delete
+                        </button>
+                      )
                       : null
                   }
                   </ul>

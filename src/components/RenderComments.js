@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import articleComments from '../actions/articleComments';
 import Comment from './Comment';
+import LoadingDots from './LoadingDots';
 
 class RenderComments extends Component {
   constructor(props) {
@@ -32,6 +33,7 @@ class RenderComments extends Component {
   render() {
     return (
       <div className="container comments-section">
+        <LoadingDots />
         <h3 className="comments-title">Join the conversation. Leave a comment</h3>
         {this.props.comments.comments !== undefined
           ? this.showComments(this.props.comments.comments)

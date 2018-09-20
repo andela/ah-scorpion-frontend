@@ -187,6 +187,7 @@ class TextArea extends Component {
               <div className={editorStyles.editor} onClick={this.focus}>
                 <form className="contact2-form validate-form">
                   <Editor
+                    className="article-body"
                     editorState={editorState}
                     onChange={this.onChange}
                     plugins={plugins}
@@ -205,11 +206,11 @@ class TextArea extends Component {
                   </div>
                 </form>
                 {this.state.rendered ? (
-                    <RenderComments
-                      slug={this.props.match.params.slug}
-                      articleId={this.state.articleId}
-                      author={this.state.author}
-                    />
+                  <RenderComments
+                    slug={this.props.match.params.slug}
+                    articleId={this.state.articleId}
+                    author={this.state.author}
+                  />
                 ) : null}
               </div>
             </div>

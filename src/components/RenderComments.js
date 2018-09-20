@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import connect from 'react-redux/es/connect/connect';
+import { connect } from 'react-redux';
 import articleComments from '../actions/articleComments';
+import Comment from './Comment';
 
 class RenderComments extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class RenderComments extends Component {
     for (let i in payload) {
       const comment = payload[i];
       console.log('Comment= ', comment.comment);
-      comments.push(<div>{comment.comment}</div>);
+      comments.push(<Comment user={comment.user} comment={comment.comment} />);
     }
     return comments;
   }
@@ -29,12 +30,13 @@ class RenderComments extends Component {
   render() {
     return (
       <div className="container comments-section">
-        This is the comment section
+        Join the conversation. Leave a comment
         {console.log("Props", this.props)}
         {this.props.comments.comments !== undefined
           ? this.showComments(this.props.comments.comments)
           : null
         }
+
       </div>
     );
   }

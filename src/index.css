@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
 * {
   font-family: 'Montserrat', sans-serif;
 }
@@ -417,4 +418,51 @@ button:hover {
 .comments-section{
   margin-top: 2em;
   background-color: azure;
+}
+
+
+/*COMMENTS STYLES*/
+.comment-table{
+  font-family: 'PT Sans', sans-serif;
+}
+
+.comment-table li ul {
+  font-size: 12px;
+}
+
+.comment-option{
+  font-size: 11px;
+  text-decoration: none;
+  color: lightseagreen;
+}
+
+.avatar-col{
+  width: 5em;
+}
+
+.comment-name{
+  font-size: 12px;
+}
+
+.comment-col{
+  width: 80%;
+  font-size: 12px;
+}
+
+.options-col{
+  text-align: right;
+  padding-right: 0;
+  margin-right: 0;
+  width: 5em;
+}
+
+.comment-img{
+  padding: 0;
+  margin: 0 auto;
+  max-height: 3rem;
+  max-width: 3rem;
+}
+
+.reaction-count{
+  padding-left: 5px;
 }

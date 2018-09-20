@@ -26,6 +26,25 @@ class articleService {
       }));
   }
 
+  /** * This is the API call for getting all articles
+   * @returns an Object with the success status and article list or error message
+   * @return {Object} success: bool, errorMessage: string, articles: Array */
+  static getArticles() {
+    const errorMessage = 'We could not fetch the articles at the moment. '
+      + 'If the problem persists, please refresh the page or login again';
+
+    return axios
+      .get(articlesUrl)
+      .then(response => ({
+        success: true,
+        articles: response.data,
+      }))
+      .catch(() => ({
+        success: false,
+        errorMessage,
+      }));
+  }
+
   /** * This is the API call for getting one article
    * @returns an Object with the success status and article or error message
    * @return {Object} success: bool, errorMessage: string, article: Object */
@@ -71,8 +90,7 @@ class articleService {
    * @returns an Object with the success status and/or error message
    * @return {Object} success: bool, errorMessage: string */
   static deleteMyArticle(slug) {
-    const errorMessage = 'An error occurred while deleting your article. '
-    + 'Please refresh the page or login again.';
+    const errorMessage = 'An error occurred while deleting your article. ' + 'Please refresh the page or login again.';
 
     return axios
       .delete(`${articlesUrl}${slug}`, { headers: { Authorization: `Bearer ${getMyToken()}` } })

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import UserNavBar from '../components/UserNavBar';
 import Footer from '../components/Footer';
-import DashboardContainer from '../components/DashnoardContainer';
+import ArticlesSection from './ArticlesSection';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -12,10 +12,11 @@ class Dashboard extends Component {
   }
 
   render() {
+    const { history } = this.props;
     return (
       <div>
-        <UserNavBar history={this.props.history} />
-        <DashboardContainer />
+        <UserNavBar history={history} />
+        <ArticlesSection />
         <Footer />
       </div>
     );

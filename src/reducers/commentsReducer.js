@@ -1,4 +1,6 @@
 import {
+  COMMENT_DISLIKED,
+  COMMENT_LIKED,
   COMMENTS_FETCHED,
 } from '../actions/types';
 
@@ -16,7 +18,9 @@ export default function commentsReducer(state = initialState, { type, payload })
       const comments = [];
       for (const item in payload) {
         user = payload[item].user;
-        comment = payload[item].content;
+        comment = {
+          content: payload[item],
+        };
         comments.push({ user, comment });
       }
       return {
@@ -24,6 +28,12 @@ export default function commentsReducer(state = initialState, { type, payload })
         hasComments,
         comments: hasComments ? comments : [],
       };
+    case COMMENT_LIKED:
+      console.log('Like: Payload = ', payload)
+      return state;
+    case COMMENT_DISLIKED:
+      console.log('Dislike: Payload = ', payload)
+      return state;
     default:
       return state;
   }

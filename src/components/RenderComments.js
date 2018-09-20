@@ -12,26 +12,27 @@ class RenderComments extends Component {
 
   componentDidMount = () => {
     this.props.componentDidMount(this.props.slug);
-  }
+  };
 
 
   showComments = (payload) => {
-    console.log('we are here', payload);
     const comments = [];
-
-    for (let i in payload) {
+    for (const i in payload) {
       const comment = payload[i];
-      console.log('Comment= ', comment.comment);
-      comments.push(<Comment user={comment.user} comment={comment.comment} />);
+      comments.push(<Comment
+        user={comment.user}
+        comment={comment.comment.content}
+        author={this.props.author}
+        slug={this.props.slug}
+      />);
     }
     return comments;
-  }
+  };
 
   render() {
     return (
       <div className="container comments-section">
         Join the conversation. Leave a comment
-        {console.log("Props", this.props)}
         {this.props.comments.comments !== undefined
           ? this.showComments(this.props.comments.comments)
           : null
@@ -45,6 +46,7 @@ class RenderComments extends Component {
 RenderComments.propTypes = {
   slug: PropTypes.string.isRequired,
   articleId: PropTypes.number.isRequired,
+  author: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({

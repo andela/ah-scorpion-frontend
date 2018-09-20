@@ -464,5 +464,9 @@ button:hover {
 }
 
 .reaction-count{
-  padding-left: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
 }
+
+

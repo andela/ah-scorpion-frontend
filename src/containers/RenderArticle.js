@@ -129,6 +129,7 @@ class TextArea extends Component {
       editorState: EditorState.createEmpty(),
       rendered: false,
       articleId: 0,
+      author: {},
     };
   }
 
@@ -139,7 +140,7 @@ class TextArea extends Component {
     axios
       .get(getUrl)
       .then((res) => {
-        this.setState({ articleId: res.data.id });
+        this.setState({ articleId: res.data.id, author: res.data.author });
         const rawContent = JSON.parse(res.data.body);
         if (rawContent) {
           this.setState({
@@ -198,6 +199,7 @@ class TextArea extends Component {
                 <RenderComments
                   slug={this.props.match.params.slug}
                   articleId={this.state.articleId}
+                  author={this.state.author}
                 />
               </div>
             </div>

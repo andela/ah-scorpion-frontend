@@ -1,22 +1,18 @@
 import axios from 'axios';
-import { COMMENTS_FETCHED } from './types';
+import articleComments from './articleComments';
 
-
-export const commentsFetched = message => ({
-  type: COMMENTS_FETCHED,
-  payload: message,
-});
-
-
-export default function articleComments(slug) {
+export default function dislikeComments(slug, commentId) {
   axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
   const apiUrl = process.env.REACT_APP_API_URL;
-  const favoriteUrl = `${apiUrl}/api/v1/articles/${slug}/comments/`;
+  const likeUrl = `${apiUrl}/api/v1/articles/${slug}/comments/${commentId}/dislike/`;
   return (dispatch) => {
     axios
-      .get(favoriteUrl)
+      .put(likeUrl, {
+        slug,
+        id: commentId,
+      })
       .then(response => (response.status === 200
-        ? dispatch(commentsFetched(response.data))
+        ? dispatch(articleComments(slug))
         : null))
       .catch((error) => {
         console.log(error);

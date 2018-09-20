@@ -12,6 +12,11 @@ class Favourite extends Component {
     this.getCurrentUser = this.getCurrentUser(this);
   }
 
+  componentDidMount = () => {
+    const { slug } = this.props;
+    this.setState({ slug });
+  };
+
   onUpdateFavourite() {
     const { onUpdateFavourite, slug } = this.props;
     onUpdateFavourite(slug);
@@ -22,10 +27,6 @@ class Favourite extends Component {
     getCurrentUser(articleId);
   }
 
-  componentDidMount = () => {
-    const { slug } = this.props;
-    this.setState({ slug });
-  };
 
   render() {
     const { favorite } = this.props;

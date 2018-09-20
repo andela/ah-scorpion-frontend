@@ -1,0 +1,239 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The signUp view The ConfirmEmail component Should not regress 1`] = `
+<main
+  className="mt-2em"
+>
+  <div
+    className="container p-5 signup-container"
+  >
+    <div
+      className="alert alert-success"
+      style={
+        Object {
+          "marginTop": "30px",
+        }
+      }
+    >
+      <center>
+        <strong>
+          Success
+        </strong>
+        <br />
+        Please confirm your email address to complete the registration.
+      </center>
+    </div>
+  </div>
+</main>
+`;
+
+exports[`The signUp view The Footer component Should not regress 1`] = `
+<footer
+  className="bg-dark text-white footer"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-12 mt-3"
+    >
+      <p
+        className="text-center text-muted"
+      >
+        © Copyright 2018 Authors Haven - All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
+`;
+
+exports[`The signUp view The NavBar component Should not regress 1`] = `
+<nav
+  className="navbar navbar-expand-md bg-primary navbar-dark fixed-top"
+>
+  <div
+    className="container"
+  >
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <div
+        className="navbar-brand"
+      >
+        <b>
+          Authors Haven
+        </b>
+      </div>
+    </a>
+    <button
+      className="navbar-toggler navbar-toggler-right"
+      data-target="#navbar2SupportedContent"
+      data-toggle="collapse"
+      type="button"
+    >
+      <span
+        className="navbar-toggler-icon"
+      />
+    </button>
+    <div
+      className="collapse navbar-collapse text-center justify-content-end"
+      id="navbar2SupportedContent"
+    />
+  </div>
+</nav>
+`;
+
+exports[`The signUp view The SignUpError component Should not regress 1`] = `
+<div
+  className="alert alert-danger"
+>
+  <center>
+    An error occurred
+  </center>
+</div>
+`;
+
+exports[`The signUp view The SignUpForm component Should initially render without an error or loading status 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "testKey",
+          "pathname": "/",
+          "search": "",
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "testKey",
+        "pathname": "/",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <SignUpForm
+    errorMsg="An error occurred"
+    history={
+      Object {
+        "push": [Function],
+      }
+    }
+    isFetching={false}
+    onError={false}
+    onSubmit={[Function]}
+    verifyPassword={[Function]}
+  />
+</Router>
+`;
+
+exports[`The signUp view The SignUpForm component Should show loading status when request is pending 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "testKey",
+          "pathname": "/",
+          "search": "",
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "testKey",
+        "pathname": "/",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <SignUpForm
+    errorMsg="An error occurred"
+    history={
+      Object {
+        "push": [Function],
+      }
+    }
+    isFetching={true}
+    onError={false}
+    onSubmit={[Function]}
+    verifyPassword={[Function]}
+  />
+</Router>
+`;
+
+exports[`The signUp view The SignUpForm component Should show the error message when request fails 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "testKey",
+          "pathname": "/",
+          "search": "",
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "testKey",
+        "pathname": "/",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <SignUpForm
+    errorMsg="An error occurred"
+    history={
+      Object {
+        "push": [Function],
+      }
+    }
+    isFetching={false}
+    onError={true}
+    onSubmit={[Function]}
+    verifyPassword={[Function]}
+  />
+</Router>
+`;

@@ -1,0 +1,427 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The getmyArticlesPage view The ConfirmDeleteModal component Should initially ask for delete confirmation 1`] = `
+<div
+  className="modal fade"
+  data-backdrop="static"
+  data-keyboard="false"
+  id="confirmDeleteModal"
+  role="dialog"
+  tabIndex="-1"
+>
+  <div
+    className="modal-dialog"
+    role="document"
+  >
+    <div
+      className="modal-content"
+    >
+      <div
+        className="modal-header"
+      >
+        <h5
+          className="modal-title mx-auto"
+          id="confirmDeleteModalTilte"
+        >
+          Delete Article?
+        </h5>
+      </div>
+      <div
+        className="modal-body"
+      >
+        <p
+          className="text-center"
+        >
+          Are you sure you want to delete this Article?
+          <br />
+          This process is
+           
+          <strong
+            className="text-danger"
+          >
+            irreversible
+          </strong>
+          .
+        </p>
+      </div>
+      <div
+        className="modal-footer"
+      >
+        <button
+          className="btn btn-secondary"
+          data-dismiss="modal"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Cancel
+        </button>
+        <button
+          className="btn btn-danger"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`The getmyArticlesPage view The ConfirmDeleteModal component Should show error status when request fails 1`] = `
+<div
+  className="modal fade"
+  data-backdrop="static"
+  data-keyboard="false"
+  id="confirmDeleteModal"
+  role="dialog"
+  tabIndex="-1"
+>
+  <div
+    className="modal-dialog"
+    role="document"
+  >
+    <div
+      className="modal-content"
+    >
+      <div
+        className="modal-header"
+      >
+        <h5
+          className="modal-title mx-auto"
+          id="confirmDeleteModalTilte"
+        >
+          Delete Article?
+        </h5>
+      </div>
+      <div
+        className="modal-body"
+      >
+        <div
+          className="alert text-center alert-danger"
+        >
+          
+        </div>
+      </div>
+      <div
+        className="modal-footer"
+      >
+        <button
+          className="btn btn-secondary"
+          data-dismiss="modal"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Close
+        </button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`The getmyArticlesPage view The ConfirmDeleteModal component Should show loading status when request is pending 1`] = `
+<div
+  className="modal fade"
+  data-backdrop="static"
+  data-keyboard="false"
+  id="confirmDeleteModal"
+  role="dialog"
+  tabIndex="-1"
+>
+  <div
+    className="modal-dialog"
+    role="document"
+  >
+    <div
+      className="modal-content"
+    >
+      <div
+        className="modal-header"
+      >
+        <h5
+          className="modal-title mx-auto"
+          id="confirmDeleteModalTilte"
+        >
+          Delete Article?
+        </h5>
+      </div>
+      <img
+        alt="Loading..."
+        src={
+          Object {
+            "0": "l",
+            "1": "o",
+            "2": "a",
+            "3": "d",
+            "4": "e",
+            "5": "r",
+            "6": ".",
+            "7": "s",
+            "8": "v",
+            "9": "g",
+            "default": "loader.svg",
+          }
+        }
+        style={
+          Object {
+            "margin": "auto",
+            "width": "20%",
+          }
+        }
+      />
+      <div
+        className="modal-footer"
+      >
+        <button
+          className="btn btn-secondary"
+          data-dismiss="modal"
+          disabled={true}
+          onClick={[Function]}
+          type="button"
+        >
+          Cancel
+        </button>
+        <button
+          className="btn btn-danger"
+          disabled={true}
+          onClick={[Function]}
+          type="button"
+        >
+          Deleting...
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`The getmyArticlesPage view The ConfirmDeleteModal component Should show success status when request is successful 1`] = `
+<div
+  className="modal fade"
+  data-backdrop="static"
+  data-keyboard="false"
+  id="confirmDeleteModal"
+  role="dialog"
+  tabIndex="-1"
+>
+  <div
+    className="modal-dialog"
+    role="document"
+  >
+    <div
+      className="modal-content"
+    >
+      <div
+        className="modal-header"
+      >
+        <h5
+          className="modal-title mx-auto"
+          id="confirmDeleteModalTilte"
+        >
+          Delete Article?
+        </h5>
+      </div>
+      <div
+        className="modal-body"
+      >
+        <div
+          className="alert text-center alert-success"
+        >
+          You have successfully deleted this article
+        </div>
+      </div>
+      <div
+        className="modal-footer"
+      >
+        <button
+          className="btn btn-secondary"
+          data-dismiss="modal"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          Close
+        </button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`The getmyArticlesPage view The MyArticle component Should not regress 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "testKey",
+          "pathname": "/",
+          "search": "",
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "testKey",
+        "pathname": "/",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <MyArticle
+    averageRating={null}
+    beginDelete={[Function]}
+    createdAt="2018-09-12T18:51:24.099861Z"
+    description="test description"
+    slug="test-slug-001"
+    title="test title"
+  />
+  <ReadTime
+    text="This is a test text"
+  />
+</Router>
+`;
+
+exports[`The getmyArticlesPage view The MyArticleList component Should render all articles in case of a successful request 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "testKey",
+          "pathname": "/",
+          "search": "",
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "testKey",
+        "pathname": "/",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <MyArticlesList
+    articles={
+      Array [
+        Object {
+          "author": Object {
+            "bio": "",
+            "email": "lennykmutua@gmail.com",
+            "image": "",
+            "username": "lenny",
+          },
+          "averageRating": null,
+          "body": "Like I said... I don't know what's going on. I'm just testing Hoslack's work.",
+          "createdAt": "2018-09-12T18:51:24.099861Z",
+          "description": "This is my first article and I don't know what's going on...",
+          "dislikes": 0,
+          "favorited": 1,
+          "id": 43,
+          "images": Array [
+            "https://url-to-image",
+          ],
+          "likes": 0,
+          "ratingsCount": 0,
+          "slug": "lennys-first-article-1-29b5102ef9a84eb9bfbf60da42f63122",
+          "tagList": Array [
+            "Lenny",
+            "First",
+          ],
+          "title": "Lenny's First Article 1",
+          "updatedAt": "2018-09-12T18:51:24.100977Z",
+        },
+      ]
+    }
+    beginDelete={[Function]}
+    errorMessage=""
+    fetchFailure={false}
+  />
+</Router>
+`;
+
+exports[`The getmyArticlesPage view The MyArticleList component Should render text if user has no articles 1`] = `
+<h4>
+  You have not created any articles yet.
+</h4>
+`;
+
+exports[`The getmyArticlesPage view The MyArticleList component Should render the error message in case of failure 1`] = `
+<div
+  className="alert alert-danger text-center"
+>
+  An error occurred
+</div>
+`;
+
+exports[`The getmyArticlesPage view The ReadTime component Should not regress 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "testKey",
+          "pathname": "/",
+          "search": "",
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "testKey",
+        "pathname": "/",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <ReadTime
+    text="This is a test text"
+  />
+</Router>
+`;

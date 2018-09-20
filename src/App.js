@@ -1,13 +1,19 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Login from './containers/Login';
+import 'draft-js/dist/Draft.css';
 import './index.css';
+
 import Homepage from './containers/Homepage';
 import ResetForm from './containers/ResetPassword';
 import ConfirmPasswordForm from './containers/ConfirmPasswordForm';
 import SignUp from './containers/SignUp';
 import Dashboard from './containers/Dashboard';
+import Login from './containers/Login';
 import PrivateRoute from './routes/PrivateRoute';
+import TextArea from './containers/TextArea';
+import RenderArticle from './containers/RenderArticle';
+import MyArticlesPage from './containers/MyArticlesPage';
+import EditMyArticle from './containers/EditMyArticle';
 
 const App = () => (
   <BrowserRouter>
@@ -22,6 +28,10 @@ const App = () => (
         render={props => <ConfirmPasswordForm {...props} />}
       />
       <PrivateRoute path="/dashboard" component={Dashboard} />
+      <PrivateRoute path="/my-articles" component={MyArticlesPage} />
+      <PrivateRoute path="/article/new" exact component={TextArea} />
+      <PrivateRoute path="/article/:slug/edit" exact component={EditMyArticle} />
+      <Route path="/article/:slug" exact component={RenderArticle} />
     </Switch>
   </BrowserRouter>
 );

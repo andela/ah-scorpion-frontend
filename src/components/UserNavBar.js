@@ -14,7 +14,6 @@ class UserNavBar extends React.Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
 
-
   handleLogout = (event) => {
     event.preventDefault();
     this.props.logout(this.props.history);
@@ -40,7 +39,9 @@ class UserNavBar extends React.Component {
             id="navbar2SupportedContent"
           >
             <form className="form-inline m-0 px-5">
-              <label className="sr-only" htmlFor="article-search">Search</label>
+              <label className="sr-only" htmlFor="article-search">
+                Search
+              </label>
               <div className="input-group mb-2 mr-sm-2">
                 <div className="input-group-prepend">
                   <div className="input-group-text">
@@ -61,8 +62,11 @@ class UserNavBar extends React.Component {
                 <Link to="/dashboard">
                   <img
                     className="avatar"
-                    src={(this.imageUrl !== 'null' && this.imageUrl !== undefined)
-                      ? this.imageUrl : Avatar}
+                    src={
+                      this.imageUrl !== 'null' && this.imageUrl !== undefined
+                        ? this.imageUrl
+                        : Avatar
+                    }
                     alt={this.username}
                   />
                 </Link>
@@ -80,15 +84,25 @@ class UserNavBar extends React.Component {
                   {this.username}
                 </a>
                 <div className="dropdown-menu">
-                  <a className="dropdown-item" href="./profile.html">My Account</a>
-                  <a className="dropdown-item" href="#">Settings</a>
+                  <a className="dropdown-item" href="./profile.html">
+                    My Account
+                  </a>
+                  <a className="dropdown-item" href="/article/new">
+                    Create Article
+                  </a>
+                  <a className="dropdown-item" href="/my-articles">
+                    My Articles
+                  </a>
+                  <a className="dropdown-item" href="#">
+                    Settings
+                  </a>
                   <a
                     className="dropdown-item"
                     href="login"
                     id="logout-link"
                     onClick={this.handleLogout}
                   >
-Sign Out
+                    Sign Out
                   </a>
                 </div>
               </li>
@@ -99,7 +113,6 @@ Sign Out
     );
   }
 }
-
 
 UserNavBar.propTypes = {
   logout: PropTypes.func.isRequired,
@@ -112,4 +125,7 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logout })(UserNavBar);
+export default connect(
+  mapStateToProps,
+  { logout },
+)(UserNavBar);

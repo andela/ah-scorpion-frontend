@@ -9,6 +9,11 @@ body {
   font-size: 100%;
 }
 
+.img-card {
+  width: 286px !important;
+  height: 435px !important;
+}
+
 img.card-image-custom {
   width: 286px !important;
   height: 189.88px !important;
@@ -365,12 +370,9 @@ button:hover {
   text-align: center;
 }
 
-.reaction-row{
+.reaction-row {
   margin-top: 3em;
   vertical-align: middle;
-}
-
-.favourite-icon {
 }
 
 .center-item {
@@ -417,4 +419,11 @@ button:hover {
 .one-article-view {
   margin-top: 4em;
   margin-bottom: 4em;
+}
+
+.card-overflow {
+  white-space: nowrap;
+  width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

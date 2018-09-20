@@ -1,10 +1,13 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
+import { shallow } from 'enzyme';
+import shallowToJSON from 'enzyme-to-json';
 
 import ConfirmDeleteModal from '../../components/ConfirmDeleteModal';
 import MyArticle from '../../components/MyArticle';
 import MyArticleList from '../../components/MyArticlesList';
+import ReadTime from '../../components/ReadTime';
 
 describe('The getmyArticlesPage view', () => {
   describe('The ConfirmDeleteModal component', () => {
@@ -23,22 +26,28 @@ describe('The getmyArticlesPage view', () => {
       expect(tree.toJSON()).toMatchSnapshot();
     });
     it('Should show loading status when request is pending', () => {
-      const tree = renderer.create(<ConfirmDeleteModal {...state} isDeleting />);
+      const tree = renderer.create(
+        <ConfirmDeleteModal {...state} isDeleting />,
+      );
       expect(tree.toJSON()).toMatchSnapshot();
     });
     it('Should show success status when request is successful', () => {
-      const tree = renderer.create(<ConfirmDeleteModal {...state} deleteSuccess />);
+      const tree = renderer.create(
+        <ConfirmDeleteModal {...state} deleteSuccess />,
+      );
       expect(tree.toJSON()).toMatchSnapshot();
     });
     it('Should show error status when request fails', () => {
-      const tree = renderer.create(<ConfirmDeleteModal {...state} deleteFailure />);
+      const tree = renderer.create(
+        <ConfirmDeleteModal {...state} deleteFailure />,
+      );
       expect(tree.toJSON()).toMatchSnapshot();
     });
   });
   describe('The MyArticle component', () => {
     it('Should not regress', () => {
-      const tree = renderer.create(
-        <MemoryRouter>
+      const tree = shallow(
+        <MemoryRouter initialEntries={[{ pathname: '/', key: 'testKey' }]}>
           <MyArticle
             title="test title"
             description="test description"
@@ -46,9 +55,20 @@ describe('The getmyArticlesPage view', () => {
             slug="test-slug-001"
             beginDelete={() => 1}
           />
+          <ReadTime text="This is a test text" />
         </MemoryRouter>,
       );
-      expect(tree.toJSON()).toMatchSnapshot();
+      expect(shallowToJSON(tree)).toMatchSnapshot();
+    });
+  });
+  describe('The ReadTime component', () => {
+    it('Should not regress', () => {
+      const tree = shallow(
+        <MemoryRouter initialEntries={[{ pathname: '/', key: 'testKey' }]}>
+          <ReadTime text="This is a test text" />
+        </MemoryRouter>,
+      );
+      expect(shallowToJSON(tree)).toMatchSnapshot();
     });
   });
 
@@ -75,8 +95,10 @@ describe('The getmyArticlesPage view', () => {
         averageRating: null,
         ratingsCount: 0,
         slug: 'lennys-first-article-1-29b5102ef9a84eb9bfbf60da42f63122',
-        body: "Like I said... I don't know what's going on. I'm just testing Hoslack's work.",
-        description: "This is my first article and I don't know what's going on...",
+        body:
+          "Like I said... I don't know what's going on. I'm just testing Hoslack's work.",
+        description:
+          "This is my first article and I don't know what's going on...",
         images: ['https://url-to-image'],
         createdAt: '2018-09-12T18:51:24.099861Z',
         updatedAt: '2018-09-12T18:51:24.100977Z',
@@ -94,19 +116,23 @@ describe('The getmyArticlesPage view', () => {
     it('Should render the error message in case of failure', () => {
       const tree = renderer.create(
         <MemoryRouter>
-          <MyArticleList {...testProps} fetchFailure errorMessage="An error occurred" />
+          <MyArticleList
+            {...testProps}
+            fetchFailure
+            errorMessage="An error occurred"
+          />
         </MemoryRouter>,
       );
       expect(tree.toJSON()).toMatchSnapshot();
     });
 
     it('Should render all articles in case of a successful request', () => {
-      const tree = renderer.create(
-        <MemoryRouter>
+      const tree = shallow(
+        <MemoryRouter initialEntries={[{ pathname: '/', key: 'testKey' }]}>
           <MyArticleList {...testProps} articles={articles} />
         </MemoryRouter>,
       );
-      expect(tree.toJSON()).toMatchSnapshot();
+      expect(shallowToJSON(tree)).toMatchSnapshot();
     });
   });
 });

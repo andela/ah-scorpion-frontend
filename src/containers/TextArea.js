@@ -144,7 +144,7 @@ const initialState = {
     },
     {
       key: 'e23a8',
-      text: 'Write Your Story',
+      text: 'Write Your Story...',
       type: 'unstyled',
       depth: 0,
       inlineStyleRanges: [],
@@ -197,6 +197,17 @@ class TextArea extends Component {
       <div className="bg-light">
         <div className="container-contact2">
           <div className="wrap-contact2">
+            <div>
+              {this.props.errors ? (
+                <div
+                  className="alert alert-danger p-2 mb-3 "
+                  style={{ fontSize: '12px' }}
+                >
+                  Ensure the Article has a Title and Short Description of more
+                  than 100 characters at the start of the story.
+                </div>
+              ) : null}
+            </div>
             <div className={editorStyles.editor} onClick={this.focus}>
               <form
                 onSubmit={this.submitArticle}

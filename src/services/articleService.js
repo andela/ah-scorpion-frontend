@@ -90,7 +90,7 @@ class articleService {
    * @returns an Object with the success status and/or error message
    * @return {Object} success: bool, errorMessage: string */
   static deleteMyArticle(slug) {
-    const errorMessage = 'An error occurred while deleting your article. ' + 'Please refresh the page or login again.';
+    const errorMessage = 'An error occurred while deleting your article. Please refresh the page or login again.';
 
     return axios
       .delete(`${articlesUrl}${slug}`, { headers: { Authorization: `Bearer ${getMyToken()}` } })

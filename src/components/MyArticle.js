@@ -74,6 +74,7 @@ MyArticle.propTypes = {
   likes: PropTypes.number.isRequired,
   dislikes: PropTypes.number.isRequired,
   beginDelete: PropTypes.func.isRequired,
+  body: PropTypes.shape().isRequired,
 };
 
 MyArticle.defaultProps = {

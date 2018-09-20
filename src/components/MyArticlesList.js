@@ -16,7 +16,7 @@ const MyArticlesList = ({
     return <h4>You have not created any articles yet.</h4>;
   }
 
-  return articles.map((article) => (
+  return articles.map(article => (
     <div>
       <MyArticle
         title={article.title}

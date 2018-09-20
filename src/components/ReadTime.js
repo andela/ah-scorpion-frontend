@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class ReadTime extends Component {
   constructor(props) {
@@ -43,4 +44,9 @@ min read
     );
   }
 }
+
+ReadTime.propTypes = {
+  body: PropTypes.shape().isRequired,
+};
+
 export default ReadTime;

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReadTime from './ReadTime';
 
 const getReadingTime = (body) => {
   const blocks = JSON.parse(body).blocks;

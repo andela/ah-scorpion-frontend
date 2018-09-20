@@ -27,10 +27,13 @@ import {
 } from 'draft-js-buttons';
 import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import Favourite from '../components/Favourite';
 import editorStyles from '../editorStyles.css';
 import Rating from '../components/Rating';
 import RenderComments from '../components/RenderComments';
+import articleComments from '../actions/articleComments';
+import currentUser from '../actions/currentUser';
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
@@ -157,6 +160,11 @@ class TextArea extends Component {
       .catch((error) => {
         throw error;
       });
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.props.getCurrentUser(0);
   }
 
   onChange = (editorState) => {
@@ -196,11 +204,13 @@ class TextArea extends Component {
                     <div className="col-sm"><Rating slug={this.props.match.params.slug} /></div>
                   </div>
                 </form>
-                <RenderComments
-                  slug={this.props.match.params.slug}
-                  articleId={this.state.articleId}
-                  author={this.state.author}
-                />
+                {this.state.rendered ? (
+                    <RenderComments
+                      slug={this.props.match.params.slug}
+                      articleId={this.state.articleId}
+                      author={this.state.author}
+                    />
+                ) : null}
               </div>
             </div>
           </div>
@@ -214,4 +224,12 @@ TextArea.propTypes = {
   match: propTypes.shape({ params: propTypes.shape().isRequired }).isRequired,
 };
 
-export default TextArea;
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+const mapActionsToProps = {
+  getCurrentUser: currentUser,
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(TextArea);

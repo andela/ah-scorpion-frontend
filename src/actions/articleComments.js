@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { COMMENTS_FETCHED } from './types';
+import { userNotLoggedIn } from './currentUser';
 
 
 export const commentsFetched = message => ({
@@ -18,8 +19,6 @@ export default function articleComments(slug) {
       .then(response => (response.status === 200
         ? dispatch(commentsFetched(response.data))
         : null))
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch(dispatch(userNotLoggedIn()));
   };
 }

@@ -415,13 +415,13 @@ button:hover {
   margin-bottom: 1.5em;
 }
 
+
+/*COMMENTS STYLES*/
+
 .comments-section{
-  margin-top: 2em;
   background-color: azure;
 }
 
-
-/*COMMENTS STYLES*/
 .comment-table{
   font-family: 'PT Sans', sans-serif;
 }
@@ -467,6 +467,13 @@ button:hover {
   border-radius: 5px;
   font-size: 12px;
   font-weight: 600;
+}
+
+.comments-title{
+  margin-top: 2em;
+  font-size: 2em;
+  font-family: cursive;
+  text-align: center;
 }
 
 

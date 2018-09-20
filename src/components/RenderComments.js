@@ -32,7 +32,7 @@ class RenderComments extends Component {
   render() {
     return (
       <div className="container comments-section">
-        Join the conversation. Leave a comment
+        <h3 className="comments-title">Join the conversation. Leave a comment</h3>
         {this.props.comments.comments !== undefined
           ? this.showComments(this.props.comments.comments)
           : null

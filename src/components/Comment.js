@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import connect from 'react-redux/es/connect/connect';
+import { connect } from 'react-redux';
 import avatar from '../assets/images/avatar.png';
 import likeComment from '../actions/likeComment';
 import dislikeComment from '../actions/dislikeComment';
+import deleteComment from '../actions/deleteComment';
 
 class Comment extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class Comment extends Component {
     this.state = {};
     this.handleLike = this.handleLike.bind(this);
     this.handleDislike = this.handleDislike.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleLike() {
@@ -19,6 +21,10 @@ class Comment extends Component {
 
   handleDislike() {
     this.props.handleDislike(this.props.slug, this.props.comment.id);
+  }
+
+  handleDelete() {
+    this.props.handleDelete(this.props.slug, this.props.comment.id);
   }
 
 
@@ -45,7 +51,7 @@ class Comment extends Component {
                   <ul>
                     {localStorage.getItem('username') === this.props.user.username
                   || localStorage.getItem('username') === this.props.author.username
-                      ? <button type="button" className="comment-option">Delete</button>
+                      ? <button onClick={this.handleDelete} type="button" className="comment-option">Delete</button>
                       : null
                   }
                   </ul>
@@ -109,6 +115,7 @@ const mapStateToProps = state => ({
 const mapActionsToProps = {
   handleLike: likeComment,
   handleDislike: dislikeComment,
+  handleDelete: deleteComment,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(Comment);

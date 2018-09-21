@@ -535,3 +535,7 @@ button:hover {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.comment-delete-popover{
+    opacity: 1;
+}

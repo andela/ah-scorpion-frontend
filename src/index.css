@@ -481,9 +481,10 @@ button:hover {
 }
 
 .comments-title {
-    margin-top: 2em;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
     font-size: 1.3em;
-    font-family: cursive;
+    font-family: 'Montserrat', sans-serif;
     text-align: center;
 }
 

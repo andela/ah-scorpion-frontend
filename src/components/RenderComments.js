@@ -19,12 +19,9 @@ class RenderComments extends Component {
     this.props.componentDidMount(this.props.slug);
   };
 
-  handleCommentsShown() {
-    this.props.handleCommentsShown();
-  }
-
   showComments = (payload) => {
     const comments = [];
+    if (payload === [] || payload === undefined || payload === null) return null;
     if (localStorage.getItem('token') === undefined || localStorage.getItem('token') === null) {
       comments.push(<h4 className="comments-title">Login to join the conversation</h4>);
     } else {
@@ -32,8 +29,9 @@ class RenderComments extends Component {
     }
     comments.push(<CommentBox slug={this.props.slug} />);
     comments.push(<br />);
+    let x = 0;
     if (payload.length < 1) {
-      comments.push(<h3 className="comments-title">No comments yet. Be first to comment</h3>);
+      comments.push(<LoadingDots />);
     } else {
       for (const i in payload) {
         const comment = payload[i];
@@ -43,7 +41,11 @@ class RenderComments extends Component {
           author={this.props.author}
           slug={this.props.slug}
         />);
+        x++;
       }
+    }
+    if (x < 1) {
+      comments.push(<h3 className="comments-title">No comments yet. Be first to comment</h3>);
     }
     // this.handleCommentsShown();
     return comments;

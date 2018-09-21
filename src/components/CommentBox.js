@@ -18,13 +18,13 @@ class CommentBox extends Component {
 
   handlePost(event) {
     event.preventDefault();
+    const commentText = this.refs.commentText;
     if (this.props.replying) {
       this.props.handlePost(this.props.slug, this.state.value, this.props.parentId);
+      this.props.closeReply();
     } else {
       this.props.handlePost(this.props.slug, this.state.value, 0);
     }
-    this.props.closeReply();
-    const commentText = this.refs.commentText;
     commentText.value = '';
   }
 

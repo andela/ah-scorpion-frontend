@@ -70,7 +70,7 @@ class Comment extends Component {
                 <span className="time-label">
 Posted at
                   {' '}
-                  {new Date(this.props.comment.createdAt).toLocaleDateString()}
+                  {new Date(this.props.comment.createdAt).toLocaleString()}
                 </span>
               </td>
               <td rowSpan="3" className="options-col">

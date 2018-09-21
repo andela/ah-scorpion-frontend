@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import avatar from '../assets/images/avatar.png';
+import avatar from '../assets/images/user_avatar.png';
 import likeComment from '../actions/likeComment';
 import dislikeComment from '../actions/dislikeComment';
 import deleteComment from '../actions/deleteComment';
@@ -49,12 +49,22 @@ class Comment extends Component {
           <tbody>
             <tr>
               <td rowSpan="2" className="avatar-col">
-                <img src={avatar} alt="X" className="img img-rounded comment-img" />
+                {console.log('image: ', this.props.user.image)}
+                <img
+                  src={this.props.user.image === undefined
+                || this.props.user.image === null
+                || this.props.user.image === 'null'
+                  || this.props.user.image === '' ? avatar : this.props.user.image}
+                  alt="X"
+                  className="img img-rounded comment-img"
+                />
               </td>
               <td className="comment-name">
                 {this.props.user.username}
+                {console.log(this.props.user.image)}
                 <span className="time-label">
-Posted at {' '}
+Posted at
+                  {' '}
                   {new Date(this.props.comment.createdAt).toLocaleDateString()}
                 </span>
               </td>

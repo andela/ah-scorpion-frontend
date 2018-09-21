@@ -429,6 +429,10 @@ button:hover {
     font-family: 'PT Sans', sans-serif;
 }
 
+.comment-table tr td{
+    padding-top: 0.6em;
+}
+
 .comment-table li ul {
     font-size: 12px;
     width: 100%;

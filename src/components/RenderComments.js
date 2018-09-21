@@ -21,31 +21,29 @@ class RenderComments extends Component {
 
   showComments = (payload) => {
     const comments = [];
-    if (payload === [] || payload === undefined || payload === null) return null;
-    if (localStorage.getItem('token') === undefined || localStorage.getItem('token') === null) {
-      comments.push(<h4 className="comments-title">Login to join the conversation</h4>);
-    } else {
-      comments.push(<h3 className="comments-title">Join the conversation. Leave a comment</h3>);
-    }
-    comments.push(<CommentBox slug={this.props.slug} />);
-    comments.push(<br />);
-    let x = 0;
-    if (payload.length < 1) {
-      comments.push(<LoadingDots />);
-    } else {
-      for (const i in payload) {
-        const comment = payload[i];
-        comments.push(<Comment
-          user={comment.user}
-          comment={comment.comment.content}
-          author={this.props.author}
-          slug={this.props.slug}
-        />);
-        x++;
+    if (this.props.comments.comments_loaded) {
+      console.log("Ssee this???");
+      if (this.props.comments.comment_count < 1) {
+        comments.push(<h3 className="comments-title">No comments yet. Be first to comment</h3>);
+      } else {
+        if (payload === [] || payload === undefined || payload === null) return null;
+        if (localStorage.getItem('token') === undefined || localStorage.getItem('token') === null) {
+          comments.push(<h4 className="comments-title">Login to join the conversation</h4>);
+        } else {
+          comments.push(<h3 className="comments-title">Join the conversation. Leave a comment</h3>);
+        }
+        comments.push(<CommentBox slug={this.props.slug} />);
+        comments.push(<br />);
+        for (const i in payload) {
+          const comment = payload[i];
+          comments.push(<Comment
+            user={comment.user}
+            comment={comment.comment.content}
+            author={this.props.author}
+            slug={this.props.slug}
+          />);
+        }
       }
-    }
-    if (x < 1) {
-      comments.push(<h3 className="comments-title">No comments yet. Be first to comment</h3>);
     }
     // this.handleCommentsShown();
     return comments;
@@ -54,7 +52,13 @@ class RenderComments extends Component {
   render() {
     return (
       <div className="container comments-section">
-        {this.props.comments.comments_loading ? <LoadingDots /> : null}
+        {!this.props.comments.comments_loaded ? (
+          <div>
+            {' '}
+            <br />
+            <LoadingDots />
+          </div>
+        ) : null}
         {this.props.comments.comments !== undefined
           ? this.showComments(this.props.comments.comments)
           : <h4>Login to join the conversation</h4>

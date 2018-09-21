@@ -423,6 +423,8 @@ button:hover {
 
 .comments-section {
     background-color: azure;
+    margin-top: 1em;
+    padding: 0.5em 2em 2em 2em;
 }
 
 .comment-table {

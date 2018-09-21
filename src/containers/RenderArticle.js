@@ -226,6 +226,7 @@ TextArea.propTypes = {
 
 const mapStateToProps = state => ({
   user: state.user,
+  comments: state.comments,
 });
 
 const mapActionsToProps = {

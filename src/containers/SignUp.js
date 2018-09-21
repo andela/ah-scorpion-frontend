@@ -28,6 +28,7 @@ const SignUp = ({
   return (
     <React.Fragment>
       <NavBar />
+      <br />
       {success ? (
         <ConfirmEmail />
       ) : (

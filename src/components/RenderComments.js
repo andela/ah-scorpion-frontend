@@ -55,7 +55,7 @@ class RenderComments extends Component {
           <div>
             {' '}
             <br />
-            <LoadingDots />
+            <LoadingDots text="Loading comments" />
           </div>
         ) : null}
         {this.props.comments.comments !== undefined

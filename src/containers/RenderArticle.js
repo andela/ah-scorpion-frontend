@@ -33,6 +33,7 @@ import editorStyles from '../editorStyles.css';
 import Rating from '../components/Rating';
 import RenderComments from '../components/RenderComments';
 import currentUser from '../actions/currentUser';
+import LoadingDots from '../components/LoadingDots';
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
@@ -211,6 +212,17 @@ class TextArea extends Component {
                     author={this.state.author}
                   />
                 ) : null}
+                {this.props.comments.posting_comment
+                  ? (
+                    <div style={{
+                      backgroundColor: 'azure',
+                      textAlign: 'center',
+                      marginLeft: 'auto',
+                    }}
+                    >
+                      <LoadingDots text="Refreshing comments" />
+                    </div>
+                  ) : null}
               </div>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled, { keyframes } from 'styled-components';
+import * as PropType from 'prop-types';
 
 const BounceAnimation = keyframes`
   0% { margin-bottom: 0; }
@@ -28,7 +29,10 @@ class LoadingDots extends Component {
   render() {
     return (
       <DotWrapper>
-        <span className="comment-loader">Loading Comments</span>
+        <span className="comment-loader">
+          {this.props.text !== undefined
+            ? this.props.text : 'Loading Comments'}
+        </span>
         <Dot delay="0s" />
         <Dot delay=".1s" />
         <Dot delay=".2s" />
@@ -36,5 +40,9 @@ class LoadingDots extends Component {
     );
   }
 }
+
+LoadingDots.propTypes = {
+  text: PropType.string.isRequired,
+};
 
 export default LoadingDots;

@@ -6,6 +6,7 @@ import likeComment from '../actions/likeComment';
 import dislikeComment from '../actions/dislikeComment';
 import deleteComment from '../actions/deleteComment';
 import CommentBox from './CommentBox';
+import LoadingDots from './LoadingDots';
 
 class Comment extends Component {
   constructor(props) {

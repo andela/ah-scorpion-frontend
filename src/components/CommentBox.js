@@ -51,6 +51,7 @@ class CommentBox extends Component {
               className="form-control rounded-0 comment-text"
               id="exampleFormControlTextarea2"
               rows="3"
+              placeholder={this.props.editing ? 'Enter your reply' : 'Enter your comment'}
               style={{ height: this.props.editing ? 40 : 100 }}
             />
             <input
@@ -58,7 +59,8 @@ class CommentBox extends Component {
               onClick={this.handlePost}
               type="submit"
               className="btn btn-primary comment-btn"
-              value={this.props.comments.posting_comment ? 'Posting Comment' : 'Post Comment'}
+              value={this.props.comments.posting_comment ? this.props.editing ? 'Posting Reply'
+                : 'Posting Comment' : this.props.editing ? 'Post Reply' : 'Post Comment'}
               style={{
                 padding: this.props.editing ? 4 : 7,
                 fontSize: this.props.editing ? 13 : 16,

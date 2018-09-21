@@ -446,6 +446,7 @@ button:hover {
 
 .comment-name {
     font-size: 14px;
+    font-weight: bold !important;
 }
 
 .comment-col {
@@ -507,3 +508,9 @@ button:hover {
     margin-top: 1em;
 }
 
+.time-label{
+    float: right;
+    text-align: right;
+    color: grey;
+    font-style: italic;
+}

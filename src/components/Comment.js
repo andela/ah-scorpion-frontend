@@ -37,6 +37,10 @@ class Comment extends Component {
     this.setState({ replying: !this.state.replying });
   }
 
+  formatTime(time, prefix = '') {
+    return typeof time === 'object' ? prefix + time.toLocaleDateString() : '';
+  }
+
 
   render() {
     return (
@@ -49,6 +53,10 @@ class Comment extends Component {
               </td>
               <td className="comment-name">
                 {this.props.user.username}
+                <span className="time-label">
+Posted at {' '}
+                  {new Date(this.props.comment.createdAt).toLocaleDateString()}
+                </span>
               </td>
               <td rowSpan="3" className="options-col">
                 <li>

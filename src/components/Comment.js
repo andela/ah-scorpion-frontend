@@ -5,17 +5,20 @@ import avatar from '../assets/images/avatar.png';
 import likeComment from '../actions/likeComment';
 import dislikeComment from '../actions/dislikeComment';
 import deleteComment from '../actions/deleteComment';
+import CommentBox from './CommentBox';
 
 class Comment extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showDelete: false,
+      replying: false,
     };
 
     this.handleLike = this.handleLike.bind(this);
     this.handleDislike = this.handleDislike.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleReply = this.handleReply.bind(this);
   }
 
   handleLike() {
@@ -30,87 +33,109 @@ class Comment extends Component {
     this.props.handleDelete(this.props.slug, this.props.comment.id);
   }
 
+  handleReply() {
+    this.setState({ replying: !this.state.replying });
+  }
+
 
   render() {
     return (
       <React.Fragment>
         <table className="comment-table">
           <tbody>
-          <tr>
-            <td rowSpan="2" className="avatar-col">
-              <img src={avatar} alt="X" className="img img-rounded comment-img"/>
-            </td>
-            <td className="comment-name">
-              {this.props.user.username}
-            </td>
-            <td rowSpan="3" className="options-col">
-              <li>
-                <ul>
-                  {localStorage.getItem('username') === this.props.user.username
-                    ? <button type="button" className="comment-option">Edit</button>
-                    : null
+            <tr>
+              <td rowSpan="2" className="avatar-col">
+                <img src={avatar} alt="X" className="img img-rounded comment-img" />
+              </td>
+              <td className="comment-name">
+                {this.props.user.username}
+              </td>
+              <td rowSpan="3" className="options-col">
+                <li>
+                  <ul>
+                    {localStorage.getItem('username') === this.props.user.username
+                      ? <button type="button" className="comment-option">Edit</button>
+                      : null
                   }
-                </ul>
-                <ul>
-                  {localStorage.getItem('username') === this.props.user.username
+                  </ul>
+                  <ul>
+                    {localStorage.getItem('username') === this.props.user.username
                   || localStorage.getItem('username') === this.props.author.username
-                    ? (
-                      <button
-                        onClick={this.handleDelete}
-                        type="button"
-                        className="comment-option"
-                      >
+                      ? (
+                        <button
+                          onClick={this.handleDelete}
+                          type="button"
+                          className="comment-option"
+                        >
                         Delete
-                      </button>
-                    )
-                    : null
+                        </button>
+                      )
+                      : null
                   }
-                </ul>
-                <ul>
-                  <button type="button" className="comment-option">Reply</button>
-                </ul>
-              </li>
-            </td>
-          </tr>
-          <tr>
-            <td className="comment-col">
-              {this.props.comment.content}
-            </td>
-          </tr>
-          <tr>
-            <td colSpan="2">
-              <button
-                onClick={this.handleLike}
-                type="button"
-                className="reaction-button like-button"
-              >
+                  </ul>
+                  <ul>
+                    <button
+                      onClick={this.handleReply}
+                      type="button"
+                      className="comment-option"
+                    >
+                    Reply
+                    </button>
+                  </ul>
+                </li>
+              </td>
+            </tr>
+            <tr>
+              <td className="comment-col">
+                {this.props.comment.content}
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="2">
+                <button
+                  onClick={this.handleLike}
+                  type="button"
+                  className="reaction-button like-button"
+                >
                   <span
                     className="reaction-count"
                   >
 &#128077;
-                    {this.props.comment.likes}
+                    <span style={{ marginLeft: 3 }}>{this.props.comment.likes}</span>
                   </span>
-              </button>
-              <button
-                onClick={this.handleDislike}
-                type="button"
-                className="reaction-button dilike-button"
-              >
+                </button>
+                <button
+                  onClick={this.handleDislike}
+                  type="button"
+                  className="reaction-button dilike-button"
+                >
                   <span
                     className="reaction-count"
                   >
                   &#128078;
-                    {this.props.comment.dislikes}
+                    <span style={{ marginLeft: 3 }}>
+                      {' '}
+                      {this.props.comment.dislikes}
+                    </span>
                   </span>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td/>
-            <td bgcolor="green" colSpan="2">
-              This is where the edit box will go
-            </td>
-          </tr>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td />
+              <td colSpan="2">
+                {this.state.replying
+                  ? (
+                    <CommentBox
+                      editing
+                      slug={this.props.slug}
+                      parentId={this.props.comment.id}
+                      closeReply={this.handleReply}
+                    />
+                  )
+                  : null}
+              </td>
+            </tr>
           </tbody>
         </table>
       </React.Fragment>

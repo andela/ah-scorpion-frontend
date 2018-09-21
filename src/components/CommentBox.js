@@ -10,7 +10,6 @@ class CommentBox extends Component {
     this.state = {
       value: null,
       hasText: false,
-      wasCleared: false,
     };
     this.handlePost = this.handlePost.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -18,7 +17,13 @@ class CommentBox extends Component {
 
   handlePost(event) {
     event.preventDefault();
-    this.props.handlePost(this.props.slug, this.state.value);
+    if (this.props.editing) {
+      console.log('slug: ', this.props.slug, 'parent ', this.props.parentId, 'value ', this.state.value);
+      this.props.handlePost(this.props.slug, this.state.value, this.props.parentId);
+      this.props.closeReply();
+    } else {
+      this.props.handlePost(this.props.slug, this.state.value, 0);
+    }
 
     const commentText = this.refs.commentText;
     commentText.value = '';
@@ -46,6 +51,7 @@ class CommentBox extends Component {
               className="form-control rounded-0 comment-text"
               id="exampleFormControlTextarea2"
               rows="3"
+              style={{ height: this.props.editing ? 40 : 100 }}
             />
             <input
               disabled={!this.state.hasText || this.props.comments.posting_comment}
@@ -53,6 +59,10 @@ class CommentBox extends Component {
               type="submit"
               className="btn btn-primary comment-btn"
               value={this.props.comments.posting_comment ? 'Posting Comment' : 'Post Comment'}
+              style={{
+                padding: this.props.editing ? 4 : 7,
+                fontSize: this.props.editing ? 13 : 16,
+              }}
             />
           </form>
         </div>
@@ -66,6 +76,7 @@ CommentBox.propTypes = {
   commentId: PropTypes.number.isRequired,
   parentId: PropTypes.number.isRequired,
   editing: PropTypes.bool.isRequired,
+  closeReply: PropTypes.func.isRequired,
   commentBody: PropTypes.string,
 };
 

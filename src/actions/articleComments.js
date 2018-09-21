@@ -45,10 +45,15 @@ export const commentsShown = () => (dispatch) => {
   dispatch(commentsLoaded());
 };
 
-export const addComment = (slug, content) => {
+export const addComment = (slug, content, parent) => {
   axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
   const apiUrl = process.env.REACT_APP_API_URL;
-  const likeUrl = `${apiUrl}/api/v1/articles/${slug}/comments/`;
+  let likeUrl;
+  if (parent < 1) {
+    likeUrl = `${apiUrl}/api/v1/articles/${slug}/comments/`;
+  } else {
+    likeUrl = `${apiUrl}/api/v1/articles/${slug}/comments/${parent}/`;
+  }
   return (dispatch) => {
     dispatch(postigComment());
     axios

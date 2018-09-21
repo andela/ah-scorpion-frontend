@@ -1,7 +1,9 @@
 import {
   COMMENTS_LOADED,
   COMMENTS_LOADING,
-  COMMENTS_FETCHED, POSTING_COMMENT,
+  COMMENTS_FETCHED,
+  POSTING_COMMENT,
+  COMMENT_POSTED,
 } from '../actions/types';
 
 const initialState = {
@@ -45,6 +47,11 @@ export default function commentsReducer(state = initialState, { type, payload })
       return {
         ...state,
         posting_comment: true,
+      };
+    case COMMENT_POSTED:
+      return {
+        ...state,
+        posting_comment: false,
       };
     default:
       return state;

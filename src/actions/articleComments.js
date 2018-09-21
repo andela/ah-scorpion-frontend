@@ -4,6 +4,7 @@ import {
   COMMENTS_LOADED,
   COMMENTS_LOADING,
   POSTING_COMMENT,
+  COMMENT_POSTED,
 } from './types';
 import { userNotLoggedIn } from './currentUser';
 
@@ -21,8 +22,12 @@ const commentsLoading = () => ({
   type: COMMENTS_LOADING,
 });
 
-const postigComment = () => ({
+const postingComment = () => ({
   type: POSTING_COMMENT,
+});
+
+const postedComment = () => ({
+  type: COMMENT_POSTED,
 });
 
 
@@ -36,7 +41,7 @@ export const articleComments = (slug) => {
       .get(commentsUrl)
       .then(response => (response.status === 200
         ? dispatch(commentsFetched(response.data))
-        : null))
+        : dispatch(postedComment())))
       .catch(dispatch(userNotLoggedIn()));
   };
 };
@@ -55,16 +60,35 @@ export const addComment = (slug, content, parent) => {
     likeUrl = `${apiUrl}/api/v1/articles/${slug}/comments/${parent}/`;
   }
   return (dispatch) => {
-    dispatch(postigComment());
+    dispatch(postingComment());
     axios
       .post(likeUrl, {
         content,
       })
       .then(response => (response.status === 201
         ? dispatch(articleComments(slug))
-        : null))
+        : dispatch(postedComment())))
       .catch((error) => {
-        console.log(error);
+        dispatch(postedComment());
+      });
+  };
+};
+
+export const editComment = (slug, content, commentId) => {
+  axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
+  const apiUrl = process.env.REACT_APP_API_URL;
+  const likeUrl = `${apiUrl}/api/v1/articles/${slug}/comments/${commentId}/`;
+  return (dispatch) => {
+    dispatch(postingComment());
+    axios
+      .put(likeUrl, {
+        content,
+      })
+      .then(response => (response.status === 200
+        ? dispatch(articleComments(slug))
+        : dispatch(postedComment())))
+      .catch((error) => {
+        dispatch(postedComment());
       });
   };
 };

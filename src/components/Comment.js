@@ -13,12 +13,14 @@ class Comment extends Component {
     this.state = {
       showDelete: false,
       replying: false,
+      editing: false,
     };
 
     this.handleLike = this.handleLike.bind(this);
     this.handleDislike = this.handleDislike.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleReply = this.handleReply.bind(this);
+    this.handleEditing = this.handleEditing.bind(this);
   }
 
   handleLike() {
@@ -34,13 +36,18 @@ class Comment extends Component {
   }
 
   handleReply() {
-    this.setState({ replying: !this.state.replying });
+    this.setState({
+      replying: !this.state.replying,
+      editing: false,
+    });
   }
 
-  formatTime(time, prefix = '') {
-    return typeof time === 'object' ? prefix + time.toLocaleDateString() : '';
+  handleEditing() {
+    this.setState({
+      editing: !this.state.editing,
+      replying: false,
+    });
   }
-
 
   render() {
     return (
@@ -49,19 +56,17 @@ class Comment extends Component {
           <tbody>
             <tr>
               <td rowSpan="2" className="avatar-col">
-                {console.log('image: ', this.props.user.image)}
                 <img
                   src={this.props.user.image === undefined
                 || this.props.user.image === null
                 || this.props.user.image === 'null'
-                  || this.props.user.image === '' ? avatar : this.props.user.image}
+                || this.props.user.image === '' ? avatar : this.props.user.image}
                   alt="X"
                   className="img img-rounded comment-img"
                 />
               </td>
               <td className="comment-name">
                 {this.props.user.username}
-                {console.log(this.props.user.image)}
                 <span className="time-label">
 Posted at
                   {' '}
@@ -72,7 +77,15 @@ Posted at
                 <li>
                   <ul>
                     {localStorage.getItem('username') === this.props.user.username
-                      ? <button type="button" className="comment-option">Edit</button>
+                      ? (
+                        <button
+                          onClick={this.handleEditing}
+                          type="button"
+                          className="comment-option"
+                        >
+                        Edit
+                        </button>
+                      )
                       : null
                   }
                   </ul>
@@ -104,7 +117,9 @@ Posted at
               </td>
             </tr>
             <tr>
-              <td className="comment-col">
+              <td
+                className="comment-col"
+              >
                 {this.props.comment.content}
               </td>
             </tr>
@@ -142,13 +157,16 @@ Posted at
             <tr>
               <td />
               <td colSpan="2">
-                {this.state.replying
+                {this.state.replying || this.state.editing
                   ? (
                     <CommentBox
-                      editing
+                      editing={this.state.editing}
+                      replying={this.state.replying}
                       slug={this.props.slug}
                       parentId={this.props.comment.id}
-                      closeReply={this.handleReply}
+                      commentId={this.props.comment.id}
+                      closeReply={this.state.replying ? this.handleReply : this.handleEditing}
+                      commentBody={this.props.comment.content}
                     />
                   )
                   : null}

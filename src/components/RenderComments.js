@@ -19,6 +19,67 @@ class RenderComments extends Component {
     this.props.componentDidMount(this.props.slug);
   };
 
+
+  nestComments = (payload) => {
+    let comments = [];
+    for (const i in payload) {
+      const comment = payload[i];
+      const parent = comment.comment.content.parent;
+      const id = comment.comment.content.id;
+      if (parent === null) {
+        comments[id] = {
+          comment: comment.comment.content,
+          children: [],
+        };
+      } else {
+        const aParent = comments[parent];
+        let children = aParent.children;
+        const mainParent = aParent.comment;
+        const theChildren = children;
+        theChildren.push(comment.comment.content);
+        children = theChildren;
+        comments[id] = {
+          comment: mainParent,
+          children,
+        };
+      }
+    }
+    const commentsMap = comments;
+    comments = [];
+    for (const key in commentsMap) {
+      if (commentsMap.hasOwnProperty(key)) {
+        const object = commentsMap[key];
+        let comment = object.comment;
+        const children = object.children;
+
+        console.log('content = ', comment.content);
+
+        comments.push(<Comment
+          user={comment.user}
+          comment={comment}
+          author={this.props.author}
+          slug={this.props.slug}
+          isChild={false}
+        />);
+
+        if (object.children !== []) {
+          for (const index in children) {
+            comment = children[index];
+            comments.push(<Comment
+              user={comment.user}
+              comment={comment}
+              author={this.props.author}
+              slug={this.props.slug}
+              isChild
+            />);
+          }
+        }
+      }
+    }
+
+    return comments;
+  };
+
   showComments = (payload) => {
     const comments = [];
     if (this.props.comments.comments_loaded) {
@@ -33,20 +94,13 @@ class RenderComments extends Component {
         }
         comments.push(<CommentBox slug={this.props.slug} />);
         comments.push(<br />);
-        for (const i in payload) {
-          const comment = payload[i];
-          comments.push(<Comment
-            user={comment.user}
-            comment={comment.comment.content}
-            author={this.props.author}
-            slug={this.props.slug}
-          />);
-        }
+        return this.nestComments(payload);
       }
     }
     // this.handleCommentsShown();
     return comments;
   };
+
 
   render() {
     return (

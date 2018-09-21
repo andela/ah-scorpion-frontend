@@ -109,7 +109,7 @@ img.testimonials {
 }
 
 .list-group-item:hover {
-    background-color: whitesmoke;
+    background-color: rgb(252, 252, 252);
 }
 
 .horizontal-scroll-view {
@@ -424,9 +424,10 @@ button:hover {
 /*COMMENTS STYLES*/
 
 .comments-section {
-    background-color: azure;
+    background-color: whitesmoke;
     margin-top: 1em;
-    padding: 0.5em 2em 2em 2em;
+    padding: 0.5em 2em 2em 1em;
+    border-color: #57b846;
 }
 
 .comment-table {
@@ -472,8 +473,8 @@ button:hover {
 .comment-img {
     padding: 0;
     margin: 0 auto;
-    max-height: 3rem;
-    max-width: 3rem;
+    max-height: 2.4rem;
+    max-width: 2.4rem;
     text-align: left;
 }
 
@@ -538,4 +539,13 @@ button:hover {
 
 .comment-delete-popover{
     opacity: 1;
+}
+
+.child-comment{
+    padding-left: 1.5em;
+    border-left: 1px solid lightsteelblue !important;
+}
+
+.parent-comment{
+
 }

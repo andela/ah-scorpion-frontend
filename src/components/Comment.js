@@ -36,75 +36,81 @@ class Comment extends Component {
       <React.Fragment>
         <table className="comment-table">
           <tbody>
-            <tr>
-              <td rowSpan="2" className="avatar-col">
-                <img src={avatar} alt="X" className="img img-rounded comment-img" />
-              </td>
-              <td className="comment-name">
-                {this.props.user.username}
-              </td>
-              <td rowSpan="3" className="options-col">
-                <li>
-                  <ul>
-                    {localStorage.getItem('username') === this.props.user.username
-                      ? <button type="button" className="comment-option">Edit</button>
-                      : null
+          <tr>
+            <td rowSpan="2" className="avatar-col">
+              <img src={avatar} alt="X" className="img img-rounded comment-img"/>
+            </td>
+            <td className="comment-name">
+              {this.props.user.username}
+            </td>
+            <td rowSpan="3" className="options-col">
+              <li>
+                <ul>
+                  {localStorage.getItem('username') === this.props.user.username
+                    ? <button type="button" className="comment-option">Edit</button>
+                    : null
                   }
-                  </ul>
-                  <ul>
-                    {localStorage.getItem('username') === this.props.user.username
+                </ul>
+                <ul>
+                  {localStorage.getItem('username') === this.props.user.username
                   || localStorage.getItem('username') === this.props.author.username
-                      ? (
-                        <button
-                          onClick={this.handleDelete}
-                          type="button"
-                          className="comment-option"
-                        >
-Delete
-                        </button>
-                      )
-                      : null
+                    ? (
+                      <button
+                        onClick={this.handleDelete}
+                        type="button"
+                        className="comment-option"
+                      >
+                        Delete
+                      </button>
+                    )
+                    : null
                   }
-                  </ul>
-                  <ul>
-                    <button type="button" className="comment-option">Reply</button>
-                  </ul>
-                </li>
-              </td>
-            </tr>
-            <tr>
-              <td className="comment-col">
-                {this.props.comment.content}
-              </td>
-            </tr>
-            <tr>
-              <td colSpan="2">
-                <button
-                  onClick={this.handleLike}
-                  type="button"
-                  className="reaction-button like-button"
-                >
+                </ul>
+                <ul>
+                  <button type="button" className="comment-option">Reply</button>
+                </ul>
+              </li>
+            </td>
+          </tr>
+          <tr>
+            <td className="comment-col">
+              {this.props.comment.content}
+            </td>
+          </tr>
+          <tr>
+            <td colSpan="2">
+              <button
+                onClick={this.handleLike}
+                type="button"
+                className="reaction-button like-button"
+              >
                   <span
                     className="reaction-count"
                   >
 &#128077;
                     {this.props.comment.likes}
                   </span>
-                </button>
-                <button
-                  onClick={this.handleDislike}
-                  type="button"
-                  className="reaction-button dilike-button"
-                >
+              </button>
+              <button
+                onClick={this.handleDislike}
+                type="button"
+                className="reaction-button dilike-button"
+              >
                   <span
                     className="reaction-count"
                   >
                   &#128078;
                     {this.props.comment.dislikes}
                   </span>
-                </button>
-              </td>
-            </tr>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td/>
+            <td bgcolor="green" colSpan="2">
+              This is where the edit box will go
+            </td>
+          </tr>
           </tbody>
         </table>
       </React.Fragment>

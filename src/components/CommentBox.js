@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { articleComments, commentsShown } from '../actions/articleComments';
+import { addComment } from '../actions/articleComments';
 import '../index.css';
 
 class CommentBox extends Component {
@@ -10,13 +10,18 @@ class CommentBox extends Component {
     this.state = {
       value: null,
       hasText: false,
+      wasCleared: false,
     };
     this.handlePost = this.handlePost.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handlePost() {
-    console.log('slug: ', this.props.slug);
+  handlePost(event) {
+    event.preventDefault();
+    this.props.handlePost(this.props.slug, this.state.value);
+
+    const commentText = this.refs.commentText;
+    commentText.value = '';
   }
 
   handleChange(event) {
@@ -34,20 +39,22 @@ class CommentBox extends Component {
     return (
       <div className="row">
         <div className="form-group comments-box">
-          <textarea
-            onChange={this.handleChange}
-            className="form-control rounded-0 comment-text"
-            id="exampleFormControlTextarea2"
-            rows="3"
-          />
-          <button
-            disabled={!this.state.hasText}
-            onClick={this.handlePost}
-            type="button"
-            className="btn btn-primary comment-btn"
-          >
-            Post Comment
-          </button>
+          <form>
+            <textarea
+              ref="commentText"
+              onChange={this.handleChange}
+              className="form-control rounded-0 comment-text"
+              id="exampleFormControlTextarea2"
+              rows="3"
+            />
+            <input
+              disabled={!this.state.hasText || this.props.comments.posting_comment}
+              onClick={this.handlePost}
+              type="submit"
+              className="btn btn-primary comment-btn"
+              value={this.props.comments.posting_comment ? 'Posting Comment' : 'Post Comment'}
+            />
+          </form>
         </div>
       </div>
     );
@@ -63,12 +70,11 @@ CommentBox.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  comment: state.comment,
+  comments: state.comments,
 });
 
 const mapActionsToProps = {
-  componentDidMount: articleComments,
-  handleCommentsShown: commentsShown,
+  handlePost: addComment,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(CommentBox);

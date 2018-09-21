@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { COMMENTS_FETCHED, COMMENTS_LOADED, COMMENTS_LOADING } from './types';
+import {
+  COMMENTS_FETCHED,
+  COMMENTS_LOADED,
+  COMMENTS_LOADING,
+  POSTING_COMMENT,
+} from './types';
 import { userNotLoggedIn } from './currentUser';
 
 
@@ -16,14 +21,19 @@ const commentsLoading = () => ({
   type: COMMENTS_LOADING,
 });
 
+const postigComment = () => ({
+  type: POSTING_COMMENT,
+});
+
+
 export const articleComments = (slug) => {
   commentsLoading();
   axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
   const apiUrl = process.env.REACT_APP_API_URL;
-  const favoriteUrl = `${apiUrl}/api/v1/articles/${slug}/comments/`;
+  const commentsUrl = `${apiUrl}/api/v1/articles/${slug}/comments/`;
   return (dispatch) => {
     axios
-      .get(favoriteUrl)
+      .get(commentsUrl)
       .then(response => (response.status === 200
         ? dispatch(commentsFetched(response.data))
         : null))
@@ -33,4 +43,23 @@ export const articleComments = (slug) => {
 
 export const commentsShown = () => (dispatch) => {
   dispatch(commentsLoaded());
+};
+
+export const addComment = (slug, content) => {
+  axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
+  const apiUrl = process.env.REACT_APP_API_URL;
+  const likeUrl = `${apiUrl}/api/v1/articles/${slug}/comments/`;
+  return (dispatch) => {
+    dispatch(postigComment());
+    axios
+      .post(likeUrl, {
+        content,
+      })
+      .then(response => (response.status === 201
+        ? dispatch(articleComments(slug))
+        : null))
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 };

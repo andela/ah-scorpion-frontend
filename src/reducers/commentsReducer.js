@@ -1,13 +1,14 @@
 import {
   COMMENTS_LOADED,
   COMMENTS_LOADING,
-  COMMENTS_FETCHED,
+  COMMENTS_FETCHED, POSTING_COMMENT,
 } from '../actions/types';
 
 const initialState = {
   comments: [],
   has_comments: false,
   comments_loading: false,
+  posting_comment: false,
 };
 
 export default function commentsReducer(state = initialState, { type, payload }) {
@@ -28,6 +29,7 @@ export default function commentsReducer(state = initialState, { type, payload })
         ...state,
         hasComments,
         comments: hasComments ? comments : [],
+        posting_comment: false,
       };
     case COMMENTS_LOADING:
       return {
@@ -38,6 +40,11 @@ export default function commentsReducer(state = initialState, { type, payload })
       return {
         ...state,
         comments_loading: false,
+      };
+    case POSTING_COMMENT:
+      return {
+        ...state,
+        posting_comment: true,
       };
     default:
       return state;

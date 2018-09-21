@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { OverlayTrigger, Popover } from 'react-bootstrap';
 import avatar from '../assets/images/user_avatar.png';
 import likeComment from '../actions/likeComment';
 import dislikeComment from '../actions/dislikeComment';
 import deleteComment from '../actions/deleteComment';
 import CommentBox from './CommentBox';
-import LoadingDots from './LoadingDots';
 
 class Comment extends Component {
   constructor(props) {
@@ -18,10 +18,24 @@ class Comment extends Component {
     };
 
     this.handleLike = this.handleLike.bind(this);
+
     this.handleDislike = this.handleDislike.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleReply = this.handleReply.bind(this);
     this.handleEditing = this.handleEditing.bind(this);
+
+
+    this.popoverRight = (
+      <Popover className="comment-delete-popover">
+        <button
+          type="button"
+          className="comment-option text-danger"
+          onClick={() => this.handleDelete()}
+        >
+          Confirm Delete
+        </button>
+      </Popover>
+    );
   }
 
   handleLike() {
@@ -94,13 +108,14 @@ Posted at
                     {localStorage.getItem('username') === this.props.user.username
                   || localStorage.getItem('username') === this.props.author.username
                       ? (
-                        <button
-                          onClick={this.handleDelete}
-                          type="button"
-                          className="comment-option"
-                        >
-                        Delete
-                        </button>
+                        <OverlayTrigger trigger="click" placement="right" overlay={this.popoverRight}>
+                          <button
+                            type="button"
+                            className="comment-option"
+                          >
+                            Delete
+                          </button>
+                        </OverlayTrigger>
                       )
                       : null
                   }

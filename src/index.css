@@ -521,3 +521,7 @@ button:hover {
     color: grey;
     font-style: italic;
 }
+
+.comment-delete-popover{
+    opacity: 1;
+}

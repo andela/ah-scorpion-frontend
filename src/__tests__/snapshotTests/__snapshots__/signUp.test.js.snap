@@ -55,16 +55,20 @@ exports[`The signUp view The NavBar component Should not regress 1`] = `
     className="container"
   >
     <a
+      className="navbar-brand"
       href="/"
-      onClick={[Function]}
     >
-      <div
-        className="navbar-brand"
-      >
-        <b>
-          Authors Haven
-        </b>
-      </div>
+      <img
+        alt="Author's Haven Logo"
+        height="60"
+        src="https://res.cloudinary.com/dqvk8ugtp/image/upload/v1535993624/Author_sHaven_logo_sxca8t.png"
+        style={
+          Object {
+            "borderRadius": "10px",
+          }
+        }
+        width="50"
+      />
     </a>
     <button
       className="navbar-toggler navbar-toggler-right"

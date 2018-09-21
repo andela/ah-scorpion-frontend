@@ -19,4 +19,8 @@ PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
 };
 
+PrivateRoute.defaultProps = {
+  location: null,
+};
+
 export default PrivateRoute;

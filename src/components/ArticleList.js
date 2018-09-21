@@ -1,41 +1,38 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import MyArticle from './MyArticle';
+import Article from './Article';
 
-const MyArticlesList = ({
-  articles,
-  beginDelete,
-  fetchFailure,
-  errorMessage,
-}) => {
+const ArticlesList = ({ articles, fetchFailure, errorMessage }) => {
   if (fetchFailure) {
     return <div className="alert alert-danger text-center">{errorMessage}</div>;
   }
 
   if (articles.length === 0) {
-    return <h4>You have not created any articles yet.</h4>;
+    return <h4>There is currently no article available.</h4>;
   }
 
-  return articles.map(article => (
-    <div>
-      <MyArticle
+  return articles.map((article) => {
+    const imgBase = JSON.parse(article.body).entityMap[0];
+    return (
+      <Article
         title={article.title}
         createdAt={article.createdAt}
         description={article.description}
         slug={article.slug}
         key={article.slug}
-        beginDelete={beginDelete}
         averageRating={article.averageRating}
         likes={article.likes}
         dislikes={article.dislikes}
+        image={imgBase ? imgBase.data.src : ''}
+        author={article.author.username}
         body={article.body}
       />
-    </div>
-  ));
+    );
+  });
 };
 
-MyArticlesList.propTypes = {
+ArticlesList.propTypes = {
   articles: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };
 
-export default MyArticlesList;
+export default ArticlesList;

@@ -255,189 +255,122 @@ exports[`The getmyArticlesPage view The ConfirmDeleteModal component Should show
 `;
 
 exports[`The getmyArticlesPage view The MyArticle component Should not regress 1`] = `
-<div
-  className="my-article"
->
-  <h1>
-    <a
-      className="article-title"
-      href="/article/test-slug-001"
-      onClick={[Function]}
-    >
-      test title
-    </a>
-  </h1>
-  <p>
-    test description
-  </p>
-  <div>
-    <span
-      className="text-muted"
-    >
-      <small>
-        Created:
-        Wed Sep 12 2018
-      </small>
-    </span>
-    <span
-      className="ml-5"
-    >
-      <a
-        className="btn btn-primary link"
-        href="article/test-slug-001/edit"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-      >
-        Edit
-      </a>
-      <button
-        className="btn btn-danger ml-2"
-        data-target="#confirmDeleteModal"
-        data-toggle="modal"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-      >
-        Delete
-      </button>
-    </span>
-  </div>
-  <hr
-    style={
-      Object {
-        "margin": "0.7em",
-      }
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "testKey",
+          "pathname": "/",
+          "search": "",
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "testKey",
+        "pathname": "/",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
     }
+  }
+>
+  <MyArticle
+    averageRating={null}
+    beginDelete={[Function]}
+    createdAt="2018-09-12T18:51:24.099861Z"
+    description="test description"
+    slug="test-slug-001"
+    title="test title"
   />
-  <div
-    className="row"
-  >
-    <div
-      className="col-1 text-center"
-    >
-      <i
-        className="text-warning fa fa-star"
-      />
-      <br />
-      <small>
-         - 
-      </small>
-    </div>
-    <div
-      className="col-1 text-center"
-    >
-      <i
-        className="text-success fa fa-thumbs-up"
-      />
-      <br />
-      <small />
-    </div>
-    <div
-      className="col-1 text-center"
-    >
-      <i
-        className="text-danger fa fa-thumbs-down"
-      />
-      <br />
-      <small />
-    </div>
-  </div>
-</div>
+  <ReadTime
+    text="This is a test text"
+  />
+</Router>
 `;
 
 exports[`The getmyArticlesPage view The MyArticleList component Should render all articles in case of a successful request 1`] = `
-<div
-  className="my-article"
->
-  <h1>
-    <a
-      className="article-title"
-      href="/article/lennys-first-article-1-29b5102ef9a84eb9bfbf60da42f63122"
-      onClick={[Function]}
-    >
-      Lenny's First Article 1
-    </a>
-  </h1>
-  <p>
-    This is my first article and I don't know what's going on...
-  </p>
-  <div>
-    <span
-      className="text-muted"
-    >
-      <small>
-        Created:
-        Wed Sep 12 2018
-      </small>
-    </span>
-    <span
-      className="ml-5"
-    >
-      <a
-        className="btn btn-primary link"
-        href="article/lennys-first-article-1-29b5102ef9a84eb9bfbf60da42f63122/edit"
-        onClick={[Function]}
-        onKeyDown={[Function]}
-      >
-        Edit
-      </a>
-      <button
-        className="btn btn-danger ml-2"
-        data-target="#confirmDeleteModal"
-        data-toggle="modal"
-        disabled={false}
-        onClick={[Function]}
-        type="button"
-      >
-        Delete
-      </button>
-    </span>
-  </div>
-  <hr
-    style={
-      Object {
-        "margin": "0.7em",
-      }
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "testKey",
+          "pathname": "/",
+          "search": "",
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "testKey",
+        "pathname": "/",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
     }
+  }
+>
+  <MyArticlesList
+    articles={
+      Array [
+        Object {
+          "author": Object {
+            "bio": "",
+            "email": "lennykmutua@gmail.com",
+            "image": "",
+            "username": "lenny",
+          },
+          "averageRating": null,
+          "body": "Like I said... I don't know what's going on. I'm just testing Hoslack's work.",
+          "createdAt": "2018-09-12T18:51:24.099861Z",
+          "description": "This is my first article and I don't know what's going on...",
+          "dislikes": 0,
+          "favorited": 1,
+          "id": 43,
+          "images": Array [
+            "https://url-to-image",
+          ],
+          "likes": 0,
+          "ratingsCount": 0,
+          "slug": "lennys-first-article-1-29b5102ef9a84eb9bfbf60da42f63122",
+          "tagList": Array [
+            "Lenny",
+            "First",
+          ],
+          "title": "Lenny's First Article 1",
+          "updatedAt": "2018-09-12T18:51:24.100977Z",
+        },
+      ]
+    }
+    beginDelete={[Function]}
+    errorMessage=""
+    fetchFailure={false}
   />
-  <div
-    className="row"
-  >
-    <div
-      className="col-1 text-center"
-    >
-      <i
-        className="text-warning fa fa-star"
-      />
-      <br />
-      <small>
-         - 
-      </small>
-    </div>
-    <div
-      className="col-1 text-center"
-    >
-      <i
-        className="text-success fa fa-thumbs-up"
-      />
-      <br />
-      <small>
-        0
-      </small>
-    </div>
-    <div
-      className="col-1 text-center"
-    >
-      <i
-        className="text-danger fa fa-thumbs-down"
-      />
-      <br />
-      <small>
-        0
-      </small>
-    </div>
-  </div>
-</div>
+</Router>
 `;
 
 exports[`The getmyArticlesPage view The MyArticleList component Should render text if user has no articles 1`] = `
@@ -452,4 +385,43 @@ exports[`The getmyArticlesPage view The MyArticleList component Should render th
 >
   An error occurred
 </div>
+`;
+
+exports[`The getmyArticlesPage view The ReadTime component Should not regress 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "testKey",
+          "pathname": "/",
+          "search": "",
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "testKey",
+        "pathname": "/",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <ReadTime
+    text="This is a test text"
+  />
+</Router>
 `;

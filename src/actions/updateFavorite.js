@@ -30,8 +30,8 @@ export const favoriteCallStarted = () => ({
 
 export default function favouriteArticle(slug) {
   axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
-  const apiUrl = process.env.REACT_APP_API_URL;
-  const favoriteUrl = `${apiUrl}/api/v1/articles/${slug}/favorite/`;
+  const apiUrl = process.env.REACT_APP_BASE_URL;
+  const favoriteUrl = `${apiUrl}/articles/${slug}/favorite/`;
 
   return (dispatch) => {
     dispatch(favoriteCallStarted());

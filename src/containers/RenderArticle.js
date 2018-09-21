@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import { EditorState, convertFromRaw } from 'draft-js';
 import propTypes from 'prop-types';
-import createInlineToolbarPlugin, {
-  Separator,
-} from 'draft-js-inline-toolbar-plugin';
+import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
 import createImagePlugin from 'draft-js-image-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
 import createFocusPlugin from 'draft-js-focus-plugin';
@@ -147,9 +145,7 @@ class TextArea extends Component {
         const rawContent = JSON.parse(res.data.body);
         if (rawContent) {
           this.setState({
-            editorState: EditorState.createWithContent(
-              convertFromRaw(rawContent),
-            ),
+            editorState: EditorState.createWithContent(convertFromRaw(rawContent)),
             rendered: true,
           });
           this.setState({ rendered: true });
@@ -202,7 +198,9 @@ class TextArea extends Component {
                         />
                       ) : null}
                     </div>
-                    <div className="col-sm"><Rating slug={this.props.match.params.slug} /></div>
+                    <div className="col-sm">
+                      <Rating slug={this.props.match.params.slug} />
+                    </div>
                   </div>
                 </form>
                 {this.state.rendered ? (

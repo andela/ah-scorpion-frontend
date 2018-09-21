@@ -121,7 +121,7 @@ UserNavBar.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth,
 });
 

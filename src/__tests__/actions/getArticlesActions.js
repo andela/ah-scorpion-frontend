@@ -3,7 +3,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 import * as types from '../../actions/types';
-import { getMyArticlesSuccess, getMyArticlesFailure } from '../../actions/getMyArticles';
+import { getArticlesSuccess, getArticlesFailure } from '../../actions/getArticles';
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
@@ -35,11 +35,11 @@ const articles = [
     tagList: ['Lenny', 'First'],
   },
 ];
-describe('The getMyArticles actions', () => {
+describe('The getArticles actions', () => {
   beforeEach(() => moxios.install());
   afterEach(() => moxios.uninstall());
 
-  it('should dispatch the getMyArticlesSuccess action on a successful request', async (done) => {
+  it('should dispatch the getArticlesSuccess action on a successful request', async (done) => {
     moxios.stubRequest(articlesUrl, {
       status: 200,
       response: articles,
@@ -47,31 +47,31 @@ describe('The getMyArticles actions', () => {
 
     const returnedAction = [
       {
-        type: types.GET_MY_ARTICLES_SUCCESS,
+        type: types.GET_ARTICLES_SUCCESS,
         data: articles,
       },
     ];
 
     const store = mockStore({});
-    await store.dispatch(getMyArticlesSuccess(articles));
+    await store.dispatch(getArticlesSuccess(articles));
     expect(store.getActions()).toEqual(returnedAction);
     done();
   });
 
-  it('should dispatch the getMyArticlesFailure action on a failed request', async (done) => {
+  it('should dispatch the getArticlesFailure action on a failed request', async (done) => {
     moxios.stubRequest(articlesUrl, {
       status: 400,
     });
 
     const returnedAction = [
       {
-        type: types.GET_MY_ARTICLES_FAILURE,
+        type: types.GET_ARTICLES_FAILURE,
         errorMessage: 'An error occurred',
       },
     ];
 
     const store = mockStore({});
-    await store.dispatch(getMyArticlesFailure('An error occurred'));
+    await store.dispatch(getArticlesFailure('An error occurred'));
     expect(store.getActions()).toEqual(returnedAction);
     done();
   });

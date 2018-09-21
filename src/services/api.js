@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const apiUrl = process.env.REACT_APP_API_URL;
+const apiUrl = process.env.REACT_APP_BASE_URL;
 
 export default {
   user: {
-    login: credentials => axios.post(`${apiUrl}/api/v1/users/login/`, credentials).then((response) => {
+    login: credentials => axios.post(`${apiUrl}/users/login/`, credentials).then((response) => {
       localStorage.setItem('token', response.data.user.token);
       localStorage.setItem('username', response.data.user.username);
       localStorage.setItem('email', response.data.user.email);

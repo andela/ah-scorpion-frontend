@@ -20,7 +20,7 @@ const localStorageMock = {
 };
 global.localStorage = localStorageMock;
 
-const apiUrl = process.env.REACT_APP_API_URL;
+const apiUrl = process.env.REACT_APP_BASE_URL;
 let slug;
 
 

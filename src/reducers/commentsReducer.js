@@ -38,6 +38,7 @@ export default function commentsReducer(state = initialState, { type, payload })
         comments: hasComments ? comments : [],
         posting_comment: false,
         comments_loaded: true,
+        comments_loading: false,
       };
     case COMMENTS_LOADING:
       return {

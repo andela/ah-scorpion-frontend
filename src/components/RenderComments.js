@@ -22,7 +22,6 @@ class RenderComments extends Component {
   showComments = (payload) => {
     const comments = [];
     if (this.props.comments.comments_loaded) {
-      console.log("Ssee this???");
       if (this.props.comments.comment_count < 1) {
         comments.push(<h3 className="comments-title">No comments yet. Be first to comment</h3>);
       } else {

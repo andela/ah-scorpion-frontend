@@ -157,7 +157,7 @@ Posted at
             <tr>
               <td />
               <td colSpan="2">
-                {this.state.replying || this.state.editing
+                {(this.state.replying || this.state.editing)
                   ? (
                     <CommentBox
                       editing={this.state.editing}

@@ -21,7 +21,10 @@ class CommentBox extends Component {
     const commentText = this.refs.commentText;
     if (this.props.replying) {
       this.props.handlePost(this.props.slug, this.state.value, this.props.parentId);
-      this.props.closeReply();
+      if (!this.props.comments.posting_comment && this.props.comments.comments_loaded
+      && !this.props.comments.comments_loading) {
+        this.props.closeReply();
+      }
     } else {
       this.props.handlePost(this.props.slug, this.state.value, 0);
     }
@@ -32,7 +35,10 @@ class CommentBox extends Component {
     event.preventDefault();
     this.props.handleUpdate(this.props.slug, this.state.value, this.props.commentId);
     const commentText = this.refs.commentText;
-    this.props.closeReply();
+    if (!this.props.comments.posting_comment && this.props.comments.comments_loaded
+      && !this.props.comments.comments_loading) {
+      this.props.closeReply();
+    }
     commentText.value = '';
   }
 

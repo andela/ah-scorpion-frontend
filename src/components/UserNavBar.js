@@ -24,7 +24,13 @@ class UserNavBar extends React.Component {
       <nav className="navbar navbar-expand-md bg-primary navbar-dark fixed-top">
         <div className="container">
           <a className="navbar-brand" href="/dashboard">
-            <b> Authors Haven</b>
+            <img
+              src="https://res.cloudinary.com/dqvk8ugtp/image/upload/v1535993624/Author_sHaven_logo_sxca8t.png"
+              alt="Author's Haven Logo"
+              style={{ borderRadius: '10px' }}
+              height="60"
+              width="50"
+            />
           </a>
           <button
             className="navbar-toggler navbar-toggler-right"

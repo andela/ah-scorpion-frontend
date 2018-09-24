@@ -24,7 +24,7 @@ export default function commentsReducer(state = initialState, { type, payload })
       const comments = [];
       let count = 1;
       for (const item in payload) {
-        count ++;
+        count++;
         user = payload[item].user;
         comment = {
           content: payload[item],
@@ -39,6 +39,8 @@ export default function commentsReducer(state = initialState, { type, payload })
         posting_comment: false,
         comments_loaded: true,
         comments_loading: false,
+        message: count <= 1 ? 'No comments yet. Be first to comment'
+          : 'Join the conversation. Leave a comment',
       };
     case COMMENTS_LOADING:
       return {
@@ -51,6 +53,7 @@ export default function commentsReducer(state = initialState, { type, payload })
         ...state,
         comments_loading: false,
         comments_loaded: true,
+        message: 'Join the conversation. Leave a comment',
       };
     case POSTING_COMMENT:
       return {
@@ -61,6 +64,9 @@ export default function commentsReducer(state = initialState, { type, payload })
       return {
         ...state,
         posting_comment: false,
+        comments_loading: false,
+        comments_loaded: true,
+        message: payload.message,
       };
     default:
       return state;

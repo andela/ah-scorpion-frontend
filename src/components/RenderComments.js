@@ -21,29 +21,33 @@ class RenderComments extends Component {
 
 
   nestComments = (payload) => {
-    let comments = [];
+    let comments = {};
+    console.log('count = ', payload.length);
     for (const i in payload) {
       const comment = payload[i];
       const parent = comment.comment.content.parent;
       const id = comment.comment.content.id;
+      const aComment = comment.comment.content;
       if (parent === null) {
         comments[id] = {
-          comment: comment.comment.content,
+          comment: aComment,
           children: [],
         };
       } else {
         const aParent = comments[parent];
         let children = aParent.children;
         const mainParent = aParent.comment;
+        const  parentId = mainParent.id;
         const theChildren = children;
-        theChildren.push(comment.comment.content);
+        theChildren.push(aComment);
         children = theChildren;
-        comments[id] = {
+        comments[parentId] = {
           comment: mainParent,
           children,
         };
       }
     }
+    console.log('count 2 = ', comments);
     const commentsMap = comments;
     comments = [];
     for (const key in commentsMap) {
@@ -51,8 +55,6 @@ class RenderComments extends Component {
         const object = commentsMap[key];
         let comment = object.comment;
         const children = object.children;
-
-        console.log('content = ', comment.content);
 
         comments.push(<Comment
           user={comment.user}
@@ -80,31 +82,15 @@ class RenderComments extends Component {
     return comments;
   };
 
-  showComments = (payload) => {
-    const comments = [];
-    if (this.props.comments.comments_loaded) {
-      if (this.props.comments.comment_count < 1) {
-        comments.push(<h3 className="comments-title">No comments yet. Be first to comment</h3>);
-      } else {
-        if (payload === [] || payload === undefined || payload === null) return null;
-        if (localStorage.getItem('token') === undefined || localStorage.getItem('token') === null) {
-          comments.push(<h4 className="comments-title">Login to join the conversation</h4>);
-        } else {
-          comments.push(<h3 className="comments-title">Join the conversation. Leave a comment</h3>);
-        }
-        comments.push(<CommentBox slug={this.props.slug} />);
-        comments.push(<br />);
-        return this.nestComments(payload);
-      }
-    }
-    // this.handleCommentsShown();
-    return comments;
-  };
-
-
   render() {
     return (
       <div className="container comments-section">
+        {this.props.comments.message !== undefined
+          ? <h3 className="comments-title">{this.props.comments.message}</h3>
+          : null}
+        {this.props.comments.message !== undefined
+        && this.props.comments.message !== 'Please login to view comments'
+          ? <CommentBox slug={this.props.slug} /> : null}
         {!this.props.comments.comments_loaded ? (
           <div>
             {' '}
@@ -113,7 +99,7 @@ class RenderComments extends Component {
           </div>
         ) : null}
         {this.props.comments.comments !== undefined
-          ? this.showComments(this.props.comments.comments)
+          ? this.nestComments(this.props.comments.comments)
           : <h4>Login to join the conversation</h4>
         }
 

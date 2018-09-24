@@ -18,16 +18,17 @@ const commentsLoaded = () => ({
   type: COMMENTS_LOADED,
 });
 
-const commentsLoading = () => ({
+export const commentsLoading = () => ({
   type: COMMENTS_LOADING,
 });
 
-const postingComment = () => ({
+export const postingComment = () => ({
   type: POSTING_COMMENT,
 });
 
-const postedComment = () => ({
+export const postedComment = message => ({
   type: COMMENT_POSTED,
+  payload: { message },
 });
 
 
@@ -88,6 +89,7 @@ export const editComment = (slug, content, commentId) => {
         ? dispatch(articleComments(slug))
         : dispatch(postedComment())))
       .catch((error) => {
+        console.log('error: ', error);
         dispatch(postedComment());
       });
   };

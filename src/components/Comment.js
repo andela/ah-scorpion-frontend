@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { OverlayTrigger, Popover } from 'react-bootstrap';
+import * as DateDiff from 'date-diff';
 import avatar from '../assets/images/user_avatar.png';
 import likeComment from '../actions/likeComment';
 import dislikeComment from '../actions/dislikeComment';
 import deleteComment from '../actions/deleteComment';
 import CommentBox from './CommentBox';
+
+const dateFormat = require('dateformat');
+
+const startOfDay = new Date();
+startOfDay.setHours(0, 0, 0, 0);
 
 class Comment extends Component {
   constructor(props) {
@@ -84,9 +90,24 @@ class Comment extends Component {
                 <td className="comment-name">
                   {this.props.user.username}
                   <span className="time-label">
-Posted at
                     {' '}
-                    {new Date(this.props.comment.createdAt).toLocaleString()}
+                    {new DateDiff(new Date(),
+                      new Date(this.props.comment.createdAt)).seconds() < 60
+                      ? 'Just now'
+                      : new DateDiff(new Date(),
+                        new Date(this.props.comment.createdAt)).minutes() < 60
+                        ? (`${Math.round(new DateDiff(new Date(),
+                          new Date(this.props.comment.createdAt)).minutes())} minutes ago`)
+                        : new DateDiff(startOfDay,
+                          new Date(this.props.comment.createdAt)).days() > 1
+                          ? dateFormat(new Date(this.props.comment.createdAt),
+                            'dd mmm yyyy, HH:MM:ss')
+                          : new DateDiff(startOfDay,
+                            new Date(this.props.comment.createdAt)).days() > 0
+                            ? `Yesterday at ${dateFormat(new Date(this.props.comment.createdAt),
+                              'HH:MM:ss')}`
+                            : `Today at ${dateFormat(new Date(this.props.comment.createdAt),
+                              'HH:MM:ss')}`}
                   </span>
                 </td>
                 <td rowSpan="3" className="options-col">
@@ -111,11 +132,11 @@ Posted at
                         ? (
                           <OverlayTrigger trigger="click" placement="right" overlay={this.popoverRight}>
                             <button
-                            type="button"
-                            className="comment-option"
-                          >
+                              type="button"
+                              className="comment-option"
+                            >
                             Delete
-                          </button>
+                            </button>
                           </OverlayTrigger>
                         )
                         : null

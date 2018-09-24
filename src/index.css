@@ -424,7 +424,7 @@ button:hover {
 /*COMMENTS STYLES*/
 
 .comments-section {
-    background-color: whitesmoke;
+    background-color: rgb(252, 252, 252);
     margin-top: 1em;
     padding: 0.5em 2em 2em 1em;
     border-color: #57b846;
@@ -456,6 +456,7 @@ button:hover {
 .comment-name {
     font-size: 14px;
     font-weight: bold !important;
+    color: navy;
 }
 
 .comment-col {
@@ -522,7 +523,8 @@ button:hover {
     float: right;
     text-align: right;
     color: grey;
-    font-style: italic;
+    font-size: 12px;
+    font-family: "Consolas", monospace;
 }
 
 .one-article-view {

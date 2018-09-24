@@ -3,6 +3,7 @@ import {
   FAVORITE_FETCHED,
   USER_NOT_LOGGED_IN,
 } from './types';
+import { postedComment } from './articleComments';
 
 export const userFetched = (articleId, message) => ({
   type: FAVORITE_FETCHED,
@@ -29,6 +30,10 @@ export default function currentUser(articleId) {
       .then(response => (response.status === 200
         ? dispatch(userFetched(articleId, response.data.user.favorited))
         : null))
-      .catch(dispatch(userNotLoggedIn()));
+      .catch((error) => {
+        console.log('the error: ', error.response.data.errors.detail);
+        dispatch(postedComment('Please login to view comments'));
+        dispatch(userNotLoggedIn());
+      });
   };
 }

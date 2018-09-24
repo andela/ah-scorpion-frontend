@@ -8,6 +8,8 @@
     "axios": "^0.18.0",
     "chai": "^4.1.2",
     "dante2": "^0.5.0-rc1",
+    "date-diff": "^0.2.1",
+    "dateformat": "^3.0.3",
     "draft-js": "^0.10.5",
     "draft-js-alignment-plugin": "^2.0.5",
     "draft-js-anchor-plugin": "^2.0.2",

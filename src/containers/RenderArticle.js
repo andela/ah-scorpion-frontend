@@ -32,6 +32,7 @@ import Rating from '../components/Rating';
 import RenderComments from '../components/RenderComments';
 import currentUser from '../actions/currentUser';
 import LoadingDots from '../components/LoadingDots';
+import UserNavBar from '../components/UserNavBar';
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
@@ -177,6 +178,7 @@ class TextArea extends Component {
 
     return (
       <main>
+        <UserNavBar history={this.props.history} />
         <div className="bg-contact2">
           <div className="container-contact2">
             <div className="wrap-contact2">
@@ -232,6 +234,9 @@ class TextArea extends Component {
 
 TextArea.propTypes = {
   match: propTypes.shape({ params: propTypes.shape().isRequired }).isRequired,
+  history: propTypes.shape({
+    push: propTypes.func.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({

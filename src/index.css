@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css?family=PT+Sans');
+@import url('https://fonts.googleapis.com/css?family=Abel');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding');
 
 * {
     font-family: 'Montserrat', sans-serif;
@@ -428,10 +430,11 @@ button:hover {
     margin-top: 1em;
     padding: 0.5em 2em 2em 1em;
     border-color: #57b846;
+    font-family: 'Abel', 'PT Sans', sans-serif;
 }
 
 .comment-table {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Abel', 'PT Sans', sans-serif;
 }
 
 .comment-table tr td{
@@ -457,11 +460,13 @@ button:hover {
     font-size: 14px;
     font-weight: bold !important;
     color: navy;
+    font-family: 'Nanum Gothic Coding', monospace;
 }
 
 .comment-col {
     width: 80%;
     font-size: 14px;
+    font-family: 'Abel', 'PT Sans', sans-serif;
 }
 
 .options-col {
@@ -490,7 +495,7 @@ button:hover {
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     font-size: 1.3em;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Abel', 'PT Sans', sans-serif;
     text-align: center;
 }
 
@@ -512,11 +517,14 @@ button:hover {
     border-color: lightgray;
     resize: none !important;
     text-align: left;
+    font-family: 'Abel', 'PT Sans', sans-serif;
+
 }
 
 .comment-btn{
     float: right;
-    margin-top: 1em;
+    margin: 0.5em !important;
+    font-size: 11px !important;
 }
 
 .time-label{
@@ -524,7 +532,7 @@ button:hover {
     text-align: right;
     color: grey;
     font-size: 12px;
-    font-family: "Consolas", monospace;
+    font-family: 'Abel', 'PT Sans', sans-serif;
 }
 
 .one-article-view {

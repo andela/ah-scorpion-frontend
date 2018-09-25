@@ -8,6 +8,8 @@ import likeComment from '../actions/likeComment';
 import dislikeComment from '../actions/dislikeComment';
 import deleteComment from '../actions/deleteComment';
 import CommentBox from './CommentBox';
+import { commentHistory } from '../actions/articleComments';
+import CommentHistory from './CommentHistory';
 
 const dateFormat = require('dateformat');
 
@@ -21,6 +23,7 @@ class Comment extends Component {
       showDelete: false,
       replying: false,
       editing: false,
+      showHistory: false,
     };
 
     this.handleLike = this.handleLike.bind(this);
@@ -29,7 +32,8 @@ class Comment extends Component {
     this.handleDelete = this.handleDelete.bind(this);
     this.handleReply = this.handleReply.bind(this);
     this.handleEditing = this.handleEditing.bind(this);
-
+    this.getCommentHistory = this.getCommentHistory.bind(this);
+    this.hideHistory = this.hideHistory.bind(this);
 
     this.popoverRight = (
       <Popover className="comment-delete-popover">
@@ -70,6 +74,19 @@ class Comment extends Component {
     });
   }
 
+  getCommentHistory() {
+    let showHistory = this.state.showHistory;
+    showHistory = !showHistory;
+    this.setState({ showHistory });
+    if (showHistory) {
+      this.props.getCommentHistory(this.props.slug, this.props.comment.id);
+    }
+  }
+
+  hideHistory() {
+    this.setState({ showHistory: false });
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -80,9 +97,9 @@ class Comment extends Component {
                 <td rowSpan="2" className="avatar-col">
                   <img
                     src={this.props.user.image === undefined
-                || this.props.user.image === null
-                || this.props.user.image === 'null'
-                || this.props.user.image === '' ? avatar : this.props.user.image}
+                  || this.props.user.image === null
+                  || this.props.user.image === 'null'
+                  || this.props.user.image === '' ? avatar : this.props.user.image}
                     alt="X"
                     className="img img-rounded comment-img"
                   />
@@ -92,8 +109,8 @@ class Comment extends Component {
                   <span className="time-label">
                     {' '}
                     {this.props.comment.createdAt === 'Updating...'
-                    || this.props.comment.createdAt === 'Posting...'
-                    || this.props.comment.createdAt === undefined
+                  || this.props.comment.createdAt === 'Posting...'
+                  || this.props.comment.createdAt === undefined
                       ? this.props.comment.createdAt
                       : new DateDiff(new Date(),
                         new Date(this.props.comment.createdAt)).seconds() < 60
@@ -124,17 +141,21 @@ class Comment extends Component {
                             type="button"
                             className="comment-option"
                           >
-                        Edit
+                          Edit
                           </button>
                         )
                         : null
-                  }
+                    }
                     </ul>
                     <ul>
                       {localStorage.getItem('username') === this.props.user.username
-                  || localStorage.getItem('username') === this.props.author.username
+                    || localStorage.getItem('username') === this.props.author.username
                         ? (
-                          <OverlayTrigger trigger="click" placement="right" overlay={this.popoverRight}>
+                          <OverlayTrigger
+                            trigger="click"
+                            placement="right"
+                            overlay={this.popoverRight}
+                          >
                             <button
                               type="button"
                               className="comment-option"
@@ -144,7 +165,7 @@ class Comment extends Component {
                           </OverlayTrigger>
                         )
                         : null
-                  }
+                    }
                     </ul>
                     {!this.props.isChild
                       ? (
@@ -154,11 +175,11 @@ class Comment extends Component {
                             type="button"
                             className="comment-option"
                           >
-                    Reply
+                          Reply
                           </button>
                         </ul>
                       )
-                      : null }
+                      : null}
                   </li>
                 </td>
               </tr>
@@ -169,35 +190,55 @@ class Comment extends Component {
                   {this.props.comment.content}
                 </td>
               </tr>
-              <tr>
+              <tr className="reactions">
                 <td colSpan="2">
-                  <button
-                    onClick={this.handleLike}
-                    type="button"
-                    className="reaction-button like-button"
-                  >
-                    <span
-                      className="reaction-count"
-                    >
+                  <tr>
+                    <td>
+                      <button
+                        onClick={this.handleLike}
+                        type="button"
+                        className="reaction-button like-button"
+                      >
+                        <span
+                          className="reaction-count"
+                        >
 &#128077;
-                      <span style={{ marginLeft: 3 }}>{this.props.comment.likes}</span>
-                    </span>
-                  </button>
-                  <button
-                    onClick={this.handleDislike}
-                    type="button"
-                    className="reaction-button dilike-button"
-                  >
-                    <span
-                      className="reaction-count"
-                    >
+                          <span style={{ marginLeft: 3 }}>{this.props.comment.likes}</span>
+                        </span>
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        onClick={this.handleDislike}
+                        type="button"
+                        className="reaction-button dilike-button"
+                      >
+                        <span
+                          className="reaction-count"
+                        >
                   &#128078;
-                      <span style={{ marginLeft: 3 }}>
-                        {' '}
-                        {this.props.comment.dislikes}
-                      </span>
-                    </span>
-                  </button>
+                          <span style={{ marginLeft: 3 }}>{this.props.comment.dislikes}</span>
+                        </span>
+                      </button>
+                    </td>
+                    <td className="edited-col">
+                      {this.props.comment.createdAt !== 'Updating...'
+                    && this.props.comment.createdAt !== 'Posting...'
+                    && this.props.comment.createdAt !== undefined
+                     && dateFormat(new Date(this.props.comment.createdAt), 'dd mmm yyyy, HH:MM:ss')
+                    !== dateFormat(new Date(this.props.comment.updatedAt), 'dd mmm yyyy, HH:MM:ss')
+                        ? (
+                          <button
+                            onClick={this.getCommentHistory}
+                            type="button"
+                            className="link edited-btn"
+                          >
+edited
+                          </button>
+                        )
+                        : null}
+                    </td>
+                  </tr>
                 </td>
               </tr>
               <tr>
@@ -220,6 +261,12 @@ class Comment extends Component {
               </tr>
             </tbody>
           </table>
+          {}
+          {this.props.comments.showHistory !== undefined
+          && this.props.comments.showHistory
+          && this.props.comments.history !== undefined
+            ? <CommentHistory show />
+            : null}
         </div>
       </React.Fragment>
     );
@@ -242,6 +289,7 @@ const mapActionsToProps = {
   handleLike: likeComment,
   handleDislike: dislikeComment,
   handleDelete: deleteComment,
+  getCommentHistory: commentHistory,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(Comment);

@@ -1,10 +1,12 @@
 import axios from 'axios';
 import {
+  HISTORY_FETCHED,
   COMMENTS_FETCHED,
   COMMENTS_LOADED,
   COMMENTS_LOADING,
   POSTING_COMMENT,
   COMMENT_POSTED,
+  HISTORY_CLEARED,
 } from './types';
 import { userNotLoggedIn } from './currentUser';
 
@@ -30,7 +32,6 @@ export const postedComment = message => ({
   type: COMMENT_POSTED,
   payload: { message },
 });
-
 
 export const tempCommentsList = (comments, comment, parent, updating = false) => (dispatch) => {
   parent = parent === undefined || parent === null ? null : parent;
@@ -124,6 +125,37 @@ export const editComment = (slug, content, commentId) => {
         : dispatch(postedComment())))
       .catch((error) => {
         dispatch(postedComment());
+      });
+  };
+};
+
+export const commentHistoryFetched = history => ({
+  type: HISTORY_FETCHED,
+  payload: history,
+});
+
+export const clearHistory = () => ({
+  type: HISTORY_CLEARED,
+});
+
+
+export const commentHistory = (slug, commentId) => {
+  axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
+  const apiUrl = process.env.REACT_APP_API_URL;
+  const likeUrl = `${apiUrl}/api/v1/articles/${slug}/comments/history/${commentId}/`;
+  return (dispatch) => {
+    dispatch(clearHistory());
+    axios
+      .get(likeUrl, {
+        slug, id: commentId,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          dispatch(commentHistoryFetched(response.data));
+        }
+      })
+      .catch((error) => {
+        console.log(error.response.data);
       });
   };
 };

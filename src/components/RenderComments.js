@@ -19,7 +19,6 @@ class RenderComments extends Component {
     this.props.componentDidMount(this.props.slug);
   };
 
-
   nestComments = (payload) => {
     let comments = {};
     for (const i in payload) {
@@ -36,7 +35,7 @@ class RenderComments extends Component {
         const aParent = comments[parent];
         let children = aParent.children;
         const mainParent = aParent.comment;
-        const  parentId = mainParent.id;
+        const parentId = mainParent.id;
         const theChildren = children;
         theChildren.push(aComment);
         children = theChildren;
@@ -100,7 +99,6 @@ class RenderComments extends Component {
           ? this.nestComments(this.props.comments.comments)
           : <h4>Login to join the conversation</h4>
         }
-
       </div>
     );
   }

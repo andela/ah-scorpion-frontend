@@ -556,6 +556,22 @@ button:hover {
     border-left: 1px solid lightsteelblue !important;
 }
 
-.parent-comment{
+.edited-col{
+    font-size: 12px;
+    text-align: right;
+    float: right;
+    margin-left: 10em;
+    vertical-align: middle;
+}
 
+.edited-btn{
+    float: right;
+    margin: 0 auto;
+    text-decoration: underline;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.reactions{
+    height: 2em;
 }

@@ -41,6 +41,7 @@ export default function commentsReducer(state = initialState, { type, payload })
         comments_loading: false,
         message: count <= 1 ? 'No comments yet. Be first to comment'
           : 'Join the conversation. Leave a comment',
+        initialComments: payload,
       };
     case COMMENTS_LOADING:
       return {

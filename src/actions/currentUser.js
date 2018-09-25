@@ -31,7 +31,6 @@ export default function currentUser(articleId) {
         ? dispatch(userFetched(articleId, response.data.user.favorited))
         : null))
       .catch((error) => {
-        console.log('the error: ', error.response.data.errors.detail);
         dispatch(postedComment('Please login to view comments'));
         dispatch(userNotLoggedIn());
       });

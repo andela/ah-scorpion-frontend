@@ -212,17 +212,6 @@ class TextArea extends Component {
                     author={this.state.author}
                   />
                 ) : null}
-                {this.props.comments.posting_comment
-                  ? (
-                    <div style={{
-                      backgroundColor: 'azure',
-                      textAlign: 'center',
-                      marginLeft: 'auto',
-                    }}
-                    >
-                      <LoadingDots text="Refreshing comments" />
-                    </div>
-                  ) : null}
               </div>
             </div>
           </div>

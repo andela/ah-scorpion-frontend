@@ -22,13 +22,12 @@ class RenderComments extends Component {
 
   nestComments = (payload) => {
     let comments = {};
-    console.log('count = ', payload.length);
     for (const i in payload) {
       const comment = payload[i];
       const parent = comment.comment.content.parent;
       const id = comment.comment.content.id;
       const aComment = comment.comment.content;
-      if (parent === null) {
+      if (parent === null || parent === undefined) {
         comments[id] = {
           comment: aComment,
           children: [],
@@ -47,7 +46,6 @@ class RenderComments extends Component {
         };
       }
     }
-    console.log('count 2 = ', comments);
     const commentsMap = comments;
     comments = [];
     for (const key in commentsMap) {

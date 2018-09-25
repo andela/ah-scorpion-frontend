@@ -91,23 +91,27 @@ class Comment extends Component {
                   {this.props.user.username}
                   <span className="time-label">
                     {' '}
-                    {new DateDiff(new Date(),
-                      new Date(this.props.comment.createdAt)).seconds() < 60
-                      ? 'Just now'
+                    {this.props.comment.createdAt === 'Updating...'
+                    || this.props.comment.createdAt === 'Posting...'
+                    || this.props.comment.createdAt === undefined
+                      ? this.props.comment.createdAt
                       : new DateDiff(new Date(),
-                        new Date(this.props.comment.createdAt)).minutes() < 60
-                        ? (`${Math.round(new DateDiff(new Date(),
-                          new Date(this.props.comment.createdAt)).minutes())} minutes ago`)
-                        : new DateDiff(startOfDay,
-                          new Date(this.props.comment.createdAt)).days() > 1
-                          ? dateFormat(new Date(this.props.comment.createdAt),
-                            'dd mmm yyyy, HH:MM:ss')
+                        new Date(this.props.comment.createdAt)).seconds() < 60
+                        ? 'Just now'
+                        : new DateDiff(new Date(),
+                          new Date(this.props.comment.createdAt)).minutes() < 60
+                          ? (`${Math.round(new DateDiff(new Date(),
+                            new Date(this.props.comment.createdAt)).minutes())} minutes ago`)
                           : new DateDiff(startOfDay,
-                            new Date(this.props.comment.createdAt)).days() > 0
-                            ? `Yesterday at ${dateFormat(new Date(this.props.comment.createdAt),
-                              'HH:MM:ss')}`
-                            : `Today at ${dateFormat(new Date(this.props.comment.createdAt),
-                              'HH:MM:ss')}`}
+                            new Date(this.props.comment.createdAt)).days() > 1
+                            ? dateFormat(new Date(this.props.comment.createdAt),
+                              'dd mmm yyyy, HH:MM:ss')
+                            : new DateDiff(startOfDay,
+                              new Date(this.props.comment.createdAt)).days() > 0
+                              ? `Yesterday at ${dateFormat(new Date(this.props.comment.createdAt),
+                                'HH:MM:ss')}`
+                              : `Today at ${dateFormat(new Date(this.props.comment.createdAt),
+                                'HH:MM:ss')}`}
                   </span>
                 </td>
                 <td rowSpan="3" className="options-col">

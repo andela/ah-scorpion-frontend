@@ -32,6 +32,40 @@ export const postedComment = message => ({
 });
 
 
+export const tempCommentsList = (comments, comment, parent, updating = false) => (dispatch) => {
+  parent = parent === undefined || parent === null ? null : parent;
+  const time = updating ? 'Updating...' : 'Posting...';
+  let newComment;
+  if (!updating) {
+    newComment = {
+      user: {
+        username: localStorage.getItem('username'),
+        email: localStorage.getItem('email'),
+        id: 0,
+        likes: 0,
+        dislikes: 0,
+      },
+      id: -1,
+      createdAt: time,
+      content: comment,
+      parent,
+    };
+    comments.push(newComment);
+  } else {
+    for (const i in comments) {
+      const commentToUpdate = comments[i];
+      if (commentToUpdate.id === parent) {
+        const index = comments.indexOf(commentToUpdate);
+        commentToUpdate.content = comment;
+        commentToUpdate.createdAt = time;
+        comments.splice(index, 1, commentToUpdate);
+      }
+    }
+  }
+  dispatch(commentsFetched(comments));
+};
+
+
 export const articleComments = (slug) => {
   commentsLoading();
   axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
@@ -89,7 +123,6 @@ export const editComment = (slug, content, commentId) => {
         ? dispatch(articleComments(slug))
         : dispatch(postedComment())))
       .catch((error) => {
-        console.log('error: ', error);
         dispatch(postedComment());
       });
   };

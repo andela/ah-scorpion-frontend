@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addComment, editComment } from '../actions/articleComments';
+import {
+  addComment,
+  editComment,
+  tempCommentsList,
+} from '../actions/articleComments';
 import '../index.css';
 
 class CommentBox extends Component {
@@ -10,14 +14,17 @@ class CommentBox extends Component {
     this.state = {
       value: this.props.editing ? this.props.commentBody : null,
       hasText: false,
+      parent: null,
     };
     this.handlePost = this.handlePost.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.getTempList = this.getTempList.bind(this);
   }
 
   handlePost(event) {
     event.preventDefault();
+    this.getTempList();
     const commentText = this.refs.commentText;
     if (this.props.replying) {
       this.props.handlePost(this.props.slug, this.state.value, this.props.parentId);
@@ -31,8 +38,15 @@ class CommentBox extends Component {
     commentText.value = '';
   }
 
+  getTempList() {
+    this.props.getTempList(this.props.comments.initialComments, this.state.value,
+      this.props.parentId, this.props.editing);
+  }
+
   handleUpdate(event) {
     event.preventDefault();
+    this.props.getTempList(this.props.comments.initialComments, this.state.value,
+      this.props.commentId, true);
     this.props.handleUpdate(this.props.slug, this.state.value, this.props.commentId);
     const commentText = this.refs.commentText;
     if (!this.props.comments.posting_comment && this.props.comments.comments_loaded
@@ -73,9 +87,7 @@ class CommentBox extends Component {
               onClick={this.props.editing ? this.handleUpdate : this.handlePost}
               type="submit"
               className="btn btn-primary comment-btn"
-              value={this.props.comments.posting_comment ? this.props.replying ? 'Posting Reply...'
-                : this.props.editing ? 'Updating Comment...'
-                  : 'Posting Comment...' : this.props.replying ? 'Post Reply'
+              value={this.props.replying ? 'Post Reply'
                 : this.props.editing ? 'Update Comment'
                   : 'Post Comment'}
               style={{
@@ -107,6 +119,7 @@ const mapStateToProps = state => ({
 const mapActionsToProps = {
   handlePost: addComment,
   handleUpdate: editComment,
+  getTempList: tempCommentsList,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(CommentBox);

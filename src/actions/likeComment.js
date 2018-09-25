@@ -17,7 +17,6 @@ export default function likeComments(slug, commentId) {
         ? dispatch(articleComments(slug))
         : null))
       .catch((error) => {
-        console.log(error);
       });
   };
 }

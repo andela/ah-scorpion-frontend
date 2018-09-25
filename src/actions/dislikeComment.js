@@ -15,7 +15,6 @@ export default function dislikeComments(slug, commentId) {
         ? dispatch(articleComments(slug))
         : null))
       .catch((error) => {
-        console.log(error);
       });
   };
 }

@@ -10,7 +10,7 @@ import deleteComment from '../actions/deleteComment';
 import CommentBox from './CommentBox';
 import { commentHistory } from '../actions/articleComments';
 import CommentHistory from './CommentHistory';
-import Modal from './index';
+import ModalDialog from './ModalDialog';
 
 const dateFormat = require('dateformat');
 
@@ -265,7 +265,7 @@ edited
               </tr>
             </tbody>
           </table>
-          <Modal visible={this.state.visible} width="600" height="500" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+          <ModalDialog visible={this.state.visible} width="600" height="500" effect="fadeInUp" onClickAway={() => this.closeModal()}>
             <div>
               <h6 style={{
                 padding: '1em',
@@ -285,7 +285,7 @@ edited
                  className="btn btn-default"
                  href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
             </div>
-          </Modal>
+          </ModalDialog>
 
         </div>
       </React.Fragment>

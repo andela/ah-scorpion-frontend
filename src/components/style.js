@@ -1,7 +1,7 @@
-import fadeInDown from './effect/fadeInDown';
-import fadeInUp from './effect/fadeInUp';
-import fadeInLeft from './effect/fadeInLeft';
-import fadeInRight from './effect/fadeInRight';
+import fadeInDown from '../assets/effect/fadeInDown';
+import fadeInUp from '../assets/effect/fadeInUp';
+import fadeInLeft from '../assets/effect/fadeInLeft';
+import fadeInRight from '../assets/effect/fadeInRight';
 
 export default {
     fadeInDown : fadeInDown,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import style from './style.js';
 
-export default class Modal extends Component {
+export default class ModalDialog extends Component {
   constructor(props) {
     super(props);
     const effect = props.effect || 'fadeInDown';
@@ -63,7 +63,6 @@ export default class Modal extends Component {
   render() {
     return (
       <div>
-        This is the container
         <div style={this.state.visible ? this.state.style.container : this.state.style.containerHidden}>
           <div style={this.state.visible ? { ...this.state.style.panel } : this.state.style.panelHidden}>
             {this.props.children}

@@ -33,6 +33,7 @@ class RenderComments extends Component {
         };
       } else {
         const aParent = comments[parent];
+        if (aParent === undefined) continue;
         let children = aParent.children;
         const mainParent = aParent.comment;
         const parentId = mainParent.id;

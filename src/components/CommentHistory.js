@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as DateDiff from 'date-diff';
-import { connect } from 'react-redux';
+import LoadingDots from './LoadingDots';
 
 const dateFormat = require('dateformat');
 
@@ -20,7 +20,7 @@ class CommentHistory extends Component {
     for (const i in history) {
       const comment = history[i];
       let date = comment.date_created;
-      let content = comment.comment;
+      const content = comment.comment;
 
       date = new DateDiff(new Date(),
         new Date(date)).seconds() < 60
@@ -39,9 +39,19 @@ class CommentHistory extends Component {
                 'HH:MM:ss')}`
               : `Today at ${dateFormat(new Date(date),
                 'HH:MM:ss')}`;
-      content = `${date}:  ${content}`;
       comments.push(<tr>
-        <td style={{ paddingLeft: '1em' }}>
+        <td style={{
+          fontSize: '12px',
+          width: '15em',
+        }}
+        >
+          {date}
+        </td>
+        <td style={{
+          fontSize: '12px',
+          borderLeft: 'grey solid 1px',
+        }}
+        >
           {content}
         </td>
       </tr>);
@@ -54,17 +64,33 @@ class CommentHistory extends Component {
       <div>
         <table
           style={{
-            width: '40em',
+            width: '100%',
           }}
-          className="comment-table"
+          className="table table-hover comment-table"
         >
-          <thead>
+          <thead
+            style={{
+              backgroundColor: 'lightgray',
+              fontWeight: 'bold',
+            }}
+          >
             <tr>
               <td style={{
                 fontSize: '12px',
-                fontWeight: 'bold',
+                fontWeight: 'bold !important',
+                width: '15em',
               }}
-              />
+              >
+              Date Created
+              </td>
+              <td style={{
+                fontSize: '12px',
+                fontWeight: 'bold',
+                borderLeft: 'grey solid 1px',
+              }}
+              >
+                Content
+              </td>
             </tr>
           </thead>
           <tbody style={{
@@ -74,14 +100,8 @@ class CommentHistory extends Component {
             marginLeft: '1em',
           }}
           >
-            <tr>
-              <td>
-                {this.props.comments.history !== undefined
-                  ? 'Comment edit history' : null}
-              </td>
-            </tr>
-            {this.props.comments.history !== undefined
-              ? this.renderHistory(this.props.comments.history)
+            {this.props.history !== undefined
+              ? this.renderHistory(this.props.history)
               : null}
           </tbody>
         </table>
@@ -90,12 +110,8 @@ class CommentHistory extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  comments: state.comments,
-});
-
 CommentHistory.propTypes = {
-  show: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps)(CommentHistory);
+export default CommentHistory;

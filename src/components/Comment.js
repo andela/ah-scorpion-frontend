@@ -10,6 +10,7 @@ import deleteComment from '../actions/deleteComment';
 import CommentBox from './CommentBox';
 import { commentHistory } from '../actions/articleComments';
 import CommentHistory from './CommentHistory';
+import Modal from './index';
 
 const dateFormat = require('dateformat');
 
@@ -23,7 +24,7 @@ class Comment extends Component {
       showDelete: false,
       replying: false,
       editing: false,
-      showHistory: false,
+      visible: false,
     };
 
     this.handleLike = this.handleLike.bind(this);
@@ -33,7 +34,6 @@ class Comment extends Component {
     this.handleReply = this.handleReply.bind(this);
     this.handleEditing = this.handleEditing.bind(this);
     this.getCommentHistory = this.getCommentHistory.bind(this);
-    this.hideHistory = this.hideHistory.bind(this);
 
     this.popoverRight = (
       <Popover className="comment-delete-popover">
@@ -75,16 +75,20 @@ class Comment extends Component {
   }
 
   getCommentHistory() {
-    let showHistory = this.state.showHistory;
-    showHistory = !showHistory;
-    this.setState({ showHistory });
-    if (showHistory) {
-      this.props.getCommentHistory(this.props.slug, this.props.comment.id);
-    }
+    this.props.getCommentHistory(this.props.slug, this.props.comment.id);
   }
 
-  hideHistory() {
-    this.setState({ showHistory: false });
+  openModal() {
+    this.getCommentHistory();
+    this.setState({
+      visible: true,
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      visible: false,
+    });
   }
 
   render() {
@@ -229,7 +233,7 @@ class Comment extends Component {
                     !== dateFormat(new Date(this.props.comment.updatedAt), 'dd mmm yyyy, HH:MM:ss')
                         ? (
                           <button
-                            onClick={this.getCommentHistory}
+                            onClick={() => this.openModal()}
                             type="button"
                             className="link edited-btn"
                           >
@@ -261,12 +265,28 @@ edited
               </tr>
             </tbody>
           </table>
-          {}
-          {this.props.comments.showHistory !== undefined
-          && this.props.comments.showHistory
-          && this.props.comments.history !== undefined
-            ? <CommentHistory show />
-            : null}
+          <Modal visible={this.state.visible} width="600" height="500" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+            <div>
+              <h6 style={{
+                padding: '1em',
+                margin: '0 auto',
+              }}>Edit history</h6>
+              <div className="container">
+                { this.props.comments.history !== undefined
+                  ? <CommentHistory history={this.props.comments.history} />
+                  : null}
+              </div>
+              <a style={{
+                bottom: '0',
+                position: 'absolute',
+                float: 'right',
+                margin: '1.5em',
+              }}
+                 className="btn btn-default"
+                 href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
+            </div>
+          </Modal>
+
         </div>
       </React.Fragment>
     );

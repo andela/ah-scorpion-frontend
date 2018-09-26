@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { OverlayTrigger, Popover } from 'react-bootstrap';
 import * as DateDiff from 'date-diff';
 import avatar from '../assets/images/user_avatar.png';
 import likeComment from '../actions/likeComment';
@@ -11,6 +10,7 @@ import CommentBox from './CommentBox';
 import { commentHistory } from '../actions/articleComments';
 import CommentHistory from './CommentHistory';
 import ModalDialog from './ModalDialog';
+import DeleteComment from './DeleteComment';
 
 const dateFormat = require('dateformat');
 
@@ -21,31 +21,18 @@ class Comment extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showDelete: false,
       replying: false,
       editing: false,
-      visible: false,
+      historyVisible: false,
+      deleteVisible: false,
     };
 
     this.handleLike = this.handleLike.bind(this);
-
-    this.handleDislike = this.handleDislike.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleDislike = this.handleDislike.bind(this);
     this.handleReply = this.handleReply.bind(this);
     this.handleEditing = this.handleEditing.bind(this);
     this.getCommentHistory = this.getCommentHistory.bind(this);
-
-    this.popoverRight = (
-      <Popover className="comment-delete-popover">
-        <button
-          type="button"
-          className="comment-option text-danger"
-          onClick={() => this.handleDelete()}
-        >
-          Confirm Delete
-        </button>
-      </Popover>
-    );
   }
 
   handleLike() {
@@ -54,10 +41,6 @@ class Comment extends Component {
 
   handleDislike() {
     this.props.handleDislike(this.props.slug, this.props.comment.id);
-  }
-
-  handleDelete() {
-    this.props.handleDelete(this.props.slug, this.props.comment.id);
   }
 
   handleReply() {
@@ -74,6 +57,12 @@ class Comment extends Component {
     });
   }
 
+  handleDelete() {
+    this.props.handleDelete(this.props.slug, this.props.comments.initialComments,
+      this.props.comment);
+    this.closeDeleteModal();
+  }
+
   getCommentHistory() {
     this.props.getCommentHistory(this.props.slug, this.props.comment.id);
   }
@@ -81,13 +70,25 @@ class Comment extends Component {
   openModal() {
     this.getCommentHistory();
     this.setState({
-      visible: true,
+      historyVisible: true,
     });
   }
 
   closeModal() {
     this.setState({
-      visible: false,
+      historyVisible: false,
+    });
+  }
+
+  openDeleteModal() {
+    this.setState({
+      deleteVisible: true,
+    });
+  }
+
+  closeDeleteModal() {
+    this.setState({
+      deleteVisible: false,
     });
   }
 
@@ -155,18 +156,13 @@ class Comment extends Component {
                       {localStorage.getItem('username') === this.props.user.username
                     || localStorage.getItem('username') === this.props.author.username
                         ? (
-                          <OverlayTrigger
-                            trigger="click"
-                            placement="right"
-                            overlay={this.popoverRight}
+                          <button
+                            onClick={() => this.openDeleteModal()}
+                            type="button"
+                            className="comment-option"
                           >
-                            <button
-                              type="button"
-                              className="comment-option"
-                            >
                             Delete
-                            </button>
-                          </OverlayTrigger>
+                          </button>
                         )
                         : null
                     }
@@ -265,25 +261,89 @@ edited
               </tr>
             </tbody>
           </table>
-          <ModalDialog visible={this.state.visible} width="600" height="500" effect="fadeInUp" onClickAway={() => this.closeModal()}>
+          <ModalDialog
+            visible={this.state.historyVisible}
+            width="600"
+            height="500"
+            effect="fadeInUp"
+            onClickAway={() => this.closeModal()}
+          >
             <div>
               <h6 style={{
                 padding: '1em',
                 margin: '0 auto',
-              }}>Edit history</h6>
+              }}
+              >
+Edit history
+              </h6>
               <div className="container">
                 { this.props.comments.history !== undefined
                   ? <CommentHistory history={this.props.comments.history} />
                   : null}
               </div>
-              <a style={{
-                bottom: '0',
-                position: 'absolute',
-                float: 'right',
-                margin: '1.5em',
+              <a
+                style={{
+                  bottom: '0',
+                  position: 'absolute',
+                  float: 'right',
+                  margin: '1.5em',
+                }}
+                className="btn btn-default"
+                href="javascript:void(0);"
+                onClick={() => this.closeModal()}
+              >
+Close
+              </a>
+            </div>
+          </ModalDialog>
+
+          <ModalDialog
+            visible={this.state.deleteVisible}
+            width="350"
+            height="150"
+            effect="fadeInUp"
+            onClickAway={() => this.closeDeleteModal()}
+          >
+            <div>
+              <h6 style={{
+                padding: '1em',
+                margin: '0 auto',
               }}
-                 className="btn btn-default"
-                 href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
+              >
+Confirm delete
+              </h6>
+              <div className="container">
+                <DeleteComment />
+              </div>
+              <a
+                style={{
+                  bottom: '0',
+                  position: 'absolute',
+                  float: 'right',
+                  margin: '1.5em',
+                }}
+                className="btn btn-default"
+                href="javascript:void(0);"
+                onClick={() => this.closeDeleteModal()}
+              >
+Close
+              </a>
+              <a
+                style={{
+                  bottom: '0',
+                  right: '0',
+                  position: 'absolute',
+                  float: 'right',
+                  margin: '1.5em',
+                  fontSize: '13px',
+                  padding: '2',
+                }}
+                className="btn btn-danger"
+                href="javascript:void(0);"
+                onClick={() => this.handleDelete()}
+              >
+                Delete
+              </a>
             </div>
           </ModalDialog>
 

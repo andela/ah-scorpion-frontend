@@ -6,6 +6,7 @@ import {
   COMMENT_POSTED,
   HISTORY_FETCHED,
   HISTORY_CLEARED,
+  COMMENT_DELETED,
 } from '../actions/types';
 
 const initialState = {
@@ -82,6 +83,11 @@ export default function commentsReducer(state = initialState, { type, payload })
         ...state,
         history: undefined,
         showHistory: false,
+      };
+    case COMMENT_DELETED:
+      return {
+        ...state,
+        commentDeleted: true,
       };
     default:
       return state;

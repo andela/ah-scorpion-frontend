@@ -66,7 +66,6 @@ export const tempCommentsList = (comments, comment, parent, updating = false) =>
   dispatch(commentsFetched(comments));
 };
 
-
 export const articleComments = (slug) => {
   commentsLoading();
   axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
@@ -105,6 +104,7 @@ export const addComment = (slug, content, parent) => {
         ? dispatch(articleComments(slug))
         : dispatch(postedComment())))
       .catch((error) => {
+        console.log(error);
         dispatch(postedComment());
       });
   };
@@ -124,6 +124,7 @@ export const editComment = (slug, content, commentId) => {
         ? dispatch(articleComments(slug))
         : dispatch(postedComment())))
       .catch((error) => {
+        console.log(error);
         dispatch(postedComment());
       });
   };
@@ -137,7 +138,6 @@ export const commentHistoryFetched = history => ({
 export const clearHistory = () => ({
   type: HISTORY_CLEARED,
 });
-
 
 export const commentHistory = (slug, commentId) => {
   axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;

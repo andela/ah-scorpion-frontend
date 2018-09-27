@@ -28,7 +28,7 @@ describe('The Home Page', () => {
   });
 
   it('contains three images on initialization', () => {
-    expect(wrapper.find('img').length).toEqual(3);
+    expect(wrapper.find('img').length).toEqual(4);
   });
 
   it('initializes the Benefits components', () => {

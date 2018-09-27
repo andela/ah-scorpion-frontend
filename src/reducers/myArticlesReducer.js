@@ -10,6 +10,7 @@ export const initialState = {
   articles: [],
   errorMessage: '',
   deletedArticleSlug: '',
+  articleLength: 3,
 };
 
 const myArticlesReducer = (state = initialState, action) => {
@@ -26,6 +27,7 @@ const myArticlesReducer = (state = initialState, action) => {
         isFetching: false,
         fetchSuccess: true,
         articles: action.data,
+        articleLength: action.data.length,
       };
     case types.GET_MY_ARTICLES_FAILURE:
       return {

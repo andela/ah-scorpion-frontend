@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { node } from 'prop-types';
 import { Edit_Account, Profile_Account } from '../actions/ProfileAction';
 import NavBar from './NavBar';
 import Footer from './Footer';
@@ -49,49 +47,8 @@ class EditProfile extends Component {
     const { bio } = this.state.profile;
 
     return (
-    // <div>
-    //   <NavBar />
-    //   <main style={{ marginTop: '14em' }}>
-    //     <div className="container">
-    //       <div className="row center-div">
-    //         <div className="col-lg-8  input-field">
-    //           <div className="tab-pane" id="edit">
-    //             <form role="form" style={{ marginLeft: 'auto' }} onSubmit={this.onSubmit}>
-    //               <div className="form-group row">
-    //                 <label className="col-lg-3 col-form-label form-control-label">Bio</label>
-    //                 <div className="col-lg-8">
-    //                   <textarea
-    //                     className="form-control"
-    //                     type="text"
-    //                     onChange={this.onChange}
-    //                     name="bio"
-    //                     value={bio}
-    //                     style={{ minHeight: '10em' }}
-    //                   />
-    //                 </div>
-    //               </div>
-
-      //               <div className="form-group row">
-      //                 <label className="col-lg-3 col-form-label form-control-label" />
-      //                 <div className="col-lg-9">
-      //                   <button
-      //                     type="submit"
-      //                     className="btn btn-primary"
-      //                     style={{ marginLeft: '180px' }}
-      //                   >
-      //                     Save Changes
-      //                   </button>
-      //                 </div>
-      //               </div>
-      //             </form>
-      //           </div>
-      //         </div>
-      //       </div>
-      //     </div>
-      //   </main>
-      //   <Footer />
-      // </div>
       <div>
+        <NavBar />
         <main style={{ marginTop: '14em' }}>
           <div className="container">
             <div className="row my-2">
@@ -157,6 +114,8 @@ class EditProfile extends Component {
             </div>
           </div>
         </main>
+        <Footer />
+
       </div>
     );
   }

@@ -265,8 +265,8 @@ nav li a.active {
 }
 
 .home-banner {
-    background-image: url(./assets/images/books.jpg);
-    max-height: 15em;
+  background-image: url(./assets/images/books.jpg);
+  max-height: 30em;
 }
 
 .dashboard-banner {

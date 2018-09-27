@@ -575,3 +575,19 @@ button:hover {
 .reactions{
     height: 2em;
 }
+
+.test:after {
+  content: '\22EE';
+  font-size: 2em;
+  color: #2e2e2e;
+  float: right;
+}
+
+.dropdown-item {
+  cursor: pointer;
+}
+
+.user-profile {
+  font-family: 'Comfortaa', cursive;
+  color: #0b4e9a;
+}

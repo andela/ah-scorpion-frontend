@@ -10,6 +10,7 @@ import myArticlesReducer from './myArticlesReducer';
 import editMyArticleReducer from './editMyArticleReducer';
 import commentsReducer from './commentsReducer';
 import articlesReducer from './articlesReducer';
+import account from './ProfileReducer';
 
 export default combineReducers({
   signup: signupReducer,
@@ -23,4 +24,5 @@ export default combineReducers({
   AllArticles: articlesReducer,
   editMyArticle: editMyArticleReducer,
   comments: commentsReducer,
+  account,
 });

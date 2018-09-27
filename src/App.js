@@ -16,6 +16,7 @@ import MyArticlesPage from './containers/MyArticlesPage';
 import EditMyArticle from './containers/EditMyArticle';
 import Profile from './containers/Profile';
 import EditProfile from './components/EditProfile';
+import Favourite from './components/Favourite';
 
 const App = () => (
   <BrowserRouter>

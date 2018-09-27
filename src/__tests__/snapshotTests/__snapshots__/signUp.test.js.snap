@@ -93,7 +93,6 @@ exports[`The signUp view The SignUpError component Should not regress 1`] = `
   </center>
 </div>
 `;
-<<<<<<< HEAD
 
 exports[`The signUp view The SignUpForm component Should initially render without an error or loading status 1`] = `
 <Router
@@ -238,5 +237,3 @@ exports[`The signUp view The SignUpForm component Should show the error message 
   />
 </Router>
 `;
-=======
->>>>>>> fix bug for user profile

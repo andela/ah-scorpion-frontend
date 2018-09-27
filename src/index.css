@@ -416,7 +416,6 @@ button:hover {
   margin-bottom: 1.5em;
 }
 
-<<<<<<< HEAD
 .one-article-view {
   margin-top: 4em;
   margin-bottom: 4em;
@@ -427,7 +426,6 @@ button:hover {
   width: 260px;
   overflow: hidden;
   text-overflow: ellipsis;
-=======
 .test:after {
   content: '\22EE';
   font-size: 2em;
@@ -442,5 +440,4 @@ button:hover {
 .user-profile {
   font-family: 'Comfortaa', cursive;
   color: #0b4e9a;
->>>>>>> fix bug for user profile
 }

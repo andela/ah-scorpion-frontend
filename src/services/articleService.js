@@ -2,20 +2,39 @@ import axios from 'axios';
 
 const getMyUsername = () => localStorage.getItem('username');
 const getMyToken = () => localStorage.getItem('token');
-const { REACT_APP_API_URL } = process.env;
-const articlesUrl = `${REACT_APP_API_URL}/api/v1/articles/`;
+const { REACT_APP_BASE_URL } = process.env;
+const articlesUrl = `${REACT_APP_BASE_URL}/articles/`;
 
 /** Class that represents API calls related to a user's articles */
 class articleService {
   /** * This is the API call for getting a user's articles
    * @returns an Object with the success status and article list or error message
    * @return {Object} success: bool, errorMessage: string, articles: Array */
-  static getMyArticles() {
+  static getMyArticles(limit, offset) {
     const errorMessage = 'We could not get your articles at the moment. '
       + 'If the problem persists, please refresh the page or login again';
 
     return axios
-      .get(`${articlesUrl}?author__username=${getMyUsername()}`)
+      .get(`${articlesUrl}?author__username=${getMyUsername()}&limit=${limit}&offset=${offset}`)
+      .then(response => ({
+        success: true,
+        articles: response.data,
+      }))
+      .catch(() => ({
+        success: false,
+        errorMessage,
+      }));
+  }
+
+  /** * This is the API call for getting all articles
+   * @returns an Object with the success status and article list or error message
+   * @return {Object} success: bool, errorMessage: string, articles: Array */
+  static getArticles() {
+    const errorMessage = 'We could not fetch the articles at the moment. '
+      + 'If the problem persists, please refresh the page or login again';
+
+    return axios
+      .get(articlesUrl)
       .then(response => ({
         success: true,
         articles: response.data,
@@ -71,8 +90,7 @@ class articleService {
    * @returns an Object with the success status and/or error message
    * @return {Object} success: bool, errorMessage: string */
   static deleteMyArticle(slug) {
-    const errorMessage = 'An error occurred while deleting your article. '
-    + 'Please refresh the page or login again.';
+    const errorMessage = 'An error occurred while deleting your article. Please refresh the page or login again.';
 
     return axios
       .delete(`${articlesUrl}${slug}`, { headers: { Authorization: `Bearer ${getMyToken()}` } })

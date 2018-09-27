@@ -4,9 +4,9 @@ import articleService from '../services/articleService';
 const editMyArticleBegin = () => ({ type: types.EDIT_MY_ARTICLE_BEGIN });
 
 
-const editMyArticleSuccess = () => ({ type: types.EDIT_MY_ARTICLE_SUCCESS });
+export const editMyArticleSuccess = () => ({ type: types.EDIT_MY_ARTICLE_SUCCESS });
 
-const editMyArticleFailure = errorMessage => (
+export const editMyArticleFailure = errorMessage => (
   { type: types.EDIT_MY_ARTICLE_FAILURE, errorMessage }
 );
 

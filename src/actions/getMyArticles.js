@@ -10,13 +10,13 @@ export const getMyArticlesFailure = errorMessage => ({
   errorMessage,
 });
 
-const handleGetMyArticles = () => (dispatch) => {
+const handleGetMyArticles = (limit, offset) => (dispatch) => {
   dispatch(getMyArticlesBegin());
   articleService
-    .getMyArticles()
+    .getMyArticles(limit, offset)
     .then((object) => {
       if (object.success) {
-        dispatch(getMyArticlesSuccess(object.articles));
+        dispatch(getMyArticlesSuccess(object.articles.results));
       } else { dispatch(getMyArticlesFailure(object.errorMessage)); }
     });
 };

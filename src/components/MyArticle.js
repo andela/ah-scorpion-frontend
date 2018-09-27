@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import React from 'react';
+import ReadTime from './ReadTime';
 
 const MyArticle = ({
   title,
@@ -12,10 +13,11 @@ const MyArticle = ({
   averageRating,
   likes,
   dislikes,
+  body,
 }) => (
   <div className="my-article">
     <h1>
-      <Link to={`./article/${slug}`} className="article-title">
+      <Link to={`/article/${slug}`} className="article-title">
         {title}
       </Link>
     </h1>
@@ -28,7 +30,9 @@ const MyArticle = ({
         </small>
       </span>
       <span className="ml-5">
-        <Button bsStyle="primary link" href={`article/${slug}/edit`}>Edit</Button>
+        <Button bsStyle="primary link" href={`article/${slug}/edit`}>
+          Edit
+        </Button>
         <Button
           bsStyle="danger ml-2"
           data-toggle="modal"
@@ -56,6 +60,7 @@ const MyArticle = ({
         <br />
         <small>{dislikes}</small>
       </div>
+      <ReadTime body={body} />
     </div>
   </div>
 );
@@ -69,6 +74,7 @@ MyArticle.propTypes = {
   likes: PropTypes.number.isRequired,
   dislikes: PropTypes.number.isRequired,
   beginDelete: PropTypes.func.isRequired,
+  body: PropTypes.shape().isRequired,
 };
 
 MyArticle.defaultProps = {

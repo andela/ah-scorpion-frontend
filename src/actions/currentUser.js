@@ -19,8 +19,8 @@ export const userNotLoggedIn = () => ({
 
 
 export default function currentUser(articleId) {
-  const apiUrl = process.env.REACT_APP_API_URL;
-  const currentUserUrl = `${apiUrl}/api/v1/user/`;
+  const apiUrl = process.env.REACT_APP_BASE_URL;
+  const currentUserUrl = `${apiUrl}/user/`;
   const token = localStorage.getItem('token');
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 

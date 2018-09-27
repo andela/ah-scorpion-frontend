@@ -3,9 +3,7 @@ import React, { Component } from 'react';
 import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 import { EditorState, convertFromRaw } from 'draft-js';
 import propTypes from 'prop-types';
-import createInlineToolbarPlugin, {
-  Separator,
-} from 'draft-js-inline-toolbar-plugin';
+import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
 import createImagePlugin from 'draft-js-image-plugin';
 import createAlignmentPlugin from 'draft-js-alignment-plugin';
 import createFocusPlugin from 'draft-js-focus-plugin';
@@ -43,7 +41,7 @@ const decorator = composeDecorators(
   blockDndPlugin.decorator,
 );
 const imagePlugin = createImagePlugin({ decorator });
-const upload = (image) => image;
+const upload = image => image;
 const dragNDropFileUploadPlugin = createDragNDropUploadPlugin({
   addImage: imagePlugin.addImage,
   handleUpload: upload,
@@ -83,7 +81,7 @@ class HeadlinesButton extends Component {
   // When using a click event inside overridden content, mouse down
   // events needs to be prevented so the focus stays in the editor
   // and the toolbar remains visible  onMouseDown = (event) => event.preventDefault()
-  onMouseDown = (event) => event.preventDefault();
+  onMouseDown = event => event.preventDefault();
 
   onClick = () => this.props.onOverrideContent(HeadlinesPicker);
 
@@ -142,9 +140,7 @@ class TextArea extends Component {
         const rawContent = JSON.parse(res.data.body);
         if (rawContent) {
           this.setState({
-            editorState: EditorState.createWithContent(
-              convertFromRaw(rawContent),
-            ),
+            editorState: EditorState.createWithContent(convertFromRaw(rawContent)),
             rendered: true,
           });
           this.setState({ rendered: true });
@@ -184,13 +180,16 @@ class TextArea extends Component {
                   />
                   <div className="row reaction-row">
                     <div className="col-sm my-auto">
-                    {this.state.rendered ? (
-                      <Favourite
-                        slug={this.props.match.params.slug}
-                        articleId={this.state.articleId}
-                      />
-                    ) : null}</div>
-                    <div className="col-sm"><Rating slug={this.props.match.params.slug} /></div>
+                      {this.state.rendered ? (
+                        <Favourite
+                          slug={this.props.match.params.slug}
+                          articleId={this.state.articleId}
+                        />
+                      ) : null}
+                    </div>
+                    <div className="col-sm">
+                      <Rating slug={this.props.match.params.slug} />
+                    </div>
                   </div>
                 </form>
               </div>

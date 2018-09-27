@@ -3,7 +3,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 import * as types from '../../actions/types';
-import { getMyArticlesSuccess, getMyArticlesFailure } from '../../actions/getMyArticles';
+import { getOneArticleSuccess, getOneArticleFailure } from '../../actions/getOneArticle';
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
@@ -11,7 +11,7 @@ const mockStore = configureMockStore(middleware);
 const { REACT_APP_BASE_URL } = process.env;
 const articlesUrl = `${REACT_APP_BASE_URL}/articles/`;
 
-const articles = [
+const article = [
   {
     id: 43,
     title: "Lenny's First Article 1",
@@ -35,43 +35,43 @@ const articles = [
     tagList: ['Lenny', 'First'],
   },
 ];
-describe('The getMyArticles actions', () => {
+describe('The getOneArticle actions', () => {
   beforeEach(() => moxios.install());
   afterEach(() => moxios.uninstall());
 
-  it('should dispatch the getMyArticlesSuccess action on a successful request', async (done) => {
+  it('should dispatch the getOneArticleSuccess action on a successful request', async (done) => {
     moxios.stubRequest(articlesUrl, {
       status: 200,
-      response: articles,
+      response: article,
     });
 
     const returnedAction = [
       {
-        type: types.GET_MY_ARTICLES_SUCCESS,
-        data: articles,
+        type: types.GET_ONE_ARTICLE_SUCCESS,
+        data: article,
       },
     ];
 
     const store = mockStore({});
-    await store.dispatch(getMyArticlesSuccess(articles));
+    await store.dispatch(getOneArticleSuccess(article));
     expect(store.getActions()).toEqual(returnedAction);
     done();
   });
 
-  it('should dispatch the getMyArticlesFailure action on a failed request', async (done) => {
+  it('should dispatch the getOneArticleFailure action on a failed request', async (done) => {
     moxios.stubRequest(articlesUrl, {
       status: 400,
     });
 
     const returnedAction = [
       {
-        type: types.GET_MY_ARTICLES_FAILURE,
+        type: types.GET_ONE_ARTICLE_FAILURE,
         errorMessage: 'An error occurred',
       },
     ];
 
     const store = mockStore({});
-    await store.dispatch(getMyArticlesFailure('An error occurred'));
+    await store.dispatch(getOneArticleFailure('An error occurred'));
     expect(store.getActions()).toEqual(returnedAction);
     done();
   });

@@ -1,0 +1,394 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Article component Should not regress 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "testKey",
+          "pathname": "/",
+          "search": "",
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "testKey",
+        "pathname": "/",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <Article
+    author="lenny"
+    averageRating={1}
+    createdAt="2018-09-12T18:51:24.099861Z"
+    description="test description"
+    dislikes={0}
+    image=""
+    likes={0}
+    slug="test-slug-001"
+    title="test title"
+  />
+</Router>
+`;
+
+exports[`The ArticleList component Should render all articles in case of a successful request 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "testKey",
+          "pathname": "/",
+          "search": "",
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "testKey",
+        "pathname": "/",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <ArticlesList
+    articles={
+      Array [
+        Object {
+          "author": Object {
+            "bio": "",
+            "email": "lennykmutua@gmail.com",
+            "image": "",
+            "username": "lenny",
+          },
+          "averageRating": null,
+          "body": "Like I said... I don't know what's going on. I'm just testing Hoslack's work.",
+          "createdAt": "2018-09-12T18:51:24.099861Z",
+          "description": "This is my first article and I don't know what's going on...",
+          "dislikes": 0,
+          "favorited": 1,
+          "id": 43,
+          "images": Array [
+            "https://url-to-image",
+          ],
+          "likes": 0,
+          "ratingsCount": 0,
+          "slug": "lennys-first-article-1-29b5102ef9a84eb9bfbf60da42f63122",
+          "tagList": Array [
+            "Lenny",
+            "First",
+          ],
+          "title": "Lenny's First Article 1",
+          "updatedAt": "2018-09-12T18:51:24.100977Z",
+        },
+      ]
+    }
+    errorMessage=""
+    fetchFailure={false}
+  />
+</Router>
+`;
+
+exports[`The ArticleList component Should render text if there are no articles 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "testKey",
+          "pathname": "/",
+          "search": "",
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "testKey",
+        "pathname": "/",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <ArticlesList
+    articles={Array []}
+    errorMessage=""
+    fetchFailure={false}
+  />
+</Router>
+`;
+
+exports[`The ArticleList component Should render the error message in case of failure 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "testKey",
+          "pathname": "/",
+          "search": "",
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "testKey",
+        "pathname": "/",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <ArticlesList
+    articles={Array []}
+    errorMessage="An error occurred"
+    fetchFailure={true}
+  />
+</Router>
+`;
+
+exports[`The ArticleSection component Should render a loader if isFetching is true 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "testKey",
+          "pathname": "/",
+          "search": "",
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "testKey",
+        "pathname": "/",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <Connect(ArticlesSection)
+    articles={Array []}
+    errorMessage=""
+    fetchFailure={false}
+    isFetching={true}
+  />
+</Router>
+`;
+
+exports[`The ArticleSection component Should render all articles in case of a successful request 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "testKey",
+          "pathname": "/",
+          "search": "",
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "testKey",
+        "pathname": "/",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <Connect(ArticlesSection)
+    articles={
+      Array [
+        Object {
+          "author": Object {
+            "bio": "",
+            "email": "lennykmutua@gmail.com",
+            "image": "",
+            "username": "lenny",
+          },
+          "averageRating": null,
+          "body": "Like I said... I don't know what's going on. I'm just testing Hoslack's work.",
+          "createdAt": "2018-09-12T18:51:24.099861Z",
+          "description": "This is my first article and I don't know what's going on...",
+          "dislikes": 0,
+          "favorited": 1,
+          "id": 43,
+          "images": Array [
+            "https://url-to-image",
+          ],
+          "likes": 0,
+          "ratingsCount": 0,
+          "slug": "lennys-first-article-1-29b5102ef9a84eb9bfbf60da42f63122",
+          "tagList": Array [
+            "Lenny",
+            "First",
+          ],
+          "title": "Lenny's First Article 1",
+          "updatedAt": "2018-09-12T18:51:24.100977Z",
+        },
+      ]
+    }
+    errorMessage=""
+    fetchFailure={false}
+    isFetching={false}
+  />
+</Router>
+`;
+
+exports[`The ArticleSection component Should render the error message in case of failure 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "testKey",
+          "pathname": "/",
+          "search": "",
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "testKey",
+        "pathname": "/",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <Connect(ArticlesSection)
+    articles={Array []}
+    errorMessage="An error occurred"
+    fetchFailure={true}
+    isFetching={false}
+  />
+</Router>
+`;
+
+exports[`The Dashboard component Should not regress 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "canGo": [Function],
+      "createHref": [Function],
+      "entries": Array [
+        Object {
+          "hash": "",
+          "key": "testKey",
+          "pathname": "/",
+          "search": "",
+        },
+      ],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "index": 0,
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "key": "testKey",
+        "pathname": "/",
+        "search": "",
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <Dashboard />
+</Router>
+`;

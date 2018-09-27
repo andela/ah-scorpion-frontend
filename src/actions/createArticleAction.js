@@ -9,18 +9,17 @@ export const articleFetch = () => ({
   type: types.ARTICLE_CREATE,
 });
 
-export const articleSuccess = (payload) => ({
+export const articleSuccess = payload => ({
   type: types.ARTICLE_SUCCESS,
   payload,
 });
 
-export const articleFailure = (errors) => ({
+export const articleFailure = errors => ({
   type: types.ARTICLE_FAILURE,
   errors,
 });
 
 const createArticleAction = (data, history) => (dispatch) => {
-  console.log(history);
   dispatch(articleFetch());
   return axios
     .post(createUrl, data, {

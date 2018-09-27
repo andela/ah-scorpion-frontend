@@ -1,29 +1,27 @@
 language: node_js
 node_js:
-  - stable
+- stable
 cache:
   directories:
-    - node_modules
+  - node_modules
 before_script:
-  - npm install codeclimate-test-reporter -g
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - './cc-test-reporter before-build'
+- npm install codeclimate-test-reporter -g
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
 script:
-  - npm test -- --coverage
+- npm test -- --coverage
 after_script:
-  - './cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT'
+- "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
 notifications:
   slack: andela:ODqDIMkl1Ds56Jxyrwc825vT
-before_deploy:
-  - unset CI
-  - npm run build
 deploy:
   provider: heroku
-  strategy: api
+  strategy: git
   api_key:
-    secure: gnliVC5BppBy/X0QF8sBkpz8hm4CbwDbPgp3xGY8zhWrg16gkzms2lsLjeg/FIEGFpuWa3AAHyqNC7qK5nCCaQnznkOsb9eegFrlVQZ4D9sOCtuygGHiQ6QbiIWV5oNsT2960AeARnzyTx5rU+rtb0l13MCod44LoTJ2xv8zOUqyGhuI9R+LNhy4S8C2KGv/SXdoJLZNMtfQH4WF5xWEqNAeQDadFtc/CGAqZ2noEynOkBheNEEUMCU/Ou/R2pWFDO/pFS7Q9hXsM5PRJ2PtCmg/HyM3svCXAJHnHzotzlBxzlmfiIHdpIZY8qzx3gRmzBd8AxtXDK43T8pxxs665oy/TqQ3RPW4Qm6vjV+CE5Pjdt6PoNOEgkszclIgKlHSVaejYdiC6baLOS+Z8g7HLQetK5+9RTTWJLOHd8KTAjV99aaoTaXgNYw45fHwo6Fa6OtFda5nI8T3jY8Dv1LTl9wUPmnE25Zk7q1m+JIFVjCmlpcAWJVEMebOJluGzQ6Gb1KG5xHdRbwzXazTriyODICK0lEM/L6T0tXiNMa+OlgnEsazP39ODDe5Gc+OUk9JoPEjRH+3bqCr2jvVyyMbUc7QTb5EqYKq+NqO3MKRb+H3f3t8IUafdc/Nd/KPb3z1TjtA5FkEXdUBEHjtYlAli9F8LTCEKg2BWg1P859XQAY=
+    secure: syccCt89fN0QWggAoWA38cfz81/DmDhzoozjzF1yqAnT6mhzL5oasE70Y6oiXDZBzyZ1+Qwx0j5V1+T0SI+ZoIAQFbsTnpG/NEQGnWwxk/G5UwA7PxIad1nA8DWz/FbA6YJhGF5/APJhBE7X02Hw1m/qad6WyaxebamVqQfsdsTWyVMsoxxIoC8BTZ5LAcogo3IbP3x++mkMrrz+JMiVDzDGeSs/TUNpbwLnEQ2Nhs51YRD4Ip0jp6cecb24//63TBIxxY7ZXZjDw4LzH9tmZfYkPVeg0l4G2tgiV75ldhbxjWVZqLK7XXt8CHUShr9QBXW9/OiJcaq7zsQ/WKHNlFcs7RDJ9LKCPhRaSHrFQPbYxnaEpQwmc5vAE2EouoAX6oU5I/MHCVVZr4xR8zzNrNjtOXdqju7gDSDVz+GyVdnJiF9dtNx5s7g/Gm4MOpgA6xBl7Q4XPKN793/GQYqQSKmGrwLpxhQLowZf8MlPVM1Ar2LebaolATakmqjrfNAM0kyrHY056+NLSkhL+OFJUN4IeTXKq8bPRtRQGGn7agc6mFKJ7c0SnOS8ccqBkxYmqAw+UCc+mLPP0x9sNWKkMczUQGmr/ZUuTTHcmoV7WMdxtGlpnLL7GbjdxklqTejSRTMdh72820tTmBZ4ZTOqLXTH3b9m96Hhyrny5DSG7IM=
   app:
     develop: authors-haven-frontend
     demo: authors-haven-dev
-  skip_cleanup: true
+    ch-travis-deploy-160578604: authors-haven-frontend

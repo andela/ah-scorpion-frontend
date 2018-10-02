@@ -10,12 +10,12 @@ class articleService {
   /** * This is the API call for getting a user's articles
    * @returns an Object with the success status and article list or error message
    * @return {Object} success: bool, errorMessage: string, articles: Array */
-  static getMyArticles() {
+  static getMyArticles(limit, offset) {
     const errorMessage = 'We could not get your articles at the moment. '
       + 'If the problem persists, please refresh the page or login again';
 
     return axios
-      .get(`${articlesUrl}?author__username=${getMyUsername()}`)
+      .get(`${articlesUrl}?author__username=${getMyUsername()}&limit=${limit}&offset=${offset}`)
       .then(response => ({
         success: true,
         articles: response.data,
@@ -29,12 +29,11 @@ class articleService {
   /** * This is the API call for getting all articles
    * @returns an Object with the success status and article list or error message
    * @return {Object} success: bool, errorMessage: string, articles: Array */
-  static getArticles() {
+  static getArticles(limit, offset) {
     const errorMessage = 'We could not fetch the articles at the moment. '
       + 'If the problem persists, please refresh the page or login again';
-
     return axios
-      .get(articlesUrl)
+      .get(`${articlesUrl}?limit=${limit}&offset=${offset}`)
       .then(response => ({
         success: true,
         articles: response.data,

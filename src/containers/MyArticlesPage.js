@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import ReactPaginate from 'react-paginate';
+import axios from 'axios';
 import UserNavBar from '../components/UserNavBar';
 import Footer from '../components/Footer';
 import handleGetMyArticles from '../actions/getMyArticles';
@@ -14,12 +16,45 @@ import handleDeleteMyArticle, {
 import Loader from '../components/Loader';
 import ConfirmDeleteModal from '../components/ConfirmDeleteModal';
 import MyArticlesList from '../components/MyArticlesList';
+import './MyArticlesPage.css';
+
+const { REACT_APP_BASE_URL } = process.env;
+const articlesUrl = `${REACT_APP_BASE_URL}/articles/`;
+
+const getMyUsername = () => localStorage.getItem('username');
+
 
 class MyArticlesPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      offset: 0,
+      perPage: 5,
+      pageCount: 1,
+    };
+  }
+
   componentWillMount() {
     const { getMyArticles } = this.props;
-    getMyArticles();
+    const { perPage, offset } = this.state;
+    getMyArticles(perPage, offset);
+    axios.get(`${articlesUrl}?author__username=${getMyUsername()}`).then(({ data }) => {
+      const pageCount = Math.ceil(data.length / perPage);
+      this.setState({ pageCount });
+    }).catch((error) => {
+      console.log(error);
+    });
   }
+
+  handlePageClick = (data) => {
+    const { selected } = data;
+    const { perPage } = this.state;
+    const { getMyArticles } = this.props;
+    const offset = Math.ceil(selected * perPage);
+    this.setState({ offset }, () => {
+      getMyArticles(perPage, offset);
+    });
+  };
 
   render() {
     const {
@@ -37,6 +72,7 @@ class MyArticlesPage extends Component {
       cleanUpAfterDelete,
       history,
     } = this.props;
+    const { pageCount } = this.state;
     return (
       <React.Fragment>
         <UserNavBar history={history} />
@@ -73,6 +109,21 @@ class MyArticlesPage extends Component {
                 errorMessage={errorMessage}
               />
             )}
+            <ReactPaginate
+              previousLabel="previous"
+              nextLabel="next"
+              breakLabel={<a href="">...</a>}
+              breakClassName="break-me"
+              pageCount={pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={this.handlePageClick}
+              containerClassName="pagination"
+              activeClassName="page-item active"
+              disabledClassName="page-item disabled"
+              pageClassName="page-item"
+              extraAriaContext="Page navigation example"
+            />
           </div>
         </main>
         <Footer />
@@ -99,7 +150,7 @@ MyArticlesPage.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getMyArticles: () => dispatch(handleGetMyArticles()),
+  getMyArticles: (limit, offset) => dispatch(handleGetMyArticles(limit, offset)),
   confirmDelete: slug => dispatch(handleDeleteMyArticle(slug)),
   beginDelete: slug => dispatch(deleteMyArticleBegin(slug)),
   cancelDelete: () => dispatch(deleteMyArticleCancel()),

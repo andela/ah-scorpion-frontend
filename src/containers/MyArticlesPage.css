@@ -1,0 +1,75 @@
+.pagination{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+
+}
+
+.previous>a{
+    text-transform: capitalize;
+    text-decoration: none;
+}
+
+.previous{
+    border: 0.04em solid black;
+    border-radius: 0.2em;
+    padding: 0.3em;
+    margin-right: 0.5em;
+}
+
+.previous:hover{
+    cursor: pointer;
+}
+
+.next>a{
+    text-transform: capitalize;
+    text-decoration: none;
+}
+
+.next{
+    border: 0.04em solid black;
+    border-radius: 0.2em;
+    padding: 0.3em;
+}
+
+.next:hover{
+    cursor: pointer;
+}
+
+.page-item>a{
+    color: black;
+    text-decoration: none;
+    font-min-size: 2em;
+    margin: 0 !important;
+    padding: 0.5em;
+}
+
+.page-item {
+    margin-right: 0.5em;
+    border: 0.04em solid black;
+    border-radius: 0.2em;
+    padding: 0.3em;
+}
+
+.page-item:hover{
+    cursor: pointer;
+}
+
+.active {
+    background-color: #007bff;
+    border-radius: 0.2em !important;
+}
+
+.active> a{
+    color: white;
+
+}
+
+.pagination a:first-child {
+    margin-right: 0.5em;
+}
+
+/*.pagination a:last-child {*/
+    /*border-radius: 10%;*/
+/*}*/
+

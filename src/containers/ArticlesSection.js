@@ -1,21 +1,56 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import axios from 'axios';
+import ReactPaginate from 'react-paginate';
 import Footer from '../components/Footer';
 import handleGetArticles from '../actions/getArticles';
 import Loader from '../components/Loader';
 import ArticlesList from '../components/ArticleList';
+import './MyArticlesPage.css';
+
+const { REACT_APP_BASE_URL } = process.env;
+const articlesUrl = `${REACT_APP_BASE_URL}/articles/`;
+
 
 class ArticlesSection extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      offset: 0,
+      perPage: 6,
+      pageCount: 1,
+    };
+  }
+
   componentWillMount() {
     const { getArticles } = this.props;
-    getArticles();
+    const { perPage, offset } = this.state;
+    getArticles(perPage, offset);
+    axios.get(articlesUrl).then(({ data }) => {
+      const pageCount = Math.ceil(data.length / perPage);
+      this.setState({ pageCount });
+    }).catch((error) => {
+      console.log(error);
+    });
   }
+
+  handlePageClick = (data) => {
+    const { selected } = data;
+    const { perPage } = this.state;
+    const { getArticles } = this.props;
+    const offset = Math.ceil(selected * perPage);
+    this.setState({ offset }, () => {
+      getArticles(perPage, offset);
+    });
+  };
+
 
   render() {
     const {
       isFetching, articles, fetchFailure, errorMessage,
     } = this.props;
+    const { pageCount } = this.state;
 
     return (
       <React.Fragment>
@@ -50,6 +85,21 @@ t simply skip over them entirely.
                   />
                 </div>
               )}
+              <ReactPaginate
+                previousLabel="previous"
+                nextLabel="next"
+                breakLabel={<a href="">...</a>}
+                breakClassName="break-me"
+                pageCount={pageCount}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={this.handlePageClick}
+                containerClassName="pagination"
+                activeClassName="page-item active"
+                disabledClassName="page-item disabled"
+                pageClassName="page-item"
+                extraAriaContext="Page navigation example"
+              />
             </div>
           </div>
         </main>
@@ -68,7 +118,7 @@ ArticlesSection.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getArticles: () => dispatch(handleGetArticles()),
+  getArticles: (limit, offset) => dispatch(handleGetArticles(limit, offset)),
 });
 
 const mapStateToProps = ({ AllArticles }) => AllArticles;

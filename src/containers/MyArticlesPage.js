@@ -30,7 +30,7 @@ class MyArticlesPage extends Component {
     this.state = {
       offset: 0,
       perPage: 5,
-      pageCount: 2,
+      pageCount: 1,
     };
   }
 

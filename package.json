@@ -8,6 +8,8 @@
     "axios": "^0.18.0",
     "chai": "^4.1.2",
     "dante2": "^0.5.0-rc1",
+    "date-diff": "^0.2.1",
+    "dateformat": "^3.0.3",
     "draft-js": "^0.10.5",
     "draft-js-alignment-plugin": "^2.0.5",
     "draft-js-anchor-plugin": "^2.0.2",
@@ -37,11 +39,13 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
+    "react-spinners": "^0.4.5",
     "react-star-rating-component": "^1.4.1",
     "react-test-renderer": "^16.4.2",
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.5",
     "redux-thunk": "^2.3.0",
+    "styled-components": "^3.4.9",
     "validator": "^10.7.0"
   },
   "scripts": {

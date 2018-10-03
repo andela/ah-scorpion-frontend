@@ -25,9 +25,14 @@ import {
 } from 'draft-js-buttons';
 import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import Favourite from '../components/Favourite';
 import editorStyles from '../editorStyles.css';
 import Rating from '../components/Rating';
+import RenderComments from '../components/RenderComments';
+import currentUser from '../actions/currentUser';
+import LoadingDots from '../components/LoadingDots';
+import UserNavBar from '../components/UserNavBar';
 
 const focusPlugin = createFocusPlugin();
 const resizeablePlugin = createResizeablePlugin();
@@ -126,6 +131,7 @@ class TextArea extends Component {
       editorState: EditorState.createEmpty(),
       rendered: false,
       articleId: 0,
+      author: {},
     };
   }
 
@@ -136,7 +142,7 @@ class TextArea extends Component {
     axios
       .get(getUrl)
       .then((res) => {
-        this.setState({ articleId: res.data.id });
+        this.setState({ articleId: res.data.id, author: res.data.author });
         const rawContent = JSON.parse(res.data.body);
         if (rawContent) {
           this.setState({
@@ -151,6 +157,11 @@ class TextArea extends Component {
       .catch((error) => {
         throw error;
       });
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    this.props.getCurrentUser(0);
   }
 
   onChange = (editorState) => {
@@ -167,12 +178,14 @@ class TextArea extends Component {
 
     return (
       <main>
+        <UserNavBar history={this.props.history} />
         <div className="bg-contact2">
           <div className="container-contact2">
             <div className="wrap-contact2">
               <div className={editorStyles.editor} onClick={this.focus}>
                 <form className="contact2-form validate-form">
                   <Editor
+                    className="article-body"
                     editorState={editorState}
                     onChange={this.onChange}
                     plugins={plugins}
@@ -192,6 +205,13 @@ class TextArea extends Component {
                     </div>
                   </div>
                 </form>
+                {this.state.rendered ? (
+                  <RenderComments
+                    slug={this.props.match.params.slug}
+                    articleId={this.state.articleId}
+                    author={this.state.author}
+                  />
+                ) : null}
               </div>
             </div>
           </div>
@@ -203,6 +223,18 @@ class TextArea extends Component {
 
 TextArea.propTypes = {
   match: propTypes.shape({ params: propTypes.shape().isRequired }).isRequired,
+  history: propTypes.shape({
+    push: propTypes.func.isRequired,
+  }).isRequired,
 };
 
-export default TextArea;
+const mapStateToProps = state => ({
+  user: state.user,
+  comments: state.comments,
+});
+
+const mapActionsToProps = {
+  getCurrentUser: currentUser,
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(TextArea);

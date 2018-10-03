@@ -3,6 +3,7 @@ import {
   FAVORITE_FETCHED,
   USER_NOT_LOGGED_IN,
 } from './types';
+import { postedComment } from './articleComments';
 
 export const userFetched = (articleId, message) => ({
   type: FAVORITE_FETCHED,
@@ -23,13 +24,15 @@ export default function currentUser(articleId) {
   const currentUserUrl = `${apiUrl}/user/`;
   const token = localStorage.getItem('token');
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-
   return (dispatch) => {
     axios
       .get(currentUserUrl)
       .then(response => (response.status === 200
         ? dispatch(userFetched(articleId, response.data.user.favorited))
         : null))
-      .catch(dispatch(userNotLoggedIn()));
+      .catch((error) => {
+        dispatch(postedComment('Please login to view comments'));
+        dispatch(userNotLoggedIn());
+      });
   };
 }
